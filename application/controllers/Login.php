@@ -74,6 +74,14 @@ class Login extends CI_Controller {
         $this->load->view('default_page', $data);
 	}
 
+	public function register_account()
+	{
+        $data['title']    = 'Account Management';
+        $data['content']  = 'register';
+        $data['modal']    = '';
+        $this->load->view('default_page', $data);
+	}
+
 	public function upd_pwd()
 	{
 		$id 	= $this->input->post('uid');
