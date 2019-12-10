@@ -49,7 +49,7 @@ class Login extends CI_Controller {
 				'logged_in' => TRUE
 			);
 			$this->session->set_userdata($sesdata);			
-			redirect('welcome');	 			
+			redirect('home');	 			
 		}else{
 			echo $this->session->set_flashdata('msg','USERID atau PASSWORD salah');
 			redirect('login');
