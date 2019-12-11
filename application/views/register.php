@@ -10,7 +10,8 @@
           <th>UserID</th>
           <th>Nama Lengkap</th>
           <th>Role</th>
-          <th style="text-align: right;">Menu</th>
+          <th>Login Terakhir</th>
+          <th style="text-align: center;">Menu</th>
       </tr>
     </thead>
     <tbody id="tampil_data">
@@ -21,7 +22,7 @@
 </div>
 
 <!-- MODAL ADD -->
-<form>
+<form class="was-validated">
   <div class="modal fade" id="Modal_Add" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content">
@@ -34,31 +35,34 @@
       <div class="modal-body">
         <div class="form-row">
           <div class="form-group col-md-4">
-          <label for="kd_matkul">UserID</label>
-          <input type="text" class="form-control" id="kd_matkul" name="kd_matkul">
+            <label for="userid">UserID</label>
+            <input type="text" class="form-control" id="userid" name="userid" required>
+            <div id="id_check_result" class="help-block with-errors"></div>
           </div> 
-                 </div>
+        </div>
         <div class="form-row">
           <div class="form-group col-md-8">
-          <label for="nama_matkul">Nama </label>
-          <input type="text" class="form-control" id="nama_matkul" name="nama_matkul">
+          <label for="nama">Nama </label>
+          <input type="text" class="form-control" id="nama" name="nama" required>
+          <div class="invalid-feedback">Harap Masukan Nama</div>
           </div>
         </div>
         <div class="form-row">
           <div class="form-group col-md-12">
-          <label for="sks">Role</label>
-           <select id="sks" name="sks" class="form-control form-control-chosen" data-placeholder="Please select...">
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-                <option value="4">4</option>
-                <option value="5">5</option>
-                <option value="6">6</option>
-                <option value="7">7</option>
-                <option value="8">8</option>       
+          <label for="role">Role</label>
+           <select id="role" name="role" class="custom-select" data-placeholder="Please select..." required>
+                <option value="ADMIN">ADMIN</option>
+                <option value="PIMPINAN">PIMPINAN</option>
+                <option value="SUPER ADMIN">SUPER ADMIN</option>       
             </select>
           </div>
-        </div>              
+        </div>
+        <div class="form-row">
+          <div class="form-group col-md-8">
+          <label for="pwd">Password </label>
+          <input type="password" class="form-control" id="pwd" name="pwd" required>
+          </div>
+        </div>             
       </div>
       <div class="modal-footer">
       <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
@@ -158,7 +162,7 @@
         function show_data(){
             $.ajax({
                 type  : 'ajax',
-                url   : '<?php echo site_url('admin/master/list_matakuliah')?>',
+                url   : '<?php echo site_url('account/user_list')?>',
                 async : false,
                 dataType : 'json',
                 success : function(data){
@@ -166,11 +170,10 @@
                     var i;
                     for(i=0; i<data.length; i++){
                         html += '<tr>'+
-                                '<td>'+data[i].seq_id+'</td>'+
-                                '<td>'+data[i].kd_matkul+'</td>'+
-                                '<td>'+data[i].nama_matkul+'</td>'+
-                                '<td>'+data[i].sks+'</td>'+
-                                '<td>'+data[i].prodi+'</td>'+
+                                '<td>'+data[i].userid+'</td>'+
+                                '<td>'+data[i].nama_lengkap+'</td>'+
+                                '<td>'+data[i].role+'</td>'+
+                                '<td>'+data[i].login_terakhir+'</td>'+
                                 '<td style="text-align:right;">'+
                                     '<a href="javascript:void(0);" class="btn btn-info btn-circle btn-sm item_edit" data-toggle="tooltip" data-placement="top" title="Edit" data-seq_id="'+data[i].seq_id+'" data-kd_matkul="'+data[i].kd_matkul+'" data-nama_matkul="'+data[i].nama_matkul+'"data-sks="'+data[i].sks+'"data-prodi="'+data[i].prodi+'"><i class="fas fa-search"></i></a>'+' '+
                                     '<a href="javascript:void(0);" class="btn btn-danger btn-circle btn-sm item_delete" data-toggle="tooltip" data-placement="top" title="Delete" data-seq_id="'+data[i].seq_id+'"><i class="fas fa-trash"></i></a>'+
@@ -182,29 +185,43 @@
  
             });
         }
+
+        $('#userid').change(function(){  
+           var id = $('#userid').val();  
+           if(id != '')  
+           {  
+                $.ajax({  
+                     url:"<?php echo base_url(); ?>account/check_exists",  
+                     method:"POST",  
+                     data:{id:id},  
+                     success:function(data){  
+                          $('#id_check_result').html(data);  
+                     }  
+                });  
+           }  
+      	});
  
         //Save Data
         $('#btn_save').on('click',function(){
-            var kd_matkul        = $('#kd_matkul').val();
-            var nama_matkul      = $('#nama_matkul').val();
-            var sks              = $('#sks').val();
-            var prodi            = $('#prodi').val();            
+            var userid   = $('#userid').val();
+            var pwd      = $('#pwd').val();
+            var nama     = $('#nama').val();
+            var role     = $('#role').val();            
 
             $.ajax({
                 type : "POST",
-                url  : "<?php echo site_url('admin/master/save_matakuliah')?>",
+                url  : "<?php echo site_url('account/add_account')?>",
                 dataType : "JSON",
-                data : {kd_matkul:kd_matkul, nama_matkul:nama_matkul, sks:sks, prodi:prodi},
+                data : {userid:userid, pwd:pwd, nama:nama, role:role},
                 success: function(data){
-                    $('[name="kd_matkul"]').val("");
-                    $('[name="nama_matkul"]').val("");
-                    $('[name="sks"]').val("");
-                    $('[name="prodi"]').val("");                   
+                    $('[name="userid"]').val("");
+                    $('[name="pwd"]').val("");
+                    $('[name="nama"]').val("");                  
                     $('#Modal_Add').modal('hide');
                  
                    $.alert({            
                       title: 'Sukses!',
-                      content: 'Data Dosen Berhasil Disimpan!',
+                      content: 'Account Berhasil Disimpan!',
                     }); 
           
                     show_data();

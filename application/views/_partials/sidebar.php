@@ -4,7 +4,7 @@
   <!-- Sidebar - Brand -->
   <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
     <div class="sidebar-brand-icon rotate-n-15">    
-	  <i class="fas fa-chart-pie"></i>
+	  <i class="fas fa-chart-bar"></i>
     </div>
     <div class="sidebar-brand-text mx-3">e-Borang <sup>v.1</div>
   </a>
@@ -28,18 +28,18 @@
   </div>
 
   <!-- Nav Item - Pages Collapse Menu -->
-  <?php if($this->session->userdata('role')==='SUPER ADMIN'):?>
-  <li class="nav-item">
+  <?php if($this->session->userdata('role')==='SUPER ADMIN' || $this->session->userdata('role')==='ADMIN'):?>
+  <li class="nav-item <?php echo $this->uri->segment(1) == 'tridharma' ? 'active': '' ?>">
     <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
       <i class="fas fa-fw fa-cog"></i>
       <span>Tabel 1</span>
     </a>
-    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+    <div id="collapseTwo" class="collapse <?php echo $this->uri->segment(1) == 'tridharma' ? 'show': '' ?>" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
       <div class="bg-white py-2 collapse-inner rounded">
         <h6 class="collapse-header">Kerjasama Tridharma:</h6>
-        <a class="collapse-item <?php echo $this->uri->segment(3) == 'dosen' ? 'active': '' ?>" href="<?php echo site_url('admin/master/dosen'); ?>">Pendidikan</a>  
-        <a class="collapse-item <?php echo $this->uri->segment(3) == 'matakuliah' ? 'active': '' ?>" href="<?php echo site_url('admin/master/matakuliah'); ?>">Penelitian</a>      		
-        <a class="collapse-item <?php echo $this->uri->segment(3) == 'pengisian_edom' ? 'active': '' ?>" href="<?php echo site_url('admin/master/pengisian_edom'); ?>">Pengabdian Masyarakat</a>
+        <a class="collapse-item <?php echo $this->uri->segment(2) == 'pendidikan' ? 'active': '' ?>" href="<?php echo site_url('tridharma/pendidikan'); ?>">Pendidikan</a>  
+        <a class="collapse-item <?php echo $this->uri->segment(2) == 'penelitian' ? 'active': '' ?>" href="<?php echo site_url('tridharma/penelitian'); ?>">Penelitian</a>      		
+        <a class="collapse-item <?php echo $this->uri->segment(2) == 'pengabdian_masyarakat' ? 'active': '' ?>" href="<?php echo site_url('tridharma/pengabdian_masyarakat'); ?>">Pengabdian Masyarakat</a>
       </div>
     </div>
   </li>

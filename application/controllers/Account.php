@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Login extends CI_Controller {
+class Account extends CI_Controller {
 
 	/**
 	 * Index Page for this controller.
@@ -63,7 +63,7 @@ class Login extends CI_Controller {
         $date = array('login_terakhir' => date('Y-m-d H:i:s'));
 		$this->Model_security->logout($id, $date);
 		$this->session->sess_destroy();
-		redirect('login');		
+		redirect('home');		
 	}
 
 	public function reset_pwd()
@@ -74,7 +74,7 @@ class Login extends CI_Controller {
         $this->load->view('default_page', $data);
 	}
 
-	public function register_account()
+	public function account_mgmt()
 	{
         $data['title']    = 'Account Management';
         $data['content']  = 'register';
@@ -82,7 +82,30 @@ class Login extends CI_Controller {
         $this->load->view('default_page', $data);
 	}
 
-	public function upd_pwd()
+	function user_list(){
+		$data = $this->Model_security->user_list();
+		echo json_encode($data);
+	}
+
+	function check_exists()
+    {
+        $user_id = $this->input->post('id');
+        if($this->Model_security->user_verify($user_id))  
+		{  
+			echo '<label class="text-danger"><span class="glyphicon glyphicon-remove"></span> ID sudah terdaftar</label>';  
+		}  
+		else  
+		{  
+			echo '<label class="text-success"><span class="glyphicon glyphicon-ok"></span> ID Tersedia</label>';  
+		} 
+	}
+	
+	function add_account(){
+		$data=$this->Model_security->add_account();
+		echo json_encode($data);
+  	}
+
+	function upd_pwd()
 	{
 		$id 	= $this->input->post('uid');
 		$pw1 	= $this->input->post('pwd1');
@@ -90,12 +113,12 @@ class Login extends CI_Controller {
 		if (strcmp($pw1, $pw2) !== 0)
 		{
 			echo $this->session->set_flashdata('msg','Password tidak cocok');
-			redirect('login\reset_pwd');
+			redirect('account\reset_pwd');
 		}
 		else{
 			$this->Model_security->change_password($id, $pw1);
 			echo $this->session->set_flashdata('msg','Password Berhasil Di Reset');
-			redirect('login\reset_pwd');
+			redirect('account\reset_pwd');
 		}
 		
 	}

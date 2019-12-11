@@ -7,7 +7,7 @@
 
 </head>
 
-<body id="page-top">
+<body id="page-top" onload="startTime()">
 
   <!-- Page Wrapper -->
   <div id="wrapper">
@@ -29,8 +29,7 @@
         <!-- Begin Page Content -->
         <div class="container-fluid">
 
-          <!-- Page Heading --> 
-          <h1 class="h3 mb-4 text-gray-800"><?php echo $title; ?></h1>
+          <!-- Page Heading -->           
           <?php $this->load->view($content); ?>
         </div>
         <!-- /.container-fluid -->
@@ -65,6 +64,22 @@
 		  
 		});		
 	})
+</script>
+<script type="text/javascript">
+    function startTime() {
+    var today = new Date();
+    var h = today.getHours();
+    var m = today.getMinutes();
+    var s = today.getSeconds();
+    m = checkTime(m);
+    s = checkTime(s);
+    document.getElementById('jam').innerHTML = h + ":" + m + ":" + s;
+    var t = setTimeout(startTime, 500);
+    }
+    function checkTime(i) {
+      if (i < 10) {i = "0" + i};  // add zero in front of numbers < 10
+      return i;
+    }
 </script>
 </body>
 

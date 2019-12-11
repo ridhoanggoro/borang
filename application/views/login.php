@@ -43,7 +43,7 @@
                   <div class="text-center">
                     <h4 class="badge badge-danger"><?php echo $this->session->flashdata('msg');?></h4>
                   </div>
-                  <form class="user" action="<?php echo site_url('Login/auth');?>" method="post">
+                  <form class="user" action="<?php echo site_url('Account/auth');?>" method="post">
                     <div class="form-group">
                     <label for="exampleInputEmail1" class="text-uppercase">Username</label>
                     <input type="text" name="username" class="form-control" placeholder="username">

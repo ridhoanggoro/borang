@@ -9,7 +9,7 @@ class Model_security extends CI_model {
 		if (empty($username)) 
 		{
 			$this->session->sess_destroy();
-			redirect('login');
+			redirect('account');
 		}
 	}
 
@@ -43,5 +43,41 @@ class Model_security extends CI_model {
 	function hash($string)
     {
         return hash('sha512', $string.config_item('encryption_key'));
+	}
+	
+	function user_list()
+	{
+		$data = $this->db->get('user_info');
+		return $data->result();
+	}
+
+	/**
+     * This function is used to check userid is available or not 
+    **/
+	function user_verify($param) 
+	{    
+		$this->db->where('userid', $param);  
+		$query = $this->db->get("user_info");  
+		if($query->num_rows() > 0)  
+		{  
+			return true;  
+		}  
+		else  
+		{  
+			return false;  
+		}  
+	}
+
+	function add_account()
+    {
+		$encrypt_pwd = $this->hash($this->input->post('pwd'));
+        $data = array(
+                'userid'  => $this->input->post('userid'), 
+                'pwd'  => $encrypt_pwd, 
+                'nama_lengkap' => $this->input->post('nama'), 
+                'role' => $this->input->post('role')                         
+            );
+        $result=$this->db->insert('user_info',$data);
+        return $result;
     }
 }

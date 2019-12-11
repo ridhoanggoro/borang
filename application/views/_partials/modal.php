@@ -11,7 +11,7 @@
       <div class="modal-body">Pilih "Keluar" dibawah jika anda yakin untuk mengakhiri sesi ini.</div>
       <div class="modal-footer">
         <button class="btn btn-secondary" type="button" data-dismiss="modal">Batal</button>
-        <a class="btn btn-primary" href="<?php echo base_url(); ?>Login/logout">Keluar</a>
+        <a class="btn btn-primary" href="<?php echo base_url(); ?>Account/logout">Keluar</a>
       </div>
     </div>
   </div>

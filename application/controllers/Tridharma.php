@@ -1,20 +1,20 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Home extends CI_Controller {
+class Tridharma extends CI_Controller {
 
-	function __construct()
+    function __construct()
 	{
 		parent::__construct();
 		$this->load->model('Model_security');
 	}
 
-	public function index()
+    public function pendidikan()
 	{
 		$this->Model_security->getsecurity();
 		$isi['title'] 	='Home';
-		$isi['content']	= 'welcome';
+		$isi['content']	= 'tridharma/pendidikan';
 		$this->load->view('default_page', $isi);
 	}
-	
+
 }
