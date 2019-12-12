@@ -29,7 +29,7 @@
         <!-- Begin Page Content -->
         <div class="container-fluid">
 
-          <!-- Page Heading -->           
+          <!-- Page Heading -->
           <?php $this->load->view($content); ?>
         </div>
         <!-- /.container-fluid -->
@@ -57,12 +57,12 @@
   <?php $this->load->view("_partials/js.php"); ?>
   <script type="text/javascript">
 	$(function () {
-		$('[data-toggle="tooltip"]').tooltip();	
+		$('[data-toggle="tooltip"]').tooltip();
 		$('.form-control-chosen').chosen({
 		  // Chosen options here
 		  allow_single_deselect: true
-		  
-		});		
+
+		});
 	})
 </script>
 <script type="text/javascript">
@@ -73,7 +73,7 @@
     var s = today.getSeconds();
     m = checkTime(m);
     s = checkTime(s);
-    document.getElementById('jam').innerHTML = h + ":" + m + ":" + s;
+    document.getElementById('jam').innerHTML = "Waktu saat ini : " + h + ":" + m + ":" + s;
     var t = setTimeout(startTime, 500);
     }
     function checkTime(i) {
