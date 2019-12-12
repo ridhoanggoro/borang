@@ -8,7 +8,7 @@
         </span>
         <span class="text">Tambah Data</span>
       </a>
-      <a href="<?php echo base_url('tridharma/export_excel/1-1')?>" class="btn btn-success btn-icon-split btn-sm">
+      <a href="<?php echo base_url('tridharma/export_excel/'.encode_url('1-1'));?>" class="btn btn-success btn-icon-split btn-sm">
         <span class="icon text-white-50">
           <i class="fas fa-file-excel"></i>
         </span>

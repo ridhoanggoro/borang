@@ -39,11 +39,19 @@ class Tridharma extends CI_Controller {
     }
 
     public function export_excel(){
-      $key = $this->uri->segment(3);
+      $key = decode_url($this->uri->segment(3));
       $this->load->library('PHPExcel');
       // Template loading
       $fileType = 'Excel2007';
-      $fileName = './assets/template/1-1.xlsx';
+      switch ($key) {
+        case '1-1':
+          $fileName = './assets/template/1-1.xlsx';
+          break;
+
+        default:
+          // code...
+          break;
+      }
 
       $objReader = PHPExcel_IOFactory::createReader($fileType);
       $objPHPExcel = $objReader->load($fileName);
@@ -53,7 +61,7 @@ class Tridharma extends CI_Controller {
 
       // Redirect output to a client’s web browser (Excel2007)
       header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
-      header('Content-Disposition: attachment;filename="output.xlsx"');
+      header('Content-Disposition: attachment;filename="'.$key.'.xlsx"');
       header('Cache-Control: max-age=0');
 
       // If you're serving to IE over SSL, then the following may be needed
