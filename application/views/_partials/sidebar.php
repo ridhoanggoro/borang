@@ -39,7 +39,7 @@
         <h6 class="collapse-header">Kerjasama Tridharma:</h6>
         <a class="collapse-item <?php echo $this->uri->segment(2) == 'pendidikan' ? 'active': '' ?>" href="<?php echo site_url('tridharma/pendidikan'); ?>">Pendidikan</a>
         <a class="collapse-item <?php echo $this->uri->segment(2) == 'penelitian' ? 'active': '' ?>" href="<?php echo site_url('tridharma/penelitian'); ?>">Penelitian</a>
-        <a class="collapse-item <?php echo $this->uri->segment(2) == 'pengabdian_masyarakat' ? 'active': '' ?>" href="<?php echo site_url('tridharma/pengabdian_masyarakat'); ?>">Pengabdian Masyarakat</a>
+        <a class="collapse-item <?php echo $this->uri->segment(2) == 'pkm' ? 'active': '' ?>" href="<?php echo site_url('tridharma/pkm'); ?>">Pengabdian Masyarakat</a>
       </div>
     </div>
   </li>

@@ -38,40 +38,60 @@ class Tridharma extends CI_Controller {
       echo json_encode($data);
     }
 
-    public function export_excel(){
-      $key = decode_url($this->uri->segment(3));
-      $this->load->library('PHPExcel');
-      // Template loading
-      $fileType = 'Excel2007';
-      switch ($key) {
-        case '1-1':
-          $fileName = './assets/template/1-1.xlsx';
-          break;
+    public function penelitian()
+  	{
+  		$this->Model_security->getsecurity();
+  		$isi['title'] 	='Tridharma Penelitian';
+  		$isi['content']	= 'tridharma/penelitian';
+  		$this->load->view('default_page', $isi);
+  	}
 
-        default:
-          // code...
-          break;
-      }
+    function penelitian_data_list(){
+  		$data = $this->Model_master->tridharma_penelitian_list();
+  		echo json_encode($data);
+  	}
 
-      $objReader = PHPExcel_IOFactory::createReader($fileType);
-      $objPHPExcel = $objReader->load($fileName);
+    function penelitian_add(){
+      $data = $this->Model_master->tridharma_penelitian_add();
+      echo json_encode($data);
+    }
 
-      $objPHPExcel->setActiveSheetIndex(0)
-      ->setCellValue('B12', 'ZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZ');
+    function penelitian_edit(){
+      $data = $this->Model_master->tridharma_penelitian_edit();
+      echo json_encode($data);
+    }
 
-      // Redirect output to a client’s web browser (Excel2007)
-      header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
-      header('Content-Disposition: attachment;filename="'.$key.'.xlsx"');
-      header('Cache-Control: max-age=0');
+    function penelitian_delete(){
+      $data = $this->Model_master->tridharma_penelitian_delete();
+      echo json_encode($data);
+    }
 
-      // If you're serving to IE over SSL, then the following may be needed
-      header ('Expires: Mon, 26 Jul 2020 05:00:00 GMT'); // Date in the past
-      header ('Last-Modified: '.gmdate('D, d M Y H:i:s').' GMT'); // always modified
-      header ('Cache-Control: cache, must-revalidate'); // HTTP/1.1
-      header ('Pragma: public'); // HTTP/1.0
+    public function pkm()
+  	{
+  		$this->Model_security->getsecurity();
+  		$isi['title'] 	='Kerjasama Pengabdian Kepada Masyarakat';
+  		$isi['content']	= 'tridharma/pkm';
+  		$this->load->view('default_page', $isi);
+  	}
 
-      $objWriter = PHPExcel_IOFactory::createWriter($objPHPExcel, 'Excel2007');
-      $objWriter->save('php://output');
-  }
+    function pkm_data_list(){
+  		$data = $this->Model_master->tridharma_pkm_list();
+  		echo json_encode($data);
+  	}
+
+    function pkm_add(){
+      $data = $this->Model_master->tridharma_pkm_add();
+      echo json_encode($data);
+    }
+
+    function pkm_edit(){
+      $data = $this->Model_master->tridharma_pkm_edit();
+      echo json_encode($data);
+    }
+
+    function pkm_delete(){
+      $data = $this->Model_master->tridharma_pkm_delete();
+      echo json_encode($data);
+    }
 
 }

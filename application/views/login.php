@@ -2,14 +2,13 @@
 <html lang="en">
 
 <head>
-
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="description" content="">
   <meta name="author" content="">
-  <link rel="shortcut icon" href="<?php echo base_url(); ?>assets/images/favicon.ico" />
-  
+  <link rel="shortcut icon" href="<?php echo base_url(); ?>assets/images/favicon.png" />
+
   <title>e-Borang - Halaman Login</title>
 
   <!-- Custom fonts for this template-->
@@ -21,7 +20,7 @@
 
 </head>
 
-<body class="bg-gradient-primary">
+<body class="bg-gradient-info">
 
   <div class="container">
 
@@ -47,7 +46,7 @@
                     <div class="form-group">
                     <label for="exampleInputEmail1" class="text-uppercase">Username</label>
                     <input type="text" name="username" class="form-control" placeholder="username">
-                    
+
                     </div>
                     <div class="form-group">
                         <label for="exampleInputPassword1" class="text-uppercase">Password</label>
@@ -55,15 +54,15 @@
                     </div>
                     <button  class="btn btn-primary btn-user btn-block">
                       Login
-                    </button>                                     
+                    </button>
                   </form>
-                  <hr>                
+                  <hr>
                 </div>
               </div>
             </div>
           </div>
         </div>
-		
+
       </div>
 
     </div>

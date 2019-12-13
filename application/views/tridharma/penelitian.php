@@ -8,7 +8,7 @@
         </span>
         <span class="text">Tambah Data</span>
       </a>
-      <a href="<?php echo base_url('export/export_excel/'.encode_url('1-1'));?>" class="btn btn-success btn-icon-split btn-sm">
+      <a href="<?php echo base_url('export/export_excel/'.encode_url('1-2'));?>" class="btn btn-success btn-icon-split btn-sm">
         <span class="icon text-white-50">
           <i class="fas fa-file-excel"></i>
         </span>
@@ -219,7 +219,7 @@ $(document).ready(function(){
   function show_data(){
     $.ajax({
       type  : 'ajax',
-      url   : '<?php echo site_url('tridharma/pendidikan_data_list')?>',
+      url   : '<?php echo site_url('tridharma/penelitian_data_list')?>',
       async : false,
       dataType : 'json',
       success : function(data){
@@ -256,7 +256,7 @@ $(document).ready(function(){
     var bukti           = $('#bukti').val();
     $.ajax({
       type : "POST",
-      url  : "<?php echo site_url('tridharma/pendidikan_add')?>",
+      url  : "<?php echo site_url('tridharma/penelitian_add')?>",
       dataType : "JSON",
       data : {lembaga_mitra:lembaga_mitra, tingkat:tingkat, judul_kegiatan:judul_kegiatan, manfaat_bagi_ps:manfaat_bagi_ps, durasi:durasi, tahun_berakhir:tahun_berakhir, bukti:bukti},
       success: function(data){
@@ -313,7 +313,7 @@ $(document).ready(function(){
 
     $.ajax({
       type : "POST",
-      url  : "<?php echo site_url('tridharma/pendidikan_edit')?>",
+      url  : "<?php echo site_url('tridharma/penelitian_edit')?>",
       dataType : "JSON",
       data : {seq_id:seq_id, lembaga_mitra:lembaga_mitra, tingkat:tingkat, judul_kegiatan:judul_kegiatan, manfaat_bagi_ps:manfaat_bagi_ps, durasi:durasi, tahun_berakhir:tahun_berakhir, bukti:bukti},
       success: function(data){
@@ -347,7 +347,7 @@ $(document).ready(function(){
       var seq_id = $('#seq_id_delete').val();
       $.ajax({
           type : "POST",
-          url  : "<?php echo site_url('tridharma/pendidikan_delete')?>",
+          url  : "<?php echo site_url('tridharma/penelitian_delete')?>",
           dataType : "JSON",
           data : {seq_id:seq_id},
           success: function(data){

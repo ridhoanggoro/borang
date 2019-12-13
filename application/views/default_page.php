@@ -73,7 +73,7 @@
     var s = today.getSeconds();
     m = checkTime(m);
     s = checkTime(s);
-    document.getElementById('jam').innerHTML = "Waktu saat ini : " + h + ":" + m + ":" + s;
+    document.getElementById('jam').innerHTML = "Waktu saat ini [ " + h + ":" + m + ":" + s + " ]";
     var t = setTimeout(startTime, 500);
     }
     function checkTime(i) {
