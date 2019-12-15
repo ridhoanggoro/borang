@@ -43,16 +43,16 @@
       </div>
     </div>
   </li>
-  <li class="nav-item">
+  <li class="nav-item <?php echo $this->uri->segment(1) == 'mahasiswa' ? 'active': '' ?>">
     <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapse3" aria-expanded="true" aria-controls="collapse3">
       <i class="fas fa-fw fa-cog"></i>
       <span>Tabel 2</span>
     </a>
-    <div id="collapse3" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+    <div id="collapse3" class="collapse <?php echo $this->uri->segment(1) == 'mahasiswa' ? 'show': '' ?>" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
       <div class="bg-white py-2 collapse-inner rounded">
         <h6 class="collapse-header">Mahasiswa:</h6>
-        <a class="collapse-item <?php echo $this->uri->segment(3) == 'dosen' ? 'active': '' ?>" href="<?php echo site_url('admin/master/dosen'); ?>">Seleksi Mahasiswa</a>
-        <a class="collapse-item <?php echo $this->uri->segment(3) == 'matakuliah' ? 'active': '' ?>" href="<?php echo site_url('admin/master/matakuliah'); ?>">Mahasiswa Asing</a>
+        <a class="collapse-item <?php echo $this->uri->segment(2) == 'seleksi_mahasiswa' ? 'active': '' ?>" href="<?php echo site_url('mahasiswa/seleksi_mahasiswa'); ?>">Seleksi Mahasiswa</a>
+        <a class="collapse-item <?php echo $this->uri->segment(2) == 'matakuliah' ? 'active': '' ?>" href="<?php echo site_url('admin/master/matakuliah'); ?>">Mahasiswa Asing</a>
       </div>
     </div>
   </li>

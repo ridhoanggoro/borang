@@ -21,14 +21,20 @@
     <table class="table table-striped table-bordered" id="mydata" width="100%" cellspacing="0">
       <thead>
         <tr>
-            <th>Lembaga Mitra</th>
-            <th>Tingkat</th>
-            <th>Judul Kegiatan Kerjasama</th>
-            <th>Manfaat bagi PS yang Diakreditasi</th>
-            <th>Waktu dan Durasi</th>
-            <th>Bukti Kerjasama</th>
-            <th>Tahun Berakhirnya Kerjasama</th>
-            <th style="text-align: center;">Menu</th>
+          <th rowspan="2" style="text-align: center; vertical-align: middle;">Tahun Akademik</th>
+          <th rowspan="2" style="text-align: center; vertical-align: middle;">Daya Tampung</th>
+          <th colspan="2" style="text-align: center; vertical-align: middle;">Jumlah Calon Mahasiswa</th>
+          <th colspan="2" style="text-align: center; vertical-align: middle;">Jumlah Mahasiswa Baru</th>
+          <th colspan="2" style="text-align: center; vertical-align: middle;">Jumlah Mahasiswa Aktif</th>
+          <th rowspan="2" style="text-align: center; vertical-align: middle;">Menu</th>
+        </tr>
+        <tr>
+            <th style="text-align: center; vertical-align: middle;">Pendaftar</th>
+            <th style="text-align: center; vertical-align: middle;">Lulus Seleksi</th>
+            <th style="text-align: center; vertical-align: middle;">Reguler</th>
+            <th style="text-align: center; vertical-align: middle;">Transfer</th>
+            <th style="text-align: center; vertical-align: middle;">Reguler</th>
+            <th style="text-align: center; vertical-align: middle;">Transfer</th>
         </tr>
       </thead>
       <tbody id="tampil_data">
@@ -126,49 +132,47 @@
         <div class="form-row">
           <input type="text" hidden="" class="form-control" id="seq_id" name="seq_id">
           <div class="form-group col-md-6">
-            <label for="mitra_edit">Lembaga Mitra</label>
-            <input type="text" class="form-control" id="mitra_edit" name="mitra_edit" required>
+            <label for="ts_edit">Tahun Akademik</label>
+            <input type="text" class="form-control" id="ts_edit" name="ts_edit" readonly="">
             <div id="id_check_result" class="help-block with-errors"></div>
           </div>
           <div class="form-group col-md-6">
-          <label for="tingkat_edit">Tingkat</label>
-           <select id="tingkat_edit" name="tingkat_edit" class="custom-select" data-placeholder="Please select..." required>
-                <option value="Internasional">Internasional</option>
-                <option value="Nasional">Nasional</option>
-                <option value="Lokal">Wilayah / Lokal</option>
-            </select>
-          </div>
-        </div>
-        <div class="form-row">
-          <div class="form-group col-md-12">
-            <label for="judul_kegiatan_edit">Judul Kegiatan Kerjasama</label>
-            <input type="text" class="form-control" id="judul_kegiatan_edit" name="judul_kegiatan_edit" required>
+            <label for="daya_tampung_edit">Daya Tampung</label>
+            <input type="number" class="form-control" id="daya_tampung_edit" name="daya_tampung_edit" min="0" max="9999" required>
             <div id="id_check_result" class="help-block with-errors"></div>
           </div>
         </div>
         <div class="form-row">
-          <div class="form-group col-md-12">
-            <label for="manfaat_bagi_ps_edit">Manfaat bagi PS yang Diakreditasi</label>
-            <textarea class="form-control" id="manfaat_bagi_ps_edit" name="manfaat_bagi_ps_edit" rows="3" required></textarea>
+          <div class="form-group col-md-3">
+            <label for="calon_seleksi_edit">Calon Mahasiswa</label>
+            <input type="text" class="form-control" id="calon_seleksi_edit" name="calon_seleksi_edit" readonly="">
+            <div id="id_check_result" class="help-block with-errors"></div>
+          </div>
+          <div class="form-group col-md-3">
+            <label for="calon_lulus_edit">Calon Mahasiswa Lulus Seleksi</label>
+            <input type="text" class="form-control" id="calon_lulus_edit" name="calon_lulus_edit" readonly="">
+            <div id="id_check_result" class="help-block with-errors"></div>
+          </div>
+          <div class="form-group col-md-3">
+            <label for="baru_reguler_edit">Mahasiswa Baru Reguler</label>
+            <input type="text" class="form-control" id="baru_reguler_edit" name="baru_reguler_edit" readonly="">
+            <div id="id_check_result" class="help-block with-errors"></div>
+          </div>
+          <div class="form-group col-md-3">
+            <label for="baru_transfer_edit">Mahasiswa Baru Transfer</label>
+            <input type="text" class="form-control" id="baru_transfer_edit" name="baru_transfer_edit" readonly="">
             <div id="id_check_result" class="help-block with-errors"></div>
           </div>
         </div>
         <div class="form-row">
           <div class="form-group col-md-6">
-            <label for="waktu_edit">Waktu dan Durasi</label>
-            <input type="text" class="form-control" id="waktu_edit" name="waktu_edit" required>
+            <label for="aktif_reguler_edit">Mahasiswa Aktif Reguler</label>
+            <input type="text" class="form-control" id="aktif_reguler_edit" name="aktif_reguler_edit" readonly="">
             <div id="id_check_result" class="help-block with-errors"></div>
           </div>
           <div class="form-group col-md-6">
-            <label for="tahun_berakhir_edit">Tahun Berakhirnya Kerjasama (YYYY)</label>
-            <input type="number" class="form-control" id="tahun_berakhir_edit" name="tahun_berakhir_edit" min="1" max="9999" required>
-            <div id="id_check_result" class="help-block with-errors"></div>
-          </div>
-        </div>
-        <div class="form-row">
-          <div class="form-group col-md-12">
-            <label for="bukti_edit">Bukti Kerjasama</label>
-            <input type="text" class="form-control" id="bukti_edit" name="bukti_edit" required>
+            <label for="aktif_transfer_edit">Mahasiswa Aktif Transfer</label>
+            <input type="text" class="form-control" id="aktif_transfer_edit" name="aktif_transfer_edit" readonly="">
             <div id="id_check_result" class="help-block with-errors"></div>
           </div>
         </div>
@@ -203,7 +207,7 @@
             <input type="hidden" name="seq_id_delete" id="seq_id_delete" class="form-control">
             <button class="btn btn-secondary btn-icon-split btn-sm" data-dismiss="modal"><span class="icon text-white-50"><i class="fas fa-arrow-alt-circle-left"></i></i></span>
             <span class="text">Batal</span></button>
-            <button type="submit" id="btn_delete" class="btn btn-danger btn-icon-split btn-sm"><span class="icon text-white-50"><i class="fas fa-save"></i></span>
+            <button type="submit" id="btn_delete" class="btn btn-danger btn-icon-split btn-sm"><span class="icon text-white-50"><i class="fas fa-trash"></i></span>
             <span class="text">Hapus</span></button>
           </div>
         </div>
@@ -215,11 +219,16 @@
 <script type="text/javascript">
 $(document).ready(function(){
   show_data();
-  $('#mydata').dataTable();
+  // $('#mydata').dataTable();
   function show_data(){
+    var tot_calon_pendaftar = 0;
+    var tot_calon_lulus     = 0;
+    var tot_mhs_reguler     = 0;
+    var tot_mhs_trans       = 0;
+    var tot_mhs_aktif       = 0;
     $.ajax({
       type  : 'ajax',
-      url   : '<?php echo site_url('tridharma/pendidikan_data_list')?>',
+      url   : '<?php echo site_url('mahasiswa/seleksi_mahasiswa_data_list')?>',
       async : false,
       dataType : 'json',
       success : function(data){
@@ -227,19 +236,36 @@ $(document).ready(function(){
         var i;
         for(i=0; i<data.length; i++){
           html += '<tr>'+
-          '<td>'+data[i].lembaga_mitra+'</td>'+
-          '<td>'+data[i].tingkat+'</td>'+
-          '<td>'+data[i].judul_kegiatan+'</td>'+
-          '<td>'+data[i].manfaat_bagi_ps+'</td>'+
-          '<td>'+data[i].durasi+'</td>'+
-          '<td>'+data[i].bukti_kerjasama+'</td>'+
-          '<td>'+data[i].tahun_berakhir+'</td>'+
+          '<td style="text-align: center;">'+data[i].nama_ts+'</td>'+
+          '<td style="text-align: center;">'+data[i].daya_tampung+'</td>'+
+          '<td style="text-align: center;">'+data[i].pendaftar+'</td>'+
+          '<td style="text-align: center;">'+data[i].lulus+'</td>'+
+          '<td style="text-align: center;">'+data[i].reguler+'</td>'+
+          '<td style="text-align: center;">'+data[i].pindahan+'</td>'+
+          '<td style="text-align: center;">'+data[i].aktif_reguler+'</td>'+
+          '<td style="text-align: center;">'+data[i].aktif_pindahan+'</td>'+
           '<td style="text-align:right;">'+
-              '<a href="javascript:void(0);" class="btn btn-info btn-circle btn-sm item_edit" data-toggle="tooltip" data-placement="top" title="Edit" data-seq_id="'+data[i].seq_id+'" data-lembaga_mitra="'+data[i].lembaga_mitra+'" data-tingkat="'+data[i].tingkat+'"data-judul_kegiatan="'+data[i].judul_kegiatan+'"data-manfaat_bagi_ps="'+data[i].manfaat_bagi_ps+'"data-durasi="'+data[i].durasi+'"data-bukti_kerjasama="'+data[i].bukti_kerjasama+'"data-tahun_berakhir="'+data[i].tahun_berakhir+'"><i class="fas fa-search"></i></a>'+' '+
+              '<a href="javascript:void(0);" class="btn btn-info btn-circle btn-sm item_edit" data-toggle="tooltip" data-placement="top" title="Edit" data-seq_id="'+data[i].seq_id+'" data-nama_ts="'+data[i].nama_ts+'" data-daya_tampung="'+data[i].daya_tampung+'"data-pendaftar="'+data[i].pendaftar+'"data-lulus="'+data[i].lulus+'"data-reguler="'+data[i].reguler+'"data-pindahan="'+data[i].pindahan+'"data-aktif_reguler="'+data[i].aktif_reguler+'"data-aktif_pindahan="'+data[i].aktif_pindahan+'"><i class="fas fa-search"></i></a>'+' '+
               '<a href="javascript:void(0);" class="btn btn-danger btn-circle btn-sm item_delete" data-toggle="tooltip" data-placement="top" title="Delete" data-seq_id="'+data[i].seq_id+'"><i class="fas fa-trash"></i></a>'+
           '</td>'+
           '</tr>';
+          tot_calon_pendaftar = tot_calon_pendaftar + raw_number(data[i].pendaftar);
+          tot_calon_lulus = tot_calon_lulus + raw_number(data[i].lulus);
+          tot_mhs_reguler = tot_mhs_reguler + raw_number(data[i].reguler);
+          tot_mhs_trans = tot_mhs_trans + raw_number(data[i].pindahan);
+          if (data[i].nama_ts=='TS') {
+            tot_mhs_aktif = raw_number(data[i].aktif_reguler) + raw_number(data[i].aktif_pindahan);
+          }
         }
+        html += '<tr>'+
+          '<th colspan="2" style="text-align: center;">Jumlah</th>'+
+          '<th style="text-align: center;">'+tot_calon_pendaftar+'</th>'+
+          '<th style="text-align: center;">'+tot_calon_lulus+'</th>'+
+          '<th style="text-align: center;">'+tot_mhs_reguler+'</th>'+
+          '<th style="text-align: center;">'+tot_mhs_trans+'</th>'+
+          '<th colspan="2" style="text-align: center;">'+tot_mhs_aktif+'</th>'+
+          '<th style="text-align: center;"></th>'+
+        '</tr>';
         $('#tampil_data').html(html);
       }
     });
@@ -280,24 +306,27 @@ $(document).ready(function(){
 
   //fill data record
   $('#tampil_data').on('click','.item_edit',function(){
-    var seq_id          = $(this).data('seq_id');
-    var lembaga_mitra   = $(this).data('lembaga_mitra');
-    var tingkat         = $(this).data('tingkat');
-    var judul_kegiatan  = $(this).data('judul_kegiatan');
-    var manfaat_bagi_ps = $(this).data('manfaat_bagi_ps');
-    var durasi          = $(this).data('durasi');
-    var tahun_berakhir  = $(this).data('tahun_berakhir');
-    var bukti           = $(this).data('bukti_kerjasama');
+    var seq_id        = $(this).data('seq_id');
+    var thn_akademik  = $(this).data('nama_ts');
+    var daya_tampung  = $(this).data('daya_tampung');
+    var pendaftar     = $(this).data('pendaftar');
+    var lulus         = $(this).data('lulus');
+    var reguler       = $(this).data('reguler');
+    var pindahan      = $(this).data('pindahan');
+    var aktif_reguler       = $(this).data('aktif_reguler');
+    var aktif_pindahan      = $(this).data('aktif_pindahan');
 
     $('#Modal_Edit').modal('show');
     $('[name="seq_id"]').val(seq_id);
-    $('[name="mitra_edit"]').val(lembaga_mitra);
-    $('[name="tingkat_edit"]').val(tingkat);
-    $('[name="judul_kegiatan_edit"]').val(judul_kegiatan);
-    $('[name="manfaat_bagi_ps_edit"]').val(manfaat_bagi_ps);
-    $('[name="waktu_edit"]').val(durasi);
-    $('[name="tahun_berakhir_edit"]').val(tahun_berakhir);
-    $('[name="bukti_edit"]').val(bukti);
+    $('[name="ts_edit"]').val(thn_akademik);
+    $('[name="daya_tampung_edit"]').val(daya_tampung);
+    $('[name="calon_seleksi_edit"]').val(pendaftar);
+    $('[name="calon_lulus_edit"]').val(lulus);
+    $('[name="baru_reguler_edit"]').val(reguler);
+    $('[name="baru_transfer_edit"]').val(pindahan);
+    $('[name="aktif_reguler_edit"]').val(aktif_reguler);
+    $('[name="aktif_transfer_edit"]').val(aktif_pindahan);
+    $('[name="daya_tampung_edit"]').focus();
   });
 
   //update record
