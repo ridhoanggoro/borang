@@ -78,6 +78,25 @@ class Export extends CI_Controller {
           $col++;
         }
         break;
+			case '2a':
+	      $fileName = './assets/template/2a.xlsx';
+	      $objPHPExcel = $objReader->load($fileName);
+	      $objPHPExcel->setActiveSheetIndex(0);
+	      $objPHPExcel->getActiveSheet();
+	      $data = $this->Model_master->seleksi_mahasiswa_list();
+	      $col = 6;
+	      foreach ($data as $val) {
+	        $objPHPExcel->setActiveSheetIndex()->setCellValue('A'.$col, $val->nama_ts);
+	        $objPHPExcel->setActiveSheetIndex()->setCellValue('B'.$col, $val->daya_tampung);
+	        $objPHPExcel->setActiveSheetIndex()->setCellValue('C'.$col, $val->pendaftar);
+	        $objPHPExcel->setActiveSheetIndex()->setCellValue('D'.$col, $val->lulus);
+	        $objPHPExcel->setActiveSheetIndex()->setCellValue('E'.$col, $val->reguler);
+	        $objPHPExcel->setActiveSheetIndex()->setCellValue('F'.$col, $val->pindahan);
+	        $objPHPExcel->setActiveSheetIndex()->setCellValue('G'.$col, $val->aktif_reguler);
+	        $objPHPExcel->setActiveSheetIndex()->setCellValue('H'.$col, $val->aktif_pindahan);
+	        $col++;
+	      }
+	      break;
       default:
         // code...
         break;

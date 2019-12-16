@@ -2,13 +2,7 @@
   <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
     <h6 class="m-0 font-weight-bold text-primary"><?php echo $title; ?></h6>
     <div class="float-right">
-      <a href="javascript:void(0);" data-toggle="modal" data-target="#Modal_Add" class="btn btn-primary btn-icon-split btn-sm">
-        <span class="icon text-white-50">
-          <i class="fas fa-folder-plus"></i>
-        </span>
-        <span class="text">Tambah Data</span>
-      </a>
-      <a href="<?php echo base_url('export/export_excel/'.encode_url('1-1'));?>" class="btn btn-success btn-icon-split btn-sm">
+      <a href="<?php echo base_url('export/export_excel/'.encode_url('2a'));?>" class="btn btn-success btn-icon-split btn-sm">
         <span class="icon text-white-50">
           <i class="fas fa-file-excel"></i>
         </span>
@@ -245,8 +239,7 @@ $(document).ready(function(){
           '<td style="text-align: center;">'+data[i].aktif_reguler+'</td>'+
           '<td style="text-align: center;">'+data[i].aktif_pindahan+'</td>'+
           '<td style="text-align:right;">'+
-              '<a href="javascript:void(0);" class="btn btn-info btn-circle btn-sm item_edit" data-toggle="tooltip" data-placement="top" title="Edit" data-seq_id="'+data[i].seq_id+'" data-nama_ts="'+data[i].nama_ts+'" data-daya_tampung="'+data[i].daya_tampung+'"data-pendaftar="'+data[i].pendaftar+'"data-lulus="'+data[i].lulus+'"data-reguler="'+data[i].reguler+'"data-pindahan="'+data[i].pindahan+'"data-aktif_reguler="'+data[i].aktif_reguler+'"data-aktif_pindahan="'+data[i].aktif_pindahan+'"><i class="fas fa-search"></i></a>'+' '+
-              '<a href="javascript:void(0);" class="btn btn-danger btn-circle btn-sm item_delete" data-toggle="tooltip" data-placement="top" title="Delete" data-seq_id="'+data[i].seq_id+'"><i class="fas fa-trash"></i></a>'+
+              '<a href="javascript:void(0);" class="btn btn-info btn-circle btn-sm item_edit" data-toggle="tooltip" data-placement="top" title="Edit" data-seq_id="'+data[i].seq_id+'" data-nama_ts="'+data[i].nama_ts+'" data-daya_tampung="'+data[i].daya_tampung+'"data-pendaftar="'+data[i].pendaftar+'"data-lulus="'+data[i].lulus+'"data-reguler="'+data[i].reguler+'"data-pindahan="'+data[i].pindahan+'"data-aktif_reguler="'+data[i].aktif_reguler+'"data-aktif_pindahan="'+data[i].aktif_pindahan+'"><i class="fas fa-search"></i></a>'+
           '</td>'+
           '</tr>';
           tot_calon_pendaftar = tot_calon_pendaftar + raw_number(data[i].pendaftar);
@@ -332,27 +325,15 @@ $(document).ready(function(){
   //update record
   $('#btn_update').on('click',function(){
     var seq_id          = $('#seq_id').val();
-    var lembaga_mitra   = $('#mitra_edit').val();
-    var tingkat         = $('#tingkat_edit').val();
-    var judul_kegiatan  = $('#judul_kegiatan_edit').val();
-    var manfaat_bagi_ps = $('#manfaat_bagi_ps_edit').val();
-    var durasi          = $('#waktu_edit').val();
-    var tahun_berakhir  = $('#tahun_berakhir_edit').val();
-    var bukti           = $('#bukti_edit').val();
+    var daya_tampung    = $('#daya_tampung_edit').val();
 
     $.ajax({
       type : "POST",
-      url  : "<?php echo site_url('tridharma/pendidikan_edit')?>",
+      url  : "<?php echo site_url('mahasiswa/seleksi_mahasiswa_edit')?>",
       dataType : "JSON",
-      data : {seq_id:seq_id, lembaga_mitra:lembaga_mitra, tingkat:tingkat, judul_kegiatan:judul_kegiatan, manfaat_bagi_ps:manfaat_bagi_ps, durasi:durasi, tahun_berakhir:tahun_berakhir, bukti:bukti},
+      data : {seq_id:seq_id, daya_tampung:daya_tampung},
       success: function(data){
-        $('[name="mitra_edit"]').val("");
-        $('[name="tingkat_edit"]').val("");
-        $('[name="judul_kegiatan_edit"]').val("");
-        $('[name="manfaat_bagi_ps_edit"]').val("");
-        $('[name="waktu_edit"]').val("");
-        $('[name="tahun_berakhir_edit"]').val("");
-        $('[name="bukti_edit"]').val("");
+        $('[name="daya_tampung_edit"]').val("");
         $('#Modal_Edit').modal('hide');
         $.alert({
           title: 'Sukses!',

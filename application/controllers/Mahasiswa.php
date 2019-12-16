@@ -29,12 +29,12 @@ class Mahasiswa extends CI_Controller {
     }
 
     function seleksi_mahasiswa_edit(){
-      $data = $this->Model_master->tridharma_pendidikan_edit();
+      $data = $this->Model_master->seleksi_mahasiswa_edit();
       echo json_encode($data);
     }
 
     function seleksi_mahasiswa_delete(){
-      $data = $this->Model_master->tridharma_pendidikan_delete();
+      $data = $this->Model_master->seleksi_mahasiswa_delete();
       echo json_encode($data);
     }
 
