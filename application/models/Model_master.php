@@ -170,6 +170,13 @@ class Model_master extends CI_model {
   	$result = $this->db->update('tbl_2a', $data);
   	return $result;
 	}
+
+	function mahasiswa_asing_list(){
+		$role= $this->session->userdata('nama');
+		$sql="SELECT m.prodi, SUM(TS_2) AS 'TS_2', SUM(TS_1) AS 'TS_1', SUM(TS) AS 'TS', z.* FROM(SELECT ts.prodi, COUNT(s.nim) AS 'TS_2', 0 AS 'TS_1', 0 AS 'TS' FROM (SELECT nim, LEFT(th_akademik, 4) AS th_akademik FROM `status_mahasiswa` a WHERE a.prodi = '$role' AND a.status = 'AKTIF' GROUP BY nim, LEFT(th_akademik, 4)) s INNER JOIN mahasiswa m ON m.nim = s.nim INNER JOIN ts ON ts.tahun = LEFT(s.th_akademik, 4) AND ts.prodi = '$role' AND ts.nama_ts='TS-2' GROUP BY ts.nama_ts UNION ALL SELECT ts.prodi,0 AS 'TS_2', COUNT(s.nim) AS 'TS_1', 0 AS 'TS' FROM (SELECT nim, LEFT(th_akademik, 4) AS th_akademik FROM `status_mahasiswa` a WHERE a.prodi = '$role' AND a.status = 'AKTIF' GROUP BY nim, LEFT(th_akademik, 4)) s INNER JOIN mahasiswa m ON m.nim = s.nim INNER JOIN ts ON ts.tahun = LEFT(s.th_akademik, 4) AND ts.prodi = '$role' AND ts.nama_ts='TS-1' GROUP BY ts.nama_ts UNION ALL SELECT ts.prodi,0 AS 'TS_2', 0 AS 'TS_1', COUNT(s.nim) AS 'TS' FROM (SELECT nim, LEFT(th_akademik, 4) AS th_akademik FROM `status_mahasiswa` a WHERE a.prodi = '$role' AND a.status = 'AKTIF' GROUP BY nim, LEFT(th_akademik, 4)) s INNER JOIN mahasiswa m ON m.nim = s.nim INNER JOIN ts ON ts.tahun = LEFT(s.th_akademik, 4) AND ts.prodi = '$role' AND ts.nama_ts='TS' GROUP BY ts.nama_ts) m LEFT OUTER JOIN tbl_2b z ON m.prodi=z.prodi";
+		$data = $this->db->query($sql);
+		return $data->result();
+	}
 // 		SELECT nama_ts, sum(daya_tampung) AS daya_tampung, sum(lulus) AS lulus, sum(tidak_lulus) AS tidak_lulus, SUM(reguler) AS reguler, SUM(pindahan) AS pindahan, SUM(aktif_reguler) AS aktif_reguler, SUM(aktif_pindahan) AS aktif_pindahan FROM
 
 // (SELECT a.nama_ts, a.daya_tampung, a.lulus, a.tidak_lulus, 0 AS reguler, 0 AS pindahan, 0 AS aktif_reguler, 0 AS aktif_pindahan FROM (SELECT ts.nama_ts,t.daya_tampung,SUM(case when c.hasil='LULUS' THEN 1 ELSE 0 END) AS 'lulus', SUM(case when c.hasil='TIDAK LULUS' THEN 1 ELSE 0 END) AS 'tidak_lulus'
@@ -205,28 +212,30 @@ class Model_master extends CI_model {
 
 // ) main GROUP by nama_ts
 
-// SELECT m.prodi, SUM(TS-2) AS 'TS-2', SUM(TS-1) AS 'TS-1', SUM(TS) AS 'TS' FROM (SELECT ts.prodi, COUNT(s.nim) AS 'TS-2', 0 AS 'TS-1', 0 AS 'TS'
+// SELECT m.prodi AS program, SUM(TS-2) AS 'TS-2', SUM(TS-1) AS 'TS-1', SUM(TS) AS 'TS', z.*
+// FROM (SELECT ts.prodi, COUNT(s.nim) AS 'TS-2', 0 AS 'TS-1', 0 AS 'TS'
 // FROM (SELECT nim, LEFT(th_akademik, 4) AS th_akademik FROM `status_mahasiswa` a
-// WHERE a.prodi = 'TEKNIK INDUSTRI S1' AND a.status = 'AKTIF'
+// WHERE a.prodi = '$role' AND a.status = 'AKTIF'
 // GROUP BY nim, LEFT(th_akademik, 4)) s
 // INNER JOIN mahasiswa m ON m.nim = s.nim
-// INNER JOIN ts ON ts.tahun = LEFT(s.th_akademik, 4) AND ts.prodi = 'TEKNIK INDUSTRI S1' AND ts.nama_ts='TS-2'
+// INNER JOIN ts ON ts.tahun = LEFT(s.th_akademik, 4) AND ts.prodi = '$role' AND ts.nama_ts='TS-2'
 // GROUP BY ts.nama_ts
 // UNION ALL
 // SELECT ts.prodi,0 AS 'TS-2', COUNT(s.nim) AS 'TS-1', 0 AS 'TS'
 // FROM (SELECT nim, LEFT(th_akademik, 4) AS th_akademik FROM `status_mahasiswa` a
-// WHERE a.prodi = 'TEKNIK INDUSTRI S1' AND a.status = 'AKTIF'
+// WHERE a.prodi = '$role' AND a.status = 'AKTIF'
 // GROUP BY nim, LEFT(th_akademik, 4)) s
 // INNER JOIN mahasiswa m ON m.nim = s.nim
-// INNER JOIN ts ON ts.tahun = LEFT(s.th_akademik, 4) AND ts.prodi = 'TEKNIK INDUSTRI S1' AND ts.nama_ts='TS-1'
+// INNER JOIN ts ON ts.tahun = LEFT(s.th_akademik, 4) AND ts.prodi = '$role' AND ts.nama_ts='TS-1'
 // GROUP BY ts.nama_ts
 // UNION ALL
 // SELECT ts.prodi,0 AS 'TS-2', 0 AS 'TS-1', COUNT(s.nim) AS 'TS'
 // FROM (SELECT nim, LEFT(th_akademik, 4) AS th_akademik FROM `status_mahasiswa` a
-// WHERE a.prodi = 'TEKNIK INDUSTRI S1' AND a.status = 'AKTIF'
+// WHERE a.prodi = '$role' AND a.status = 'AKTIF'
 // GROUP BY nim, LEFT(th_akademik, 4)) s
 // INNER JOIN mahasiswa m ON m.nim = s.nim
-// INNER JOIN ts ON ts.tahun = LEFT(s.th_akademik, 4) AND ts.prodi = 'TEKNIK INDUSTRI S1' AND ts.nama_ts='TS'
+// INNER JOIN ts ON ts.tahun = LEFT(s.th_akademik, 4) AND ts.prodi = '$role' AND ts.nama_ts='TS'
 // GROUP BY ts.nama_ts) m
+// LEFT OUTER JOIN tbl_2b AS z ON m.prodi=z.prodi
 
 }

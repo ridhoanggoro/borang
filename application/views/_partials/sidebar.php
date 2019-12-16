@@ -52,7 +52,7 @@
       <div class="bg-white py-2 collapse-inner rounded">
         <h6 class="collapse-header">Mahasiswa:</h6>
         <a class="collapse-item <?php echo $this->uri->segment(2) == 'seleksi_mahasiswa' ? 'active': '' ?>" href="<?php echo site_url('mahasiswa/seleksi_mahasiswa'); ?>">Seleksi Mahasiswa</a>
-        <a class="collapse-item <?php echo $this->uri->segment(2) == 'matakuliah' ? 'active': '' ?>" href="<?php echo site_url('admin/master/matakuliah'); ?>">Mahasiswa Asing</a>
+        <a class="collapse-item <?php echo $this->uri->segment(2) == 'asing' ? 'active': '' ?>" href="<?php echo site_url('mahasiswa/asing'); ?>">Mahasiswa Asing</a>
       </div>
     </div>
   </li>

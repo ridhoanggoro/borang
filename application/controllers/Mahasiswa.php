@@ -38,4 +38,17 @@ class Mahasiswa extends CI_Controller {
       echo json_encode($data);
     }
 
+    public function asing()
+    {
+      $this->Model_security->getsecurity();
+      $isi['title']   ='Mahasiswa Asing';
+      $isi['content'] = 'mahasiswa/asing';
+      $this->load->view('default_page', $isi);
+    }
+
+    function mahasiswa_asing_list(){
+      $data = $this->Model_master->mahasiswa_asing_list();
+      echo json_encode($data);
+    }
+
 }
