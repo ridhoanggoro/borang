@@ -48,11 +48,11 @@ class Account extends CI_Controller {
 				'login_terakhir' => $login_terakhir,
 				'logged_in' => TRUE
 			);
-			$this->session->set_userdata($sesdata);			
-			redirect('home');	 			
+			$this->session->set_userdata($sesdata);
+			redirect('home');
 		}else{
 			echo $this->session->set_flashdata('msg','USERID atau PASSWORD salah');
-			redirect('login');
+			redirect('account');
 		}
 	}
 
@@ -63,7 +63,7 @@ class Account extends CI_Controller {
         $date = array('login_terakhir' => date('Y-m-d H:i:s'));
 		$this->Model_security->logout($id, $date);
 		$this->session->sess_destroy();
-		redirect('home');		
+		redirect('home');
 	}
 
 	public function reset_pwd()
@@ -90,16 +90,16 @@ class Account extends CI_Controller {
 	function check_exists()
     {
         $user_id = $this->input->post('id');
-        if($this->Model_security->user_verify($user_id))  
-		{  
-			echo '<label class="text-danger"><span class="glyphicon glyphicon-remove"></span> ID sudah terdaftar</label>';  
-		}  
-		else  
-		{  
-			echo '<label class="text-success"><span class="glyphicon glyphicon-ok"></span> ID Tersedia</label>';  
-		} 
+        if($this->Model_security->user_verify($user_id))
+		{
+			echo '<label class="text-danger"><span class="glyphicon glyphicon-remove"></span> ID sudah terdaftar</label>';
+		}
+		else
+		{
+			echo '<label class="text-success"><span class="glyphicon glyphicon-ok"></span> ID Tersedia</label>';
+		}
 	}
-	
+
 	function add_account(){
 		$data=$this->Model_security->add_account();
 		echo json_encode($data);
@@ -120,6 +120,6 @@ class Account extends CI_Controller {
 			echo $this->session->set_flashdata('msg','Password Berhasil Di Reset');
 			redirect('account\reset_pwd');
 		}
-		
+
 	}
 }

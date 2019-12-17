@@ -162,14 +162,14 @@ $(document).ready(function(){
           '<td style="text-align: center;">'+data[i].TS_2+'</td>'+
           '<td style="text-align: center;">'+data[i].TS_1+'</td>'+
           '<td style="text-align: center;">'+data[i].TS+'</td>'+
-          '<td style="text-align: center;">'+data[i].mhs_asing_penuh_ts2+'</td>'+
-          '<td style="text-align: center;">'+data[i].mhs_asing_penuh_ts1+'</td>'+
-          '<td style="text-align: center;">'+data[i].mhs_asing_penuh_ts+'</td>'+
-          '<td style="text-align: center;">'+data[i].mhs_asing_paruh_ts2+'</td>'+
-          '<td style="text-align: center;">'+data[i].mhs_asing_paruh_ts1+'</td>'
-          '<td style="text-align: center;">'+data[i].mhs_asing_paruh_ts+'</td>'
+          '<td style="text-align: center;">'+data[i].asing_fulltime_ts2+'</td>'+
+          '<td style="text-align: center;">'+data[i].asing_fulltime_ts1+'</td>'+
+          '<td style="text-align: center;">'+data[i].asing_fulltime_ts+'</td>'+
+          '<td style="text-align: center;">'+data[i].asing_partime_ts2+'</td>'+
+          '<td style="text-align: center;">'+data[i].asing_partime_ts1+'</td>'+
+          '<td style="text-align: center;">'+data[i].asing_partime_ts+'</td>'+
           '<td style="text-align:right;">'+
-              '<a href="javascript:void(0);" class="btn btn-info btn-circle btn-sm item_edit" data-toggle="tooltip" data-placement="top" title="Edit" data-seq_id="'+data[i].seq_id+'" data-nama_ts="'+data[i].nama_ts+'" data-daya_tampung="'+data[i].daya_tampung+'"data-pendaftar="'+data[i].pendaftar+'"data-lulus="'+data[i].lulus+'"data-reguler="'+data[i].reguler+'"data-pindahan="'+data[i].pindahan+'"data-aktif_reguler="'+data[i].aktif_reguler+'"data-aktif_pindahan="'+data[i].aktif_pindahan+'"><i class="fas fa-search"></i></a>'+
+              '<a href="javascript:void(0);" class="btn btn-info btn-circle btn-sm item_edit" data-toggle="tooltip" data-placement="top" title="Edit" data-seq_id="'+data[i].seq_id+'" data-prodi="'+data[i].prodi+'" data-TS_2="'+data[i].TS_2+'"data-TS_1="'+data[i].TS_1+'"data-TS="'+data[i].TS+'"data-asing_fulltime_ts2="'+data[i].asing_fulltime_ts2+'"data-asing_fulltime_ts1="'+data[i].asing_fulltime_ts1+'"data-asing_fulltime_ts="'+data[i].asing_fulltime_ts+'"data-asing_partime_ts2="'+data[i].asing_partime_ts2+'"><i class="fas fa-search"></i></a>'+
           '</td>'+
           '</tr>';
         }
