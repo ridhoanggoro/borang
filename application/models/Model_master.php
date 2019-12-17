@@ -196,7 +196,8 @@ class Model_master extends CI_model {
 
 	function dosen_tetap_data_list(){
 		$role = $this->session->userdata('nama');
-		$param = array('' => , );
+		$param = array('prodi' => $role,
+	''  );
 		$sql = "SELECT *,CASE WHEN tingkat='Internasional' THEN 'V' ELSE '' END AS internasional,CASE WHEN tingkat='Nasional' THEN 'V' ELSE '' END AS nasional,CASE WHEN tingkat='Lokal' THEN 'V' ELSE '' END AS lokal FROM `tridarma_pendidikan` WHERE prodi='$role'";
 		$data = $this->db->query($sql);
 		return $data->result();
