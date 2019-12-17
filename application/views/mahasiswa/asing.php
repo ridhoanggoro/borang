@@ -55,47 +55,62 @@
         <div class="form-row">
           <input type="text" hidden="" class="form-control" id="seq_id" name="seq_id">
           <div class="form-group col-md-6">
-            <label for="ts_edit">Tahun Akademik</label>
+            <label for="prodi_edit">Program Studi</label>
+            <input type="text" class="form-control" id="prodi_edit" name="prodi_edit" readonly="">
+            <div id="id_check_result" class="help-block with-errors"></div>
+          </div>
+        </div>
+        <h6>Jumlah Mahasiswa Aktif</h6>
+        <div class="form-row">
+          <div class="form-group col-md-4">
+            <label for="ts2_edit">TS-2</label>
+            <input type="text" class="form-control" id="ts2_edit" name="ts2_edit" readonly="">
+            <div id="id_check_result" class="help-block with-errors"></div>
+          </div>
+          <div class="form-group col-md-4">
+            <label for="ts1_edit">TS-1</label>
+            <input type="text" class="form-control" id="ts1_edit" name="ts1_edit" readonly="">
+            <div id="id_check_result" class="help-block with-errors"></div>
+          </div>
+          <div class="form-group col-md-4">
+            <label for="ts_edit">TS</label>
             <input type="text" class="form-control" id="ts_edit" name="ts_edit" readonly="">
             <div id="id_check_result" class="help-block with-errors"></div>
           </div>
-          <div class="form-group col-md-6">
-            <label for="daya_tampung_edit">Daya Tampung</label>
-            <input type="number" class="form-control" id="daya_tampung_edit" name="daya_tampung_edit" min="0" max="9999" required>
+        </div>
+        <h6>Jumlah Mahasiswa Asing Penuh Waktu (<em>Full-Time</em>)</h6>
+        <div class="form-row">
+          <div class="form-group col-md-4">
+            <label for="asing_fulltime_ts2_edit">TS-2</label>
+            <input type="number" class="form-control" id="asing_fulltime_ts2_edit" name="asing_fulltime_ts2_edit" min="1" max="9999">
+            <div id="id_check_result" class="help-block with-errors"></div>
+          </div>
+          <div class="form-group col-md-4">
+            <label for="asing_fulltime_ts1_edit">TS-1</label>
+            <input type="number" class="form-control" id="asing_fulltime_ts1_edit" name="asing_fulltime_ts1_edit" min="1" max="9999">
+            <div id="id_check_result" class="help-block with-errors"></div>
+          </div>
+          <div class="form-group col-md-4">
+            <label for="asing_fulltime_ts_edit">TS</label>
+            <input type="number" class="form-control" id="asing_fulltime_ts_edit" name="asing_fulltime_ts_edit" min="1" max="9999">
             <div id="id_check_result" class="help-block with-errors"></div>
           </div>
         </div>
+        <h6>Jumlah Mahasiswa Asing Paruh Waktu (<em>Part-time</em>)</h6>
         <div class="form-row">
-          <div class="form-group col-md-3">
-            <label for="calon_seleksi_edit">Calon Mahasiswa</label>
-            <input type="text" class="form-control" id="calon_seleksi_edit" name="calon_seleksi_edit" readonly="">
+          <div class="form-group col-md-4">
+            <label for="asing_partime_ts2_edit">TS-2</label>
+            <input type="number" class="form-control" id="asing_partime_ts2_edit" name="asing_partime_ts2_edit" min="1" max="9999">
             <div id="id_check_result" class="help-block with-errors"></div>
           </div>
-          <div class="form-group col-md-3">
-            <label for="calon_lulus_edit">Calon Mahasiswa Lulus Seleksi</label>
-            <input type="text" class="form-control" id="calon_lulus_edit" name="calon_lulus_edit" readonly="">
+          <div class="form-group col-md-4">
+            <label for="asing_partime_ts1_edit">TS-1</label>
+            <input type="number" class="form-control" id="asing_partime_ts1_edit" name="asing_partime_ts1_edit" min="1" max="9999">
             <div id="id_check_result" class="help-block with-errors"></div>
           </div>
-          <div class="form-group col-md-3">
-            <label for="baru_reguler_edit">Mahasiswa Baru Reguler</label>
-            <input type="text" class="form-control" id="baru_reguler_edit" name="baru_reguler_edit" readonly="">
-            <div id="id_check_result" class="help-block with-errors"></div>
-          </div>
-          <div class="form-group col-md-3">
-            <label for="baru_transfer_edit">Mahasiswa Baru Transfer</label>
-            <input type="text" class="form-control" id="baru_transfer_edit" name="baru_transfer_edit" readonly="">
-            <div id="id_check_result" class="help-block with-errors"></div>
-          </div>
-        </div>
-        <div class="form-row">
-          <div class="form-group col-md-6">
-            <label for="aktif_reguler_edit">Mahasiswa Aktif Reguler</label>
-            <input type="text" class="form-control" id="aktif_reguler_edit" name="aktif_reguler_edit" readonly="">
-            <div id="id_check_result" class="help-block with-errors"></div>
-          </div>
-          <div class="form-group col-md-6">
-            <label for="aktif_transfer_edit">Mahasiswa Aktif Transfer</label>
-            <input type="text" class="form-control" id="aktif_transfer_edit" name="aktif_transfer_edit" readonly="">
+          <div class="form-group col-md-4">
+            <label for="asing_partime_ts_edit">TS</label>
+            <input type="number" class="form-control" id="asing_partime_ts_edit" name="asing_partime_ts_edit" min="1" max="9999">
             <div id="id_check_result" class="help-block with-errors"></div>
           </div>
         </div>
@@ -143,11 +158,6 @@
 $(document).ready(function(){
   show_data();
   function show_data(){
-    var tot_calon_pendaftar = 0;
-    var tot_calon_lulus     = 0;
-    var tot_mhs_reguler     = 0;
-    var tot_mhs_trans       = 0;
-    var tot_mhs_aktif       = 0;
     $.ajax({
       type  : 'ajax',
       url   : '<?php echo site_url('mahasiswa/mahasiswa_asing_list')?>',
@@ -159,9 +169,9 @@ $(document).ready(function(){
         for(i=0; i<data.length; i++){
           html += '<tr>'+
           '<td style="text-align: center;">'+data[i].prodi+'</td>'+
-          '<td style="text-align: center;">'+data[i].TS_2+'</td>'+
-          '<td style="text-align: center;">'+data[i].TS_1+'</td>'+
-          '<td style="text-align: center;">'+data[i].TS+'</td>'+
+          '<td style="text-align: center;">'+data[i].ts_2+'</td>'+
+          '<td style="text-align: center;">'+data[i].ts_1+'</td>'+
+          '<td style="text-align: center;">'+data[i].ts+'</td>'+
           '<td style="text-align: center;">'+data[i].asing_fulltime_ts2+'</td>'+
           '<td style="text-align: center;">'+data[i].asing_fulltime_ts1+'</td>'+
           '<td style="text-align: center;">'+data[i].asing_fulltime_ts+'</td>'+
@@ -169,7 +179,7 @@ $(document).ready(function(){
           '<td style="text-align: center;">'+data[i].asing_partime_ts1+'</td>'+
           '<td style="text-align: center;">'+data[i].asing_partime_ts+'</td>'+
           '<td style="text-align:right;">'+
-              '<a href="javascript:void(0);" class="btn btn-info btn-circle btn-sm item_edit" data-toggle="tooltip" data-placement="top" title="Edit" data-seq_id="'+data[i].seq_id+'" data-prodi="'+data[i].prodi+'" data-TS_2="'+data[i].TS_2+'"data-TS_1="'+data[i].TS_1+'"data-TS="'+data[i].TS+'"data-asing_fulltime_ts2="'+data[i].asing_fulltime_ts2+'"data-asing_fulltime_ts1="'+data[i].asing_fulltime_ts1+'"data-asing_fulltime_ts="'+data[i].asing_fulltime_ts+'"data-asing_partime_ts2="'+data[i].asing_partime_ts2+'"><i class="fas fa-search"></i></a>'+
+              '<a href="javascript:void(0);" class="btn btn-info btn-circle btn-sm item_edit" data-toggle="tooltip" data-placement="top" title="Edit" data-seq_id="'+data[i].seq_id+'" data-prodi="'+data[i].prodi+'" data-ts_2="'+data[i].ts_2+'" data-ts_1="'+data[i].ts_1+'" data-ts="'+data[i].ts+'" data-asing_fulltime_ts2="'+data[i].asing_fulltime_ts2+'" data-asing_fulltime_ts1="'+data[i].asing_fulltime_ts1+'" data-asing_fulltime_ts="'+data[i].asing_fulltime_ts+'" data-asing_partime_ts2="'+data[i].asing_partime_ts2+'" data-asing_partime_ts1="'+data[i].asing_partime_ts1+'" data-asing_partime_ts="'+data[i].asing_partime_ts+'"><i class="fas fa-search"></i></a>'+
           '</td>'+
           '</tr>';
         }
@@ -178,76 +188,57 @@ $(document).ready(function(){
     });
   }
 
-  //Save Data
-  $('#btn_save').on('click',function(){
-    var lembaga_mitra   = $('#mitra').val();
-    var tingkat         = $('#tingkat').val();
-    var judul_kegiatan  = $('#judul_kegiatan').val();
-    var manfaat_bagi_ps = $('#manfaat_bagi_ps').val();
-    var durasi          = $('#waktu').val();
-    var tahun_berakhir  = $('#tahun_berakhir').val();
-    var bukti           = $('#bukti').val();
-    $.ajax({
-      type : "POST",
-      url  : "<?php echo site_url('tridharma/pendidikan_add')?>",
-      dataType : "JSON",
-      data : {lembaga_mitra:lembaga_mitra, tingkat:tingkat, judul_kegiatan:judul_kegiatan, manfaat_bagi_ps:manfaat_bagi_ps, durasi:durasi, tahun_berakhir:tahun_berakhir, bukti:bukti},
-      success: function(data){
-        $('[name="mitra"]').val("");
-        $('[name="tingkat"]').val("");
-        $('[name="judul_kegiatan"]').val("");
-        $('[name="manfaat_bagi_ps"]').val("");
-        $('[name="waktu"]').val("");
-        $('[name="tahun_berakhir"]').val("");
-        $('[name="bukti"]').val("");
-        $('#Modal_Add').modal('hide');
-        $.alert({
-          title: 'Sukses!',
-          content: 'Data Berhasil Disimpan!',
-        });
-        show_data();
-      }
-    });
-    return false;
-  });
-
   //fill data record
   $('#tampil_data').on('click','.item_edit',function(){
-    var seq_id        = $(this).data('seq_id');
-    var thn_akademik  = $(this).data('nama_ts');
-    var daya_tampung  = $(this).data('daya_tampung');
-    var pendaftar     = $(this).data('pendaftar');
-    var lulus         = $(this).data('lulus');
-    var reguler       = $(this).data('reguler');
-    var pindahan      = $(this).data('pindahan');
-    var aktif_reguler       = $(this).data('aktif_reguler');
-    var aktif_pindahan      = $(this).data('aktif_pindahan');
+    var seq_id              = $(this).data('seq_id');
+    var prodi               = $(this).data('prodi');
+    var ts2                 = $(this).data('ts_2');
+    var ts1                 = $(this).data('ts_1');
+    var ts                  = $(this).data('ts');
+    var asing_fulltime_ts2  = $(this).data('asing_fulltime_ts2');
+    var asing_fulltime_ts1  = $(this).data('asing_fulltime_ts1');
+    var asing_fulltime_ts   = $(this).data('asing_fulltime_ts');
+    var asing_partime_ts2   = $(this).data('asing_partime_ts2');
+    var asing_partime_ts1   = $(this).data('asing_partime_ts1');
+    var asing_partime_ts    = $(this).data('asing_partime_ts');
 
     $('#Modal_Edit').modal('show');
     $('[name="seq_id"]').val(seq_id);
-    $('[name="ts_edit"]').val(thn_akademik);
-    $('[name="daya_tampung_edit"]').val(daya_tampung);
-    $('[name="calon_seleksi_edit"]').val(pendaftar);
-    $('[name="calon_lulus_edit"]').val(lulus);
-    $('[name="baru_reguler_edit"]').val(reguler);
-    $('[name="baru_transfer_edit"]').val(pindahan);
-    $('[name="aktif_reguler_edit"]').val(aktif_reguler);
-    $('[name="aktif_transfer_edit"]').val(aktif_pindahan);
-    $('[name="daya_tampung_edit"]').focus();
+    $('[name="prodi_edit"]').val(prodi);
+    $('[name="ts2_edit"]').val(ts2);
+    $('[name="ts1_edit"]').val(ts1);
+    $('[name="ts_edit"]').val(ts);
+    $('[name="asing_fulltime_ts2_edit"]').val(asing_fulltime_ts2);
+    $('[name="asing_fulltime_ts1_edit"]').val(asing_fulltime_ts1);
+    $('[name="asing_fulltime_ts_edit"]').val(asing_fulltime_ts);
+    $('[name="asing_partime_ts2_edit"]').val(asing_partime_ts2);
+    $('[name="asing_partime_ts1_edit"]').val(asing_partime_ts1);
+    $('[name="asing_partime_ts_edit"]').val(asing_partime_ts);
+    $('[name="asing_fulltime_ts2_edit"]').focus();
   });
 
   //update record
   $('#btn_update').on('click',function(){
     var seq_id          = $('#seq_id').val();
-    var daya_tampung    = $('#daya_tampung_edit').val();
+    var asing_fulltime_ts2  = $('#asing_fulltime_ts2_edit').val();
+    var asing_fulltime_ts1  = $('#asing_fulltime_ts1_edit').val();
+    var asing_fulltime_ts   = $('#asing_fulltime_ts_edit').val();
+    var asing_partime_ts2   = $('#asing_partime_ts2_edit').val();
+    var asing_partime_ts1   = $('#asing_partime_ts1_edit').val();
+    var asing_partime_ts    = $('#asing_partime_ts_edit').val();
 
     $.ajax({
       type : "POST",
-      url  : "<?php echo site_url('mahasiswa/seleksi_mahasiswa_edit')?>",
+      url  : "<?php echo site_url('mahasiswa/mahasiswa_asing_edit')?>",
       dataType : "JSON",
-      data : {seq_id:seq_id, daya_tampung:daya_tampung},
+      data : {seq_id:seq_id, asing_fulltime_ts2:asing_fulltime_ts2, asing_fulltime_ts1:asing_fulltime_ts1, asing_fulltime_ts:asing_fulltime_ts, asing_partime_ts2:asing_partime_ts2, asing_partime_ts1:asing_partime_ts1, asing_partime_ts:asing_partime_ts},
       success: function(data){
-        $('[name="daya_tampung_edit"]').val("");
+        $('[name="asing_fulltime_ts2_edit"]').val("");
+        $('[name="asing_fulltime_ts1_edit"]').val("");
+        $('[name="asing_fulltime_ts_edit"]').val("");
+        $('[name="asing_partime_ts2_edit"]').val("");
+        $('[name="asing_partime_ts1_edit"]').val("");
+        $('[name="asing_partime_ts_edit"]').val("");
         $('#Modal_Edit').modal('hide');
         $.alert({
           title: 'Sukses!',

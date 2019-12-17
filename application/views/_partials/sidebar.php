@@ -56,19 +56,19 @@
       </div>
     </div>
   </li>
-  <li class="nav-item">
+  <li class="nav-item <?php echo $this->uri->segment(1) == 'dosen' ? 'active': '' ?>">
     <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapse4" aria-expanded="true" aria-controls="collapse4">
       <i class="fas fa-fw fa-cog"></i>
       <span>Tabel 3</span>
     </a>
-    <div id="collapse4" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+    <div id="collapse4" class="collapse <?php echo $this->uri->segment(1) == 'dosen' ? 'show': '' ?>" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
       <div class="bg-white py-2 collapse-inner rounded">
         <h6 class="collapse-header">Dosen:</h6>
-        <a class="collapse-item <?php echo $this->uri->segment(3) == 'dosen' ? 'active': '' ?>" href="<?php echo site_url('admin/master/dosen'); ?>">Dosen Tetap</a>
-        <a class="collapse-item <?php echo $this->uri->segment(3) == 'matakuliah' ? 'active': '' ?>" href="<?php echo site_url('admin/master/matakuliah'); ?>">Dosen Pembimbing</a>
-        <a class="collapse-item <?php echo $this->uri->segment(3) == 'matakuliah' ? 'active': '' ?>" href="<?php echo site_url('admin/master/matakuliah'); ?>">EWMP</a>
-        <a class="collapse-item <?php echo $this->uri->segment(3) == 'matakuliah' ? 'active': '' ?>" href="<?php echo site_url('admin/master/matakuliah'); ?>">Dosen Tidak Tetap </a>
-        <a class="collapse-item <?php echo $this->uri->segment(3) == 'matakuliah' ? 'active': '' ?>" href="<?php echo site_url('admin/master/matakuliah'); ?>">Dosen Industri/Praktisi</a>
+        <a class="collapse-item <?php echo $this->uri->segment(2) == 'dosen_tetap' ? 'active': '' ?>" href="<?php echo site_url('dosen/dosen_tetap'); ?>">Dosen Tetap</a>
+        <a class="collapse-item <?php echo $this->uri->segment(2) == 'matakuliah' ? 'active': '' ?>" href="<?php echo site_url('admin/master/matakuliah'); ?>">Dosen Pembimbing</a>
+        <a class="collapse-item <?php echo $this->uri->segment(2) == 'matakuliah' ? 'active': '' ?>" href="<?php echo site_url('admin/master/matakuliah'); ?>">EWMP</a>
+        <a class="collapse-item <?php echo $this->uri->segment(2) == 'matakuliah' ? 'active': '' ?>" href="<?php echo site_url('admin/master/matakuliah'); ?>">Dosen Tidak Tetap </a>
+        <a class="collapse-item <?php echo $this->uri->segment(2) == 'matakuliah' ? 'active': '' ?>" href="<?php echo site_url('admin/master/matakuliah'); ?>">Dosen Industri/Praktisi</a>
       </div>
     </div>
   </li>

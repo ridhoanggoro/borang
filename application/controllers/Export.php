@@ -97,6 +97,27 @@ class Export extends CI_Controller {
 	        $col++;
 	      }
 	      break;
+			case '2b':
+	      $fileName = './assets/template/2b.xlsx';
+	      $objPHPExcel = $objReader->load($fileName);
+	      $objPHPExcel->setActiveSheetIndex(0);
+	      $objPHPExcel->getActiveSheet();
+	      $data = $this->Model_master->mahasiswa_asing_list();
+	      $col = 7;
+	      foreach ($data as $val) {
+	        $objPHPExcel->setActiveSheetIndex()->setCellValue('B'.$col, $val->prodi);
+	        $objPHPExcel->setActiveSheetIndex()->setCellValue('C'.$col, $val->ts_2);
+	        $objPHPExcel->setActiveSheetIndex()->setCellValue('D'.$col, $val->ts_1);
+	        $objPHPExcel->setActiveSheetIndex()->setCellValue('E'.$col, $val->ts);
+	        $objPHPExcel->setActiveSheetIndex()->setCellValue('F'.$col, $val->asing_fulltime_ts2);
+	        $objPHPExcel->setActiveSheetIndex()->setCellValue('G'.$col, $val->asing_fulltime_ts1);
+	        $objPHPExcel->setActiveSheetIndex()->setCellValue('H'.$col, $val->asing_fulltime_ts);
+					$objPHPExcel->setActiveSheetIndex()->setCellValue('I'.$col, $val->asing_partime_ts2);
+					$objPHPExcel->setActiveSheetIndex()->setCellValue('J'.$col, $val->asing_partime_ts1);
+					$objPHPExcel->setActiveSheetIndex()->setCellValue('K'.$col, $val->asing_partime_ts);
+	        $col++;
+	      }
+	      break;
       default:
         // code...
         break;

@@ -164,7 +164,7 @@ class Model_master extends CI_model {
 		$seq_id = $this->input->post('seq_id');
 		$prodi = $this->session->userdata('nama');
   	$data = array(
-		'daya_tampung' => $this->input->post('daya_tampung')
+			'daya_tampung' => $this->input->post('daya_tampung')
   	);
   	$this->db->where('seq_id', $seq_id);
   	$result = $this->db->update('tbl_2a', $data);
@@ -173,7 +173,31 @@ class Model_master extends CI_model {
 
 	function mahasiswa_asing_list(){
 		$role= $this->session->userdata('nama');
-		$sql="SELECT m.prodi, SUM(TS_2) AS 'TS_2', SUM(TS_1) AS 'TS_1', SUM(TS) AS 'TS', z.* FROM(SELECT ts.prodi, COUNT(s.nim) AS 'TS_2', 0 AS 'TS_1', 0 AS 'TS' FROM (SELECT nim, LEFT(th_akademik, 4) AS th_akademik FROM `status_mahasiswa` a WHERE a.prodi = '$role' AND a.status = 'AKTIF' GROUP BY nim, LEFT(th_akademik, 4)) s INNER JOIN mahasiswa m ON m.nim = s.nim INNER JOIN ts ON ts.tahun = LEFT(s.th_akademik, 4) AND ts.prodi = '$role' AND ts.nama_ts='TS-2' GROUP BY ts.nama_ts UNION ALL SELECT ts.prodi,0 AS 'TS_2', COUNT(s.nim) AS 'TS_1', 0 AS 'TS' FROM (SELECT nim, LEFT(th_akademik, 4) AS th_akademik FROM `status_mahasiswa` a WHERE a.prodi = '$role' AND a.status = 'AKTIF' GROUP BY nim, LEFT(th_akademik, 4)) s INNER JOIN mahasiswa m ON m.nim = s.nim INNER JOIN ts ON ts.tahun = LEFT(s.th_akademik, 4) AND ts.prodi = '$role' AND ts.nama_ts='TS-1' GROUP BY ts.nama_ts UNION ALL SELECT ts.prodi,0 AS 'TS_2', 0 AS 'TS_1', COUNT(s.nim) AS 'TS' FROM (SELECT nim, LEFT(th_akademik, 4) AS th_akademik FROM `status_mahasiswa` a WHERE a.prodi = '$role' AND a.status = 'AKTIF' GROUP BY nim, LEFT(th_akademik, 4)) s INNER JOIN mahasiswa m ON m.nim = s.nim INNER JOIN ts ON ts.tahun = LEFT(s.th_akademik, 4) AND ts.prodi = '$role' AND ts.nama_ts='TS' GROUP BY ts.nama_ts) m LEFT OUTER JOIN tbl_2b z ON m.prodi=z.prodi";
+		$sql="SELECT m.prodi, SUM(TS_2) AS 'ts_2', SUM(TS_1) AS 'ts_1', SUM(TS) AS 'ts', z.* FROM(SELECT ts.prodi, COUNT(s.nim) AS 'TS_2', 0 AS 'TS_1', 0 AS 'TS' FROM (SELECT nim, LEFT(th_akademik, 4) AS th_akademik FROM `status_mahasiswa` a WHERE a.prodi = '$role' AND a.status = 'AKTIF' GROUP BY nim, LEFT(th_akademik, 4)) s INNER JOIN mahasiswa m ON m.nim = s.nim INNER JOIN ts ON ts.tahun = LEFT(s.th_akademik, 4) AND ts.prodi = '$role' AND ts.nama_ts='TS-2' GROUP BY ts.nama_ts UNION ALL SELECT ts.prodi,0 AS 'TS_2', COUNT(s.nim) AS 'TS_1', 0 AS 'TS' FROM (SELECT nim, LEFT(th_akademik, 4) AS th_akademik FROM `status_mahasiswa` a WHERE a.prodi = '$role' AND a.status = 'AKTIF' GROUP BY nim, LEFT(th_akademik, 4)) s INNER JOIN mahasiswa m ON m.nim = s.nim INNER JOIN ts ON ts.tahun = LEFT(s.th_akademik, 4) AND ts.prodi = '$role' AND ts.nama_ts='TS-1' GROUP BY ts.nama_ts UNION ALL SELECT ts.prodi,0 AS 'TS_2', 0 AS 'TS_1', COUNT(s.nim) AS 'TS' FROM (SELECT nim, LEFT(th_akademik, 4) AS th_akademik FROM `status_mahasiswa` a WHERE a.prodi = '$role' AND a.status = 'AKTIF' GROUP BY nim, LEFT(th_akademik, 4)) s INNER JOIN mahasiswa m ON m.nim = s.nim INNER JOIN ts ON ts.tahun = LEFT(s.th_akademik, 4) AND ts.prodi = '$role' AND ts.nama_ts='TS' GROUP BY ts.nama_ts) m LEFT OUTER JOIN tbl_2b z ON m.prodi=z.prodi";
+		$data = $this->db->query($sql);
+		return $data->result();
+	}
+
+	function mahasiswa_asing_edit(){
+		$seq_id = $this->input->post('seq_id');
+		$prodi = $this->session->userdata('nama');
+  	$data = array(
+			'asing_fulltime_ts2' => $this->input->post('asing_fulltime_ts2'),
+			'asing_fulltime_ts1' => $this->input->post('asing_fulltime_ts1'),
+			'asing_fulltime_ts' => $this->input->post('asing_fulltime_ts'),
+			'asing_partime_ts2' => $this->input->post('asing_partime_ts2'),
+			'asing_partime_ts1' => $this->input->post('asing_partime_ts1'),
+			'asing_partime_ts' => $this->input->post('asing_partime_ts'),
+  	);
+  	$this->db->where('seq_id', $seq_id);
+  	$result = $this->db->update('tbl_2b', $data);
+  	return $result;
+	}
+
+	function dosen_tetap_data_list(){
+		$role = $this->session->userdata('nama');
+		$param = array('' => , );
+		$sql = "SELECT *,CASE WHEN tingkat='Internasional' THEN 'V' ELSE '' END AS internasional,CASE WHEN tingkat='Nasional' THEN 'V' ELSE '' END AS nasional,CASE WHEN tingkat='Lokal' THEN 'V' ELSE '' END AS lokal FROM `tridarma_pendidikan` WHERE prodi='$role'";
 		$data = $this->db->query($sql);
 		return $data->result();
 	}

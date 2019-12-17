@@ -51,4 +51,9 @@ class Mahasiswa extends CI_Controller {
       echo json_encode($data);
     }
 
+    function mahasiswa_asing_edit(){
+      $data = $this->Model_master->mahasiswa_asing_edit();
+      echo json_encode($data);
+    }
+
 }
