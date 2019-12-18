@@ -23,4 +23,9 @@ class Dosen extends CI_Controller {
   		echo json_encode($data);
   	}
 
+    function dosen_tetap_add(){
+  		$data = $this->Model_master->dosen_tetap_add();
+  		echo json_encode($data);
+  	}
+
 }

@@ -118,6 +118,42 @@ class Export extends CI_Controller {
 	        $col++;
 	      }
 	      break;
+			case '3a1':
+	      $fileName = './assets/template/3a1.xlsx';
+	      $objPHPExcel = $objReader->load($fileName);
+	      $objPHPExcel->setActiveSheetIndex(0);
+	      $objPHPExcel->getActiveSheet();
+	      $data = $this->Model_master->dosen_tetap_data_list();
+				$no = 1;
+	      $col = 14;
+				$tot = 0;
+	      foreach ($data as $val) {
+					$objPHPExcel->setActiveSheetIndex()->setCellValue('A'.$col, $no++);
+	        $objPHPExcel->setActiveSheetIndex()->setCellValue('B'.$col, strtoupper($val->nama));
+	        $objPHPExcel->setActiveSheetIndex()->setCellValue('C'.$col, $val->nidn);
+	        $objPHPExcel->setActiveSheetIndex()->setCellValue('D'.$col, $val->pendidikan_magister);
+	        $objPHPExcel->setActiveSheetIndex()->setCellValue('E'.$col, $val->pendidikan_doktor);
+	        $objPHPExcel->setActiveSheetIndex()->setCellValue('F'.$col, $val->bidang_keahlian);
+	        $objPHPExcel->setActiveSheetIndex()->setCellValue('G'.$col, $val->chk_kesesuaian_kompetensi);
+	        $objPHPExcel->setActiveSheetIndex()->setCellValue('H'.$col, $val->jabatan_akademik);
+					$objPHPExcel->setActiveSheetIndex()->setCellValue('I'.$col, $val->sertifikasi_profesional);
+					$objPHPExcel->setActiveSheetIndex()->setCellValue('J'.$col, $val->sertifikasi_kompetensi);
+					$objPHPExcel->setActiveSheetIndex()->setCellValue('K'.$col, $val->matakuliah_diampu);
+					$objPHPExcel->setActiveSheetIndex()->setCellValue('L'.$col, $val->chk_kesesuaian_keahlian);
+					$objPHPExcel->setActiveSheetIndex()->setCellValue('M'.$col, $val->matakuliah_diampu_ps_lain);
+	        $col++;
+	      }
+				//Cell Style
+				$styleArray = array(
+						 'borders' => array(
+								 'allborders' => array(
+										 'style' => PHPExcel_Style_Border::BORDER_THIN
+								 )
+						 )
+				 );
+				$tot = 14 + ($no-2);
+				$objPHPExcel->getActiveSheet()->getStyle('A14:M'.$tot)->applyFromArray($styleArray);
+	      break;
       default:
         // code...
         break;

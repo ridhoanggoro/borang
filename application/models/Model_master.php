@@ -196,12 +196,34 @@ class Model_master extends CI_model {
 
 	function dosen_tetap_data_list(){
 		$role = $this->session->userdata('nama');
-		$param = array('prodi' => $role,
-	''  );
-		$sql = "SELECT *,CASE WHEN tingkat='Internasional' THEN 'V' ELSE '' END AS internasional,CASE WHEN tingkat='Nasional' THEN 'V' ELSE '' END AS nasional,CASE WHEN tingkat='Lokal' THEN 'V' ELSE '' END AS lokal FROM `tridarma_pendidikan` WHERE prodi='$role'";
+		$sql = "SELECT *, CASE WHEN kesesuaian_kompetensi_inti_ps='YA' THEN 'V' ELSE '' END AS chk_kesesuaian_kompetensi, CASE WHEN kesesuaian_bidang_keahlian='YA' THEN 'V' ELSE '' END AS chk_kesesuaian_keahlian FROM `dosen` WHERE prodi='$role' AND status='TETAP'";
+
 		$data = $this->db->query($sql);
 		return $data->result();
 	}
+
+	function dosen_tetap_add(){
+		$prodi = $this->session->userdata('nama');
+		$data = array(
+			'nidn' => $this->input->post('nidn'),
+			'nama'  => $this->input->post('nama'),
+  		'pendidikan_magister'  => $this->input->post('pendidikan_magister'),
+  		'pendidikan_doktor' => $this->input->post('pendidikan_doktor'),
+  		'bidang_keahlian' => $this->input->post('bidang_keahlian'),
+			'kesesuaian_kompetensi_inti_ps' => $this->input->post('kesesuaian_kompetensi_inti_ps'),
+			'jabatan_akademik' => $this->input->post('jabatan_akademik'),
+			'sertifikasi_profesional' => $this->input->post('sertifikasi_profesional'),
+			'sertifikasi_kompetensi' => $this->input->post('sertifikasi_kompetensi'),
+			'matakuliah_diampu' => $this->input->post('matakuliah_diampu'),
+			'kesesuaian_bidang_keahlian' => $this->input->post('kesesuaian_bidang_keahlian'),
+			'matakuliah_diampu_ps_lain' => $this->input->post('matakuliah_diampu_ps_lain'),
+			'prodi' => $prodi,
+			'status' => 'TETAP'
+		);
+		$result = $this->db->insert('dosen', $data);
+		return $result;
+	}
+
 // 		SELECT nama_ts, sum(daya_tampung) AS daya_tampung, sum(lulus) AS lulus, sum(tidak_lulus) AS tidak_lulus, SUM(reguler) AS reguler, SUM(pindahan) AS pindahan, SUM(aktif_reguler) AS aktif_reguler, SUM(aktif_pindahan) AS aktif_pindahan FROM
 
 // (SELECT a.nama_ts, a.daya_tampung, a.lulus, a.tidak_lulus, 0 AS reguler, 0 AS pindahan, 0 AS aktif_reguler, 0 AS aktif_pindahan FROM (SELECT ts.nama_ts,t.daya_tampung,SUM(case when c.hasil='LULUS' THEN 1 ELSE 0 END) AS 'lulus', SUM(case when c.hasil='TIDAK LULUS' THEN 1 ELSE 0 END) AS 'tidak_lulus'
