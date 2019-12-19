@@ -28,4 +28,14 @@ class Dosen extends CI_Controller {
   		echo json_encode($data);
   	}
 
+    function dosen_tetap_edit(){
+  		$data = $this->Model_master->dosen_tetap_edit();
+  		echo json_encode($data);
+  	}
+
+    function dosen_tetap_delete(){
+  		$data = $this->Model_master->dosen_tetap_delete();
+  		echo json_encode($data);
+  	}
+
 }

@@ -224,6 +224,37 @@ class Model_master extends CI_model {
 		return $result;
 	}
 
+	function dosen_tetap_edit(){
+		$seq_id = $this->input->post('seq_id');
+		$prodi = $this->session->userdata('nama');
+    	$data = array(
+				'nidn' => $this->input->post('nidn'),
+				'nama'  => $this->input->post('nama'),
+	  		'pendidikan_magister'  => $this->input->post('pendidikan_magister'),
+	  		'pendidikan_doktor' => $this->input->post('pendidikan_doktor'),
+	  		'bidang_keahlian' => $this->input->post('bidang_keahlian'),
+				'kesesuaian_kompetensi_inti_ps' => $this->input->post('kesesuaian_kompetensi_inti_ps'),
+				'jabatan_akademik' => $this->input->post('jabatan_akademik'),
+				'sertifikasi_profesional' => $this->input->post('sertifikasi_profesional'),
+				'sertifikasi_kompetensi' => $this->input->post('sertifikasi_kompetensi'),
+				'matakuliah_diampu' => $this->input->post('matakuliah_diampu'),
+				'kesesuaian_bidang_keahlian' => $this->input->post('kesesuaian_bidang_keahlian'),
+				'matakuliah_diampu_ps_lain' => $this->input->post('matakuliah_diampu_ps_lain'),
+				'prodi' => $prodi,
+				'status' => 'TETAP'
+			);
+			$this->db->where('seq_id', $seq_id);
+    	$result = $this->db->update('dosen', $data);
+    	return $result;
+	}
+
+	function dosen_tetap_delete(){
+		$seq_id = $this->input->post('seq_id');
+		$this->db->where('seq_id', $seq_id);
+    	$result = $this->db->delete('dosen');
+   	 	return $result;
+	}
+
 // 		SELECT nama_ts, sum(daya_tampung) AS daya_tampung, sum(lulus) AS lulus, sum(tidak_lulus) AS tidak_lulus, SUM(reguler) AS reguler, SUM(pindahan) AS pindahan, SUM(aktif_reguler) AS aktif_reguler, SUM(aktif_pindahan) AS aktif_pindahan FROM
 
 // (SELECT a.nama_ts, a.daya_tampung, a.lulus, a.tidak_lulus, 0 AS reguler, 0 AS pindahan, 0 AS aktif_reguler, 0 AS aktif_pindahan FROM (SELECT ts.nama_ts,t.daya_tampung,SUM(case when c.hasil='LULUS' THEN 1 ELSE 0 END) AS 'lulus', SUM(case when c.hasil='TIDAK LULUS' THEN 1 ELSE 0 END) AS 'tidak_lulus'

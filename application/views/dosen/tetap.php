@@ -421,28 +421,40 @@ $(document).ready(function(){
 
   //update record
   $('#btn_update').on('click',function(){
-    var seq_id          = $('#seq_id').val();
-    var lembaga_mitra   = $('#mitra_edit').val();
-    var tingkat         = $('#tingkat_edit').val();
-    var judul_kegiatan  = $('#judul_kegiatan_edit').val();
-    var manfaat_bagi_ps = $('#manfaat_bagi_ps_edit').val();
-    var durasi          = $('#waktu_edit').val();
-    var tahun_berakhir  = $('#tahun_berakhir_edit').val();
-    var bukti           = $('#bukti_edit').val();
+    var seq_id = $('#seq_id').val();
+    var nidn = $('#nidn_edit').val();
+    var nama = $('#nama_edit').val();
+    var pendidikan_magister = $('#pendidikan_magister_edit').val();
+    var pendidikan_doktor = $('#pendidikan_doktor_edit').val();
+    var bidang_keahlian = $('#bidang_keahlian_edit').val();
+    var kesesuaian_kompetensi_inti_ps = $('#kesesuaian_kompetensi_inti_ps_edit').val();
+    var jabatan_akademik = $('#jabatan_akademik_edit').val();
+    var sertifikasi_profesional = $('#sertifikasi_profesional_edit').val();
+    var sertifikasi_kompetensi = $('#sertifikasi_kompetensi_edit').val();
+    var matakuliah_diampu = $('#matakuliah_diampu_edit').val();
+    var kesesuaian_bidang_keahlian = $('#kesesuaian_bidang_keahlian_edit').val();
+    var matakuliah_diampu_ps_lain = $('#matakuliah_diampu_ps_lain_edit').val();
+    var sertifikasi = $('#sertifikasi_edit').val();
 
     $.ajax({
       type : "POST",
-      url  : "<?php echo site_url('tridharma/pendidikan_edit')?>",
+      url  : "<?php echo site_url('dosen/dosen_tetap_edit')?>",
       dataType : "JSON",
-      data : {seq_id:seq_id, lembaga_mitra:lembaga_mitra, tingkat:tingkat, judul_kegiatan:judul_kegiatan, manfaat_bagi_ps:manfaat_bagi_ps, durasi:durasi, tahun_berakhir:tahun_berakhir, bukti:bukti},
+      data : {seq_id:seq_id, nidn:nidn, nama:nama, pendidikan_magister:pendidikan_magister, pendidikan_doktor:pendidikan_doktor, bidang_keahlian:bidang_keahlian, kesesuaian_kompetensi_inti_ps:kesesuaian_kompetensi_inti_ps, jabatan_akademik:jabatan_akademik, sertifikasi_profesional:sertifikasi_profesional, sertifikasi_kompetensi: sertifikasi_kompetensi, matakuliah_diampu:matakuliah_diampu, kesesuaian_bidang_keahlian:kesesuaian_bidang_keahlian, matakuliah_diampu_ps_lain:matakuliah_diampu_ps_lain, sertifikasi:sertifikasi},
       success: function(data){
-        $('[name="mitra_edit"]').val("");
-        $('[name="tingkat_edit"]').val("");
-        $('[name="judul_kegiatan_edit"]').val("");
-        $('[name="manfaat_bagi_ps_edit"]').val("");
-        $('[name="waktu_edit"]').val("");
-        $('[name="tahun_berakhir_edit"]').val("");
-        $('[name="bukti_edit"]').val("");
+        $('[name="nidn_edit"]').val("");
+        $('[name="nama_edit"]').val("");
+        $('[name="pendidikan_magister_edit"]').val("");
+        $('[name="pendidikan_doktor_edit"]').val("");
+        $('[name="bidang_keahlian_edit"]').val("");
+        $('[name="kesesuaian_kompetensi_inti_ps_edit"]').val("");
+        $('[name="jabatan_akademik_edit"]').val("");
+        $('[name="sertifikasi_kompetensi_edit"]').val("");
+        $('[name="sertifikasi_profesional_edit"]').val("");
+        $('[name="matakuliah_diampu_edit"]').val("");
+        $('[name="kesesuaian_bidang_keahlian_edit"]').val("");
+        $('[name="matakuliah_diampu_ps_lain_edit"]').val("");
+        $('[name="sertifikasi_edit"]').val("");
         $('#Modal_Edit').modal('hide');
         $.alert({
           title: 'Sukses!',
@@ -466,7 +478,7 @@ $(document).ready(function(){
       var seq_id = $('#seq_id_delete').val();
       $.ajax({
           type : "POST",
-          url  : "<?php echo site_url('tridharma/pendidikan_delete')?>",
+          url  : "<?php echo site_url('dosen/dosen_tetap_delete')?>",
           dataType : "JSON",
           data : {seq_id:seq_id},
           success: function(data){
