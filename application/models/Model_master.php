@@ -255,6 +255,29 @@ class Model_master extends CI_model {
    	 	return $result;
 	}
 
+	function dosen_pa_data_list(){
+		$role = $this->session->userdata('nama');
+		$sql = "SELECT d.nama, SUM(CASE WHEN(pa.mhs_pa='PS sendiri' AND pa.th_akademik=ts2.tahun) THEN 1 ELSE 0 END) AS ps_sendiri_ts2, SUM(CASE WHEN (pa.mhs_pa='PS sendiri' AND pa.th_akademik=ts1.tahun) THEN 1 ELSE 0 END) AS ps_sendiri_ts1, SUM(CASE WHEN (pa.mhs_pa='PS sendiri' AND pa.th_akademik=ts.tahun) THEN 1 ELSE 0 END) AS ps_sendiri_ts, SUM(CASE WHEN (pa.mhs_pa='PS lain' AND pa.th_akademik=ts2.tahun) THEN 1 ELSE 0 END) AS ps_lain_ts2, SUM(CASE WHEN (pa.mhs_pa='PS lain' AND pa.th_akademik=ts1.tahun) THEN 1 ELSE 0 END) AS ps_lain_ts1, SUM(CASE WHEN (pa.mhs_pa='PS lain' AND pa.th_akademik=ts.tahun) THEN 1 ELSE 0 END) AS ps_lain_ts FROM dosen_pa pa INNER JOIN dosen d on d.nidn=pa.nik_nidn_pembimbing LEFT JOIN ts AS ts2 ON ts2.tahun=pa.th_akademik and ts2.prodi='$role' AND ts2.nama_ts='TS-2' LEFT JOIN ts AS ts1 ON ts1.tahun=pa.th_akademik and ts1.prodi='$role' AND ts1.nama_ts='TS-1' LEFT JOIN ts ON ts.tahun=pa.th_akademik and ts.prodi='$role' AND ts.nama_ts='TS' GROUP BY d.nama";
+		$data = $this->db->query($sql);
+		return $data->result();
+	}
+
+	function ewmp_data_list(){
+		$role = $this->session->userdata('nama');
+		$this->db->where('prodi', $role);
+		$data = $this->db->get('ekuivalen_dosen_mengajar');
+		return $data->result();
+	}
+
+	function dosen_list()
+	{
+		$role = $this->session->userdata('nama');
+		$this->db->where('prodi', $role);
+		$this->db->order_by('nama', 'ASC');
+		$data = $this->db->get('dosen');
+		return $data;
+	}
+
 // 		SELECT nama_ts, sum(daya_tampung) AS daya_tampung, sum(lulus) AS lulus, sum(tidak_lulus) AS tidak_lulus, SUM(reguler) AS reguler, SUM(pindahan) AS pindahan, SUM(aktif_reguler) AS aktif_reguler, SUM(aktif_pindahan) AS aktif_pindahan FROM
 
 // (SELECT a.nama_ts, a.daya_tampung, a.lulus, a.tidak_lulus, 0 AS reguler, 0 AS pindahan, 0 AS aktif_reguler, 0 AS aktif_pindahan FROM (SELECT ts.nama_ts,t.daya_tampung,SUM(case when c.hasil='LULUS' THEN 1 ELSE 0 END) AS 'lulus', SUM(case when c.hasil='TIDAK LULUS' THEN 1 ELSE 0 END) AS 'tidak_lulus'
@@ -315,5 +338,20 @@ class Model_master extends CI_model {
 // INNER JOIN ts ON ts.tahun = LEFT(s.th_akademik, 4) AND ts.prodi = '$role' AND ts.nama_ts='TS'
 // GROUP BY ts.nama_ts) m
 // LEFT OUTER JOIN tbl_2b AS z ON m.prodi=z.prodi
+
+//3a2
+// SELECT d.nama,
+// SUM(CASE WHEN (pa.mhs_pa='PS sendiri' AND pa.th_akademik=ts2.tahun) THEN 1 ELSE 0 END) AS ps_sendiri_ts2,
+// SUM(CASE WHEN (pa.mhs_pa='PS sendiri' AND pa.th_akademik=ts1.tahun) THEN 1 ELSE 0 END) AS ps_sendiri_ts1,
+// SUM(CASE WHEN (pa.mhs_pa='PS sendiri' AND pa.th_akademik=ts.tahun) THEN 1 ELSE 0 END) AS ps_sendiri_ts,
+// SUM(CASE WHEN (pa.mhs_pa='PS lain' AND pa.th_akademik=ts2.tahun) THEN 1 ELSE 0 END) AS ps_lain_ts2,
+// SUM(CASE WHEN (pa.mhs_pa='PS lain' AND pa.th_akademik=ts1.tahun) THEN 1 ELSE 0 END) AS ps_lain_ts1,
+// SUM(CASE WHEN (pa.mhs_pa='PS lain' AND pa.th_akademik=ts.tahun) THEN 1 ELSE 0 END) AS ps_lain_ts
+// FROM dosen_pa pa
+// INNER JOIN dosen d on d.nidn=pa.nik_nidn_pembimbing
+// LEFT JOIN ts AS ts2 ON ts2.tahun=pa.th_akademik and ts2.prodi='TEKNIK INDUSTRI S1' AND ts2.nama_ts='TS-2'
+// LEFT JOIN ts AS ts1 ON ts1.tahun=pa.th_akademik and ts1.prodi='TEKNIK INDUSTRI S1' AND ts1.nama_ts='TS-1'
+// LEFT JOIN ts ON ts.tahun=pa.th_akademik and ts.prodi='TEKNIK INDUSTRI S1' AND ts.nama_ts='TS'
+// GROUP BY d.nama
 
 }

@@ -38,4 +38,31 @@ class Dosen extends CI_Controller {
   		echo json_encode($data);
   	}
 
+    public function dosen_pa()
+  	{
+  		$this->Model_security->getsecurity();
+  		$isi['title'] 	='Dosen Pembimbing Utama Tugas Akhir';
+  		$isi['content']	= 'dosen/pa';
+  		$this->load->view('default_page', $isi);
+  	}
+
+    function dosen_pa_data_list(){
+  		$data = $this->Model_master->dosen_pa_data_list();
+  		echo json_encode($data);
+  	}
+
+    public function ewmp()
+  	{
+  		$this->Model_security->getsecurity();
+  		$isi['title'] 	='Ekuivalen Waktu Mengajar Penuh (EWMP) Dosen Tetap Perguruan Tinggi';
+  		$isi['content']	= 'dosen/ewmp';
+      $isi['dosen'] = $this->Model_master->dosen_list();
+  		$this->load->view('default_page', $isi);
+  	}
+
+    function ewmp_data_list(){
+  		$data = $this->Model_master->ewmp_data_list();
+  		echo json_encode($data);
+  	}
+
 }

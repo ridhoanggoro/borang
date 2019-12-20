@@ -154,6 +154,27 @@ class Export extends CI_Controller {
 				$tot = 14 + ($no-2);
 				$objPHPExcel->getActiveSheet()->getStyle('A14:M'.$tot)->applyFromArray($styleArray);
 	      break;
+			case '3a2':
+	      $fileName = './assets/template/3a2.xlsx';
+	      $objPHPExcel = $objReader->load($fileName);
+	      $objPHPExcel->setActiveSheetIndex(0);
+	      $objPHPExcel->getActiveSheet();
+	      $data = $this->Model_master->dosen_pa_data_list();
+				$no = 1;
+	      $col = 7;
+				$tot = 0;
+	      foreach ($data as $val) {
+					$objPHPExcel->setActiveSheetIndex()->setCellValue('A'.$col, $no++);
+	        $objPHPExcel->setActiveSheetIndex()->setCellValue('B'.$col, strtoupper($val->nama));
+	        $objPHPExcel->setActiveSheetIndex()->setCellValue('C'.$col, $val->ps_sendiri_ts2);
+	        $objPHPExcel->setActiveSheetIndex()->setCellValue('D'.$col, $val->ps_sendiri_ts1);
+	        $objPHPExcel->setActiveSheetIndex()->setCellValue('E'.$col, $val->ps_sendiri_ts);
+	        $objPHPExcel->setActiveSheetIndex()->setCellValue('G'.$col, $val->ps_lain_ts2);
+	        $objPHPExcel->setActiveSheetIndex()->setCellValue('H'.$col, $val->ps_lain_ts1);
+					$objPHPExcel->setActiveSheetIndex()->setCellValue('I'.$col, $val->ps_lain_ts);
+	        $col++;
+	      }
+	      break;
       default:
         // code...
         break;
