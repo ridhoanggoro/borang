@@ -378,84 +378,65 @@ class Model_master extends CI_model {
 	function dosen_tdk_tetap_delete(){
 		$seq_id = $this->input->post('seq_id');
 		$this->db->where('seq_id', $seq_id);
-    	$result = $this->db->delete('dosen');
+  	$result = $this->db->delete('dosen');
+ 	 	return $result;
+	}
+
+	function dosen_praktisi_data_list(){
+		$role = $this->session->userdata('nama');
+		$this->db->where('prodi', $role);
+		$data = $this->db->get('dosen_praktisi');
+		return $data->result();
+	}
+
+	function dosen_praktisi_add(){
+		$prodi = $this->session->userdata('nama');
+		$data = array(
+			'nik_nidn' => $this->input->post('nik_nidn'),
+			'nama_dosen'  => $this->input->post('nama'),
+  		'perusahaan'  => $this->input->post('perusahaan'),
+  		'pendidikan_tertinggi' => $this->input->post('pendidikan_tertinggi'),
+  		'bidang_keahlian' => $this->input->post('bidang_keahlian'),
+			'sertifikat_profesi' => $this->input->post('sertifikat_profesi'),
+			'matakuliah_diampu' => $this->input->post('matakuliah_diampu'),
+			'sks' => $this->input->post('sks'),
+			'prodi' => $prodi
+		);
+		$result = $this->db->insert('dosen_praktisi', $data);
+		return $result;
+	}
+
+	function dosen_praktisi_edit(){
+		$seq_id = $this->input->post('seq_id');
+		$prodi = $this->session->userdata('nama');
+    $data = array(
+				'nik_nidn' => $this->input->post('nik_nidn'),
+				'nama_dosen'  => $this->input->post('nama_dosen'),
+	  		'perusahaan'  => $this->input->post('perusahaan'),
+	  		'pendidikan_tertinggi' => $this->input->post('pendidikan_tertinggi'),
+	  		'bidang_keahlian' => $this->input->post('bidang_keahlian'),
+				'sertifikat_profesi' => $this->input->post('sertifikat_profesi'),
+				'matakuliah_diampu' => $this->input->post('matakuliah_diampu'),
+				'sks' => $this->input->post('sks'),
+				'prodi' => $prodi
+			);
+			$this->db->where('seq_id', $seq_id);
+    	$result = $this->db->update('dosen_praktisi', $data);
+    	return $result;
+	}
+
+	function dosen_praktisi_delete(){
+		$seq_id = $this->input->post('seq_id');
+		$this->db->where('seq_id', $seq_id);
+    	$result = $this->db->delete('dosen_praktisi');
    	 	return $result;
 	}
 
-// 		SELECT nama_ts, sum(daya_tampung) AS daya_tampung, sum(lulus) AS lulus, sum(tidak_lulus) AS tidak_lulus, SUM(reguler) AS reguler, SUM(pindahan) AS pindahan, SUM(aktif_reguler) AS aktif_reguler, SUM(aktif_pindahan) AS aktif_pindahan FROM
-
-// (SELECT a.nama_ts, a.daya_tampung, a.lulus, a.tidak_lulus, 0 AS reguler, 0 AS pindahan, 0 AS aktif_reguler, 0 AS aktif_pindahan FROM (SELECT ts.nama_ts,t.daya_tampung,SUM(case when c.hasil='LULUS' THEN 1 ELSE 0 END) AS 'lulus', SUM(case when c.hasil='TIDAK LULUS' THEN 1 ELSE 0 END) AS 'tidak_lulus'
-// FROM `calon_mahasiswa` c
-// INNER JOIN ts on ts.tahun=LEFT(c.thn_akademik,4) AND ts.prodi='$role'
-// INNER JOIN tbl_2a t on t.thn_akademik=ts.nama_ts AND t.prodi='$role'
-// WHERE c.prodi='$role'
-// GROUP BY ts.nama_ts
-// ORDER BY ts.seq_id DESC) a
-
-// UNION ALL
-// SELECT b.nama_ts, 0 AS daya_tampung, 0 AS lulus, 0 AS tidak_lulus, b.reguler, b.pindahan, 0 AS aktif_reguler, 0 AS aktif_pindahan
-// FROM (
-// SELECT ts.nama_ts,SUM(case when m.status_asal='REGULER' THEN 1 ELSE 0 END) AS 'reguler', SUM(case when m.status_asal='PINDAHAN' THEN 1 ELSE 0 END) AS 'pindahan'
-// FROM mahasiswa m
-// INNER JOIN ts on ts.tahun=m.thn_akademik AND ts.prodi='$role'
-// WHERE m.prodi='$role'
-// GROUP BY ts.nama_ts
-// ORDER by ts.seq_id DESC) b
-
-// UNION ALL
-
-// SELECT c.nama_ts, 0 AS daya_tampung, 0 AS lulus, 0 AS tidak_lulus, 0 AS reguler, 0 AS pindahan, c.aktif_reguler, c.aktif_pindahan FROM
-// (SELECT ts.nama_ts, SUM(case when m.status_asal='REGULER' THEN 1 ELSE 0 END) AS 'aktif_reguler', SUM(case when m.status_asal='PINDAHAN' THEN 1 ELSE 0 END) AS 'aktif_pindahan' FROM (
-// SELECT nim,LEFT(th_akademik,4) AS th_akademik FROM `status_mahasiswa` a
-// WHERE a.prodi='$role'
-// and a.status='AKTIF'
-// GROUP BY nim,LEFT(th_akademik,4)) s
-// INNER JOIN mahasiswa m ON m.nim=s.nim
-// INNER JOIN ts on ts.tahun=LEFT(s.th_akademik,4) AND ts.prodi='$role'
-// GROUP BY ts.nama_ts
-// ORDER BY ts.seq_id DESC) c
-
-// ) main GROUP by nama_ts
-
-// SELECT m.prodi AS program, SUM(TS-2) AS 'TS-2', SUM(TS-1) AS 'TS-1', SUM(TS) AS 'TS', z.*
-// FROM (SELECT ts.prodi, COUNT(s.nim) AS 'TS-2', 0 AS 'TS-1', 0 AS 'TS'
-// FROM (SELECT nim, LEFT(th_akademik, 4) AS th_akademik FROM `status_mahasiswa` a
-// WHERE a.prodi = '$role' AND a.status = 'AKTIF'
-// GROUP BY nim, LEFT(th_akademik, 4)) s
-// INNER JOIN mahasiswa m ON m.nim = s.nim
-// INNER JOIN ts ON ts.tahun = LEFT(s.th_akademik, 4) AND ts.prodi = '$role' AND ts.nama_ts='TS-2'
-// GROUP BY ts.nama_ts
-// UNION ALL
-// SELECT ts.prodi,0 AS 'TS-2', COUNT(s.nim) AS 'TS-1', 0 AS 'TS'
-// FROM (SELECT nim, LEFT(th_akademik, 4) AS th_akademik FROM `status_mahasiswa` a
-// WHERE a.prodi = '$role' AND a.status = 'AKTIF'
-// GROUP BY nim, LEFT(th_akademik, 4)) s
-// INNER JOIN mahasiswa m ON m.nim = s.nim
-// INNER JOIN ts ON ts.tahun = LEFT(s.th_akademik, 4) AND ts.prodi = '$role' AND ts.nama_ts='TS-1'
-// GROUP BY ts.nama_ts
-// UNION ALL
-// SELECT ts.prodi,0 AS 'TS-2', 0 AS 'TS-1', COUNT(s.nim) AS 'TS'
-// FROM (SELECT nim, LEFT(th_akademik, 4) AS th_akademik FROM `status_mahasiswa` a
-// WHERE a.prodi = '$role' AND a.status = 'AKTIF'
-// GROUP BY nim, LEFT(th_akademik, 4)) s
-// INNER JOIN mahasiswa m ON m.nim = s.nim
-// INNER JOIN ts ON ts.tahun = LEFT(s.th_akademik, 4) AND ts.prodi = '$role' AND ts.nama_ts='TS'
-// GROUP BY ts.nama_ts) m
-// LEFT OUTER JOIN tbl_2b AS z ON m.prodi=z.prodi
-
-//3a2
-// SELECT d.nama,
-// SUM(CASE WHEN (pa.mhs_pa='PS sendiri' AND pa.th_akademik=ts2.tahun) THEN 1 ELSE 0 END) AS ps_sendiri_ts2,
-// SUM(CASE WHEN (pa.mhs_pa='PS sendiri' AND pa.th_akademik=ts1.tahun) THEN 1 ELSE 0 END) AS ps_sendiri_ts1,
-// SUM(CASE WHEN (pa.mhs_pa='PS sendiri' AND pa.th_akademik=ts.tahun) THEN 1 ELSE 0 END) AS ps_sendiri_ts,
-// SUM(CASE WHEN (pa.mhs_pa='PS lain' AND pa.th_akademik=ts2.tahun) THEN 1 ELSE 0 END) AS ps_lain_ts2,
-// SUM(CASE WHEN (pa.mhs_pa='PS lain' AND pa.th_akademik=ts1.tahun) THEN 1 ELSE 0 END) AS ps_lain_ts1,
-// SUM(CASE WHEN (pa.mhs_pa='PS lain' AND pa.th_akademik=ts.tahun) THEN 1 ELSE 0 END) AS ps_lain_ts
-// FROM dosen_pa pa
-// INNER JOIN dosen d on d.nidn=pa.nik_nidn_pembimbing
-// LEFT JOIN ts AS ts2 ON ts2.tahun=pa.th_akademik and ts2.prodi='TEKNIK INDUSTRI S1' AND ts2.nama_ts='TS-2'
-// LEFT JOIN ts AS ts1 ON ts1.tahun=pa.th_akademik and ts1.prodi='TEKNIK INDUSTRI S1' AND ts1.nama_ts='TS-1'
-// LEFT JOIN ts ON ts.tahun=pa.th_akademik and ts.prodi='TEKNIK INDUSTRI S1' AND ts.nama_ts='TS'
-// GROUP BY d.nama
+	function rekognisi_data_list(){
+		$role = $this->session->userdata('nama');
+		$sql = "SELECT *, CASE WHEN tingkat='Wilayah' THEN 'V' ELSE '' END AS 'Wilayah', CASE WHEN tingkat='Nasional' THEN 'V' ELSE '' END AS 'Nasional', CASE WHEN tingkat='Internasional' THEN 'V' ELSE '' END AS 'Internasional' FROM `rekognisi_dpts` WHERE prodi='$role'";
+		$data = $this->db->query($sql);
+		return $data->result();
+	}
 
 }

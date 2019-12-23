@@ -197,6 +197,28 @@ class Export extends CI_Controller {
 	        $col++;
 	      }
 	      break;
+			case '3a5':
+	      $fileName = './assets/template/3a5.xlsx';
+	      $objPHPExcel = $objReader->load($fileName);
+	      $objPHPExcel->setActiveSheetIndex(0);
+	      $objPHPExcel->getActiveSheet();
+	      $data = $this->Model_master->dosen_praktisi_data_list();
+				$no = 1;
+	      $col = 6;
+				$tot = 0;
+	      foreach ($data as $val) {
+					$objPHPExcel->setActiveSheetIndex()->setCellValue('A'.$col, $no++);
+	        $objPHPExcel->setActiveSheetIndex()->setCellValue('B'.$col, strtoupper($val->nama_dosen));
+	        $objPHPExcel->setActiveSheetIndex()->setCellValue('C'.$col, $val->nik_nidn);
+	        $objPHPExcel->setActiveSheetIndex()->setCellValue('D'.$col, $val->perusahaan);
+	        $objPHPExcel->setActiveSheetIndex()->setCellValue('E'.$col, $val->pendidikan_tertinggi);
+	        $objPHPExcel->setActiveSheetIndex()->setCellValue('F'.$col, $val->bidang_keahlian);
+	        $objPHPExcel->setActiveSheetIndex()->setCellValue('G'.$col, $val->sertifikat_profesi);
+					$objPHPExcel->setActiveSheetIndex()->setCellValue('H'.$col, $val->matakuliah_diampu);
+					$objPHPExcel->setActiveSheetIndex()->setCellValue('I'.$col, $val->sks);
+	        $col++;
+	      }
+	      break;
       default:
         // code...
         break;

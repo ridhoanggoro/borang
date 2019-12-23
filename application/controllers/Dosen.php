@@ -108,4 +108,50 @@ class Dosen extends CI_Controller {
   		echo json_encode($data);
   	}
 
+    public function dosen_praktisi()
+  	{
+  		$this->Model_security->getsecurity();
+  		$isi['title'] 	='Dosen Industri/Praktisi';
+  		$isi['content']	= 'dosen/praktisi';
+  		$this->load->view('default_page', $isi);
+  	}
+
+    function dosen_praktisi_data_list(){
+  		$data = $this->Model_master->dosen_praktisi_data_list();
+  		echo json_encode($data);
+  	}
+
+    function dosen_praktisi_add(){
+  		$data = $this->Model_master->dosen_praktisi_add();
+  		echo json_encode($data);
+  	}
+
+    function dosen_praktisi_edit(){
+  		$data = $this->Model_master->dosen_praktisi_edit();
+  		echo json_encode($data);
+  	}
+
+    function dosen_praktisi_delete(){
+  		$data = $this->Model_master->dosen_praktisi_delete();
+  		echo json_encode($data);
+  	}
+
+    public function rekognisi()
+  	{
+  		$this->Model_security->getsecurity();
+  		$isi['title'] 	='Pengakuan/Rekognisi Dosen';
+  		$isi['content']	= 'dosen/rekognisi';
+  		$this->load->view('default_page', $isi);
+  	}
+
+    function rekognisi_data_list(){
+  		$data = $this->Model_master->rekognisi_data_list();
+  		echo json_encode($data);
+  	}
+
+    function rekognisi_add(){
+  		$data = $this->Model_master->dosen_praktisi_add();
+  		echo json_encode($data);
+  	}
+
 }
