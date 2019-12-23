@@ -264,8 +264,8 @@ class Model_master extends CI_model {
 
 	function ewmp_data_list(){
 		$role = $this->session->userdata('nama');
-		$this->db->where('prodi', $role);
-		$data = $this->db->get('ekuivalen_dosen_mengajar');
+		$sql="SELECT a.*, dosen.nama FROM `ekuivalen_dosen_mengajar` a INNER JOIN dosen on dosen.nidn=a.nik_nidn WHERE a.prodi='$role'";
+		$data = $this->db->query($sql);
 		return $data->result();
 	}
 
@@ -276,6 +276,110 @@ class Model_master extends CI_model {
 		$this->db->order_by('nama', 'ASC');
 		$data = $this->db->get('dosen');
 		return $data;
+	}
+
+	function ewmp_add(){
+		$prodi = $this->session->userdata('nama');
+		$data = array(
+			'nik_nidn' => $this->input->post('nik_nidn'),
+			'dtps'  => $this->input->post('dtps'),
+  		'ps_yang_diakreditasi'  => $this->input->post('ps_yang_diakreditasi'),
+  		'ps_lain_di_dalam_pt' => $this->input->post('ps_lain_di_dalam_pt'),
+  		'ps_lain_di_luar_pt' => $this->input->post('ps_lain_di_luar_pt'),
+			'penelitian' => $this->input->post('penelitian'),
+			'pkm' => $this->input->post('pkm'),
+			'tugas_tambahan' => $this->input->post('tugas_tambahan'),
+			'prodi' => $prodi
+		);
+		$result = $this->db->insert('ekuivalen_dosen_mengajar', $data);
+		return $result;
+	}
+
+	function ewmp_edit(){
+		$seq_id = $this->input->post('seq_id');
+		$prodi = $this->session->userdata('nama');
+    	$data = array(
+				'nik_nidn' => $this->input->post('nik_nidn'),
+				'dtps'  => $this->input->post('dtps'),
+	  		'ps_yang_diakreditasi'  => $this->input->post('ps_yang_diakreditasi'),
+	  		'ps_lain_di_dalam_pt' => $this->input->post('ps_lain_di_dalam_pt'),
+	  		'ps_lain_di_luar_pt' => $this->input->post('ps_lain_di_luar_pt'),
+				'penelitian' => $this->input->post('penelitian'),
+				'pkm' => $this->input->post('pkm'),
+				'tugas_tambahan' => $this->input->post('tugas_tambahan'),
+				'prodi' => $prodi
+			);
+			$this->db->where('seq_id', $seq_id);
+    	$result = $this->db->update('ekuivalen_dosen_mengajar', $data);
+    	return $result;
+	}
+
+	function ewmp_delete(){
+		$seq_id = $this->input->post('seq_id');
+		$this->db->where('seq_id', $seq_id);
+    	$result = $this->db->delete('ekuivalen_dosen_mengajar');
+   	 	return $result;
+	}
+
+	function dosen_tdk_tetap_data_list(){
+		$role = $this->session->userdata('nama');
+		$sql = "SELECT *, CASE WHEN kesesuaian_kompetensi_inti_ps='YA' THEN 'V' ELSE '' END AS chk_kesesuaian_kompetensi, CASE WHEN kesesuaian_bidang_keahlian='YA' THEN 'V' ELSE '' END AS chk_kesesuaian_keahlian FROM `dosen` WHERE prodi='$role' AND status='TIDAK TETAP'";
+
+		$data = $this->db->query($sql);
+		return $data->result();
+	}
+
+	function dosen_tdk_tetap_add(){
+		$prodi = $this->session->userdata('nama');
+		$data = array(
+			'nidn' => $this->input->post('nidn'),
+			'nama'  => $this->input->post('nama'),
+  		'pendidikan_magister'  => $this->input->post('pendidikan_magister'),
+  		'pendidikan_doktor' => $this->input->post('pendidikan_doktor'),
+  		'bidang_keahlian' => $this->input->post('bidang_keahlian'),
+			'kesesuaian_kompetensi_inti_ps' => $this->input->post('kesesuaian_kompetensi_inti_ps'),
+			'jabatan_akademik' => $this->input->post('jabatan_akademik'),
+			'sertifikasi_profesional' => $this->input->post('sertifikasi_profesional'),
+			'sertifikasi_kompetensi' => $this->input->post('sertifikasi_kompetensi'),
+			'matakuliah_diampu' => $this->input->post('matakuliah_diampu'),
+			'kesesuaian_bidang_keahlian' => $this->input->post('kesesuaian_bidang_keahlian'),
+			'matakuliah_diampu_ps_lain' => $this->input->post('matakuliah_diampu_ps_lain'),
+			'prodi' => $prodi,
+			'status' => 'TIDAK TETAP'
+		);
+		$result = $this->db->insert('dosen', $data);
+		return $result;
+	}
+
+	function dosen_tdk_tetap_edit(){
+		$seq_id = $this->input->post('seq_id');
+		$prodi = $this->session->userdata('nama');
+    	$data = array(
+				'nidn' => $this->input->post('nidn'),
+				'nama'  => $this->input->post('nama'),
+	  		'pendidikan_magister'  => $this->input->post('pendidikan_magister'),
+	  		'pendidikan_doktor' => $this->input->post('pendidikan_doktor'),
+	  		'bidang_keahlian' => $this->input->post('bidang_keahlian'),
+				'kesesuaian_kompetensi_inti_ps' => $this->input->post('kesesuaian_kompetensi_inti_ps'),
+				'jabatan_akademik' => $this->input->post('jabatan_akademik'),
+				'sertifikasi_profesional' => $this->input->post('sertifikasi_profesional'),
+				'sertifikasi_kompetensi' => $this->input->post('sertifikasi_kompetensi'),
+				'matakuliah_diampu' => $this->input->post('matakuliah_diampu'),
+				'kesesuaian_bidang_keahlian' => $this->input->post('kesesuaian_bidang_keahlian'),
+				'matakuliah_diampu_ps_lain' => $this->input->post('matakuliah_diampu_ps_lain'),
+				'prodi' => $prodi,
+				'status' => 'TIDAK TETAP'
+			);
+			$this->db->where('seq_id', $seq_id);
+    	$result = $this->db->update('dosen', $data);
+    	return $result;
+	}
+
+	function dosen_tdk_tetap_delete(){
+		$seq_id = $this->input->post('seq_id');
+		$this->db->where('seq_id', $seq_id);
+    	$result = $this->db->delete('dosen');
+   	 	return $result;
 	}
 
 // 		SELECT nama_ts, sum(daya_tampung) AS daya_tampung, sum(lulus) AS lulus, sum(tidak_lulus) AS tidak_lulus, SUM(reguler) AS reguler, SUM(pindahan) AS pindahan, SUM(aktif_reguler) AS aktif_reguler, SUM(aktif_pindahan) AS aktif_pindahan FROM

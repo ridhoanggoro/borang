@@ -175,6 +175,28 @@ class Export extends CI_Controller {
 	        $col++;
 	      }
 	      break;
+			case '3a3':
+	      $fileName = './assets/template/3a3.xlsx';
+	      $objPHPExcel = $objReader->load($fileName);
+	      $objPHPExcel->setActiveSheetIndex(0);
+	      $objPHPExcel->getActiveSheet();
+	      $data = $this->Model_master->ewmp_data_list();
+				$no = 1;
+	      $col = 11;
+				$tot = 0;
+	      foreach ($data as $val) {
+					$objPHPExcel->setActiveSheetIndex()->setCellValue('A'.$col, $no++);
+	        $objPHPExcel->setActiveSheetIndex()->setCellValue('B'.$col, strtoupper($val->nama));
+	        $objPHPExcel->setActiveSheetIndex()->setCellValue('C'.$col, $val->dtps);
+	        $objPHPExcel->setActiveSheetIndex()->setCellValue('D'.$col, $val->ps_yang_diakreditasi);
+	        $objPHPExcel->setActiveSheetIndex()->setCellValue('E'.$col, $val->ps_lain_di_dalam_pt);
+	        $objPHPExcel->setActiveSheetIndex()->setCellValue('F'.$col, $val->ps_lain_di_luar_pt);
+	        $objPHPExcel->setActiveSheetIndex()->setCellValue('G'.$col, $val->penelitian);
+					$objPHPExcel->setActiveSheetIndex()->setCellValue('H'.$col, $val->pkm);
+					$objPHPExcel->setActiveSheetIndex()->setCellValue('I'.$col, $val->tugas_tambahan);
+	        $col++;
+	      }
+	      break;
       default:
         // code...
         break;

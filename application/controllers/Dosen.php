@@ -65,4 +65,47 @@ class Dosen extends CI_Controller {
   		echo json_encode($data);
   	}
 
+    function ewmp_add(){
+  		$data = $this->Model_master->ewmp_add();
+  		echo json_encode($data);
+  	}
+
+    function ewmp_edit(){
+  		$data = $this->Model_master->ewmp_edit();
+  		echo json_encode($data);
+  	}
+
+    function ewmp_delete(){
+  		$data = $this->Model_master->ewmp_delete();
+  		echo json_encode($data);
+  	}
+
+    public function dosen_tdk_tetap()
+  	{
+  		$this->Model_security->getsecurity();
+  		$isi['title'] 	='Dosen Tidak Tetap Perguruan Tinggi';
+  		$isi['content']	= 'dosen/tidak_tetap';
+  		$this->load->view('default_page', $isi);
+  	}
+
+    function dosen_tdk_tetap_data_list(){
+  		$data = $this->Model_master->dosen_tdk_tetap_data_list();
+  		echo json_encode($data);
+  	}
+
+    function dosen_tdk_tetap_add(){
+  		$data = $this->Model_master->dosen_tdk_tetap_add();
+  		echo json_encode($data);
+  	}
+
+    function dosen_tdk_tetap_edit(){
+  		$data = $this->Model_master->dosen_tdk_tetap_edit();
+  		echo json_encode($data);
+  	}
+
+    function dosen_tdk_tetap_delete(){
+  		$data = $this->Model_master->dosen_tdk_tetap_delete();
+  		echo json_encode($data);
+  	}
+
 }
