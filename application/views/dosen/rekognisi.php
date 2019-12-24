@@ -64,8 +64,8 @@
         </div>
         <div class="form-row">
           <div class="form-group col-md-6">
-            <label for="rekognisi">Rekognisi dan Bukti Pendukung</label>
-            <input type="text" class="form-control" id="rekognisi" name="rekognisi" required>
+            <label for="bukti_pendukung">Rekognisi dan Bukti Pendukung</label>
+            <input type="text" class="form-control" id="bukti_pendukung" name="bukti_pendukung" required>
             <div id="id_check_result" class="help-block with-errors"></div>
           </div>
           <div class="form-group col-md-3">
@@ -126,8 +126,8 @@
         </div>
         <div class="form-row">
           <div class="form-group col-md-6">
-            <label for="rekognisi_edit">Rekognisi dan Bukti Pendukung</label>
-            <input type="text" class="form-control" id="rekognisi_edit" name="rekognisi_edit" required>
+            <label for="bukti_pendukung_edit">Rekognisi dan Bukti Pendukung</label>
+            <input type="text" class="form-control" id="bukti_pendukung_edit" name="bukti_pendukung_edit" required>
             <div id="id_check_result" class="help-block with-errors"></div>
           </div>
           <div class="form-group col-md-3">
@@ -246,18 +246,15 @@ $(document).ready(function(){
 
     $.ajax({
       type : "POST",
-      url  : "<?php echo site_url('dosen/dosen_praktisi_add')?>",
+      url  : "<?php echo site_url('dosen/rekognisi_add')?>",
       dataType : "JSON",
-      data : {nik_nidn:nik_nidn, nama:nama, perusahaan:perusahaan, pendidikan_tertinggi:pendidikan_tertinggi, bidang_keahlian:bidang_keahlian, sertifikat_profesi:sertifikat_profesi, matakuliah_diampu:matakuliah_diampu, sks:sks},
+      data : {nama:nama, bidang_keahlian:bidang_keahlian, bukti_pendukung:bukti_pendukung, tingkat:tingkat, tahun:tahun},
       success: function(data){
-        $('[name="nik_nidn"]').val("");
         $('[name="nama"]').val("");
-        $('[name="perusahaan"]').val("");
-        $('[name="pendidikan_tertinggi"]').val("");
         $('[name="bidang_keahlian"]').val("");
-        $('[name="sertifikat_profesi"]').val("");
-        $('[name="matakuliah_diampu"]').val("");
-        $('[name="sks"]').val("");
+        $('[name="bukti_pendukung"]').val("");
+        $('[name="tingkat"]').val("");
+        $('[name="tahun"]').val("");
         $('#Modal_Add').modal('hide');
         $.alert({
           title: 'Sukses!',
@@ -272,29 +269,23 @@ $(document).ready(function(){
   //update record
   $('#btn_update').on('click',function(){
     var seq_id = $('#seq_id').val();
-    var nik_nidn = $('#nidk_edit').val();
-    var nama_dosen = $('#nama_edit').val();
-    var perusahaan = $('#perusahaan_edit').val();
-    var pendidikan_tertinggi = $('#pendidikan_tertinggi_edit').val();
+    var nama = $('#nama_edit').val();
     var bidang_keahlian = $('#bidang_keahlian_edit').val();
-    var sertifikat_profesi  = $('#sertifikat_profesi_edit').val();
-    var matakuliah_diampu = $('#matakuliah_diampu_edit').val();
-    var sks = $('#bobot_edit').val();
+    var bukti_pendukung = $('#bukti_pendukung_edit').val();
+    var tingkat = $('#tingkat_edit').val();
+    var tahun  = $('#tahun_edit').val();
 
     $.ajax({
       type : "POST",
-      url  : "<?php echo site_url('dosen/dosen_praktisi_edit')?>",
+      url  : "<?php echo site_url('dosen/rekognisi_edit')?>",
       dataType : "JSON",
-      data : {seq_id:seq_id, nik_nidn:nik_nidn, nama_dosen:nama_dosen, perusahaan:perusahaan, pendidikan_tertinggi:pendidikan_tertinggi, bidang_keahlian:bidang_keahlian, sertifikat_profesi:sertifikat_profesi, matakuliah_diampu:matakuliah_diampu, sks:sks},
+      data : {seq_id:seq_id, nama:nama, bidang_keahlian:bidang_keahlian, bukti_pendukung:bukti_pendukung, tingkat:tingkat, tahun:tahun},
       success: function(data){
-        $('[name="nidk_edit"]').val("");
         $('[name="nama_edit"]').val("");
-        $('[name="perusahaan_edit"]').val("");
-        $('[name="pendidikan_tertinggi_edit"]').val("");
         $('[name="bidang_keahlian_edit"]').val("");
-        $('[name="sertifikat_profesi_edit"]').val("");
-        $('[name="matakuliah_diampu_edit"]').val("");
-        $('[name="bobot_edit"]').val("");
+        $('[name="bukti_pendukung_edit"]').val("");
+        $('[name="tingkat_edit"]').val("");
+        $('[name="tahun_edit"]').val("");
         $('#Modal_Edit').modal('hide');
         $.alert({
           title: 'Sukses!',
@@ -318,7 +309,7 @@ $(document).ready(function(){
       var seq_id = $('#seq_id_delete').val();
       $.ajax({
           type : "POST",
-          url  : "<?php echo site_url('dosen/dosen_praktisi_delete')?>",
+          url  : "<?php echo site_url('dosen/rekognisi_delete')?>",
           dataType : "JSON",
           data : {seq_id:seq_id},
           success: function(data){

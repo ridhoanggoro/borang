@@ -150,7 +150,43 @@ class Dosen extends CI_Controller {
   	}
 
     function rekognisi_add(){
-  		$data = $this->Model_master->dosen_praktisi_add();
+  		$data = $this->Model_master->rekognisi_add();
+  		echo json_encode($data);
+  	}
+
+    function rekognisi_edit(){
+  		$data = $this->Model_master->rekognisi_edit();
+  		echo json_encode($data);
+  	}
+
+    function rekognisi_delete(){
+  		$data = $this->Model_master->rekognisi_delete();
+  		echo json_encode($data);
+  	}
+
+    public function penelitian_dtps()
+  	{
+  		$this->Model_security->getsecurity();
+  		$isi['title'] 	='Penelitian DTPS';
+  		$isi['content']	= 'dosen/penelitian_dtps';
+  		$this->load->view('default_page', $isi);
+  	}
+
+    function penelitian_dtps_data_list(){
+  		$data = $this->Model_master->penelitian_dtps_data_list();
+  		echo json_encode($data);
+  	}
+
+    public function pkm_dtps()
+  	{
+  		$this->Model_security->getsecurity();
+  		$isi['title'] 	='PkM DTPS';
+  		$isi['content']	= 'dosen/pkm_dtps';
+  		$this->load->view('default_page', $isi);
+  	}
+
+    function pkm_dtps_data_list(){
+  		$data = $this->Model_master->pkm_dtps_data_list();
   		echo json_encode($data);
   	}
 

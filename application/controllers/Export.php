@@ -219,6 +219,56 @@ class Export extends CI_Controller {
 	        $col++;
 	      }
 	      break;
+			case '3b1':
+	      $fileName = './assets/template/3b1.xlsx';
+	      $objPHPExcel = $objReader->load($fileName);
+	      $objPHPExcel->setActiveSheetIndex(0);
+	      $objPHPExcel->getActiveSheet();
+	      $data = $this->Model_master->rekognisi_data_list();
+				$no = 1;
+	      $col = 10;
+	      foreach ($data as $val) {
+					$objPHPExcel->setActiveSheetIndex()->setCellValue('A'.$col, $no++);
+	        $objPHPExcel->setActiveSheetIndex()->setCellValue('B'.$col, strtoupper($val->nama));
+	        $objPHPExcel->setActiveSheetIndex()->setCellValue('C'.$col, $val->bidang_keahlian);
+	        $objPHPExcel->setActiveSheetIndex()->setCellValue('D'.$col, $val->bukti_pendukung);
+	        $objPHPExcel->setActiveSheetIndex()->setCellValue('E'.$col, $val->Wilayah);
+	        $objPHPExcel->setActiveSheetIndex()->setCellValue('F'.$col, $val->Nasional);
+					$objPHPExcel->setActiveSheetIndex()->setCellValue('G'.$col, $val->Internasional);
+					$objPHPExcel->setActiveSheetIndex()->setCellValue('H'.$col, $val->tahun);
+	        $col++;
+	      }
+	      break;
+			case '3b2':
+	      $fileName = './assets/template/3b2.xlsx';
+	      $objPHPExcel = $objReader->load($fileName);
+	      $objPHPExcel->setActiveSheetIndex(0);
+	      $objPHPExcel->getActiveSheet();
+	      $data = $this->Model_master->penelitian_dtps_data_list();
+				$no = 1;
+	      $col = 6;
+	      foreach ($data as $val) {
+	        $objPHPExcel->setActiveSheetIndex()->setCellValue('C'.$col, $val->ts2);
+	        $objPHPExcel->setActiveSheetIndex()->setCellValue('D'.$col, $val->ts1);
+	        $objPHPExcel->setActiveSheetIndex()->setCellValue('E'.$col, $val->ts);
+	        $col++;
+	      }
+	      break;
+			case '3b3':
+	      $fileName = './assets/template/3b3.xlsx';
+	      $objPHPExcel = $objReader->load($fileName);
+	      $objPHPExcel->setActiveSheetIndex(0);
+	      $objPHPExcel->getActiveSheet();
+	      $data = $this->Model_master->publikasi_ilmiah_data_list();
+				$no = 1;
+	      $col = 6;
+	      foreach ($data as $val) {
+	        $objPHPExcel->setActiveSheetIndex()->setCellValue('C'.$col, $val->ts2);
+	        $objPHPExcel->setActiveSheetIndex()->setCellValue('D'.$col, $val->ts1);
+	        $objPHPExcel->setActiveSheetIndex()->setCellValue('E'.$col, $val->ts);
+	        $col++;
+	      }
+	      break;
       default:
         // code...
         break;

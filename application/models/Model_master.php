@@ -439,4 +439,55 @@ class Model_master extends CI_model {
 		return $data->result();
 	}
 
+	function rekognisi_add(){
+		$prodi = $this->session->userdata('nama');
+		$data = array(
+			'nama'  => $this->input->post('nama'),
+  		'bidang_keahlian'  => $this->input->post('bidang_keahlian'),
+  		'bukti_pendukung' => $this->input->post('bukti_pendukung'),
+  		'tingkat' => $this->input->post('tingkat'),
+			'tahun' => $this->input->post('tahun'),
+			'prodi' => $prodi
+		);
+		$result = $this->db->insert('rekognisi_dpts', $data);
+		return $result;
+	}
+
+	function rekognisi_edit(){
+		$seq_id = $this->input->post('seq_id');
+		$prodi = $this->session->userdata('nama');
+    $data = array(
+			'nama'  => $this->input->post('nama'),
+  		'bidang_keahlian'  => $this->input->post('bidang_keahlian'),
+  		'bukti_pendukung' => $this->input->post('bukti_pendukung'),
+  		'tingkat' => $this->input->post('tingkat'),
+			'tahun' => $this->input->post('tahun'),
+			'prodi' => $prodi
+		);
+		$this->db->where('seq_id', $seq_id);
+  	$result = $this->db->update('rekognisi_dpts', $data);
+  	return $result;
+	}
+
+	function rekognisi_delete(){
+		$seq_id = $this->input->post('seq_id');
+		$this->db->where('seq_id', $seq_id);
+    	$result = $this->db->delete('rekognisi_dpts');
+   	 	return $result;
+	}
+
+	function penelitian_dtps_data_list(){
+		$role = $this->session->userdata('nama');
+		$sql = "SELECT CASE WHEN main.sumber_biaya='mandiri-perguruan tinggi' THEN 'a) Perguruan tinggi<p>b) Mandiri' WHEN main.sumber_biaya='lembaga dalam negeri' THEN 'Lembaga dalam negeri (diluar PT)' ELSE 'Lembaga luar negeri' END AS sumber_biaya, main.ts2, main.ts1, main.ts FROM (SELECT pa.sumber_biaya, SUM(CASE WHEN(pa.th_akademik = ts2.tahun) THEN jml_judul ELSE 0 END) AS ts2, SUM(CASE WHEN(pa.th_akademik = ts1.tahun) THEN jml_judul ELSE 0 END) AS ts1, SUM(CASE WHEN(pa.th_akademik = ts.tahun) THEN jml_judul ELSE 0 END) AS ts FROM penelitian_dosen pa LEFT JOIN ts AS ts2 ON ts2.tahun = pa.th_akademik AND ts2.prodi = '$role' AND ts2.nama_ts = 'TS-2' LEFT JOIN ts AS ts1 ON ts1.tahun = pa.th_akademik AND ts1.prodi = '$role' AND ts1.nama_ts = 'TS-1' LEFT JOIN ts ON ts.tahun = pa.th_akademik AND ts.prodi = '$role' AND ts.nama_ts = 'TS' WHERE pa.prodi='$role' GROUP BY pa.sumber_biaya) main";
+		$data = $this->db->query($sql);
+		return $data->result();
+	}
+
+	function pkm_dtps_data_list(){
+		$role = $this->session->userdata('nama');
+		$sql = "SELECT CASE WHEN main.sumber_biaya='mandiri-perguruan tinggi' THEN 'a) Perguruan tinggi<p>b) Mandiri' WHEN main.sumber_biaya='lembaga dalam negeri' THEN 'Lembaga dalam negeri (diluar PT)' ELSE 'Lembaga luar negeri' END AS sumber_biaya, main.ts2, main.ts1, main.ts FROM (SELECT pa.sumber_biaya, SUM(CASE WHEN(pa.th_akademik = ts2.tahun) THEN jml_judul ELSE 0 END) AS ts2, SUM(CASE WHEN(pa.th_akademik = ts1.tahun) THEN jml_judul ELSE 0 END) AS ts1, SUM(CASE WHEN(pa.th_akademik = ts.tahun) THEN jml_judul ELSE 0 END) AS ts FROM pkm_dosen pa LEFT JOIN ts AS ts2 ON ts2.tahun = pa.th_akademik AND ts2.prodi = '$role' AND ts2.nama_ts = 'TS-2' LEFT JOIN ts AS ts1 ON ts1.tahun = pa.th_akademik AND ts1.prodi = '$role' AND ts1.nama_ts = 'TS-1' LEFT JOIN ts ON ts.tahun = pa.th_akademik AND ts.prodi = '$role' AND ts.nama_ts = 'TS' WHERE pa.prodi='$role' GROUP BY pa.sumber_biaya) main";
+		$data = $this->db->query($sql);
+		return $data->result();
+	}
+
 }
