@@ -9,7 +9,7 @@
 
 <!-- Custom fonts for this template-->
 <link href="<?php echo base_url('assets/fontawesome-free/css/all.min.css')?>" rel="stylesheet" type="text/css">
-<link href="https://fonts.googleapis.com/css?family=Ubuntu+Condensed&display=swap" rel="stylesheet"> 
+<link href="<?php echo base_url('assets/css/font.css') ?>" rel="stylesheet">
 
 <!-- Custom styles for this template-->
 <link href="<?php echo base_url('assets/css/sb-admin-2.css') ?>" rel="stylesheet">

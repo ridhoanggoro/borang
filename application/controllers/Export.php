@@ -269,6 +269,36 @@ class Export extends CI_Controller {
 	        $col++;
 	      }
 	      break;
+			case '3b4-1':
+	      $fileName = './assets/template/3b4-1.xlsx';
+	      $objPHPExcel = $objReader->load($fileName);
+	      $objPHPExcel->setActiveSheetIndex(0);
+	      $objPHPExcel->getActiveSheet();
+	      $data = $this->Model_master->publikasi_ilmiah_dtps_data_list();
+				$no = 1;
+	      $col = 7;
+	      foreach ($data as $val) {
+	        $objPHPExcel->setActiveSheetIndex()->setCellValue('C'.$col, $val->ts2);
+	        $objPHPExcel->setActiveSheetIndex()->setCellValue('D'.$col, $val->ts1);
+	        $objPHPExcel->setActiveSheetIndex()->setCellValue('E'.$col, $val->ts);
+	        $col++;
+	      }
+	      break;
+			case '3b4-2':
+	      $fileName = './assets/template/3b4-2.xlsx';
+	      $objPHPExcel = $objReader->load($fileName);
+	      $objPHPExcel->setActiveSheetIndex(0);
+	      $objPHPExcel->getActiveSheet();
+	      $data = $this->Model_master->pagelaran_ilmiah_data_list();
+				$no = 1;
+	      $col = 7;
+	      foreach ($data as $val) {
+	        $objPHPExcel->setActiveSheetIndex()->setCellValue('C'.$col, $val->ts2);
+	        $objPHPExcel->setActiveSheetIndex()->setCellValue('D'.$col, $val->ts1);
+	        $objPHPExcel->setActiveSheetIndex()->setCellValue('E'.$col, $val->ts);
+	        $col++;
+	      }
+	      break;
       default:
         // code...
         break;

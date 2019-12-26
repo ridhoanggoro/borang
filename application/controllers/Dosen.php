@@ -190,4 +190,30 @@ class Dosen extends CI_Controller {
   		echo json_encode($data);
   	}
 
+    public function publikasi_ilmiah_dtps()
+  	{
+  		$this->Model_security->getsecurity();
+  		$isi['title'] 	='Publikasi Ilmiah DTPS';
+  		$isi['content']	= 'dosen/publikasi_ilmiah_dtps';
+  		$this->load->view('default_page', $isi);
+  	}
+
+    function publikasi_ilmiah_dtps_data_list(){
+  		$data = $this->Model_master->publikasi_ilmiah_dtps_data_list();
+  		echo json_encode($data);
+  	}
+
+    public function pagelaran_ilmiah()
+  	{
+  		$this->Model_security->getsecurity();
+  		$isi['title'] 	='Pagelaran/Pameran/Presentasi/Publikasi Ilmiah DTPS';
+  		$isi['content']	= 'dosen/pagelaran_ilmiah';
+  		$this->load->view('default_page', $isi);
+  	}
+
+    function pagelaran_ilmiah_data_list(){
+  		$data = $this->Model_master->pagelaran_ilmiah_data_list();
+  		echo json_encode($data);
+  	}
+
 }
