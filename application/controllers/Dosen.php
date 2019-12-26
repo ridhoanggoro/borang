@@ -216,4 +216,116 @@ class Dosen extends CI_Controller {
   		echo json_encode($data);
   	}
 
+    public function hki_paten()
+    {
+      $this->Model_security->getsecurity();
+      $isi['title'] 	='Bagian-1 HKI (Paten, Paten Sederhana)';
+      $isi['content']	= 'dosen/hki_paten';
+      $this->load->view('default_page', $isi);
+    }
+
+    function hki_paten_data_list(){
+      $data = $this->Model_master->hki_paten_data_list();
+      echo json_encode($data);
+    }
+
+    function hki_paten_add(){
+  		$data = $this->Model_master->hki_paten_add();
+  		echo json_encode($data);
+  	}
+
+    function hki_paten_edit(){
+  		$data = $this->Model_master->hki_paten_edit();
+  		echo json_encode($data);
+  	}
+
+    function hki_paten_delete(){
+  		$data = $this->Model_master->hki_paten_delete();
+  		echo json_encode($data);
+  	}
+
+    public function hki_hak_cipta()
+    {
+      $this->Model_security->getsecurity();
+      $isi['title'] 	='Bagian-2 HKI (Hak Cipta, Desain Produk Industri, dll.)';
+      $isi['content']	= 'dosen/hki_hak_cipta';
+      $this->load->view('default_page', $isi);
+    }
+
+    function hki_hak_cipta_data_list(){
+      $data = $this->Model_master->hki_hak_cipta_data_list();
+      echo json_encode($data);
+    }
+
+    function hki_hak_cipta_add(){
+  		$data = $this->Model_master->hki_hak_cipta_add();
+  		echo json_encode($data);
+  	}
+
+    function hki_hak_cipta_edit(){
+  		$data = $this->Model_master->hki_hak_cipta_edit();
+  		echo json_encode($data);
+  	}
+
+    function hki_hak_cipta_delete(){
+  		$data = $this->Model_master->hki_hak_cipta_delete();
+  		echo json_encode($data);
+  	}
+
+    public function hki_teknologi_tepatguna()
+    {
+      $this->Model_security->getsecurity();
+      $isi['title'] 	='Bagian-3 Teknologi Tepat Guna, Produk, Karya Seni, Rekayasa Sosial';
+      $isi['content']	= 'dosen/hki_teknologi_tepatguna';
+      $this->load->view('default_page', $isi);
+    }
+
+    function hki_teknologi_tepatguna_data_list(){
+      $data = $this->Model_master->hki_teknologi_tepatguna_data_list();
+      echo json_encode($data);
+    }
+
+    function hki_teknologi_tepatguna_add(){
+  		$data = $this->Model_master->hki_teknologi_tepatguna_add();
+  		echo json_encode($data);
+  	}
+
+    function hki_teknologi_tepatguna_edit(){
+  		$data = $this->Model_master->hki_teknologi_tepatguna_edit();
+  		echo json_encode($data);
+  	}
+
+    function hki_teknologi_tepatguna_delete(){
+  		$data = $this->Model_master->hki_teknologi_tepatguna_delete();
+  		echo json_encode($data);
+  	}
+
+    public function buku_isbn()
+    {
+      $this->Model_security->getsecurity();
+      $isi['title'] 	='Bagian-4 Buku Ber-ISBN, Book Chapter';
+      $isi['content']	= 'dosen/buku_isbn';
+      $this->load->view('default_page', $isi);
+    }
+
+    function buku_isbn_data_list(){
+      $data = $this->Model_master->buku_isbn_data_list();
+      echo json_encode($data);
+    }
+
+    function buku_isbn_add(){
+  		$data = $this->Model_master->buku_isbn_add();
+  		echo json_encode($data);
+  	}
+
+    function buku_isbn_edit(){
+  		$data = $this->Model_master->buku_isbn_edit();
+  		echo json_encode($data);
+  	}
+
+    function buku_isbn_delete(){
+  		$data = $this->Model_master->buku_isbn_delete();
+  		echo json_encode($data);
+  	}
+
 }

@@ -299,6 +299,70 @@ class Export extends CI_Controller {
 	        $col++;
 	      }
 	      break;
+			case '3b5-1':
+	      $fileName = './assets/template/3b5-1.xlsx';
+	      $objPHPExcel = $objReader->load($fileName);
+	      $objPHPExcel->setActiveSheetIndex(0);
+	      $objPHPExcel->getActiveSheet();
+	      $data = $this->Model_master->hki_paten_data_list();
+				$no = 1;
+	      $col = 7;
+	      foreach ($data as $val) {
+					$objPHPExcel->setActiveSheetIndex()->setCellValue('A'.$col, $no++);
+	        $objPHPExcel->setActiveSheetIndex()->setCellValue('B'.$col, $val->luaran_penelitian);
+	        $objPHPExcel->setActiveSheetIndex()->setCellValue('C'.$col, $val->th_perolehan);
+	        $objPHPExcel->setActiveSheetIndex()->setCellValue('D'.$col, $val->keterangan);
+	        $col++;
+	      }
+	      break;
+			case '3b5-2':
+	      $fileName = './assets/template/3b5-2.xlsx';
+	      $objPHPExcel = $objReader->load($fileName);
+	      $objPHPExcel->setActiveSheetIndex(0);
+	      $objPHPExcel->getActiveSheet();
+	      $data = $this->Model_master->hki_hak_cipta_data_list();
+				$no = 1;
+	      $col = 7;
+	      foreach ($data as $val) {
+					$objPHPExcel->setActiveSheetIndex()->setCellValue('A'.$col, $no++);
+	        $objPHPExcel->setActiveSheetIndex()->setCellValue('B'.$col, $val->luaran_penelitian);
+	        $objPHPExcel->setActiveSheetIndex()->setCellValue('C'.$col, $val->th_perolehan);
+	        $objPHPExcel->setActiveSheetIndex()->setCellValue('D'.$col, $val->keterangan);
+	        $col++;
+	      }
+	      break;
+			case '3b5-3':
+	      $fileName = './assets/template/3b5-3.xlsx';
+	      $objPHPExcel = $objReader->load($fileName);
+	      $objPHPExcel->setActiveSheetIndex(0);
+	      $objPHPExcel->getActiveSheet();
+	      $data = $this->Model_master->hki_teknologi_tepatguna_data_list();
+				$no = 1;
+	      $col = 7;
+	      foreach ($data as $val) {
+					$objPHPExcel->setActiveSheetIndex()->setCellValue('A'.$col, $no++);
+	        $objPHPExcel->setActiveSheetIndex()->setCellValue('B'.$col, $val->luaran_penelitian);
+	        $objPHPExcel->setActiveSheetIndex()->setCellValue('C'.$col, $val->th_perolehan);
+	        $objPHPExcel->setActiveSheetIndex()->setCellValue('D'.$col, $val->keterangan);
+	        $col++;
+	      }
+	      break;
+			case '3b5-4':
+	      $fileName = './assets/template/3b5-4.xlsx';
+	      $objPHPExcel = $objReader->load($fileName);
+	      $objPHPExcel->setActiveSheetIndex(0);
+	      $objPHPExcel->getActiveSheet();
+	      $data = $this->Model_master->buku_isbn_data_list();
+				$no = 1;
+	      $col = 7;
+	      foreach ($data as $val) {
+					$objPHPExcel->setActiveSheetIndex()->setCellValue('A'.$col, $no++);
+	        $objPHPExcel->setActiveSheetIndex()->setCellValue('B'.$col, $val->luaran_penelitian);
+	        $objPHPExcel->setActiveSheetIndex()->setCellValue('C'.$col, $val->th_perolehan);
+	        $objPHPExcel->setActiveSheetIndex()->setCellValue('D'.$col, $val->keterangan);
+	        $col++;
+	      }
+	      break;
       default:
         // code...
         break;
