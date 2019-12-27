@@ -74,8 +74,8 @@
         <a class="collapse-item <?php echo $this->uri->segment(2) == 'pkm_dtps' ? 'active': '' ?>" href="<?php echo site_url('dosen/pkm_dtps'); ?>">PkM DTPS</a>
         <a class="collapse-item <?php echo $this->uri->segment(2) == 'publikasi_ilmiah_dtps' ? 'active': '' ?>" href="<?php echo site_url('dosen/publikasi_ilmiah_dtps'); ?>">Publikasi Ilmiah DTPS</a>
         <a class="collapse-item <?php echo $this->uri->segment(2) == 'pagelaran_ilmiah' ? 'active': '' ?>" href="<?php echo site_url('dosen/pagelaran_ilmiah'); ?>">Pagelaran Ilmiah DTPS</a>
-        <a class="collapse-item <?php echo $this->uri->segment(2) == 'hki_paten' ? 'active': '' ?>" href="<?php echo site_url('dosen/hki_paten'); ?>">Bagian-1 HKI</a>
-        <a class="collapse-item <?php echo $this->uri->segment(2) == 'hki_hak_cipta' ? 'active': '' ?>" href="<?php echo site_url('dosen/hki_hak_cipta'); ?>">Bagian-2 HKI</a>
+        <a class="collapse-item <?php echo $this->uri->segment(2) == 'hki_paten' ? 'active': '' ?>" href="<?php echo site_url('dosen/hki_paten'); ?>">Bagian-1 HKI Paten</a>
+        <a class="collapse-item <?php echo $this->uri->segment(2) == 'hki_hak_cipta' ? 'active': '' ?>" href="<?php echo site_url('dosen/hki_hak_cipta'); ?>">Bagian-2 HKI Hak Cipta</a>
         <a class="collapse-item <?php echo $this->uri->segment(2) == 'hki_teknologi_tepatguna' ? 'active': '' ?>" href="<?php echo site_url('dosen/hki_teknologi_tepatguna'); ?>">Bagian-3 Teknologi Tepat Guna</a>
         <a class="collapse-item <?php echo $this->uri->segment(2) == 'buku_isbn' ? 'active': '' ?>" href="<?php echo site_url('dosen/buku_isbn'); ?>">Bagian-4 Buku Ber-ISBN</a>
       </div>
