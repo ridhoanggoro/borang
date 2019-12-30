@@ -703,4 +703,46 @@ class Model_master extends CI_model {
     	$result = $this->db->delete('karya_ilmiah_disitasi');
    	 	return $result;
 	}
+
+	function produk_dtps_data_list(){
+		$role = $this->session->userdata('nama');
+		$this->db->where('prodi', $role);
+		$data = $this->db->get('produk_dtps');
+		return $data->result();
+	}
+
+	function produk_dtps_add(){
+		$prodi = $this->session->userdata('nama');
+		$data = array(
+			'nama_dosen'  => $this->input->post('nama_dosen'),
+			'nama_produk'  => $this->input->post('nama_produk'),
+			'deskripsi' => $this->input->post('deskripsi'),
+			'bukti' => $this->input->post('bukti'),
+			'prodi' => $prodi
+		);
+		$result = $this->db->insert('produk_dtps', $data);
+		return $result;
+	}
+
+	function produk_dtps_edit(){
+		$seq_id = $this->input->post('seq_id');
+		$prodi = $this->session->userdata('nama');
+    	$data = array(
+			'nama_dosen'  => $this->input->post('nama_dosen'),
+			'nama_produk'  => $this->input->post('nama_produk'),
+			'deskripsi' => $this->input->post('deskripsi'),
+			'bukti' => $this->input->post('bukti'),
+			'prodi' => $prodi
+		);
+		$this->db->where('seq_id', $seq_id);
+		$result = $this->db->update('produk_dtps', $data);
+		return $result;
+	}
+
+	function produk_dtps_delete(){
+		$seq_id = $this->input->post('seq_id');
+		$this->db->where('seq_id', $seq_id);
+    	$result = $this->db->delete('produk_dtps');
+   	 	return $result;
+	}
 }

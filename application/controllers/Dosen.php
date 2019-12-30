@@ -302,10 +302,10 @@ class Dosen extends CI_Controller {
 
     public function buku_isbn()
     {
-		$this->Model_security->getsecurity();
-		$isi['title'] 	='Bagian-4 Buku Ber-ISBN, Book Chapter';
-		$isi['content']	= 'dosen/buku_isbn';
-		$this->load->view('default_page', $isi);
+  		$this->Model_security->getsecurity();
+  		$isi['title'] 	='Bagian-4 Buku Ber-ISBN, Book Chapter';
+  		$isi['content']	= 'dosen/buku_isbn';
+  		$this->load->view('default_page', $isi);
     }
 
     function buku_isbn_data_list(){
@@ -327,13 +327,13 @@ class Dosen extends CI_Controller {
   		$data = $this->Model_master->buku_isbn_delete();
   		echo json_encode($data);
 	}
-	  
+
 	public function karya_ilmiah_disitasi()
     {
-		$this->Model_security->getsecurity();
-		$isi['title'] 	='Karya Ilmiah DTPS yang Disitasi';
-		$isi['content']	= 'dosen/karya_ilmiah_disitasi';
-		$this->load->view('default_page', $isi);
+  		$this->Model_security->getsecurity();
+  		$isi['title'] 	='Karya Ilmiah DTPS yang Disitasi';
+  		$isi['content']	= 'dosen/karya_ilmiah_disitasi';
+  		$this->load->view('default_page', $isi);
     }
 
     function karya_ilmiah_disitasi_data_list(){
@@ -355,5 +355,33 @@ class Dosen extends CI_Controller {
   		$data = $this->Model_master->karya_ilmiah_disitasi_delete();
   		echo json_encode($data);
   	}
+
+    public function produk_dtps()
+      {
+    		$this->Model_security->getsecurity();
+    		$isi['title'] 	='Produk/Jasa DTPS yang Diadopsi oleh Industri/Masyarakat';
+    		$isi['content']	= 'dosen/produk_dtps';
+    		$this->load->view('default_page', $isi);
+      }
+
+      function produk_dtps_data_list(){
+  		$data = $this->Model_master->produk_dtps_data_list();
+  		echo json_encode($data);
+      }
+
+      function produk_dtps_add(){
+    		$data = $this->Model_master->produk_dtps_add();
+    		echo json_encode($data);
+    	}
+
+      function produk_dtps_edit(){
+    		$data = $this->Model_master->produk_dtps_edit();
+    		echo json_encode($data);
+    	}
+
+      function produk_dtps_delete(){
+    		$data = $this->Model_master->produk_dtps_delete();
+    		echo json_encode($data);
+    	}
 
 }

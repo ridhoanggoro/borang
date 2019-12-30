@@ -379,6 +379,23 @@ class Export extends CI_Controller {
 				$col++;
 			}
 		break;
+		case '3b7':
+			$fileName = './assets/template/3b7.xlsx';
+			$objPHPExcel = $objReader->load($fileName);
+			$objPHPExcel->setActiveSheetIndex(0);
+			$objPHPExcel->getActiveSheet();
+			$data = $this->Model_master->produk_dtps_data_list();
+			$no = 1;
+			$col = 6;
+			foreach ($data as $val) {
+				$objPHPExcel->setActiveSheetIndex()->setCellValue('A'.$col, $no++);
+				$objPHPExcel->setActiveSheetIndex()->setCellValue('B'.$col, $val->nama_dosen);
+				$objPHPExcel->setActiveSheetIndex()->setCellValue('C'.$col, $val->nama_produk);
+				$objPHPExcel->setActiveSheetIndex()->setCellValue('D'.$col, $val->deskripsi);
+				$objPHPExcel->setActiveSheetIndex()->setCellValue('E'.$col, $val->bukti);
+				$col++;
+			}
+		break;
       default:
         // code...
         break;
