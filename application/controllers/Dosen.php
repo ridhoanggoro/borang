@@ -302,15 +302,15 @@ class Dosen extends CI_Controller {
 
     public function buku_isbn()
     {
-      $this->Model_security->getsecurity();
-      $isi['title'] 	='Bagian-4 Buku Ber-ISBN, Book Chapter';
-      $isi['content']	= 'dosen/buku_isbn';
-      $this->load->view('default_page', $isi);
+		$this->Model_security->getsecurity();
+		$isi['title'] 	='Bagian-4 Buku Ber-ISBN, Book Chapter';
+		$isi['content']	= 'dosen/buku_isbn';
+		$this->load->view('default_page', $isi);
     }
 
     function buku_isbn_data_list(){
-      $data = $this->Model_master->buku_isbn_data_list();
-      echo json_encode($data);
+		$data = $this->Model_master->buku_isbn_data_list();
+		echo json_encode($data);
     }
 
     function buku_isbn_add(){
@@ -325,6 +325,34 @@ class Dosen extends CI_Controller {
 
     function buku_isbn_delete(){
   		$data = $this->Model_master->buku_isbn_delete();
+  		echo json_encode($data);
+	}
+	  
+	public function karya_ilmiah_disitasi()
+    {
+		$this->Model_security->getsecurity();
+		$isi['title'] 	='Karya Ilmiah DTPS yang Disitasi';
+		$isi['content']	= 'dosen/karya_ilmiah_disitasi';
+		$this->load->view('default_page', $isi);
+    }
+
+    function karya_ilmiah_disitasi_data_list(){
+		$data = $this->Model_master->karya_ilmiah_disitasi_data_list();
+		echo json_encode($data);
+    }
+
+    function karya_ilmiah_disitasi_add(){
+  		$data = $this->Model_master->karya_ilmiah_disitasi_add();
+  		echo json_encode($data);
+  	}
+
+    function karya_ilmiah_disitasi_edit(){
+  		$data = $this->Model_master->karya_ilmiah_disitasi_edit();
+  		echo json_encode($data);
+  	}
+
+    function karya_ilmiah_disitasi_delete(){
+  		$data = $this->Model_master->karya_ilmiah_disitasi_delete();
   		echo json_encode($data);
   	}
 

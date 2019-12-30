@@ -341,28 +341,44 @@ class Export extends CI_Controller {
 	      $col = 7;
 	      foreach ($data as $val) {
 					$objPHPExcel->setActiveSheetIndex()->setCellValue('A'.$col, $no++);
-	        $objPHPExcel->setActiveSheetIndex()->setCellValue('B'.$col, $val->luaran_penelitian);
-	        $objPHPExcel->setActiveSheetIndex()->setCellValue('C'.$col, $val->th_perolehan);
-	        $objPHPExcel->setActiveSheetIndex()->setCellValue('D'.$col, $val->keterangan);
-	        $col++;
-	      }
+					$objPHPExcel->setActiveSheetIndex()->setCellValue('B'.$col, $val->luaran_penelitian);
+					$objPHPExcel->setActiveSheetIndex()->setCellValue('C'.$col, $val->th_perolehan);
+					$objPHPExcel->setActiveSheetIndex()->setCellValue('D'.$col, $val->keterangan);
+					$col++;
+				}
 	      break;
-			case '3b5-4':
-	      $fileName = './assets/template/3b5-4.xlsx';
-	      $objPHPExcel = $objReader->load($fileName);
-	      $objPHPExcel->setActiveSheetIndex(0);
-	      $objPHPExcel->getActiveSheet();
-	      $data = $this->Model_master->buku_isbn_data_list();
-				$no = 1;
-	      $col = 7;
-	      foreach ($data as $val) {
-					$objPHPExcel->setActiveSheetIndex()->setCellValue('A'.$col, $no++);
-	        $objPHPExcel->setActiveSheetIndex()->setCellValue('B'.$col, $val->luaran_penelitian);
-	        $objPHPExcel->setActiveSheetIndex()->setCellValue('C'.$col, $val->th_perolehan);
-	        $objPHPExcel->setActiveSheetIndex()->setCellValue('D'.$col, $val->keterangan);
-	        $col++;
-	      }
-	      break;
+		case '3b5-4':
+		$fileName = './assets/template/3b5-4.xlsx';
+		$objPHPExcel = $objReader->load($fileName);
+		$objPHPExcel->setActiveSheetIndex(0);
+		$objPHPExcel->getActiveSheet();
+		$data = $this->Model_master->buku_isbn_data_list();
+			$no = 1;
+		$col = 7;
+		foreach ($data as $val) {
+				$objPHPExcel->setActiveSheetIndex()->setCellValue('A'.$col, $no++);
+				$objPHPExcel->setActiveSheetIndex()->setCellValue('B'.$col, $val->luaran_penelitian);
+				$objPHPExcel->setActiveSheetIndex()->setCellValue('C'.$col, $val->th_perolehan);
+				$objPHPExcel->setActiveSheetIndex()->setCellValue('D'.$col, $val->keterangan);
+				$col++;
+		}
+		break;
+		case '3b6':
+			$fileName = './assets/template/3b6.xlsx';
+			$objPHPExcel = $objReader->load($fileName);
+			$objPHPExcel->setActiveSheetIndex(0);
+			$objPHPExcel->getActiveSheet();
+			$data = $this->Model_master->karya_ilmiah_disitasi_data_list();
+			$no = 1;
+			$col = 6;
+			foreach ($data as $val) {
+				$objPHPExcel->setActiveSheetIndex()->setCellValue('A'.$col, $no++);
+				$objPHPExcel->setActiveSheetIndex()->setCellValue('B'.$col, $val->nama_dosen);
+				$objPHPExcel->setActiveSheetIndex()->setCellValue('C'.$col, $val->judul_artikel_disitasi);
+				$objPHPExcel->setActiveSheetIndex()->setCellValue('D'.$col, $val->jumlah);
+				$col++;
+			}
+		break;
       default:
         // code...
         break;

@@ -606,15 +606,15 @@ class Model_master extends CI_model {
 	function hki_teknologi_tepatguna_edit(){
 		$seq_id = $this->input->post('seq_id');
 		$prodi = $this->session->userdata('nama');
-    $data = array(
+    	$data = array(
 			'luaran_penelitian'  => $this->input->post('luaran_penelitian'),
-  		'th_perolehan'  => $this->input->post('th_perolehan'),
-  		'keterangan' => $this->input->post('keterangan'),
+			'th_perolehan'  => $this->input->post('th_perolehan'),
+			'keterangan' => $this->input->post('keterangan'),
 			'prodi' => $prodi
 		);
 		$this->db->where('seq_id', $seq_id);
-  	$result = $this->db->update('hki_teknologi_tepatguna', $data);
-  	return $result;
+		$result = $this->db->update('hki_teknologi_tepatguna', $data);
+		return $result;
 	}
 
 	function hki_teknologi_tepatguna_delete(){
@@ -635,8 +635,8 @@ class Model_master extends CI_model {
 		$prodi = $this->session->userdata('nama');
 		$data = array(
 			'luaran_penelitian'  => $this->input->post('luaran_penelitian'),
-  		'th_perolehan'  => $this->input->post('th_perolehan'),
-  		'keterangan' => $this->input->post('keterangan'),
+			'th_perolehan'  => $this->input->post('th_perolehan'),
+			'keterangan' => $this->input->post('keterangan'),
 			'prodi' => $prodi
 		);
 		$result = $this->db->insert('buku_isbn', $data);
@@ -646,21 +646,61 @@ class Model_master extends CI_model {
 	function buku_isbn_edit(){
 		$seq_id = $this->input->post('seq_id');
 		$prodi = $this->session->userdata('nama');
-    $data = array(
+    	$data = array(
 			'luaran_penelitian'  => $this->input->post('luaran_penelitian'),
-  		'th_perolehan'  => $this->input->post('th_perolehan'),
-  		'keterangan' => $this->input->post('keterangan'),
+			'th_perolehan'  => $this->input->post('th_perolehan'),
+			'keterangan' => $this->input->post('keterangan'),
 			'prodi' => $prodi
 		);
 		$this->db->where('seq_id', $seq_id);
-  	$result = $this->db->update('buku_isbn', $data);
-  	return $result;
+		$result = $this->db->update('buku_isbn', $data);
+		return $result;
 	}
 
 	function buku_isbn_delete(){
 		$seq_id = $this->input->post('seq_id');
 		$this->db->where('seq_id', $seq_id);
     	$result = $this->db->delete('buku_isbn');
+   	 	return $result;
+	}
+
+	function karya_ilmiah_disitasi_data_list(){
+		$role = $this->session->userdata('nama');
+		$this->db->where('prodi', $role);
+		$data = $this->db->get('karya_ilmiah_disitasi');
+		return $data->result();
+	}
+
+	function karya_ilmiah_disitasi_add(){
+		$prodi = $this->session->userdata('nama');
+		$data = array(
+			'nama_dosen'  => $this->input->post('nama_dosen'),
+			'judul_artikel_disitasi'  => $this->input->post('judul_artikel_disitasi'),
+			'jumlah' => $this->input->post('jumlah'),
+			'prodi' => $prodi
+		);
+		$result = $this->db->insert('karya_ilmiah_disitasi', $data);
+		return $result;
+	}
+
+	function karya_ilmiah_disitasi_edit(){
+		$seq_id = $this->input->post('seq_id');
+		$prodi = $this->session->userdata('nama');
+    	$data = array(
+			'nama_dosen'  => $this->input->post('nama_dosen'),
+			'judul_artikel_disitasi'  => $this->input->post('judul_artikel_disitasi'),
+			'jumlah' => $this->input->post('jumlah'),
+			'prodi' => $prodi
+		);
+		$this->db->where('seq_id', $seq_id);
+		$result = $this->db->update('karya_ilmiah_disitasi', $data);
+		return $result;
+	}
+
+	function karya_ilmiah_disitasi_delete(){
+		$seq_id = $this->input->post('seq_id');
+		$this->db->where('seq_id', $seq_id);
+    	$result = $this->db->delete('karya_ilmiah_disitasi');
    	 	return $result;
 	}
 }
