@@ -83,6 +83,18 @@
       </div>
     </div>
   </li>
+  <li class="nav-item <?php echo $this->uri->segment(1) == 'dana' ? 'active': '' ?>">
+    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapse5" aria-expanded="true" aria-controls="collapse3">
+      <i class="fas fa-fw fa-cog"></i>
+      <span>Tabel 4</span>
+    </a>
+    <div id="collapse5" class="collapse <?php echo $this->uri->segment(1) == 'dana' ? 'show': '' ?>" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+      <div class="bg-white py-2 collapse-inner rounded">
+        <h6 class="collapse-header">Dana:</h6>
+        <a class="collapse-item <?php echo $this->uri->segment(2) == 'penggunaan_dana' ? 'active': '' ?>" href="<?php echo site_url('dana/penggunaan_dana'); ?>">Penggunaan Dana</a>
+      </div>
+    </div>
+  </li>
   <?php elseif($this->session->userdata('role')==='PIMPINAN'):?>
   <li class="nav-item active">
     <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
