@@ -32,4 +32,9 @@ class Dana extends CI_Controller {
     $isi['content']	= 'dana/penggunaan_dana';
     $this->load->view('default_page', $isi);
   }
+
+	function penggunaan_dana_data_list(){
+		$data = $this->Model_master->penggunaan_dana_data_list();
+		echo json_encode($data);
+	}
 }

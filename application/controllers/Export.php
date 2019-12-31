@@ -396,6 +396,75 @@ class Export extends CI_Controller {
 				$col++;
 			}
 		break;
+		case '4':
+				$fileName = './assets/template/4.xlsx';
+				$objPHPExcel = $objReader->load($fileName);
+				$objPHPExcel->setActiveSheetIndex(0);
+				$objPHPExcel->getActiveSheet();
+				$data = $this->Model_master->penggunaan_dana_data_list();
+				foreach ($data as $val) {
+					$objPHPExcel->setActiveSheetIndex()->setCellValue('C7', $val->a_biaya_dosen_ts2);
+					$objPHPExcel->setActiveSheetIndex()->setCellValue('D7', $val->a_biaya_dosen_ts1);
+					$objPHPExcel->setActiveSheetIndex()->setCellValue('E7', $val->a_biaya_dosen_ts);
+					$objPHPExcel->setActiveSheetIndex()->setCellValue('G7', $val->b_biaya_dosen_ts2);
+					$objPHPExcel->setActiveSheetIndex()->setCellValue('H7', $val->b_biaya_dosen_ts1);
+					$objPHPExcel->setActiveSheetIndex()->setCellValue('I7', $val->b_biaya_dosen_ts);
+					$objPHPExcel->setActiveSheetIndex()->setCellValue('C8', $val->a_biaya_tenaga_kependidikan_ts2);
+					$objPHPExcel->setActiveSheetIndex()->setCellValue('D8', $val->a_biaya_tenaga_kependidikan_ts1);
+					$objPHPExcel->setActiveSheetIndex()->setCellValue('E8', $val->a_biaya_tenaga_kependidikan_ts);
+					$objPHPExcel->setActiveSheetIndex()->setCellValue('G8', $val->b_biaya_tenaga_kependidikan_ts2);
+					$objPHPExcel->setActiveSheetIndex()->setCellValue('H8', $val->b_biaya_tenaga_kependidikan_ts1);
+					$objPHPExcel->setActiveSheetIndex()->setCellValue('I8', $val->b_biaya_tenaga_kependidikan_ts);
+					$objPHPExcel->setActiveSheetIndex()->setCellValue('C9', $val->a_biaya_operasional_pembelajaran_ts2);
+					$objPHPExcel->setActiveSheetIndex()->setCellValue('D9', $val->a_biaya_operasional_pembelajaran_ts1);
+					$objPHPExcel->setActiveSheetIndex()->setCellValue('E9', $val->a_biaya_operasional_pembelajaran_ts);
+					$objPHPExcel->setActiveSheetIndex()->setCellValue('G9', $val->b_biaya_operasional_pembelajaran_ts2);
+					$objPHPExcel->setActiveSheetIndex()->setCellValue('H9', $val->b_biaya_operasional_pembelajaran_ts1);
+					$objPHPExcel->setActiveSheetIndex()->setCellValue('I9', $val->b_biaya_operasional_pembelajaran_ts);
+					$objPHPExcel->setActiveSheetIndex()->setCellValue('C10', $val->a_biaya_operasional_tidak_langsung_ts2);
+					$objPHPExcel->setActiveSheetIndex()->setCellValue('D10', $val->a_biaya_operasional_tidak_langsung_ts1);
+					$objPHPExcel->setActiveSheetIndex()->setCellValue('E10', $val->a_biaya_operasional_tidak_langsung_ts);
+					$objPHPExcel->setActiveSheetIndex()->setCellValue('G10', $val->b_biaya_operasional_tidak_langsung_ts2);
+					$objPHPExcel->setActiveSheetIndex()->setCellValue('H10', $val->b_biaya_operasional_tidak_langsung_ts1);
+					$objPHPExcel->setActiveSheetIndex()->setCellValue('I10', $val->b_biaya_operasional_tidak_langsung_ts);
+					$objPHPExcel->setActiveSheetIndex()->setCellValue('C11', $val->a_biaya_operasional_kemahasiswaan_ts2);
+					$objPHPExcel->setActiveSheetIndex()->setCellValue('D11', $val->a_biaya_operasional_kemahasiswaan_ts1);
+					$objPHPExcel->setActiveSheetIndex()->setCellValue('E11', $val->a_biaya_operasional_kemahasiswaan_ts);
+					$objPHPExcel->setActiveSheetIndex()->setCellValue('G11', $val->b_biaya_operasional_kemahasiswaan_ts2);
+					$objPHPExcel->setActiveSheetIndex()->setCellValue('H11', $val->b_biaya_operasional_kemahasiswaan_ts1);
+					$objPHPExcel->setActiveSheetIndex()->setCellValue('I11', $val->b_biaya_operasional_kemahasiswaan_ts);
+					$objPHPExcel->setActiveSheetIndex()->setCellValue('C13', $val->a_biaya_penelitian_ts2);
+					$objPHPExcel->setActiveSheetIndex()->setCellValue('D13', $val->a_biaya_penelitian_ts1);
+					$objPHPExcel->setActiveSheetIndex()->setCellValue('E13', $val->a_biaya_penelitian_ts);
+					$objPHPExcel->setActiveSheetIndex()->setCellValue('G13', $val->b_biaya_penelitian_ts2);
+					$objPHPExcel->setActiveSheetIndex()->setCellValue('H13', $val->b_biaya_penelitian_ts1);
+					$objPHPExcel->setActiveSheetIndex()->setCellValue('I13', $val->b_biaya_penelitian_ts);
+					$objPHPExcel->setActiveSheetIndex()->setCellValue('C14', $val->a_biaya_pkm_ts2);
+					$objPHPExcel->setActiveSheetIndex()->setCellValue('D14', $val->a_biaya_pkm_ts1);
+					$objPHPExcel->setActiveSheetIndex()->setCellValue('E14', $val->a_biaya_pkm_ts);
+					$objPHPExcel->setActiveSheetIndex()->setCellValue('G14', $val->b_biaya_pkm_ts2);
+					$objPHPExcel->setActiveSheetIndex()->setCellValue('H14', $val->b_biaya_pkm_ts1);
+					$objPHPExcel->setActiveSheetIndex()->setCellValue('I14', $val->b_biaya_pkm_ts);
+					$objPHPExcel->setActiveSheetIndex()->setCellValue('C16', $val->a_biaya_investasi_sdm_ts2);
+					$objPHPExcel->setActiveSheetIndex()->setCellValue('D16', $val->a_biaya_investasi_sdm_ts1);
+					$objPHPExcel->setActiveSheetIndex()->setCellValue('E16', $val->a_biaya_investasi_sdm_ts);
+					$objPHPExcel->setActiveSheetIndex()->setCellValue('G16', $val->b_biaya_investasi_sdm_ts2);
+					$objPHPExcel->setActiveSheetIndex()->setCellValue('H16', $val->b_biaya_investasi_sdm_ts1);
+					$objPHPExcel->setActiveSheetIndex()->setCellValue('I16', $val->b_biaya_investasi_sdm_ts);
+					$objPHPExcel->setActiveSheetIndex()->setCellValue('C17', $val->a_biaya_investasi_sarana_ts2);
+					$objPHPExcel->setActiveSheetIndex()->setCellValue('D17', $val->a_biaya_investasi_sarana_ts1);
+					$objPHPExcel->setActiveSheetIndex()->setCellValue('E17', $val->a_biaya_investasi_sarana_ts);
+					$objPHPExcel->setActiveSheetIndex()->setCellValue('G17', $val->b_biaya_investasi_sarana_ts2);
+					$objPHPExcel->setActiveSheetIndex()->setCellValue('H17', $val->b_biaya_investasi_sarana_ts1);
+					$objPHPExcel->setActiveSheetIndex()->setCellValue('I17', $val->b_biaya_investasi_sarana_ts);
+					$objPHPExcel->setActiveSheetIndex()->setCellValue('C18', $val->a_biaya_investasi_prasarana_ts2);
+					$objPHPExcel->setActiveSheetIndex()->setCellValue('D18', $val->a_biaya_investasi_prasarana_ts1);
+					$objPHPExcel->setActiveSheetIndex()->setCellValue('E18', $val->a_biaya_investasi_prasarana_ts);
+					$objPHPExcel->setActiveSheetIndex()->setCellValue('G18', $val->b_biaya_investasi_prasarana_ts2);
+					$objPHPExcel->setActiveSheetIndex()->setCellValue('H18', $val->b_biaya_investasi_prasarana_ts1);
+					$objPHPExcel->setActiveSheetIndex()->setCellValue('I18', $val->b_biaya_investasi_prasarana_ts);
+				}
+			break;
       default:
         // code...
         break;
