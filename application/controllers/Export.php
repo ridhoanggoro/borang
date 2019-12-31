@@ -463,6 +463,8 @@ class Export extends CI_Controller {
 					$objPHPExcel->setActiveSheetIndex()->setCellValue('G18', $val->b_biaya_investasi_prasarana_ts2);
 					$objPHPExcel->setActiveSheetIndex()->setCellValue('H18', $val->b_biaya_investasi_prasarana_ts1);
 					$objPHPExcel->setActiveSheetIndex()->setCellValue('I18', $val->b_biaya_investasi_prasarana_ts);
+
+					// $objPHPExcel->getActiveSheet()->getStyle('C7:J19')->getNumberFormat()->setFormatCode('#,##0.00');
 				}
 			break;
       default:
