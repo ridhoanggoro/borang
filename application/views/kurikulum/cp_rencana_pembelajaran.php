@@ -62,22 +62,25 @@
       </div>
       <div class="modal-body">
         <div class="form-row">
-          <div class="form-group col-md-6">
-            <label for="nidn">NAMA DOSEN</label>
-            <select id="nidn" name="nidn" class="custom-select" data-placeholder="Silahkan pilih..." required>
-              <option value=""></option>
-            </select>
+          <div class="form-group col-md-3">
+            <label for="semester">Semester</label>
+            <input type="text" class="form-control" id="semester" name="semester" required>
             <div id="id_check_result" class="help-block with-errors"></div>
           </div>
-          <div class="d-none">
-            <label for="nama">Nama</label>
-            <input type="text" class="form-control" id="nama" name="nama" required>
+          <div class="form-group col-md-3">
+            <label for="kode_matkul">Kode Mata Kuliah</label>
+            <input type="text" class="form-control" id="kode_matkul" name="kode_matkul" required>
+            <div id="id_check_result" class="help-block with-errors"></div>
+          </div>
+          <div class="form-group col-md-6">
+            <label for="nama_matkul">Nama Mata Kuliah</label>
+            <input type="text" class="form-control" id="nama_matkul" name="nama_matkul" required>
             <div id="id_check_result" class="help-block with-errors"></div>
           </div>
         </div>
         <div class="form-row">
-          <div class="form-group col-md-4">
-            <label for="dpts">DPTS</label>
+          <div class="form-group col-md-3">
+            <label for="dpts">Mata Kuliah Kompetensi</label>
             <select id="dpts" name="dpts" class="custom-select" data-placeholder="Silahkan pilih..." required>
                  <option value=""></option>
                  <option value="V">YA</option>
@@ -85,38 +88,37 @@
              </select>
             <div id="id_check_result" class="help-block with-errors"></div>
           </div>
-          <div class="form-group col-md-4">
-            <label for="ps_yang_diakreditasi">Pendidikan PS yang Diakreditasi</label>
-            <input type="text" class="form-control" id="ps_yang_diakreditasi" name="ps_yang_diakreditasi" required>
+          <div class="form-group col-md-3">
+            <label for="kuliah">Kuliah/Responsi/Tutorial</label>
+            <input type="number" class="form-control" id="kuliah" name="kuliah" required>
             <div id="id_check_result" class="help-block with-errors"></div>
           </div>
-          <div class="form-group col-md-4">
-            <label for="ps_lain_di_dalam_pt">Pendidikan PS Lain di dalam PT</label>
-            <input type="text" class="form-control" id="ps_lain_di_dalam_pt" name="ps_lain_di_dalam_pt" required>
+          <div class="form-group col-md-3">
+            <label for="seminar">Seminar</label>
+            <input type="number" class="form-control" id="seminar" name="seminar" required>
             <div id="id_check_result" class="help-block with-errors"></div>
           </div>
-        </div>
-        <div class="form-row">
-          <div class="form-group col-md-4">
-          <label for="ps_lain_di_luar_pt">Pendidikan PS Lain di luar PT</label>
-          <input type="text" class="form-control" id="ps_lain_di_luar_pt" name="ps_lain_di_luar_pt" required>
-          </div>
-          <div class="form-group col-md-4">
-            <label for="penelitian">Penelitian</label>
-            <input type="text" class="form-control" id="penelitian" name="penelitian" required>
-            <div id="id_check_result" class="help-block with-errors"></div>
-          </div>
-          <div class="form-group col-md-4">
-            <label for="pkm">PKM</label>
-            <input type="text" class="form-control" id="pkm" name="pkm" required>
+          <div class="form-group col-md-3">
+            <label for="praktikum">Praktikum</label>
+            <input type="number" class="form-control" id="praktikum" name="praktikum" required>
             <div id="id_check_result" class="help-block with-errors"></div>
           </div>
         </div>
         <div class="form-row">
-          <div class="form-group col-md-12">
-            <label for="tugas_tambahan">Tugas Tambahan</label>
-            <input type="text" class="form-control" id="tugas_tambahan" name="tugas_tambahan" required>
+          <div class="form-group col-md-3">
+            <label for="konversi_jam">Konversi Kredit ke Jam</label>
+            <input type="number" class="form-control" id="konversi_jam" name="konversi_jam" required>
             <div id="id_check_result" class="help-block with-errors"></div>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="custom-control custom-checkbox mb-3">
+            <input type="checkbox" class="custom-control-input" id="customCheck1">
+            <label class="custom-control-label" for="customCheck1">Check this custom checkbox</label>
+          </div>
+          <div class="custom-control custom-checkbox mb-3">
+            <input type="checkbox" class="custom-control-input" id="customCheck2">
+            <label class="custom-control-label" for="customCheck2">Check this custom checkbox</label>
           </div>
         </div>
       </div>
