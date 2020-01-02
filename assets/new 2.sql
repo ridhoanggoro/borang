@@ -59,7 +59,7 @@ SUM(CASE WHEN(b.th_akademik = ts.tahun AND b.prodi='TEKNIK INDUSTRI S1') THEN bi
 '' AS b_biaya_investasi_sdm_ts, 
 '' AS b_biaya_investasi_sarana_ts, 
 '' AS b_biaya_investasi_prasarana_ts
-FROM `dana_prodi` b
+FROM dana_prodi b
 LEFT JOIN ts AS ts2 ON ts2.tahun = b.th_akademik AND ts2.prodi = 'TEKNIK INDUSTRI S1' AND ts2.nama_ts = 'TS-2' 
 LEFT JOIN ts AS ts1 ON ts1.tahun = b.th_akademik AND ts1.prodi = 'TEKNIK INDUSTRI S1' AND ts1.nama_ts = 'TS-1' 
 LEFT JOIN ts ON ts.tahun = b.th_akademik AND ts.prodi = 'TEKNIK INDUSTRI S1' AND ts.nama_ts = 'TS' 
@@ -127,7 +127,7 @@ SUM(CASE WHEN(b.th_akademik = ts.tahun) THEN biaya_pkm ELSE 0 END) AS b_biaya_pk
 SUM(CASE WHEN(b.th_akademik = ts.tahun) THEN biaya_investasi_sdm ELSE 0 END) AS b_biaya_investasi_sdm_ts, 
 SUM(CASE WHEN(b.th_akademik = ts.tahun) THEN biaya_investasi_sarana ELSE 0 END) AS b_biaya_investasi_sarana_ts, 
 SUM(CASE WHEN(b.th_akademik = ts.tahun) THEN biaya_investasi_prasarana ELSE 0 END) AS b_biaya_investasi_prasarana_ts
-FROM `dana_fakultas` b
+FROM dana_fakultas b
 LEFT JOIN ts AS ts2 ON ts2.tahun = b.th_akademik AND ts2.nama_ts = 'TS-2' 
 LEFT JOIN ts AS ts1 ON ts1.tahun = b.th_akademik AND ts1.nama_ts = 'TS-1' 
 LEFT JOIN ts ON ts.tahun = b.th_akademik AND ts.nama_ts = 'TS' 
