@@ -752,4 +752,12 @@ class Model_master extends CI_model {
 		$data = $this->db->query($sql);
 		return $data->result();
 	}
+
+	function cp_rencana_pembelajaran_list(){
+		$role = $this->session->userdata('nama');
+		$this->db->where('prodi', $role);
+		$data = $this->db->get('kurikulum');
+		return $data->result();
+	}
+
 }

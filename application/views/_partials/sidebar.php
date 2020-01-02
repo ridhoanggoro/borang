@@ -97,15 +97,17 @@
       </div>
     </div>
   </li>
-  <li class="nav-item <?php echo $this->uri->segment(1) == '#' ? 'active': '' ?>">
+  <li class="nav-item <?php echo $this->uri->segment(1) == 'kurikulum' ? 'active': '' ?>">
     <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapse6" aria-expanded="true" aria-controls="collapse6">
       <i class="fas fa-fw fa-cog"></i>
       <span>Tabel 5</span>
     </a>
-    <div id="collapse6" class="collapse <?php echo $this->uri->segment(1) == '#' ? 'show': '' ?>" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+    <div id="collapse6" class="collapse <?php echo $this->uri->segment(1) == 'kurikulum' ? 'show': '' ?>" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
       <div class="bg-white py-2 collapse-inner rounded">
         <h6 class="collapse-header">Pendidikan:</h6>
-        <a class="collapse-item <?php echo $this->uri->segment(2) == '#' ? 'active': '' ?>" href="<?php echo site_url('#'); ?>">*Kurikulum, CP, Rencana Pembelajaran</a>
+        <a class="collapse-item <?php echo $this->uri->segment(2) == 'cp_rencana_pembelajaran' ? 'active': '' ?>" href="<?php echo site_url('kurikulum/cp_rencana_pembelajaran'); ?>">*Kurikulum, CP, Rencana Pembelajaran</a>
+        <a class="collapse-item <?php echo $this->uri->segment(2) == '#' ? 'active': '' ?>" href="<?php echo site_url('#'); ?>">*Integrasi Kegiatan Penelitian/PkM dalam Pembelajaran</a>
+        <a class="collapse-item <?php echo $this->uri->segment(2) == '#' ? 'active': '' ?>" href="<?php echo site_url('#'); ?>">*Kepuasan Mahasiswa</a>
       </div>
     </div>
   </li>
