@@ -36,10 +36,11 @@
     </a>
     <div id="collapseTwo" class="collapse <?php echo $this->uri->segment(1) == 'tridharma' ? 'show': '' ?>" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
       <div class="bg-white py-2 collapse-inner rounded">
-        <h6 class="collapse-header">Kerjasama Tridharma:</h6>
-        <a class="collapse-item <?php echo $this->uri->segment(2) == 'pendidikan' ? 'active': '' ?>" href="<?php echo site_url('tridharma/pendidikan'); ?>">Pendidikan</a>
-        <a class="collapse-item <?php echo $this->uri->segment(2) == 'penelitian' ? 'active': '' ?>" href="<?php echo site_url('tridharma/penelitian'); ?>">Penelitian</a>
-        <a class="collapse-item <?php echo $this->uri->segment(2) == 'pkm' ? 'active': '' ?>" href="<?php echo site_url('tridharma/pkm'); ?>">Pengabdian Masyarakat</a>
+        <h6 class="collapse-header">Tata Pamong,Tata Kelola,Kerjasama</h6>
+		<h6 class="collapse-header">Kerjasama Tridharma:</h6>
+        <a class="collapse-item <?php echo $this->uri->segment(2) == 'pendidikan' ? 'active': '' ?>" href="<?php echo site_url('tridharma/pendidikan'); ?>">*Pendidikan</a>
+        <a class="collapse-item <?php echo $this->uri->segment(2) == 'penelitian' ? 'active': '' ?>" href="<?php echo site_url('tridharma/penelitian'); ?>">*Penelitian</a>
+        <a class="collapse-item <?php echo $this->uri->segment(2) == 'pkm' ? 'active': '' ?>" href="<?php echo site_url('tridharma/pkm'); ?>">*Pengabdian Masyarakat</a>
       </div>
     </div>
   </li>
@@ -51,8 +52,8 @@
     <div id="collapse3" class="collapse <?php echo $this->uri->segment(1) == 'mahasiswa' ? 'show': '' ?>" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
       <div class="bg-white py-2 collapse-inner rounded">
         <h6 class="collapse-header">Mahasiswa:</h6>
-        <a class="collapse-item <?php echo $this->uri->segment(2) == 'seleksi_mahasiswa' ? 'active': '' ?>" href="<?php echo site_url('mahasiswa/seleksi_mahasiswa'); ?>">Seleksi Mahasiswa</a>
-        <a class="collapse-item <?php echo $this->uri->segment(2) == 'asing' ? 'active': '' ?>" href="<?php echo site_url('mahasiswa/asing'); ?>">Mahasiswa Asing</a>
+        <a class="collapse-item <?php echo $this->uri->segment(2) == 'seleksi_mahasiswa' ? 'active': '' ?>" href="<?php echo site_url('mahasiswa/seleksi_mahasiswa'); ?>">*Seleksi Mahasiswa</a>
+        <a class="collapse-item <?php echo $this->uri->segment(2) == 'asing' ? 'active': '' ?>" href="<?php echo site_url('mahasiswa/asing'); ?>">*Mahasiswa Asing</a>
       </div>
     </div>
   </li>
@@ -63,23 +64,24 @@
     </a>
     <div id="collapse4" class="collapse <?php echo $this->uri->segment(1) == 'dosen' ? 'show': '' ?>" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
       <div class="bg-white py-2 collapse-inner rounded">
-        <h6 class="collapse-header">Dosen:</h6>
-        <a class="collapse-item <?php echo $this->uri->segment(2) == 'dosen_tetap' ? 'active': '' ?>" href="<?php echo site_url('dosen/dosen_tetap'); ?>">Dosen Tetap</a>
-        <a class="collapse-item <?php echo $this->uri->segment(2) == 'dosen_pa' ? 'active': '' ?>" href="<?php echo site_url('dosen/dosen_pa'); ?>">Dosen Pembimbing</a>
-        <a class="collapse-item <?php echo $this->uri->segment(2) == 'ewmp' ? 'active': '' ?>" href="<?php echo site_url('dosen/ewmp'); ?>">EWMP</a>
-        <a class="collapse-item <?php echo $this->uri->segment(2) == 'dosen_tdk_tetap' ? 'active': '' ?>" href="<?php echo site_url('dosen/dosen_tdk_tetap'); ?>">Dosen Tidak Tetap </a>
-        <a class="collapse-item <?php echo $this->uri->segment(2) == 'dosen_praktisi' ? 'active': '' ?>" href="<?php echo site_url('dosen/dosen_praktisi'); ?>">Dosen Industri/Praktisi</a>
-        <a class="collapse-item <?php echo $this->uri->segment(2) == 'rekognisi' ? 'active': '' ?>" href="<?php echo site_url('dosen/rekognisi'); ?>">Pengakuan/Rekognisi Dosen</a>
-        <a class="collapse-item <?php echo $this->uri->segment(2) == 'penelitian_dtps' ? 'active': '' ?>" href="<?php echo site_url('dosen/penelitian_dtps'); ?>">Penelitian DTPS</a>
-        <a class="collapse-item <?php echo $this->uri->segment(2) == 'pkm_dtps' ? 'active': '' ?>" href="<?php echo site_url('dosen/pkm_dtps'); ?>">PkM DTPS</a>
-        <a class="collapse-item <?php echo $this->uri->segment(2) == 'publikasi_ilmiah_dtps' ? 'active': '' ?>" href="<?php echo site_url('dosen/publikasi_ilmiah_dtps'); ?>">Publikasi Ilmiah DTPS</a>
-        <a class="collapse-item <?php echo $this->uri->segment(2) == 'pagelaran_ilmiah' ? 'active': '' ?>" href="<?php echo site_url('dosen/pagelaran_ilmiah'); ?>">Pagelaran Ilmiah DTPS</a>
-        <a class="collapse-item <?php echo $this->uri->segment(2) == 'hki_paten' ? 'active': '' ?>" href="<?php echo site_url('dosen/hki_paten'); ?>">Bagian-1 HKI Paten</a>
-        <a class="collapse-item <?php echo $this->uri->segment(2) == 'hki_hak_cipta' ? 'active': '' ?>" href="<?php echo site_url('dosen/hki_hak_cipta'); ?>">Bagian-2 HKI Hak Cipta</a>
-        <a class="collapse-item <?php echo $this->uri->segment(2) == 'hki_teknologi_tepatguna' ? 'active': '' ?>" href="<?php echo site_url('dosen/hki_teknologi_tepatguna'); ?>">Bagian-3 Teknologi Tepat Guna</a>
-        <a class="collapse-item <?php echo $this->uri->segment(2) == 'buku_isbn' ? 'active': '' ?>" href="<?php echo site_url('dosen/buku_isbn'); ?>">Bagian-4 Buku Ber-ISBN</a>
-        <a class="collapse-item <?php echo $this->uri->segment(2) == 'karya_ilmiah_disitasi' ? 'active': '' ?>" href="<?php echo site_url('dosen/karya_ilmiah_disitasi'); ?>">Karya Ilmiah DTPS Disitasi</a>
-        <a class="collapse-item <?php echo $this->uri->segment(2) == 'produk_dtps' ? 'active': '' ?>" href="<?php echo site_url('dosen/produk_dtps'); ?>">Produk DTPS yang Diadopsi</a>
+        <h6 class="collapse-header">Sumber Daya Mahasiswa:</h6>
+        <a class="collapse-item <?php echo $this->uri->segment(2) == 'dosen_tetap' ? 'active': '' ?>" href="<?php echo site_url('dosen/dosen_tetap'); ?>">*Dosen Tetap PT</a>
+        <a class="collapse-item <?php echo $this->uri->segment(2) == 'dosen_pa' ? 'active': '' ?>" href="<?php echo site_url('dosen/dosen_pa'); ?>">*Dosen Pembimbing Utama TA</a>
+        <a class="collapse-item <?php echo $this->uri->segment(2) == 'ewmp' ? 'active': '' ?>" href="<?php echo site_url('dosen/ewmp'); ?>">*EWMP Dosen Tetap PT</a>
+        <a class="collapse-item <?php echo $this->uri->segment(2) == 'dosen_tdk_tetap' ? 'active': '' ?>" href="<?php echo site_url('dosen/dosen_tdk_tetap'); ?>">*Dosen Tidak Tetap </a>
+        <a class="collapse-item <?php echo $this->uri->segment(2) == 'dosen_praktisi' ? 'active': '' ?>" href="<?php echo site_url('dosen/dosen_praktisi'); ?>">*Dosen Industri/Praktisi</a>
+        <a class="collapse-item <?php echo $this->uri->segment(2) == 'rekognisi' ? 'active': '' ?>" href="<?php echo site_url('dosen/rekognisi'); ?>">*Pengakuan/Rekognisi Dosen</a>
+        <a class="collapse-item <?php echo $this->uri->segment(2) == 'penelitian_dtps' ? 'active': '' ?>" href="<?php echo site_url('dosen/penelitian_dtps'); ?>">*Penelitian DTPS</a>
+        <a class="collapse-item <?php echo $this->uri->segment(2) == 'pkm_dtps' ? 'active': '' ?>" href="<?php echo site_url('dosen/pkm_dtps'); ?>">*PkM DTPS</a>
+        <a class="collapse-item <?php echo $this->uri->segment(2) == 'publikasi_ilmiah_dtps' ? 'active': '' ?>" href="<?php echo site_url('dosen/publikasi_ilmiah_dtps'); ?>">*Publikasi Ilmiah DTPS</a>
+        <a class="collapse-item <?php echo $this->uri->segment(2) == 'pagelaran_ilmiah' ? 'active': '' ?>" href="<?php echo site_url('dosen/pagelaran_ilmiah'); ?>">*Pagelaran/Pameran/Presentasi/Publikasi Ilmiah DTPS</a>
+		<a class="collapse-item <?php echo $this->uri->segment(2) == 'karya_ilmiah_disitasi' ? 'active': '' ?>" href="<?php echo site_url('dosen/karya_ilmiah_disitasi'); ?>">*Karya Ilmiah DTPS Disitasi</a>
+        <a class="collapse-item <?php echo $this->uri->segment(2) == 'produk_dtps' ? 'active': '' ?>" href="<?php echo site_url('dosen/produk_dtps'); ?>">*Produk DTPS yang Diadopsi oleh Industri/Masyarakat</a>
+        <a class="collapse-item <?php echo $this->uri->segment(2) == 'hki_paten' ? 'active': '' ?>" href="<?php echo site_url('dosen/hki_paten'); ?>">*Luaran Penelitian-HKI Paten</a>
+        <a class="collapse-item <?php echo $this->uri->segment(2) == 'hki_hak_cipta' ? 'active': '' ?>" href="<?php echo site_url('dosen/hki_hak_cipta'); ?>">*Luaran Penelitian-HKI Hak Cipta</a>
+        <a class="collapse-item <?php echo $this->uri->segment(2) == 'hki_teknologi_tepatguna' ? 'active': '' ?>" href="<?php echo site_url('dosen/hki_teknologi_tepatguna'); ?>">*Luaran Penelitian-Teknologi Tepat Guna</a>
+        <a class="collapse-item <?php echo $this->uri->segment(2) == 'buku_isbn' ? 'active': '' ?>" href="<?php echo site_url('dosen/buku_isbn'); ?>">*Luaran Penelitian-Buku Ber-ISBN</a>
+
       </div>
     </div>
   </li>
@@ -90,11 +92,77 @@
     </a>
     <div id="collapse5" class="collapse <?php echo $this->uri->segment(1) == 'dana' ? 'show': '' ?>" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
       <div class="bg-white py-2 collapse-inner rounded">
-        <h6 class="collapse-header">Dana:</h6>
-        <a class="collapse-item <?php echo $this->uri->segment(2) == 'penggunaan_dana' ? 'active': '' ?>" href="<?php echo site_url('dana/penggunaan_dana'); ?>">Penggunaan Dana</a>
+        <h6 class="collapse-header">*Keuangan, Sarana, dan Prasarana:</h6>
+        <a class="collapse-item <?php echo $this->uri->segment(2) == 'penggunaan_dana' ? 'active': '' ?>" href="<?php echo site_url('dana/penggunaan_dana'); ?>">*Penggunaan Dana</a>
       </div>
     </div>
   </li>
+  <li class="nav-item <?php echo $this->uri->segment(1) == '#' ? 'active': '' ?>">
+    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapse6" aria-expanded="true" aria-controls="collapse6">
+      <i class="fas fa-fw fa-cog"></i>
+      <span>Tabel 5</span>
+    </a>
+    <div id="collapse6" class="collapse <?php echo $this->uri->segment(1) == '#' ? 'show': '' ?>" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+      <div class="bg-white py-2 collapse-inner rounded">
+        <h6 class="collapse-header">Pendidikan:</h6>
+        <a class="collapse-item <?php echo $this->uri->segment(2) == '#' ? 'active': '' ?>" href="<?php echo site_url('#'); ?>">*Kurikulum, CP, Rencana Pembelajaran</a>
+      </div>
+    </div>
+  </li>
+  <li class="nav-item <?php echo $this->uri->segment(1) == '#' ? 'active': '' ?>">
+    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapse7" aria-expanded="true" aria-controls="collapse7">
+      <i class="fas fa-fw fa-cog"></i>
+      <span>Tabel 6</span>
+    </a>
+    <div id="collapse7" class="collapse <?php echo $this->uri->segment(1) == '#' ? 'show': '' ?>" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+      <div class="bg-white py-2 collapse-inner rounded">
+        <h6 class="collapse-header">Penelitian:</h6>
+        <a class="collapse-item <?php echo $this->uri->segment(2) == '#' ? 'active': '' ?>" href="<?php echo site_url('#'); ?>">*Penelitian DTPS Melibatkan Mahasiswa</a>
+		<a class="collapse-item <?php echo $this->uri->segment(2) == '#' ? 'active': '' ?>" href="<?php echo site_url('#'); ?>">*Penelitian DTPS Menjadi Rujukan Tema Tesis/Disertasi</a>
+      </div>
+    </div>
+  </li>
+   <li class="nav-item <?php echo $this->uri->segment(1) == '#' ? 'active': '' ?>">
+    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapse8" aria-expanded="true" aria-controls="collapse8">
+      <i class="fas fa-fw fa-cog"></i>
+      <span>Tabel 7</span>
+    </a>
+    <div id="collapse8" class="collapse <?php echo $this->uri->segment(1) == '#' ? 'show': '' ?>" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+      <div class="bg-white py-2 collapse-inner rounded">
+        <h6 class="collapse-header">Pengabdian Kepada Masyarakat:</h6>
+        <a class="collapse-item <?php echo $this->uri->segment(2) == '#' ? 'active': '' ?>" href="<?php echo site_url('#'); ?>">*PkM DTPS Melibatkan Mahasiswa</a>
+      </div>
+    </div>
+  </li>
+   <li class="nav-item <?php echo $this->uri->segment(1) == '#' ? 'active': '' ?>">
+    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapse9" aria-expanded="true" aria-controls="collapse9">
+      <i class="fas fa-fw fa-cog"></i>
+      <span>Tabel 8</span>
+    </a>
+    <div id="collapse9" class="collapse <?php echo $this->uri->segment(1) == '#' ? 'show': '' ?>" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+      <div class="bg-white py-2 collapse-inner rounded">
+        <h6 class="collapse-header">Luaran & Capaian Tridharma:</h6>
+        <a class="collapse-item <?php echo $this->uri->segment(2) == '#' ? 'active': '' ?>" href="<?php echo site_url('#'); ?>">*IPK Lulusan</a>
+        <a class="collapse-item <?php echo $this->uri->segment(2) == '#' ? 'active': '' ?>" href="<?php echo site_url('#'); ?>">*Prestasi Akademik Mahasiswa</a>
+        <a class="collapse-item <?php echo $this->uri->segment(2) == '#' ? 'active': '' ?>" href="<?php echo site_url('#'); ?>">*Prestasi Non-Akademik Mahasiswa</a>
+        <a class="collapse-item <?php echo $this->uri->segment(2) == '#' ? 'active': '' ?>" href="<?php echo site_url('#'); ?>">*Masa Studi Lulusan </a>
+        <a class="collapse-item <?php echo $this->uri->segment(2) == '#' ? 'active': '' ?>" href="<?php echo site_url('#'); ?>">*Waktu Tunggu Lulusan</a>
+        <a class="collapse-item <?php echo $this->uri->segment(2) == '#' ? 'active': '' ?>" href="<?php echo site_url('#'); ?>">*Kesesuaian Bidang Kerja Lulusan</a>
+        <a class="collapse-item <?php echo $this->uri->segment(2) == '#' ? 'active': '' ?>" href="<?php echo site_url('#'); ?>">*Tempat Kerja Lulusan</a>
+        <a class="collapse-item <?php echo $this->uri->segment(2) == '#' ? 'active': '' ?>" href="<?php echo site_url('#'); ?>">*Referensi Kepuasan Pengguna Lulusan</a>
+        <a class="collapse-item <?php echo $this->uri->segment(2) == '#' ? 'active': '' ?>" href="<?php echo site_url('#'); ?>">*Kepuasan Pengguna Lulusan</a>
+        <a class="collapse-item <?php echo $this->uri->segment(2) == '#' ? 'active': '' ?>" href="<?php echo site_url('#'); ?>">*Publikasi Ilmiah Mahasiswa</a>
+		<a class="collapse-item <?php echo $this->uri->segment(2) == '#' ? 'active': '' ?>" href="<?php echo site_url('#'); ?>">*Karya Ilmiah yang Disitasi</a>
+        <a class="collapse-item <?php echo $this->uri->segment(2) == '#' ? 'active': '' ?>" href="<?php echo site_url('#'); ?>">*Produk Mahasiswa yang Diadopsi oleh Industri/Masyarakat</a>
+        <a class="collapse-item <?php echo $this->uri->segment(2) == '#' ? 'active': '' ?>" href="<?php echo site_url('#'); ?>">*Luaran Penelitian Mahasiswa-HKI Paten</a>
+        <a class="collapse-item <?php echo $this->uri->segment(2) == '#' ? 'active': '' ?>" href="<?php echo site_url('#'); ?>">*Luaran Penelitian Mahasiswa-HKI Hak Cipta</a>
+        <a class="collapse-item <?php echo $this->uri->segment(2) == '#' ? 'active': '' ?>" href="<?php echo site_url('#'); ?>">*Luaran Penelitian Mahasiswa-Teknologi Tepat Guna</a>
+        <a class="collapse-item <?php echo $this->uri->segment(2) == '#' ? 'active': '' ?>" href="<?php echo site_url('#'); ?>">*Luaran Penelitian Mahasiswa-Buku Ber-ISBN</a>
+
+      </div>
+    </div>
+  </li>
+ 
   <?php elseif($this->session->userdata('role')==='PIMPINAN'):?>
   <li class="nav-item active">
     <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
