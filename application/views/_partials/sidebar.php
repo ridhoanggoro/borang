@@ -75,7 +75,7 @@
         <a class="collapse-item <?php echo $this->uri->segment(2) == 'pkm_dtps' ? 'active': '' ?>" href="<?php echo site_url('dosen/pkm_dtps'); ?>">*PkM DTPS</a>
         <a class="collapse-item <?php echo $this->uri->segment(2) == 'publikasi_ilmiah_dtps' ? 'active': '' ?>" href="<?php echo site_url('dosen/publikasi_ilmiah_dtps'); ?>">*Publikasi Ilmiah DTPS</a>
         <a class="collapse-item <?php echo $this->uri->segment(2) == 'pagelaran_ilmiah' ? 'active': '' ?>" href="<?php echo site_url('dosen/pagelaran_ilmiah'); ?>">*Pagelaran/Pameran/Presentasi/Publikasi Ilmiah DTPS</a>
-		<a class="collapse-item <?php echo $this->uri->segment(2) == 'karya_ilmiah_disitasi' ? 'active': '' ?>" href="<?php echo site_url('dosen/karya_ilmiah_disitasi'); ?>">*Karya Ilmiah DTPS Disitasi</a>
+		    <a class="collapse-item <?php echo $this->uri->segment(2) == 'karya_ilmiah_disitasi' ? 'active': '' ?>" href="<?php echo site_url('dosen/karya_ilmiah_disitasi'); ?>">*Karya Ilmiah DTPS Disitasi</a>
         <a class="collapse-item <?php echo $this->uri->segment(2) == 'produk_dtps' ? 'active': '' ?>" href="<?php echo site_url('dosen/produk_dtps'); ?>">*Produk DTPS yang Diadopsi oleh Industri/Masyarakat</a>
         <a class="collapse-item <?php echo $this->uri->segment(2) == 'hki_paten' ? 'active': '' ?>" href="<?php echo site_url('dosen/hki_paten'); ?>">*Luaran Penelitian-HKI Paten</a>
         <a class="collapse-item <?php echo $this->uri->segment(2) == 'hki_hak_cipta' ? 'active': '' ?>" href="<?php echo site_url('dosen/hki_hak_cipta'); ?>">*Luaran Penelitian-HKI Hak Cipta</a>
@@ -152,7 +152,7 @@
         <a class="collapse-item <?php echo $this->uri->segment(2) == '#' ? 'active': '' ?>" href="<?php echo site_url('#'); ?>">*Referensi Kepuasan Pengguna Lulusan</a>
         <a class="collapse-item <?php echo $this->uri->segment(2) == '#' ? 'active': '' ?>" href="<?php echo site_url('#'); ?>">*Kepuasan Pengguna Lulusan</a>
         <a class="collapse-item <?php echo $this->uri->segment(2) == '#' ? 'active': '' ?>" href="<?php echo site_url('#'); ?>">*Publikasi Ilmiah Mahasiswa</a>
-		<a class="collapse-item <?php echo $this->uri->segment(2) == '#' ? 'active': '' ?>" href="<?php echo site_url('#'); ?>">*Karya Ilmiah yang Disitasi</a>
+		    <a class="collapse-item <?php echo $this->uri->segment(2) == '#' ? 'active': '' ?>" href="<?php echo site_url('#'); ?>">*Karya Ilmiah yang Disitasi</a>
         <a class="collapse-item <?php echo $this->uri->segment(2) == '#' ? 'active': '' ?>" href="<?php echo site_url('#'); ?>">*Produk Mahasiswa yang Diadopsi oleh Industri/Masyarakat</a>
         <a class="collapse-item <?php echo $this->uri->segment(2) == '#' ? 'active': '' ?>" href="<?php echo site_url('#'); ?>">*Luaran Penelitian Mahasiswa-HKI Paten</a>
         <a class="collapse-item <?php echo $this->uri->segment(2) == '#' ? 'active': '' ?>" href="<?php echo site_url('#'); ?>">*Luaran Penelitian Mahasiswa-HKI Hak Cipta</a>
@@ -162,7 +162,7 @@
       </div>
     </div>
   </li>
- 
+
   <?php elseif($this->session->userdata('role')==='PIMPINAN'):?>
   <li class="nav-item active">
     <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
