@@ -79,15 +79,20 @@
           </div>
         </div>
         <div class="form-row">
-          <div class="form-group col-md-3">
-            <label for="dpts">Mata Kuliah Kompetensi</label>
-            <select id="dpts" name="dpts" class="custom-select" data-placeholder="Silahkan pilih..." required>
+          <div class="form-group col-md-6">
+            <label for="matkul_kopetensi">Mata Kuliah Kompetensi</label>
+            <select id="matkul_kopetensi" name="matkul_kopetensi" class="custom-select" data-placeholder="Silahkan pilih..." required>
                  <option value=""></option>
                  <option value="V">YA</option>
                  <option value="X">TIDAK</option>
              </select>
             <div id="id_check_result" class="help-block with-errors"></div>
           </div>
+        </div>
+        <hr>
+          <h5>Bobot Kredit (sks)</h5>
+        <hr>
+        <div class="form-row">
           <div class="form-group col-md-3">
             <label for="kuliah">Kuliah/Responsi/Tutorial</label>
             <input type="number" class="form-control" id="kuliah" name="kuliah" required>
@@ -103,8 +108,6 @@
             <input type="number" class="form-control" id="praktikum" name="praktikum" required>
             <div id="id_check_result" class="help-block with-errors"></div>
           </div>
-        </div>
-        <div class="form-row">
           <div class="form-group col-md-3">
             <label for="konversi_jam">Konversi Kredit ke Jam</label>
             <input type="number" class="form-control" id="konversi_jam" name="konversi_jam" required>
@@ -112,21 +115,50 @@
           </div>
         </div>
         <div class="form-row">
-          <div class="custom-control custom-checkbox mb-3">
-            <input type="checkbox" class="custom-control-input" id="customCheck1">
-            <label class="custom-control-label" for="customCheck1">Check this custom checkbox</label>
+          <div class="card text-center">
+            <div class="card-header">Capaian Pembelajaran</div>
+            <div class="card-body">
+              <div class="form-group">
+                <div class="custom-control custom-checkbox custom-control-inline">
+                    <input type="checkbox" class="custom-control-input" id="sikap" name="sikap">
+                    <label class="custom-control-label" for="sikap">Sikap</label>
+                </div>
+                <div class="custom-control custom-checkbox custom-control-inline">
+                    <input type="checkbox" class="custom-control-input" id="pengetahuan" name="pengetahuan">
+                    <label class="custom-control-label" for="pengetahuan">Pengetahuan</label>
+                </div>
+                <div class="custom-control custom-checkbox custom-control-inline">
+                    <input type="checkbox" class="custom-control-input" id="keterampilan_umum" name="keterampilan_umum">
+                    <label class="custom-control-label" for="keterampilan_umum">Keterampilan Umum</label>
+                </div>
+                <div class="custom-control custom-checkbox custom-control-inline">
+                    <input type="checkbox" class="custom-control-input" id="keterampilan_khusus" name="keterampilan_khusus">
+                    <label class="custom-control-label" for="keterampilan_khusus">Keterampilan Khusus</label>
+                </div>
+              </div>
+            </div>
           </div>
-          <div class="custom-control custom-checkbox mb-3">
-            <input type="checkbox" class="custom-control-input" id="customCheck2">
-            <label class="custom-control-label" for="customCheck2">Check this custom checkbox</label>
+        </div>
+        <div class="form-row">
+          <div class="form-group col-md-12">
+            <label for="dokumen_pembelajaran">Dokumen Rencana Pembelajaran</label>
+            <input type="text" class="form-control" id="dokumen_pembelajaran" name="dokumen_pembelajaran" required>
+            <div id="id_check_result" class="help-block with-errors"></div>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group col-md-12">
+            <label for="unit_penyelenggara">Unit Penyelenggara</label>
+            <input type="text" class="form-control" id="unit_penyelenggara" name="unit_penyelenggara" required>
+            <div id="id_check_result" class="help-block with-errors"></div>
           </div>
         </div>
       </div>
       <div class="modal-footer">
-      <button class="btn btn-secondary btn-icon-split btn-sm" data-dismiss="modal"><span class="icon text-white-50"><i class="fas fa-arrow-alt-circle-left"></i></i></span>
-      <span class="text">Batal</span></button>
-      <button type="submit" id="btn_save" class="btn btn-primary btn-icon-split btn-sm"><span class="icon text-white-50"><i class="fas fa-save"></i></span>
-      <span class="text">Simpan</span></button>
+        <button class="btn btn-secondary btn-icon-split btn-sm" data-dismiss="modal"><span class="icon text-white-50"><i class="fas fa-arrow-alt-circle-left"></i></i></span>
+        <span class="text">Batal</span></button>
+        <button type="submit" id="btn_save" class="btn btn-primary btn-icon-split btn-sm"><span class="icon text-white-50"><i class="fas fa-save"></i></span>
+        <span class="text">Simpan</span></button>
       </div>
     </div>
     </div>
@@ -146,62 +178,96 @@
       </button>
       </div>
       <div class="modal-body">
+        <input type="text" hidden="" class="form-control" id="seq_id" name="seq_id">
         <div class="form-row">
-          <input type="text" hidden="" class="form-control" id="seq_id" name="seq_id">
-          <div class="form-group col-md-6">
-            <label for="nidn_edit">NAMA DOSEN</label>
-            <select id="nidn_edit" name="nidn_edit" class="custom-select" data-placeholder="Silahkan pilih..." required>
-              <option value=""></option>
-            </select>
+          <div class="form-group col-md-3">
+            <label for="semester_edit">Semester</label>
+            <input type="text" class="form-control" id="semester_edit" name="semester_edit" required>
             <div id="id_check_result" class="help-block with-errors"></div>
           </div>
-          <div class="d-none">
-            <label for="nama_edit">Nama</label>
-            <input type="text" class="form-control" id="nama_edit" name="nama_edit" required>
+          <div class="form-group col-md-3">
+            <label for="kode_matkul_edit">Kode Mata Kuliah</label>
+            <input type="text" class="form-control" id="kode_matkul_edit" name="kode_matkul_edit" required>
+            <div id="id_check_result" class="help-block with-errors"></div>
+          </div>
+          <div class="form-group col-md-6">
+            <label for="nama_matkul_edit">Nama Mata Kuliah</label>
+            <input type="text" class="form-control" id="nama_matkul_edit" name="nama_matkul_edit" required>
             <div id="id_check_result" class="help-block with-errors"></div>
           </div>
         </div>
         <div class="form-row">
-          <div class="form-group col-md-4">
-            <label for="dtps_edit">DPTS</label>
-            <select id="dtps_edit" name="dtps_edit" class="custom-select" data-placeholder="Silahkan pilih..." required>
+          <div class="form-group col-md-6">
+            <label for="matkul_kopetensi_edit">Mata Kuliah Kompetensi</label>
+            <select id="matkul_kopetensi_edit" name="matkul_kopetensi_edit" class="custom-select" data-placeholder="Silahkan pilih..." required>
                  <option value=""></option>
                  <option value="V">YA</option>
                  <option value="X">TIDAK</option>
              </select>
             <div id="id_check_result" class="help-block with-errors"></div>
           </div>
-          <div class="form-group col-md-4">
-            <label for="ps_yang_diakreditasi_edit">Pendidikan PS yang Diakreditasi</label>
-            <input type="text" class="form-control" id="ps_yang_diakreditasi_edit" name="ps_yang_diakreditasi_edit" required>
+        </div>
+        <hr>
+          <h5>Bobot Kredit (sks)</h5>
+        <hr>
+        <div class="form-row">
+          <div class="form-group col-md-3">
+            <label for="kuliah_edit">Kuliah/Responsi/Tutorial</label>
+            <input type="number" class="form-control" id="kuliah_edit" name="kuliah_edit" required>
             <div id="id_check_result" class="help-block with-errors"></div>
           </div>
-          <div class="form-group col-md-4">
-            <label for="ps_lain_di_dalam_pt_edit">Pendidikan PS Lain di dalam PT</label>
-            <input type="text" class="form-control" id="ps_lain_di_dalam_pt_edit" name="ps_lain_di_dalam_pt_edit" required>
+          <div class="form-group col-md-3">
+            <label for="seminar_edit">Seminar</label>
+            <input type="number" class="form-control" id="seminar_edit" name="seminar_edit" required>
+            <div id="id_check_result" class="help-block with-errors"></div>
+          </div>
+          <div class="form-group col-md-3">
+            <label for="praktikum_edit">Praktikum</label>
+            <input type="number" class="form-control" id="praktikum_edit" name="praktikum_edit" required>
+            <div id="id_check_result" class="help-block with-errors"></div>
+          </div>
+          <div class="form-group col-md-3">
+            <label for="konversi_jam_edit">Konversi Kredit ke Jam</label>
+            <input type="number" class="form-control" id="konversi_jam_edit" name="konversi_jam_edit" required>
             <div id="id_check_result" class="help-block with-errors"></div>
           </div>
         </div>
         <div class="form-row">
-          <div class="form-group col-md-4">
-          <label for="ps_lain_di_luar_pt_edit">Pendidikan PS Lain di luar PT</label>
-          <input type="text" class="form-control" id="ps_lain_di_luar_pt_edit" name="ps_lain_di_luar_pt_edit" required>
+          <div class="card text-center">
+            <div class="card-header">Capaian Pembelajaran</div>
+            <div class="card-body">
+              <div class="form-group">
+                <div class="custom-control custom-checkbox custom-control-inline">
+                    <input type="checkbox" class="custom-control-input" id="sikap_edit" name="sikap_edit">
+                    <label class="custom-control-label" for="sikap_edit">Sikap</label>
+                </div>
+                <div class="custom-control custom-checkbox custom-control-inline">
+                    <input type="checkbox" class="custom-control-input" id="pengetahuan_edit" name="pengetahuan_edit">
+                    <label class="custom-control-label" for="pengetahuan_edit">Pengetahuan</label>
+                </div>
+                <div class="custom-control custom-checkbox custom-control-inline">
+                    <input type="checkbox" class="custom-control-input" id="keterampilan_umum_edit" name="keterampilan_umum_edit">
+                    <label class="custom-control-label" for="keterampilan_umum_edit">Keterampilan Umum</label>
+                </div>
+                <div class="custom-control custom-checkbox custom-control-inline">
+                    <input type="checkbox" class="custom-control-input" id="keterampilan_khusus_edit" name="keterampilan_khusus_edit">
+                    <label class="custom-control-label" for="keterampilan_khusus_edit">Keterampilan Khusus</label>
+                </div>
+              </div>
+            </div>
           </div>
-          <div class="form-group col-md-4">
-            <label for="penelitian_edit">Penelitian</label>
-            <input type="text" class="form-control" id="penelitian_edit" name="penelitian_edit" required>
-            <div id="id_check_result" class="help-block with-errors"></div>
-          </div>
-          <div class="form-group col-md-4">
-            <label for="pkm_edit">PKM</label>
-            <input type="text" class="form-control" id="pkm_edit" name="pkm_edit" required>
+        </div>
+        <div class="form-row">
+          <div class="form-group col-md-12">
+            <label for="dokumen_pembelajaran_edit">Dokumen Rencana Pembelajaran</label>
+            <input type="text" class="form-control" id="dokumen_pembelajaran_edit" name="dokumen_pembelajaran_edit" required>
             <div id="id_check_result" class="help-block with-errors"></div>
           </div>
         </div>
         <div class="form-row">
           <div class="form-group col-md-12">
-            <label for="tugas_tambahan_edit">Tugas Tambahan</label>
-            <input type="text" class="form-control" id="tugas_tambahan_edit" name="tugas_tambahan_edit" required>
+            <label for="unit_penyelenggara_edit">Unit Penyelenggara</label>
+            <input type="text" class="form-control" id="unit_penyelenggara_edit" name="unit_penyelenggara_edit" required>
             <div id="id_check_result" class="help-block with-errors"></div>
           </div>
         </div>
@@ -248,6 +314,7 @@
 <script type="text/javascript">
 $(document).ready(function(){
   show_data();
+  // $('#mydata').dataTable();
   function show_data(){
     $.ajax({
       type  : 'ajax',
@@ -274,7 +341,7 @@ $(document).ready(function(){
           '<td style="text-align: center;">'+data[i].dokumen_pembelajaran+'</td>'+
           '<td style="text-align: center;">'+data[i].unit_penyelenggara+'</td>'+
           '<td style="text-align: center;">'+
-              '<a href="javascript:void(0);" class="btn btn-info btn-circle btn-sm item_edit" data-toggle="tooltip" title="Edit" data-seq_id="'+data[i].seq_id+'" data-nik_nidn="'+data[i].nik_nidn+'" data-dtps="'+data[i].dtps+'" data-ps_yang_diakreditasi="'+data[i].ps_yang_diakreditasi+'" data-ps_lain_di_dalam_pt="'+data[i].ps_lain_di_dalam_pt+'" data-ps_lain_di_luar_pt="'+data[i].ps_lain_di_luar_pt+'" data-penelitian="'+data[i].penelitian+'" data-pkm="'+data[i].pkm+'" data-tugas_tambahan="'+data[i].tugas_tambahan+'"><i class="fas fa-search"></i></a>'+
+              '<a href="javascript:void(0);" class="btn btn-info btn-circle btn-sm item_edit" data-toggle="tooltip" title="Edit" data-seq_id="'+data[i].seq_id+'" data-semester="'+data[i].semester+'" data-kode_matkul="'+data[i].kode_matkul+'" data-nama_matkul="'+data[i].nama_matkul+'" data-matkul_kopetensi="'+data[i].matkul_kopetensi+'" data-kuliah="'+data[i].kuliah+'" data-seminar="'+data[i].seminar+'" data-praktikum="'+data[i].praktikum+'" data-konversi_jam="'+data[i].konversi_jam+'" data-sikap="'+data[i].sikap+'" data-pengetahuan="'+data[i].pengetahuan+'" data-keterampilan_umum="'+data[i].keterampilan_umum+'" data-keterampilan_khusus="'+data[i].keterampilan_khusus+'" data-dokumen_pembelajaran="'+data[i].dokumen_pembelajaran+'" data-unit_penyelenggara="'+data[i].unit_penyelenggara+'"><i class="fas fa-search"></i></a>'+
               '<a href="javascript:void(0);" class="btn btn-danger btn-circle btn-sm item_delete" data-toggle="tooltip" data-placement="top" title="Delete" data-seq_id="'+data[i].seq_id+'"><i class="fas fa-trash"></i></a>'+
           '</td>'+
           '</tr>';
@@ -282,58 +349,103 @@ $(document).ready(function(){
         $('#tampil_data').html(html);
       }
     });
+    $('#mydata').dataTable();
   }
 
   //fill data record
   $('#tampil_data').on('click','.item_edit',function(){
-    var seq_id               = $(this).data('seq_id');
-    var nik_nidn             = $(this).data('nik_nidn');
-    var dtps                 = $(this).data('dtps');
-    var ps_yang_diakreditasi = $(this).data('ps_yang_diakreditasi');
-    var ps_lain_di_dalam_pt  = $(this).data('ps_lain_di_dalam_pt');
-    var ps_lain_di_luar_pt   = $(this).data('ps_lain_di_luar_pt');
-    var penelitian           = $(this).data('penelitian');
-    var pkm                  = $(this).data('pkm');
-    var tugas_tambahan       = $(this).data('tugas_tambahan');
+    var seq_id = $(this).data('seq_id');
+    var semester = $(this).data('semester');
+    var kode_matkul = $(this).data('kode_matkul');
+    var nama_matkul = $(this).data('nama_matkul');
+    var matkul_kopetensi = $(this).data('matkul_kopetensi');
+    var kuliah = $(this).data('kuliah');
+    var seminar = $(this).data('seminar');
+    var praktikum = $(this).data('praktikum');
+    var konversi_jam = $(this).data('konversi_jam');
+    var sikap = $(this).data('sikap');
+    var pengetahuan = $(this).data('pengetahuan');
+    var keterampilan_umum = $(this).data('keterampilan_umum');
+    var keterampilan_khusus = $(this).data('keterampilan_khusus');
+    var dokumen_pembelajaran = $(this).data('dokumen_pembelajaran');
+    var unit_penyelenggara = $(this).data('unit_penyelenggara');
 
     $('#Modal_Edit').modal('show');
     $('[name="seq_id"]').val(seq_id);
-    $('[name="nidn_edit"]').val(nik_nidn);
-    $('[name="dtps_edit"]').val(dtps);
-    $('[name="ps_yang_diakreditasi_edit"]').val(ps_yang_diakreditasi);
-    $('[name="ps_lain_di_dalam_pt_edit"]').val(ps_lain_di_dalam_pt);
-    $('[name="ps_lain_di_luar_pt_edit"]').val(ps_lain_di_luar_pt);
-    $('[name="penelitian_edit"]').val(penelitian);
-    $('[name="pkm_edit"]').val(pkm);
-    $('[name="tugas_tambahan_edit"]').val(tugas_tambahan);
-    $('[name="nik_nidn_edit"]').focus();
+    $('[name="semester_edit"]').val(semester);
+    $('[name="kode_matkul_edit"]').val(kode_matkul);
+    $('[name="nama_matkul_edit"]').val(nama_matkul);
+    $('[name="matkul_kopetensi_edit"]').val(matkul_kopetensi);
+    $('[name="kuliah_edit"]').val(kuliah);
+    $('[name="seminar_edit"]').val(seminar);
+    $('[name="praktikum_edit"]').val(praktikum);
+    $('[name="konversi_jam_edit"]').val(konversi_jam);
+    if (sikap=="V") {
+      $('[name="sikap_edit"]').prop('checked', true);
+    } else {
+      $('[name="sikap_edit"]').prop('checked', false);
+    }
+    if (pengetahuan=="V") {
+      $('[name="pengetahuan_edit"]').prop('checked', true);
+    } else {
+      $('[name="pengetahuan_edit"]').prop('checked', false);
+    }
+    if (keterampilan_umum=="V") {
+      $('[name="keterampilan_umum_edit"]').prop('checked', true);
+    } else {
+      $('[name="keterampilan_umum_edit"]').prop('checked', false);
+    }
+    if (keterampilan_khusus=="V") {
+        $('[name="keterampilan_khusus_edit"]').prop('checked', true);
+    } else {
+      $('[name="keterampilan_khusus_edit"]').prop('checked', false);
+    }
+    $('[name="dokumen_pembelajaran_edit"]').val(dokumen_pembelajaran);
+    $('[name="unit_penyelenggara_edit"]').val(unit_penyelenggara);
+    $('[name="semester_edit"]').focus();
   });
 
   //Save Data
   $('#btn_save').on('click',function(){
-    var nik_nidn = $('#nidn').val();
-    var dtps = $('#dpts').val();
-    var ps_yang_diakreditasi = $('#ps_yang_diakreditasi').val();
-    var ps_lain_di_dalam_pt = $('#ps_lain_di_dalam_pt').val();
-    var ps_lain_di_luar_pt = $('#ps_lain_di_luar_pt').val();
-    var penelitian  = $('#penelitian').val();
-    var pkm = $('#pkm').val();
-    var tugas_tambahan = $('#tugas_tambahan').val();
+    var semester = $('#semester').val();
+    var kode_matkul = $('#kode_matkul').val();
+    var nama_matkul = $('#nama_matkul').val();
+    var matkul_kopetensi = $('#matkul_kopetensi').val();
+    var kuliah = $('#kuliah').val();
+    var seminar  = $('#seminar').val();
+    var praktikum = $('#praktikum').val();
+    var konversi_jam = $('#konversi_jam').val();
+    var sikap;
+    var pengetahuan;
+    var keterampilan_umum;
+    var keterampilan_khusus;
+    var dokumen_pembelajaran = $('#dokumen_pembelajaran').val();
+    var unit_penyelenggara = $('#unit_penyelenggara').val();
+    if ($('#sikap').is(':checked')) { sikap = 'V';  } else { sikap = ''; }
+    if ($('#pengetahuan').is(':checked')) { pengetahuan = 'V';  } else { pengetahuan = ''; }
+    if ($('#keterampilan_khusus').is(':checked')) { keterampilan_umum = 'V';  } else { keterampilan_umum = ''; }
+    if ($('#dokumen_pembelajaran').is(':checked')) { keterampilan_khusus = 'V';  } else { keterampilan_khusus = ''; }
 
     $.ajax({
       type : "POST",
-      url  : "<?php echo site_url('dosen/ewmp_add')?>",
+      url  : "<?php echo site_url('kurikulum/cp_rencana_pembelajaran_add')?>",
       dataType : "JSON",
-      data : {nik_nidn:nik_nidn, dtps:dtps, ps_yang_diakreditasi:ps_yang_diakreditasi, ps_lain_di_dalam_pt:ps_lain_di_dalam_pt, ps_lain_di_luar_pt:ps_lain_di_luar_pt, penelitian:penelitian, pkm:pkm, tugas_tambahan:tugas_tambahan},
+      data : {semester:semester, kode_matkul:kode_matkul, nama_matkul:nama_matkul, matkul_kopetensi:matkul_kopetensi, kuliah:kuliah, seminar:seminar, praktikum:praktikum, konversi_jam:konversi_jam, sikap:sikap, pengetahuan:pengetahuan, keterampilan_umum:keterampilan_umum, keterampilan_khusus:keterampilan_khusus, dokumen_pembelajaran:dokumen_pembelajaran, unit_penyelenggara:unit_penyelenggara},
       success: function(data){
-        $('[name="nidn"]').val("");
-        $('[name="dpts"]').val("");
-        $('[name="ps_yang_diakreditasi"]').val("");
-        $('[name="ps_lain_di_dalam_pt"]').val("");
-        $('[name="ps_lain_di_luar_pt"]').val("");
-        $('[name="penelitian"]').val("");
-        $('[name="pkm"]').val("");
-        $('[name="tugas_tambahan"]').val("");
+        $('[name="semester"]').val("");
+        $('[name="kode_matkul"]').val("");
+        $('[name="nama_matkul"]').val("");
+        $('[name="matkul_kopetensi"]').val("");
+        $('[name="kuliah"]').val("");
+        $('[name="seminar"]').val("");
+        $('[name="praktikum"]').val("");
+        $('[name="konversi_jam"]').val("");
+        $('[name="sikap"]').val("");
+        $('[name="pengetahuan"]').val("");
+        $('[name="keterampilan_umum"]').val("");
+        $('[name="keterampilan_khusus"]').val("");
+        $('[name="dokumen_pembelajaran"]').val("");
+        $('[name="unit_penyelenggara"]').val("");
         $('#Modal_Add').modal('hide');
         $.alert({
           title: 'Sukses!',
@@ -348,29 +460,46 @@ $(document).ready(function(){
   //update record
   $('#btn_update').on('click',function(){
     var seq_id = $('#seq_id').val();
-    var nik_nidn = $('#nidn_edit').val();
-    var dtps = $('#dtps_edit').val();
-    var ps_yang_diakreditasi = $('#ps_yang_diakreditasi_edit').val();
-    var ps_lain_di_dalam_pt = $('#ps_lain_di_dalam_pt_edit').val();
-    var ps_lain_di_luar_pt = $('#ps_lain_di_luar_pt_edit').val();
-    var penelitian  = $('#penelitian_edit').val();
-    var pkm = $('#pkm_edit').val();
-    var tugas_tambahan = $('#tugas_tambahan_edit').val();
+    var semester = $('#semester_edit').val();
+    var kode_matkul = $('#kode_matkul_edit').val();
+    var nama_matkul = $('#nama_matkul_edit').val();
+    var matkul_kopetensi = $('#matkul_kopetensi_edit').val();
+    var kuliah = $('#kuliah_edit').val();
+    var seminar  = $('#seminar_edit').val();
+    var praktikum = $('#praktikum_edit').val();
+    var konversi_jam = $('#konversi_jam_edit').val();
+    var sikap;
+    var pengetahuan;
+    var keterampilan_umum;
+    var keterampilan_khusus;
+    var dokumen_pembelajaran = $('#dokumen_pembelajaran_edit').val();
+    var unit_penyelenggara = $('#unit_penyelenggara_edit').val();
+
+    if ($('#sikap_edit').is(':checked')) { sikap = 'V';  } else { sikap = ''; }
+    if ($('#pengetahuan_edit').is(':checked')) { pengetahuan = 'V';  } else { pengetahuan = ''; }
+    if ($('#keterampilan_khusus_edit').is(':checked')) { keterampilan_umum = 'V';  } else { keterampilan_umum = ''; }
+    if ($('#dokumen_pembelajaran_edit').is(':checked')) { keterampilan_khusus = 'V';  } else { keterampilan_khusus = ''; }
 
     $.ajax({
       type : "POST",
-      url  : "<?php echo site_url('dosen/ewmp_edit')?>",
+      url  : "<?php echo site_url('kurikulum/cp_rencana_pembelajaran_edit')?>",
       dataType : "JSON",
-      data : {seq_id:seq_id, nik_nidn:nik_nidn, dtps:dtps, ps_yang_diakreditasi:ps_yang_diakreditasi, ps_lain_di_dalam_pt:ps_lain_di_dalam_pt, ps_lain_di_luar_pt:ps_lain_di_luar_pt, penelitian:penelitian, pkm:pkm, tugas_tambahan:tugas_tambahan},
+      data : {seq_id:seq_id, semester:semester, kode_matkul:kode_matkul, nama_matkul:nama_matkul, matkul_kopetensi:matkul_kopetensi, kuliah:kuliah, seminar:seminar, praktikum:praktikum, konversi_jam:konversi_jam, sikap:sikap, pengetahuan:pengetahuan, keterampilan_umum:keterampilan_umum, keterampilan_khusus:keterampilan_khusus, dokumen_pembelajaran:dokumen_pembelajaran, unit_penyelenggara:unit_penyelenggara},
       success: function(data){
-        $('[name="nidn_edit"]').val("");
-        $('[name="dpts_edit"]').val("");
-        $('[name="ps_yang_diakreditasi_edit"]').val("");
-        $('[name="ps_lain_di_dalam_pt_edit"]').val("");
-        $('[name="ps_lain_di_luar_pt_edit"]').val("");
-        $('[name="penelitian_edit"]').val("");
-        $('[name="pkm_edit"]').val("");
-        $('[name="tugas_tambahan_edit"]').val("");
+        $('[name="semester_edit"]').val("");
+        $('[name="kode_matkul_edit"]').val("");
+        $('[name="nama_matkul_edit"]').val("");
+        $('[name="matkul_kopetensi_edit"]').val("");
+        $('[name="kuliah_edit"]').val("");
+        $('[name="seminar_edit"]').val("");
+        $('[name="praktikum_edit"]').val("");
+        $('[name="konversi_jam_edit"]').val("");
+        $('[name="sikap_edit"]').prop('checked', false);
+        $('[name="pengetahuan_edit"]').prop('checked', false);
+        $('[name="keterampilan_umum_edit"]').prop('checked', false);
+        $('[name="keterampilan_khusus_edit"]').prop('checked', false);
+        $('[name="dokumen_pembelajaran_edit"]').val("");
+        $('[name="unit_penyelenggara_edit"]').val("");
         $('#Modal_Edit').modal('hide');
         $.alert({
           title: 'Sukses!',
@@ -394,7 +523,7 @@ $(document).ready(function(){
       var seq_id = $('#seq_id_delete').val();
       $.ajax({
           type : "POST",
-          url  : "<?php echo site_url('dosen/ewmp_delete')?>",
+          url  : "<?php echo site_url('kurikulum/cp_rencana_pembelajaran_delete')?>",
           dataType : "JSON",
           data : {seq_id:seq_id},
           success: function(data){

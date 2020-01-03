@@ -760,4 +760,104 @@ class Model_master extends CI_model {
 		return $data->result();
 	}
 
+	function cp_rencana_pembelajaran_add(){
+		$prodi = $this->session->userdata('nama');
+		$data = array(
+			'semester'  => $this->input->post('semester'),
+			'kode_matkul'  => $this->input->post('kode_matkul'),
+			'nama_matkul' => $this->input->post('nama_matkul'),
+			'matkul_kopetensi' => $this->input->post('matkul_kopetensi'),
+			'kuliah' => $this->input->post('kuliah'),
+			'seminar' => $this->input->post('seminar'),
+			'praktikum' => $this->input->post('praktikum'),
+			'konversi_jam' => $this->input->post('konversi_jam'),
+			'sikap' => $this->input->post('sikap'),
+			'pengetahuan' => $this->input->post('pengetahuan'),
+			'keterampilan_umum' => $this->input->post('keterampilan_umum'),
+			'keterampilan_khusus' => $this->input->post('keterampilan_khusus'),
+			'dokumen_pembelajaran' => $this->input->post('dokumen_pembelajaran'),
+			'unit_penyelenggara' => $this->input->post('unit_penyelenggara'),
+			'prodi' => $prodi
+		);
+		$result = $this->db->insert('kurikulum', $data);
+		return $result;
+	}
+
+	function cp_rencana_pembelajaran_edit(){
+		$seq_id = $this->input->post('seq_id');
+		$prodi = $this->session->userdata('nama');
+    $data = array(
+			'semester'  => $this->input->post('semester'),
+			'kode_matkul'  => $this->input->post('kode_matkul'),
+			'nama_matkul' => $this->input->post('nama_matkul'),
+			'matkul_kopetensi' => $this->input->post('matkul_kopetensi'),
+			'kuliah' => $this->input->post('kuliah'),
+			'seminar' => $this->input->post('seminar'),
+			'praktikum' => $this->input->post('praktikum'),
+			'konversi_jam' => $this->input->post('konversi_jam'),
+			'sikap' => $this->input->post('sikap'),
+			'pengetahuan' => $this->input->post('pengetahuan'),
+			'keterampilan_umum' => $this->input->post('keterampilan_umum'),
+			'keterampilan_khusus' => $this->input->post('keterampilan_khusus'),
+			'dokumen_pembelajaran' => $this->input->post('dokumen_pembelajaran'),
+			'unit_penyelenggara' => $this->input->post('unit_penyelenggara'),
+			'prodi' => $prodi
+		);
+		$this->db->where('seq_id', $seq_id);
+		$result = $this->db->update('kurikulum', $data);
+		return $result;
+	}
+
+	function cp_rencana_pembelajaran_delete(){
+		$seq_id = $this->input->post('seq_id');
+		$this->db->where('seq_id', $seq_id);
+    	$result = $this->db->delete('kurikulum');
+   	 	return $result;
+	}
+
+	function integrasi_pkm_list(){
+		$role = $this->session->userdata('nama');
+		$this->db->where('prodi', $role);
+		$data = $this->db->get('integrasi_pkm');
+		return $data->result();
+	}
+
+	function integrasi_pkm_add(){
+		$prodi = $this->session->userdata('nama');
+		$data = array(
+			'judul'  => $this->input->post('judul'),
+  		'nama_dosen'  => $this->input->post('nama_dosen'),
+  		'matkul' => $this->input->post('matkul'),
+			'bentuk_integrasi' => $this->input->post('bentuk_integrasi'),
+			'tahun' => $this->input->post('tahun'),
+			'prodi' => $prodi
+		);
+		$result = $this->db->insert('integrasi_pkm', $data);
+		return $result;
+	}
+
+	function integrasi_pkm_edit(){
+		$seq_id = $this->input->post('seq_id');
+		$prodi = $this->session->userdata('nama');
+    $data = array(
+			'judul'  => $this->input->post('judul'),
+			'nama_dosen'  => $this->input->post('nama_dosen'),
+			'matkul' => $this->input->post('matkul'),
+			'bentuk_integrasi' => $this->input->post('bentuk_integrasi'),
+			'tahun' => $this->input->post('tahun'),
+			'prodi' => $prodi
+		);
+		$this->db->where('seq_id', $seq_id);
+  	$result = $this->db->update('integrasi_pkm', $data);
+  	return $result;
+	}
+
+	function integrasi_pkm_delete(){
+		$seq_id = $this->input->post('seq_id');
+		$this->db->where('seq_id', $seq_id);
+    	$result = $this->db->delete('integrasi_pkm');
+   	 	return $result;
+	}
+
+
 }

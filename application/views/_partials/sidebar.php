@@ -106,7 +106,7 @@
       <div class="bg-white py-2 collapse-inner rounded">
         <h6 class="collapse-header">Pendidikan:</h6>
         <a class="collapse-item <?php echo $this->uri->segment(2) == 'cp_rencana_pembelajaran' ? 'active': '' ?>" href="<?php echo site_url('kurikulum/cp_rencana_pembelajaran'); ?>">*Kurikulum, CP, Rencana Pembelajaran</a>
-        <a class="collapse-item <?php echo $this->uri->segment(2) == '#' ? 'active': '' ?>" href="<?php echo site_url('#'); ?>">*Integrasi Kegiatan Penelitian/PkM dalam Pembelajaran</a>
+        <a class="collapse-item <?php echo $this->uri->segment(2) == 'integrasi_pkm' ? 'active': '' ?>" href="<?php echo site_url('kurikulum/integrasi_pkm'); ?>">*Integrasi Kegiatan Penelitian/PkM dalam Pembelajaran</a>
         <a class="collapse-item <?php echo $this->uri->segment(2) == '#' ? 'active': '' ?>" href="<?php echo site_url('#'); ?>">*Kepuasan Mahasiswa</a>
       </div>
     </div>

@@ -467,6 +467,33 @@ class Export extends CI_Controller {
 					// $objPHPExcel->getActiveSheet()->getStyle('C7:J19')->getNumberFormat()->setFormatCode('#,##0.00');
 				}
 			break;
+		case '5a':
+      $fileName = './assets/template/5a.xlsx';
+      $objPHPExcel = $objReader->load($fileName);
+      $objPHPExcel->setActiveSheetIndex(0);
+      $objPHPExcel->getActiveSheet();
+      $data = $this->Model_master->cp_rencana_pembelajaran_list();
+      $col = 10;
+			$no = 1;
+      foreach ($data as $val) {
+				$objPHPExcel->setActiveSheetIndex()->setCellValue('A'.$col, $no++);
+        $objPHPExcel->setActiveSheetIndex()->setCellValue('B'.$col, $val->semester);
+        $objPHPExcel->setActiveSheetIndex()->setCellValue('C'.$col, $val->kode_matkul);
+        $objPHPExcel->setActiveSheetIndex()->setCellValue('D'.$col, $val->nama_matkul);
+        $objPHPExcel->setActiveSheetIndex()->setCellValue('E'.$col, $val->matkul_kopetensi);
+        $objPHPExcel->setActiveSheetIndex()->setCellValue('F'.$col, $val->kuliah);
+        $objPHPExcel->setActiveSheetIndex()->setCellValue('G'.$col, $val->seminar);
+        $objPHPExcel->setActiveSheetIndex()->setCellValue('H'.$col, $val->praktikum);
+				$objPHPExcel->setActiveSheetIndex()->setCellValue('I'.$col, $val->konversi_jam);
+				$objPHPExcel->setActiveSheetIndex()->setCellValue('J'.$col, $val->sikap);
+				$objPHPExcel->setActiveSheetIndex()->setCellValue('K'.$col, $val->pengetahuan);
+				$objPHPExcel->setActiveSheetIndex()->setCellValue('L'.$col, $val->keterampilan_umum);
+				$objPHPExcel->setActiveSheetIndex()->setCellValue('M'.$col, $val->keterampilan_khusus);
+				$objPHPExcel->setActiveSheetIndex()->setCellValue('N'.$col, $val->dokumen_pembelajaran);
+				$objPHPExcel->setActiveSheetIndex()->setCellValue('O'.$col, $val->unit_penyelenggara);
+        $col++;
+      }
+      break;
       default:
         // code...
         break;
