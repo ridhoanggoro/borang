@@ -27,6 +27,9 @@
             <th>Bidang Keahlian</th>
             <th>Jabatan Akademik</th>
             <th>Sertifikat Pendidik Profesional</th>
+            <th>Sertifikat Kompetensi/Profesi/Industri</th>
+            <th>Mata Kuliah yang Diampu pada PS yang Diakreditasi</th>
+            <th>Kesesuaian Bidang Keahlian dengan Mata Kuliah yang Diampu</th>
             <th style="text-align: center;">Menu</th>
         </tr>
       </thead>
@@ -264,6 +267,9 @@ $(document).ready(function(){
           '<td>'+data[i].bidang_keahlian+'</td>'+
           '<td>'+data[i].jabatan_akademik+'</td>'+
           '<td>'+data[i].sertifikasi_profesional+'</td>'+
+          '<td>'+data[i].sertifikasi_kompetensi+'</td>'+
+          '<td>'+data[i].matakuliah_diampu+'</td>'+
+          '<td>'+data[i].kesesuaian_bidang_keahlian+'</td>'+
           '<td style="text-align:right;">'+
               '<a href="javascript:void(0);" class="btn btn-info btn-circle btn-sm item_edit" data-toggle="tooltip" data-placement="top" title="Edit" data-seq_id="'+data[i].seq_id+'" data-nidn="'+data[i].nidn+'" data-nama="'+data[i].nama+'" data-pendidikan_magister="'+data[i].pendidikan_magister+'" data-bidang_keahlian="'+data[i].bidang_keahlian+'" data-jabatan_akademik="'+data[i].jabatan_akademik+'" data-sertifikasi_profesional="'+data[i].sertifikasi_profesional+'" data-sertifikasi_kompetensi="'+data[i].sertifikasi_kompetensi+'" data-matakuliah_diampu="'+data[i].matakuliah_diampu+'" data-kesesuaian_bidang_keahlian="'+data[i].kesesuaian_bidang_keahlian+'"><i class="fas fa-search"></i></a>'+' '+
               '<a href="javascript:void(0);" class="btn btn-danger btn-circle btn-sm item_delete" data-toggle="tooltip" data-placement="top" title="Delete" data-seq_id="'+data[i].seq_id+'"><i class="fas fa-trash"></i></a>'+

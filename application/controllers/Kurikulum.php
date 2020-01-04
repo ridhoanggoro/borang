@@ -63,4 +63,32 @@ class Kurikulum extends CI_Controller {
     $data = $this->Model_master->integrasi_pkm_delete();
 		echo json_encode($data);
   }
+
+	function kepuasan_mahasiswa(){
+		$this->Model_security->getsecurity();
+		$isi['title'] 	='Kepuasan Mahasiswa';
+		$isi['content']	= 'kurikulum/kepuasan_mahasiswa';
+		$isi['aspek_list'] = $this->Model_master->aspek_list();
+		$this->load->view('default_page', $isi);
+	}
+
+	function kepuasan_mahasiswa_list(){
+    $data = $this->Model_master->kepuasan_mahasiswa_list();
+		echo json_encode($data);
+  }
+
+	function kepuasan_mahasiswa_add(){
+    $data = $this->Model_master->kepuasan_mahasiswa_add();
+		echo json_encode($data);
+  }
+
+	function kepuasan_mahasiswa_edit(){
+    $data = $this->Model_master->kepuasan_mahasiswa_edit();
+		echo json_encode($data);
+  }
+
+	function kepuasan_mahasiswa_delete(){
+    $data = $this->Model_master->kepuasan_mahasiswa_delete();
+		echo json_encode($data);
+  }
 }

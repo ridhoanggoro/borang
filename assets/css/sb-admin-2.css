@@ -10942,7 +10942,7 @@ a:focus {
 .sidebar .nav-item .collapse .collapse-inner .collapse-header,
 .sidebar .nav-item .collapsing .collapse-inner .collapse-header {
   margin: 0;
-  white-space: nowrap;
+  /* white-space: nowrap; */
   padding: .5rem 1.5rem;
   text-transform: uppercase;
   font-weight: 800;

@@ -855,9 +855,195 @@ class Model_master extends CI_model {
 	function integrasi_pkm_delete(){
 		$seq_id = $this->input->post('seq_id');
 		$this->db->where('seq_id', $seq_id);
-    	$result = $this->db->delete('integrasi_pkm');
-   	 	return $result;
+  	$result = $this->db->delete('integrasi_pkm');
+ 	 	return $result;
 	}
 
+	function kepuasan_mahasiswa_list(){
+		$prodi = $this->session->userdata('nama');
+		$sql = "SELECT b.*, a.nama FROM jenis_publikasi a LEFT OUTER JOIN kepuasan_pelanggan b ON a.id=b.aspek_ukuran AND b.prodi='$prodi' WHERE a.modul='kepuasan_mahasiswa' ";
+		$data = $this->db->query($sql);
+		return $data->result();
+	}
 
+	function aspek_list()
+	{
+		$sql = "SELECT seq_id,id,CONCAT(LEFT(nama, 100),'  .....') AS nama FROM jenis_publikasi WHERE modul='kepuasan_mahasiswa'";
+		// $this->db->where('modul', 'kepuasan_mahasiswa');
+		// $this->db->order_by('nama', 'ASC');
+		// $data = $this->db->get('jenis_publikasi');
+		$data = $this->db->query($sql);
+		return $data;
+	}
+
+	function kepuasan_mahasiswa_add(){
+		$prodi = $this->session->userdata('nama');
+		$data = array(
+			'aspek_ukuran'  => $this->input->post('aspek_ukuran'),
+  		'sangat_baik'  => $this->input->post('sangat_baik'),
+  		'baik' => $this->input->post('baik'),
+			'cukup' => $this->input->post('cukup'),
+			'kurang' => $this->input->post('kurang'),
+			'rencana_tindaklanjut' => $this->input->post('rencana_tindaklanjut'),
+			'prodi' => $prodi
+		);
+		$result = $this->db->insert('kepuasan_pelanggan', $data);
+		return $result;
+	}
+
+	function kepuasan_mahasiswa_edit(){
+		$seq_id = $this->input->post('seq_id');
+		$prodi = $this->session->userdata('nama');
+    $data = array(
+			'aspek_ukuran'  => $this->input->post('aspek_ukuran'),
+			'sangat_baik'  => $this->input->post('sangat_baik'),
+			'baik' => $this->input->post('baik'),
+			'cukup' => $this->input->post('cukup'),
+			'kurang' => $this->input->post('kurang'),
+			'rencana_tindaklanjut' => $this->input->post('rencana_tindaklanjut'),
+			'prodi' => $prodi
+		);
+		$this->db->where('seq_id', $seq_id);
+  	$result = $this->db->update('kepuasan_pelanggan', $data);
+  	return $result;
+	}
+
+	function kepuasan_mahasiswa_delete(){
+		$seq_id = $this->input->post('seq_id');
+		$this->db->where('seq_id', $seq_id);
+  	$result = $this->db->delete('kepuasan_pelanggan');
+ 	 	return $result;
+	}
+
+	function penelitian_dosen_dan_mhs_list(){
+		$role = $this->session->userdata('nama');
+		$this->db->where('prodi', $role);
+		$data = $this->db->get('penelitian_dosen_mhs');
+		return $data->result();
+	}
+
+	function penelitian_dosen_dan_mhs_add(){
+		$prodi = $this->session->userdata('nama');
+		$data = array(
+			'nama_dosen'  => $this->input->post('nama_dosen'),
+  		'tema_penelitian'  => $this->input->post('tema_penelitian'),
+  		'nama_mhs' => $this->input->post('nama_mhs'),
+			'judul_kegiatan' => $this->input->post('judul_kegiatan'),
+			'tahun' => $this->input->post('tahun'),
+			'prodi' => $prodi
+		);
+		$result = $this->db->insert('penelitian_dosen_mhs', $data);
+		return $result;
+	}
+
+	function penelitian_dosen_dan_mhs_edit(){
+		$seq_id = $this->input->post('seq_id');
+		$prodi = $this->session->userdata('nama');
+    $data = array(
+			'nama_dosen'  => $this->input->post('nama_dosen'),
+  		'tema_penelitian'  => $this->input->post('tema_penelitian'),
+  		'nama_mhs' => $this->input->post('nama_mhs'),
+			'judul_kegiatan' => $this->input->post('judul_kegiatan'),
+			'tahun' => $this->input->post('tahun'),
+			'prodi' => $prodi
+		);
+		$this->db->where('seq_id', $seq_id);
+  	$result = $this->db->update('penelitian_dosen_mhs', $data);
+  	return $result;
+	}
+
+	function penelitian_dosen_dan_mhs_delete(){
+		$seq_id = $this->input->post('seq_id');
+		$this->db->where('seq_id', $seq_id);
+  	$result = $this->db->delete('penelitian_dosen_mhs');
+ 	 	return $result;
+	}
+
+	function penelitian_mhs_tesis_list(){
+		$role = $this->session->userdata('nama');
+		$this->db->where('prodi', $role);
+		$data = $this->db->get('penelitian_mhs_tesis');
+		return $data->result();
+	}
+
+	function penelitian_mhs_tesis_add(){
+		$prodi = $this->session->userdata('nama');
+		$data = array(
+			'nama_dosen'  => $this->input->post('nama_dosen'),
+  		'tema_penelitian'  => $this->input->post('tema_penelitian'),
+  		'nama_mhs' => $this->input->post('nama_mhs'),
+			'judul_kegiatan' => $this->input->post('judul_kegiatan'),
+			'tahun' => $this->input->post('tahun'),
+			'prodi' => $prodi
+		);
+		$result = $this->db->insert('penelitian_mhs_tesis', $data);
+		return $result;
+	}
+
+	function penelitian_mhs_tesis_edit(){
+		$seq_id = $this->input->post('seq_id');
+		$prodi = $this->session->userdata('nama');
+    $data = array(
+			'nama_dosen'  => $this->input->post('nama_dosen'),
+  		'tema_penelitian'  => $this->input->post('tema_penelitian'),
+  		'nama_mhs' => $this->input->post('nama_mhs'),
+			'judul_kegiatan' => $this->input->post('judul_kegiatan'),
+			'tahun' => $this->input->post('tahun'),
+			'prodi' => $prodi
+		);
+		$this->db->where('seq_id', $seq_id);
+  	$result = $this->db->update('penelitian_mhs_tesis', $data);
+  	return $result;
+	}
+
+	function penelitian_mhs_tesis_delete(){
+		$seq_id = $this->input->post('seq_id');
+		$this->db->where('seq_id', $seq_id);
+  	$result = $this->db->delete('penelitian_mhs_tesis');
+ 	 	return $result;
+	}
+
+	function pkm_dosen_dan_mhs_list(){
+		$role = $this->session->userdata('nama');
+		$this->db->where('prodi', $role);
+		$data = $this->db->get('pkm_dosen_mhs');
+		return $data->result();
+	}
+
+	function pkm_dosen_dan_mhs_add(){
+		$prodi = $this->session->userdata('nama');
+		$data = array(
+			'nama_dosen'  => $this->input->post('nama_dosen'),
+  		'tema_penelitian'  => $this->input->post('tema_penelitian'),
+  		'nama_mhs' => $this->input->post('nama_mhs'),
+			'judul_kegiatan' => $this->input->post('judul_kegiatan'),
+			'tahun' => $this->input->post('tahun'),
+			'prodi' => $prodi
+		);
+		$result = $this->db->insert('pkm_dosen_mhs', $data);
+		return $result;
+	}
+
+	function pkm_dosen_dan_mhs_edit(){
+		$seq_id = $this->input->post('seq_id');
+		$prodi = $this->session->userdata('nama');
+    $data = array(
+			'nama_dosen'  => $this->input->post('nama_dosen'),
+  		'tema_penelitian'  => $this->input->post('tema_penelitian'),
+  		'nama_mhs' => $this->input->post('nama_mhs'),
+			'judul_kegiatan' => $this->input->post('judul_kegiatan'),
+			'tahun' => $this->input->post('tahun'),
+			'prodi' => $prodi
+		);
+		$this->db->where('seq_id', $seq_id);
+  	$result = $this->db->update('pkm_dosen_mhs', $data);
+  	return $result;
+	}
+
+	function pkm_dosen_dan_mhs_delete(){
+		$seq_id = $this->input->post('seq_id');
+		$this->db->where('seq_id', $seq_id);
+  	$result = $this->db->delete('pkm_dosen_mhs');
+ 	 	return $result;
+	}
 }

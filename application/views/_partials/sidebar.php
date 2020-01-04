@@ -36,8 +36,7 @@
     </a>
     <div id="collapseTwo" class="collapse <?php echo $this->uri->segment(1) == 'tridharma' ? 'show': '' ?>" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
       <div class="bg-white py-2 collapse-inner rounded">
-        <h6 class="collapse-header">Tata Pamong,Tata Kelola,Kerjasama</h6>
-		<h6 class="collapse-header">Kerjasama Tridharma:</h6>
+        <h6 class="collapse-header">Tata Pamong, Tata Kelola, Kerjasama</h6>
         <a class="collapse-item <?php echo $this->uri->segment(2) == 'pendidikan' ? 'active': '' ?>" href="<?php echo site_url('tridharma/pendidikan'); ?>">*Pendidikan</a>
         <a class="collapse-item <?php echo $this->uri->segment(2) == 'penelitian' ? 'active': '' ?>" href="<?php echo site_url('tridharma/penelitian'); ?>">*Penelitian</a>
         <a class="collapse-item <?php echo $this->uri->segment(2) == 'pkm' ? 'active': '' ?>" href="<?php echo site_url('tridharma/pkm'); ?>">*Pengabdian Masyarakat</a>
@@ -107,32 +106,32 @@
         <h6 class="collapse-header">Pendidikan:</h6>
         <a class="collapse-item <?php echo $this->uri->segment(2) == 'cp_rencana_pembelajaran' ? 'active': '' ?>" href="<?php echo site_url('kurikulum/cp_rencana_pembelajaran'); ?>">*Kurikulum, CP, Rencana Pembelajaran</a>
         <a class="collapse-item <?php echo $this->uri->segment(2) == 'integrasi_pkm' ? 'active': '' ?>" href="<?php echo site_url('kurikulum/integrasi_pkm'); ?>">*Integrasi Kegiatan Penelitian/PkM dalam Pembelajaran</a>
-        <a class="collapse-item <?php echo $this->uri->segment(2) == '#' ? 'active': '' ?>" href="<?php echo site_url('#'); ?>">*Kepuasan Mahasiswa</a>
+        <a class="collapse-item <?php echo $this->uri->segment(2) == 'kepuasan_mahasiswa' ? 'active': '' ?>" href="<?php echo site_url('kurikulum/kepuasan_mahasiswa'); ?>">*Kepuasan Mahasiswa</a>
       </div>
     </div>
   </li>
-  <li class="nav-item <?php echo $this->uri->segment(1) == '#' ? 'active': '' ?>">
+  <li class="nav-item <?php echo $this->uri->segment(1) == 'penelitian' ? 'active': '' ?>">
     <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapse7" aria-expanded="true" aria-controls="collapse7">
       <i class="fas fa-fw fa-cog"></i>
       <span>Tabel 6</span>
     </a>
-    <div id="collapse7" class="collapse <?php echo $this->uri->segment(1) == '#' ? 'show': '' ?>" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+    <div id="collapse7" class="collapse <?php echo $this->uri->segment(1) == 'penelitian' ? 'show': '' ?>" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
       <div class="bg-white py-2 collapse-inner rounded">
         <h6 class="collapse-header">Penelitian:</h6>
-        <a class="collapse-item <?php echo $this->uri->segment(2) == '#' ? 'active': '' ?>" href="<?php echo site_url('#'); ?>">*Penelitian DTPS Melibatkan Mahasiswa</a>
-		<a class="collapse-item <?php echo $this->uri->segment(2) == '#' ? 'active': '' ?>" href="<?php echo site_url('#'); ?>">*Penelitian DTPS Menjadi Rujukan Tema Tesis/Disertasi</a>
+        <a class="collapse-item <?php echo $this->uri->segment(2) == 'penelitian_dosen_dan_mhs' ? 'active': '' ?>" href="<?php echo site_url('penelitian/penelitian_dosen_dan_mhs'); ?>">*Penelitian DTPS Melibatkan Mahasiswa</a>
+		<a class="collapse-item <?php echo $this->uri->segment(2) == 'penelitian_mhs_tesis' ? 'active': '' ?>" href="<?php echo site_url('penelitian/penelitian_mhs_tesis'); ?>">*Penelitian DTPS Menjadi Rujukan Tema Tesis/Disertasi</a>
       </div>
     </div>
   </li>
-   <li class="nav-item <?php echo $this->uri->segment(1) == '#' ? 'active': '' ?>">
+   <li class="nav-item <?php echo $this->uri->segment(1) == 'pkm' ? 'active': '' ?>">
     <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapse8" aria-expanded="true" aria-controls="collapse8">
       <i class="fas fa-fw fa-cog"></i>
       <span>Tabel 7</span>
     </a>
-    <div id="collapse8" class="collapse <?php echo $this->uri->segment(1) == '#' ? 'show': '' ?>" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+    <div id="collapse8" class="collapse <?php echo $this->uri->segment(1) == 'pkm' ? 'show': '' ?>" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
       <div class="bg-white py-2 collapse-inner rounded">
         <h6 class="collapse-header">Pengabdian Kepada Masyarakat:</h6>
-        <a class="collapse-item <?php echo $this->uri->segment(2) == '#' ? 'active': '' ?>" href="<?php echo site_url('#'); ?>">*PkM DTPS Melibatkan Mahasiswa</a>
+        <a class="collapse-item <?php echo $this->uri->segment(2) == 'dosen_dan_mhs' ? 'active': '' ?>" href="<?php echo site_url('pkm/dosen_dan_mhs'); ?>">*PkM DTPS Melibatkan Mahasiswa</a>
       </div>
     </div>
   </li>
