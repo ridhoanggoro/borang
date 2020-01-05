@@ -303,7 +303,7 @@ $(document).ready(function(){
       var seq_id = $('#seq_id_delete').val();
       $.ajax({
           type : "POST",
-          url  : "<?php echo site_url('dosen/hki_hak_cipta_delete')?>",
+          url  : "<?php echo site_url('kurikulum/integrasi_pkm_delete')?>",
           dataType : "JSON",
           data : {seq_id:seq_id},
           success: function(data){

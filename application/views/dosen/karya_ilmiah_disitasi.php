@@ -58,7 +58,7 @@
             <label for="judul_artikel_disitasi">Judul Artikel yang Disitasi (Jurnal, Volume, Tahun, Nomor, Halaman) </label>
             <textarea class="form-control" rows="3" id="judul_artikel_disitasi" name="judul_artikel_disitasi" required></textarea>
             <div id="id_check_result" class="help-block with-errors"></div>
-          </div>          
+          </div>
         </div>
         <div class="form-row">
           <div class="form-group col-md-4">
@@ -104,7 +104,7 @@
             <label for="judul_artikel_disitasi_edit">Judul Artikel yang Disitasi (Jurnal, Volume, Tahun, Nomor, Halaman) </label>
             <textarea class="form-control" rows="3" id="judul_artikel_disitasi_edit" name="judul_artikel_disitasi_edit" required></textarea>
             <div id="id_check_result" class="help-block with-errors"></div>
-          </div>          
+          </div>
         </div>
         <div class="form-row">
           <div class="form-group col-md-4">
@@ -235,7 +235,7 @@ $(document).ready(function(){
       type : "POST",
       url  : "<?php echo site_url('dosen/karya_ilmiah_disitasi_edit')?>",
       dataType : "JSON",
-      data : {seq_id:seq_id, luaran_penelitian:luaran_penelitian, th_perolehan:th_perolehan, keterangan:keterangan},
+      data : {seq_id:seq_id, nama_dosen:nama_dosen, judul_artikel_disitasi:judul_artikel_disitasi, jumlah:jumlah},
       success: function(data){
         $('[name="nama_dosen_edit"]').val("");
         $('[name="judul_artikel_disitasi_edit"]').val("");
