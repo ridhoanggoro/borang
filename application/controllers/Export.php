@@ -580,6 +580,23 @@ class Export extends CI_Controller {
 			        $col++;
 			      }
 			      break;
+					case '8a':
+			      $fileName = './assets/template/8a.xlsx';
+			      $objPHPExcel = $objReader->load($fileName);
+			      $objPHPExcel->setActiveSheetIndex(0);
+			      $objPHPExcel->getActiveSheet();
+			      $data = $this->Model_master->ipk_lulusan_data_list();
+			      $col = 6;
+						$no = 1;
+			      foreach ($data as $val) {
+			        $objPHPExcel->setActiveSheetIndex()->setCellValue('B'.$col, $val->nama_ts);
+			        $objPHPExcel->setActiveSheetIndex()->setCellValue('C'.$col, $val->jml);
+			        $objPHPExcel->setActiveSheetIndex()->setCellValue('D'.$col, $val->ipk_min);
+			        $objPHPExcel->setActiveSheetIndex()->setCellValue('E'.$col, $val->ipk_rata);
+							$objPHPExcel->setActiveSheetIndex()->setCellValue('F'.$col, $val->ipk_maks);
+			        $col++;
+			      }
+			      break;
 	      default:
         // code...
         break;
