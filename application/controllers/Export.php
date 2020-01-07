@@ -597,6 +597,44 @@ class Export extends CI_Controller {
 			        $col++;
 			      }
 			      break;
+					case '8b1':
+			      $fileName = './assets/template/8b1.xlsx';
+			      $objPHPExcel = $objReader->load($fileName);
+			      $objPHPExcel->setActiveSheetIndex(0);
+			      $objPHPExcel->getActiveSheet();
+			      $data = $this->Model_master->prestasi_akademik_data_list();
+			      $col = 10;
+						$no = 1;
+			      foreach ($data as $val) {
+							$objPHPExcel->setActiveSheetIndex()->setCellValue('A'.$col, $no++);
+			        $objPHPExcel->setActiveSheetIndex()->setCellValue('B'.$col, $val->nama_kegiatan);
+			        $objPHPExcel->setActiveSheetIndex()->setCellValue('C'.$col, $val->waktu);
+			        $objPHPExcel->setActiveSheetIndex()->setCellValue('D'.$col, $val->lokal);
+			        $objPHPExcel->setActiveSheetIndex()->setCellValue('E'.$col, $val->nasional);
+							$objPHPExcel->setActiveSheetIndex()->setCellValue('F'.$col, $val->internasional);
+							$objPHPExcel->setActiveSheetIndex()->setCellValue('G'.$col, $val->prestasi);
+			        $col++;
+			      }
+			      break;
+					case '8b2':
+			      $fileName = './assets/template/8b2.xlsx';
+			      $objPHPExcel = $objReader->load($fileName);
+			      $objPHPExcel->setActiveSheetIndex(0);
+			      $objPHPExcel->getActiveSheet();
+			      $data = $this->Model_master->prestasi_non_akademik_data_list();
+			      $col = 10;
+						$no = 1;
+			      foreach ($data as $val) {
+							$objPHPExcel->setActiveSheetIndex()->setCellValue('A'.$col, $no++);
+			        $objPHPExcel->setActiveSheetIndex()->setCellValue('B'.$col, $val->nama_kegiatan);
+			        $objPHPExcel->setActiveSheetIndex()->setCellValue('C'.$col, $val->waktu);
+			        $objPHPExcel->setActiveSheetIndex()->setCellValue('D'.$col, $val->lokal);
+			        $objPHPExcel->setActiveSheetIndex()->setCellValue('E'.$col, $val->nasional);
+							$objPHPExcel->setActiveSheetIndex()->setCellValue('F'.$col, $val->internasional);
+							$objPHPExcel->setActiveSheetIndex()->setCellValue('G'.$col, $val->prestasi);
+			        $col++;
+			      }
+			      break;
 	      default:
         // code...
         break;

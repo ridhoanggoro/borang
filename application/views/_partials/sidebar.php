@@ -144,8 +144,8 @@
       <div class="bg-white py-2 collapse-inner rounded">
         <h6 class="collapse-header">Luaran & Capaian Tridharma:</h6>
         <a class="collapse-item <?php echo $this->uri->segment(2) == 'ipk_lulusan' ? 'active': '' ?>" href="<?php echo site_url('luaran/ipk_lulusan'); ?>">*IPK Lulusan</a>
-        <a class="collapse-item <?php echo $this->uri->segment(2) == '#' ? 'active': '' ?>" href="<?php echo site_url('#'); ?>">*Prestasi Akademik Mahasiswa</a>
-        <a class="collapse-item <?php echo $this->uri->segment(2) == '#' ? 'active': '' ?>" href="<?php echo site_url('#'); ?>">*Prestasi Non-Akademik Mahasiswa</a>
+        <a class="collapse-item <?php echo $this->uri->segment(2) == 'prestasi_akademik' ? 'active': '' ?>" href="<?php echo site_url('luaran/prestasi_akademik'); ?>">*Prestasi Akademik Mahasiswa</a>
+        <a class="collapse-item <?php echo $this->uri->segment(2) == 'prestasi_non_akademik' ? 'active': '' ?>" href="<?php echo site_url('luaran/prestasi_non_akademik'); ?>">*Prestasi Non-Akademik Mahasiswa</a>
         <a class="collapse-item <?php echo $this->uri->segment(2) == '#' ? 'active': '' ?>" href="<?php echo site_url('#'); ?>">*Masa Studi Lulusan </a>
         <a class="collapse-item <?php echo $this->uri->segment(2) == '#' ? 'active': '' ?>" href="<?php echo site_url('#'); ?>">*Waktu Tunggu Lulusan</a>
         <a class="collapse-item <?php echo $this->uri->segment(2) == '#' ? 'active': '' ?>" href="<?php echo site_url('#'); ?>">*Kesesuaian Bidang Kerja Lulusan</a>

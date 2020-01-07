@@ -1053,4 +1053,89 @@ class Model_master extends CI_model {
 		$data = $this->db->query($sql);
 		return $data->result();
 	}
+
+	function prestasi_akademik_data_list(){
+		$role = $this->session->userdata('nama');
+		$sql = "SELECT *,CASE WHEN tingkat='Internasional' THEN 'V' ELSE '' END AS internasional,CASE WHEN tingkat='Nasional' THEN 'V' ELSE '' END AS nasional,CASE WHEN tingkat='Lokal' THEN 'V' ELSE '' END AS lokal FROM `prestasi_akad_mhs` WHERE prodi='$role'";
+		$data = $this->db->query($sql);
+		return $data->result();
+	}
+
+	function prestasi_akademik_add(){
+		$prodi = $this->session->userdata('nama');
+		$data = array(
+			'nama_kegiatan'  => $this->input->post('nama_kegiatan'),
+			'waktu'  => $this->input->post('waktu'),
+			'tingkat' => $this->input->post('tingkat'),
+			'prestasi' => $this->input->post('prestasi'),
+			'prodi' => $prodi
+		);
+		$result = $this->db->insert('prestasi_akad_mhs', $data);
+		return $result;
+	}
+
+	function prestasi_akademik_edit(){
+		$seq_id = $this->input->post('seq_id');
+		$prodi = $this->session->userdata('nama');
+		$data = array(
+			'nama_kegiatan'  => $this->input->post('nama_kegiatan'),
+			'waktu'  => $this->input->post('waktu'),
+			'tingkat' => $this->input->post('tingkat'),
+			'prestasi' => $this->input->post('prestasi'),
+			'prodi' => $prodi
+		);
+		$this->db->where('seq_id', $seq_id);
+		$result = $this->db->update('prestasi_akad_mhs', $data);
+		return $result;
+	}
+
+	function prestasi_akademik_delete(){
+		$seq_id = $this->input->post('seq_id');
+		$this->db->where('seq_id', $seq_id);
+		$result = $this->db->delete('prestasi_akad_mhs');
+		return $result;
+	}
+	function prestasi_non_akademik_data_list(){
+		$role = $this->session->userdata('nama');
+		$sql = "SELECT *,CASE WHEN tingkat='Internasional' THEN 'V' ELSE '' END AS internasional,CASE WHEN tingkat='Nasional' THEN 'V' ELSE '' END AS nasional,CASE WHEN tingkat='Lokal' THEN 'V' ELSE '' END AS lokal FROM `prestasi_non_akad_mhs` WHERE prodi='$role'";
+		$data = $this->db->query($sql);
+		return $data->result();
+	}
+
+	function prestasi_non_akademik_add(){
+		$prodi = $this->session->userdata('nama');
+		$data = array(
+			'nama_kegiatan'  => $this->input->post('nama_kegiatan'),
+			'waktu'  => $this->input->post('waktu'),
+			'tingkat' => $this->input->post('tingkat'),
+			'prestasi' => $this->input->post('prestasi'),
+			'prodi' => $prodi
+		);
+		$result = $this->db->insert('prestasi_non_akad_mhs', $data);
+		return $result;
+	}
+
+	function prestasi_non_akademik_edit(){
+		$seq_id = $this->input->post('seq_id');
+		$prodi = $this->session->userdata('nama');
+		$data = array(
+			'nama_kegiatan'  => $this->input->post('nama_kegiatan'),
+			'waktu'  => $this->input->post('waktu'),
+			'tingkat' => $this->input->post('tingkat'),
+			'prestasi' => $this->input->post('prestasi'),
+			'prodi' => $prodi
+		);
+		$this->db->where('seq_id', $seq_id);
+		$result = $this->db->update('prestasi_non_akad_mhs', $data);
+		return $result;
+	}
+
+	function prestasi_non_akademik_delete(){
+		$seq_id = $this->input->post('seq_id');
+		$this->db->where('seq_id', $seq_id);
+		$result = $this->db->delete('prestasi_non_akad_mhs');
+		return $result;
+	}
+
+
 }
