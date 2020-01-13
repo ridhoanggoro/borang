@@ -1149,4 +1149,11 @@ class Model_master extends CI_model {
 		return $data->result();
 	}
 
+	function waktu_tunggu_lulusan_list(){
+		$prodi = $this->session->userdata('nama');
+		$sql = "SELECT ts_lulus.seq_id AS ts_id, ts_lulus.nama_ts, SUM(CASE WHEN LEFT(c.thn_lulus,4)=ts_lulus.tahun THEN 1 ELSE 0 END) AS jml, w.* FROM mahasiswa c INNER JOIN ts AS ts_lulus ON ts_lulus.tahun = LEFT(c.thn_lulus,4) AND ts_lulus.prodi = '$prodi' LEFT OUTER JOIN waktu_tunggu_lulusan w ON w.ts = ts_lulus.nama_ts AND ts_lulus.prodi = '$prodi' WHERE c.prodi = '$prodi' AND c.status_mhs='LULUS' AND ts_lulus.nama_ts IN ('TS-2','TS-3','TS-4') GROUP BY ts_lulus.nama_ts ORDER BY ts_lulus.seq_id DESC";		
+		$data = $this->db->query($sql);
+		return $data->result();
+	}
+
 }
