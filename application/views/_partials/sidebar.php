@@ -146,7 +146,7 @@
         <a class="collapse-item <?php echo $this->uri->segment(2) == 'ipk_lulusan' ? 'active': '' ?>" href="<?php echo site_url('luaran/ipk_lulusan'); ?>">*IPK Lulusan</a>
         <a class="collapse-item <?php echo $this->uri->segment(2) == 'prestasi_akademik' ? 'active': '' ?>" href="<?php echo site_url('luaran/prestasi_akademik'); ?>">*Prestasi Akademik Mahasiswa</a>
         <a class="collapse-item <?php echo $this->uri->segment(2) == 'prestasi_non_akademik' ? 'active': '' ?>" href="<?php echo site_url('luaran/prestasi_non_akademik'); ?>">*Prestasi Non-Akademik Mahasiswa</a>
-        <a class="collapse-item <?php echo $this->uri->segment(2) == '#' ? 'active': '' ?>" href="<?php echo site_url('#'); ?>">*Masa Studi Lulusan </a>
+        <a class="collapse-item <?php echo $this->uri->segment(2) == 'masa_studi_lulusan' ? 'active': '' ?>" href="<?php echo site_url('luaran/masa_studi_lulusan'); ?>">*Masa Studi Lulusan </a>
         <a class="collapse-item <?php echo $this->uri->segment(2) == '#' ? 'active': '' ?>" href="<?php echo site_url('#'); ?>">*Waktu Tunggu Lulusan</a>
         <a class="collapse-item <?php echo $this->uri->segment(2) == '#' ? 'active': '' ?>" href="<?php echo site_url('#'); ?>">*Kesesuaian Bidang Kerja Lulusan</a>
         <a class="collapse-item <?php echo $this->uri->segment(2) == '#' ? 'active': '' ?>" href="<?php echo site_url('#'); ?>">*Tempat Kerja Lulusan</a>

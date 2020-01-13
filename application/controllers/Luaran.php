@@ -79,4 +79,22 @@ class Luaran extends CI_Controller {
   		echo json_encode($data);
     }
 
+    public function masa_studi_lulusan()
+  	{
+  		$this->Model_security->getsecurity();
+      $prodi = $this->session->userdata('nama');
+  		$role = substr($prodi, strlen($prodi)-2);
+      if (strtoupper($role) == 'S1') {
+        $view = 'luaran/masa_studi_lulusan_s1';
+      } else { $view = 'luaran/masa_studi_lulusan_d3'; }
+  		$isi['title'] 	='Masa Studi Lulusan ';
+  		$isi['content']	= $view;
+  		$this->load->view('default_page', $isi);
+  	}
+
+    function masa_studi_lulusan_list(){
+  		$data = $this->Model_master->masa_studi_lulusan_list();
+  		echo json_encode($data);
+  	}
+
   }
