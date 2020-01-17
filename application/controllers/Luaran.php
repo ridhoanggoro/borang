@@ -105,11 +105,35 @@ class Luaran extends CI_Controller {
       else { $view = 'luaran/waktu_tunggu_lulusan_d3'; }
   		$isi['title'] 	='Waktu Tunggu Lulusan';
   		$isi['content']	= $view;
+      $isi['ts_list'] = $this->Model_master->ts_list();
   		$this->load->view('default_page', $isi);
   	}
 
     function waktu_tunggu_lulusan_list(){
   		$data = $this->Model_master->waktu_tunggu_lulusan_list();
   		echo json_encode($data);
+  	}
+
+    function waktu_tunggu_lulusan_add(){
+      $data = $this->Model_master->waktu_tunggu_lulusan_add();
+  		echo json_encode($data);
+    }
+
+  	function waktu_tunggu_lulusan_edit(){
+      $data = $this->Model_master->waktu_tunggu_lulusan_edit();
+  		echo json_encode($data);
+    }
+
+  	function waktu_tunggu_lulusan_delete(){
+      $data = $this->Model_master->waktu_tunggu_lulusan_delete();
+  		echo json_encode($data);
+    }
+
+    public function kesesuaian_bidang_kerja_lulusan()
+  	{
+  		$this->Model_security->getsecurity();
+  		$isi['title'] 	='Tabel 8.d.2) Kesesuaian Bidang Kerja Lulusan';
+  		$isi['content']	= 'luaran/kesesuaian_bidang_kerja_lulusan';
+  		$this->load->view('default_page', $isi);
   	}
   }

@@ -24,6 +24,7 @@
           <th rowspan="2" style="text-align: center; vertical-align: middle;">Tahun Lulus</th>
           <th rowspan="2" style="text-align: center; vertical-align: middle;">Jumlah Lulusan</th>
           <th rowspan="2" style="text-align: center; vertical-align: middle;">Jumlah Lulusan yang Terlacak</th>
+          <th rowspan="2" style="text-align: center; vertical-align: middle;">Jumlah Lulusan yang Dipesan Sebelum Lulus</th>
           <th colspan="3" style="text-align: center; vertical-align: middle;">Jumlah Lulusan Terlacak dengan Waktu Tunggu Mendapatkan Pekerjaan </th>
           <th rowspan="2" style="text-align: center; vertical-align: middle;">Menu</th>
         </tr>
@@ -59,16 +60,23 @@
             <div id="id_check_result" class="help-block with-errors"></div>
           </div>
           <div class="form-group col-md-3">
+            <label for="jml_lulusan_dipesan">Jumlah Lulusan yang Dipesan Sebelum Lulus</label>
+            <input type="number" min='1' max='9999' class="form-control" id="jml_lulusan_dipesan" name="jml_lulusan_dipesan" required>
+            <div id="id_check_result" class="help-block with-errors"></div>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group col-md-4">
             <label for="wt_dibawah_3bln">WT < 6 bulan</label>
             <input type="number" min='1' max='9999' class="form-control" id="wt_dibawah_3bln" name="wt_dibawah_3bln" required>
             <div id="id_check_result" class="help-block with-errors"></div>
           </div>
-          <div class="form-group col-md-3">
+          <div class="form-group col-md-4">
             <label for="wt_3sd6_bulan">6 ≤ WT ≤ 18 bulan</label>
             <input type="number" min='1' max='9999' class="form-control" id="wt_3sd6_bulan" name="wt_3sd6_bulan" required>
             <div id="id_check_result" class="help-block with-errors"></div>
           </div>
-          <div class="form-group col-md-3">
+          <div class="form-group col-md-4">
             <label for="wt_diatas_6bulan">WT > 18 bulan</label>
             <input type="number" min='1' max='9999' class="form-control" id="wt_diatas_6bulan" name="wt_diatas_6bulan" required>
             <div id="id_check_result" class="help-block with-errors"></div>
@@ -118,6 +126,13 @@
             <input type="number" min='1' max='9999' class="form-control" id="jml_lulusan_terlacak_edit" name="jml_lulusan_terlacak_edit" required>
             <div id="id_check_result" class="help-block with-errors"></div>
           </div>
+          <div class="form-group col-md-3">
+            <label for="jml_lulusan_dipesan">Jumlah Lulusan yang Dipesan Sebelum Lulus</label>
+            <input type="number" min='1' max='9999' class="form-control" id="jml_lulusan_dipesan" name="jml_lulusan_dipesan" required>
+            <div id="id_check_result" class="help-block with-errors"></div>
+          </div>
+        </div>
+        <div class="form-row">
           <div class="form-group col-md-3">
             <label for="wt_dibawah_3bln_edit">WT < 6 bulan</label>
             <input type="number" min='1' max='9999' class="form-control" id="wt_dibawah_3bln_edit" name="wt_dibawah_3bln_edit" required>
@@ -204,11 +219,12 @@ $(document).ready(function(){
           '<td>'+data[i].nama_ts+'</td>'+
           '<td>'+data[i].jml+'</td>'+
           '<td>'+data[i].jml_lulusan_terlacak+'</td>'+
+          '<td>'+data[i].jml_lulusan_dipesan+'</td>'+
           '<td>'+data[i].wt_dibawah_3bln+'</td>'+
           '<td>'+data[i].wt_3sd6_bulan+'</td>'+
           '<td>'+data[i].wt_diatas_6bulan+'</td>'+
           '<td style="text-align:right;">'+
-              '<a href="javascript:void(0);" class="btn btn-info btn-circle btn-sm item_edit" data-toggle="tooltip" data-placement="top" title="Edit" data-seq_id="'+data[i].seq_id+'" data-jml_lulusan_terlacak="'+data[i].jml_lulusan_terlacak+'" data-wt_dibawah_3bln="'+data[i].wt_dibawah_3bln+'" data-wt_3sd6_bulan="'+data[i].wt_3sd6_bulan+'" data-wt_diatas_6bulan="'+data[i].wt_diatas_6bulan+'" data-ts="'+data[i].ts+'"><i class="fas fa-search"></i></a>'+' '+
+              '<a href="javascript:void(0);" class="btn btn-info btn-circle btn-sm item_edit" data-toggle="tooltip" data-placement="top" title="Edit" data-seq_id="'+data[i].seq_id+'" data-jml_lulusan_terlacak="'+data[i].jml_lulusan_terlacak+'" data-wt_dibawah_3bln="'+data[i].wt_dibawah_3bln+'" data-wt_3sd6_bulan="'+data[i].wt_3sd6_bulan+'" data-wt_diatas_6bulan="'+data[i].wt_diatas_6bulan+'" data-ts="'+data[i].ts+'" data-jml_lulusan_dipesan="'+data[i].jml_lulusan_dipesan+'"><i class="fas fa-search"></i></a>'+' '+
               '<a href="javascript:void(0);" class="btn btn-danger btn-circle btn-sm item_delete" data-toggle="tooltip" data-placement="top" title="Delete" data-seq_id="'+data[i].seq_id+'"><i class="fas fa-trash"></i></a>'+
           '</td>'+
           '</tr>';

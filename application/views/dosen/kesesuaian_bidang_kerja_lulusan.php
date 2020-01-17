@@ -8,7 +8,7 @@
         </span>
         <span class="text">Tambah Data</span>
       </a>
-      <a href="<?php echo base_url('export/export_excel/'.encode_url('8d1_s1'));?>" class="btn btn-success btn-icon-split btn-sm">
+      <a href="<?php echo base_url('export/export_excel/'.encode_url('8d2'));?>" class="btn btn-success btn-icon-split btn-sm">
         <span class="icon text-white-50">
           <i class="fas fa-file-excel"></i>
         </span>
@@ -24,13 +24,13 @@
           <th rowspan="2" style="text-align: center; vertical-align: middle;">Tahun Lulus</th>
           <th rowspan="2" style="text-align: center; vertical-align: middle;">Jumlah Lulusan</th>
           <th rowspan="2" style="text-align: center; vertical-align: middle;">Jumlah Lulusan yang Terlacak</th>
-          <th colspan="3" style="text-align: center; vertical-align: middle;">Jumlah Lulusan Terlacak dengan Waktu Tunggu Mendapatkan Pekerjaan </th>
+          <th colspan="3" style="text-align: center; vertical-align: middle;">Jumlah lulusan Terlacak dengan Tingkat Keseuaian Bidang Kerja</th>
           <th rowspan="2" style="text-align: center; vertical-align: middle;">Menu</th>
         </tr>
         <tr>
-          <th style="text-align: center; vertical-align: middle;">WT < 6 bulan</th>
-          <th style="text-align: center; vertical-align: middle;">6 ≤ WT ≤ 18 bulan</th>
-          <th style="text-align: center; vertical-align: middle;">WT > 18 bulan</th>
+          <th style="text-align: center; vertical-align: middle;">Rendah</th>
+          <th style="text-align: center; vertical-align: middle;">Sedang</th>
+          <th style="text-align: center; vertical-align: middle;">Tinggi</th>
         </tr>
       </thead>
       <tbody id="tampil_data">
@@ -59,17 +59,17 @@
             <div id="id_check_result" class="help-block with-errors"></div>
           </div>
           <div class="form-group col-md-3">
-            <label for="wt_dibawah_3bln">WT < 6 bulan</label>
+            <label for="wt_dibawah_3bln">Rendah</label>
             <input type="number" min='1' max='9999' class="form-control" id="wt_dibawah_3bln" name="wt_dibawah_3bln" required>
             <div id="id_check_result" class="help-block with-errors"></div>
           </div>
           <div class="form-group col-md-3">
-            <label for="wt_3sd6_bulan">6 ≤ WT ≤ 18 bulan</label>
+            <label for="wt_3sd6_bulan">Sedang</label>
             <input type="number" min='1' max='9999' class="form-control" id="wt_3sd6_bulan" name="wt_3sd6_bulan" required>
             <div id="id_check_result" class="help-block with-errors"></div>
           </div>
           <div class="form-group col-md-3">
-            <label for="wt_diatas_6bulan">WT > 18 bulan</label>
+            <label for="wt_diatas_6bulan">Tinggi</label>
             <input type="number" min='1' max='9999' class="form-control" id="wt_diatas_6bulan" name="wt_diatas_6bulan" required>
             <div id="id_check_result" class="help-block with-errors"></div>
           </div>
@@ -119,17 +119,17 @@
             <div id="id_check_result" class="help-block with-errors"></div>
           </div>
           <div class="form-group col-md-3">
-            <label for="wt_dibawah_3bln_edit">WT < 6 bulan</label>
+            <label for="wt_dibawah_3bln_edit">Rendah</label>
             <input type="number" min='1' max='9999' class="form-control" id="wt_dibawah_3bln_edit" name="wt_dibawah_3bln_edit" required>
             <div id="id_check_result" class="help-block with-errors"></div>
           </div>
           <div class="form-group col-md-3">
-            <label for="wt_3sd6_bulan_edit">6 ≤ WT ≤ 18 bulan</label>
+            <label for="wt_3sd6_bulan_edit">Sedang</label>
             <input type="number" min='1' max='9999' class="form-control" id="wt_3sd6_bulan_edit" name="wt_3sd6_bulan_edit" required>
             <div id="id_check_result" class="help-block with-errors"></div>
           </div>
           <div class="form-group col-md-3">
-            <label for="wt_diatas_6bulan_edit">WT > 18 bulan</label>
+            <label for="wt_diatas_6bulan_edit">Tinggi</label>
             <input type="number" min='1' max='9999' class="form-control" id="wt_diatas_6bulan_edit" name="wt_diatas_6bulan_edit" required>
             <div id="id_check_result" class="help-block with-errors"></div>
           </div>

@@ -1151,7 +1151,62 @@ class Model_master extends CI_model {
 
 	function waktu_tunggu_lulusan_list(){
 		$prodi = $this->session->userdata('nama');
-		$sql = "SELECT ts_lulus.seq_id AS ts_id, ts_lulus.nama_ts, SUM(CASE WHEN LEFT(c.thn_lulus,4)=ts_lulus.tahun THEN 1 ELSE 0 END) AS jml, w.* FROM mahasiswa c INNER JOIN ts AS ts_lulus ON ts_lulus.tahun = LEFT(c.thn_lulus,4) AND ts_lulus.prodi = '$prodi' LEFT OUTER JOIN waktu_tunggu_lulusan w ON w.ts = ts_lulus.nama_ts AND ts_lulus.prodi = '$prodi' WHERE c.prodi = '$prodi' AND c.status_mhs='LULUS' AND ts_lulus.nama_ts IN ('TS-2','TS-3','TS-4') GROUP BY ts_lulus.nama_ts ORDER BY ts_lulus.seq_id DESC";		
+		$sql = "SELECT ts_lulus.seq_id AS ts_id, ts_lulus.nama_ts, SUM(CASE WHEN LEFT(c.thn_lulus,4)=ts_lulus.tahun THEN 1 ELSE 0 END) AS jml, w.* FROM mahasiswa c INNER JOIN ts AS ts_lulus ON ts_lulus.tahun = LEFT(c.thn_lulus,4) AND ts_lulus.prodi = '$prodi' LEFT OUTER JOIN waktu_tunggu_lulusan w ON w.ts = ts_lulus.nama_ts AND ts_lulus.prodi = '$prodi' WHERE c.prodi = '$prodi' AND c.status_mhs='LULUS' AND ts_lulus.nama_ts IN ('TS-2','TS-3','TS-4') GROUP BY ts_lulus.nama_ts ORDER BY ts_lulus.seq_id DESC";
+		$data = $this->db->query($sql);
+		return $data->result();
+	}
+
+	function ts_list()
+	{
+		$role = $this->session->userdata('nama');
+		$this->db->where('prodi', $role);
+		$this->db->order_by('nama_ts', 'ASC');
+		$data = $this->db->get('ts');
+		return $data;
+	}
+
+	function waktu_tunggu_lulusan_add(){
+		$prodi = $this->session->userdata('nama');
+		$data = array(
+			'jml_lulusan_terlacak'  => $this->input->post('jml_lulusan_terlacak'),
+			'jml_lulusan_dipesan'  => $this->input->post('jml_lulusan_dipesan'),
+			'wt_dibawah_3bln' => $this->input->post('wt_dibawah_3bln'),
+			'wt_3sd6_bulan' => $this->input->post('wt_3sd6_bulan'),
+			'wt_diatas_6bulan' => $this->input->post('wt_diatas_6bulan'),
+			'prodi' => $prodi,
+			'ts' => $this->input->post('ts')
+		);
+		$result = $this->db->insert('waktu_tunggu_lulusan', $data);
+		return $result;
+	}
+
+	function waktu_tunggu_lulusan_edit(){
+		$seq_id = $this->input->post('seq_id');
+		$prodi = $this->session->userdata('nama');
+		$data = array(
+			'jml_lulusan_terlacak'  => $this->input->post('jml_lulusan_terlacak'),
+			'jml_lulusan_dipesan'  => $this->input->post('jml_lulusan_dipesan'),
+			'wt_dibawah_3bln' => $this->input->post('wt_dibawah_3bln'),
+			'wt_3sd6_bulan' => $this->input->post('wt_3sd6_bulan'),
+			'wt_diatas_6bulan' => $this->input->post('wt_diatas_6bulan'),
+			'prodi' => $prodi,
+			'ts' => $this->input->post('ts')
+		);
+		$this->db->where('seq_id', $seq_id);
+		$result = $this->db->update('waktu_tunggu_lulusan', $data);
+		return $result;
+	}
+
+	function waktu_tunggu_lulusan_delete(){
+		$seq_id = $this->input->post('seq_id');
+		$this->db->where('seq_id', $seq_id);
+		$result = $this->db->delete('waktu_tunggu_lulusan');
+		return $result;
+	}
+
+	function kesesuaian_bidang_kerja_lulusan_list(){
+		$prodi = $this->session->userdata('nama');
+		$sql = "SELECT ts_lulus.seq_id AS ts_id, ts_lulus.nama_ts, SUM(CASE WHEN LEFT(c.thn_lulus,4)=ts_lulus.tahun THEN 1 ELSE 0 END) AS jml, w.* FROM mahasiswa c INNER JOIN ts AS ts_lulus ON ts_lulus.tahun = LEFT(c.thn_lulus,4) AND ts_lulus.prodi = '$prodi' LEFT OUTER JOIN kesesuaian_bidang_kerja_lulusan w ON w.ts = ts_lulus.nama_ts AND ts_lulus.prodi = '$prodi' WHERE c.prodi = '$prodi' AND c.status_mhs='LULUS' AND ts_lulus.nama_ts IN ('TS-2','TS-3','TS-4') GROUP BY ts_lulus.nama_ts ORDER BY ts_lulus.seq_id DESC";
 		$data = $this->db->query($sql);
 		return $data->result();
 	}

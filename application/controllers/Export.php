@@ -677,6 +677,41 @@ class Export extends CI_Controller {
 							$col++;
 						}
 						break;
+					case '8d1_s1':
+						$fileName = './assets/template/8d1_s1.xlsx';
+						$objPHPExcel = $objReader->load($fileName);
+						$objPHPExcel->setActiveSheetIndex(0);
+						$objPHPExcel->getActiveSheet();
+						$data = $this->Model_master->waktu_tunggu_lulusan_list();
+						$col = 7;
+						$no = 1;
+						foreach ($data as $val) {
+							$objPHPExcel->setActiveSheetIndex()->setCellValue('B'.$col, $val->jml);
+							$objPHPExcel->setActiveSheetIndex()->setCellValue('C'.$col, $val->jml_lulusan_terlacak);
+							$objPHPExcel->setActiveSheetIndex()->setCellValue('D'.$col, $val->wt_dibawah_3bln);
+							$objPHPExcel->setActiveSheetIndex()->setCellValue('E'.$col, $val->wt_3sd6_bulan);
+							$objPHPExcel->setActiveSheetIndex()->setCellValue('F'.$col, $val->wt_diatas_6bulan);
+							$col++;
+						}
+						break;
+					case '8d1_d3':
+						$fileName = './assets/template/8d1_d3.xlsx';
+						$objPHPExcel = $objReader->load($fileName);
+						$objPHPExcel->setActiveSheetIndex(0);
+						$objPHPExcel->getActiveSheet();
+						$data = $this->Model_master->waktu_tunggu_lulusan_list();
+						$col = 7;
+						$no = 1;
+						foreach ($data as $val) {
+							$objPHPExcel->setActiveSheetIndex()->setCellValue('B'.$col, $val->jml);
+							$objPHPExcel->setActiveSheetIndex()->setCellValue('C'.$col, $val->jml_lulusan_terlacak);
+							$objPHPExcel->setActiveSheetIndex()->setCellValue('D'.$col, $val->jml_lulusan_dipesan);
+							$objPHPExcel->setActiveSheetIndex()->setCellValue('E'.$col, $val->wt_dibawah_3bln);
+							$objPHPExcel->setActiveSheetIndex()->setCellValue('F'.$col, $val->wt_3sd6_bulan);
+							$objPHPExcel->setActiveSheetIndex()->setCellValue('G'.$col, $val->wt_diatas_6bulan);
+							$col++;
+						}
+						break;
 	      default:
         // code...
         break;
