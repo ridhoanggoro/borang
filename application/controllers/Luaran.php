@@ -134,6 +134,85 @@ class Luaran extends CI_Controller {
   		$this->Model_security->getsecurity();
   		$isi['title'] 	='Tabel 8.d.2) Kesesuaian Bidang Kerja Lulusan';
   		$isi['content']	= 'luaran/kesesuaian_bidang_kerja_lulusan';
+      $isi['ts_list'] = $this->Model_master->ts_list();
   		$this->load->view('default_page', $isi);
   	}
+
+    function kesesuaian_bidang_kerja_lulusan_list(){
+  		$data = $this->Model_master->kesesuaian_bidang_kerja_lulusan_list();
+  		echo json_encode($data);
+  	}
+
+    function kesesuaian_bidang_kerja_lulusan_add(){
+      $data = $this->Model_master->kesesuaian_bidang_kerja_lulusan_add();
+  		echo json_encode($data);
+    }
+
+  	function kesesuaian_bidang_kerja_lulusan_edit(){
+      $data = $this->Model_master->kesesuaian_bidang_kerja_lulusan_edit();
+  		echo json_encode($data);
+    }
+
+  	function kesesuaian_bidang_kerja_lulusan_delete(){
+      $data = $this->Model_master->kesesuaian_bidang_kerja_lulusan_delete();
+  		echo json_encode($data);
+    }
+
+    public function tempat_kerja_lulusan()
+  	{
+  		$this->Model_security->getsecurity();
+  		$isi['title'] 	='Tabel 8.e.1) Tempat Kerja Lulusan';
+  		$isi['content']	= 'luaran/tempat_kerja_lulusan';
+      $isi['ts_list'] = $this->Model_master->ts_list();
+  		$this->load->view('default_page', $isi);
+  	}
+
+    function tempat_kerja_lulusan_list(){
+  		$data = $this->Model_master->tempat_kerja_lulusan_list();
+  		echo json_encode($data);
+  	}
+
+    function tempat_kerja_lulusan_add(){
+      $data = $this->Model_master->tempat_kerja_lulusan_add();
+  		echo json_encode($data);
+    }
+
+  	function tempat_kerja_lulusan_edit(){
+      $data = $this->Model_master->tempat_kerja_lulusan_edit();
+  		echo json_encode($data);
+    }
+
+  	function tempat_kerja_lulusan_delete(){
+      $data = $this->Model_master->tempat_kerja_lulusan_delete();
+  		echo json_encode($data);
+    }
+
+    public function ref_kepuasan_pelanggan_lulusan()
+  	{
+  		$this->Model_security->getsecurity();
+  		$isi['title'] 	='Tabel Referensi untuk Tabel (8.e.2) Kepuasan Pengguna Lulusan';
+  		$isi['content']	= 'luaran/kepuasan_pelanggan_lulusan';
+      $isi['ts_list'] = $this->Model_master->ts_list();
+  		$this->load->view('default_page', $isi);
+  	}
+
+    function ref_kepuasan_pelanggan_lulusan_list(){
+  		$data = $this->Model_master->ref_kepuasan_pelanggan_lulusan_list();
+  		echo json_encode($data);
+  	}
+
+    function ref_kepuasan_pelanggan_lulusan_add(){
+      $data = $this->Model_master->ref_kepuasan_pelanggan_lulusan_add();
+  		echo json_encode($data);
+    }
+
+  	function ref_kepuasan_pelanggan_lulusan_edit(){
+      $data = $this->Model_master->ref_kepuasan_pelanggan_lulusan_edit();
+  		echo json_encode($data);
+    }
+
+  	function ref_kepuasan_pelanggan_lulusan_delete(){
+      $data = $this->Model_master->ref_kepuasan_pelanggan_lulusan_delete();
+  		echo json_encode($data);
+    }
   }

@@ -1211,4 +1211,123 @@ class Model_master extends CI_model {
 		return $data->result();
 	}
 
+	function kesesuaian_bidang_kerja_lulusan_add(){
+		$prodi = $this->session->userdata('nama');
+		$data = array(
+			'jml_lulusan_terlacak'  => $this->input->post('jml_lulusan_terlacak'),
+			'jml_lulusan_terlacak_rendah'  => $this->input->post('jml_lulusan_terlacak_rendah'),
+			'jml_lulusan_terlacak_sedang' => $this->input->post('jml_lulusan_terlacak_sedang'),
+			'jml_lulusan_terlacak_tinggi' => $this->input->post('jml_lulusan_terlacak_tinggi'),
+			'prodi' => $prodi,
+			'ts' => $this->input->post('ts')
+		);
+		$result = $this->db->insert('kesesuaian_bidang_kerja_lulusan', $data);
+		return $result;
+	}
+
+	function kesesuaian_bidang_kerja_lulusan_edit(){
+		$seq_id = $this->input->post('seq_id');
+		$prodi = $this->session->userdata('nama');
+		$data = array(
+			'jml_lulusan_terlacak'  => $this->input->post('jml_lulusan_terlacak'),
+			'jml_lulusan_terlacak_rendah'  => $this->input->post('jml_lulusan_terlacak_rendah'),
+			'jml_lulusan_terlacak_sedang' => $this->input->post('jml_lulusan_terlacak_sedang'),
+			'jml_lulusan_terlacak_tinggi' => $this->input->post('jml_lulusan_terlacak_tinggi'),
+			'prodi' => $prodi,
+			'ts' => $this->input->post('ts')
+		);
+		$this->db->where('seq_id', $seq_id);
+		$result = $this->db->update('kesesuaian_bidang_kerja_lulusan', $data);
+		return $result;
+	}
+
+	function kesesuaian_bidang_kerja_lulusan_delete(){
+		$seq_id = $this->input->post('seq_id');
+		$this->db->where('seq_id', $seq_id);
+		$result = $this->db->delete('kesesuaian_bidang_kerja_lulusan');
+		return $result;
+	}
+
+	function tempat_kerja_lulusan_list(){
+		$prodi = $this->session->userdata('nama');
+		$sql = "SELECT ts_lulus.seq_id AS ts_id, ts_lulus.nama_ts, SUM(CASE WHEN LEFT(c.thn_lulus,4)=ts_lulus.tahun THEN 1 ELSE 0 END) AS jml, w.* FROM mahasiswa c INNER JOIN ts AS ts_lulus ON ts_lulus.tahun = LEFT(c.thn_lulus,4) AND ts_lulus.prodi = '$prodi' LEFT OUTER JOIN tempat_kerja_lulusan w ON w.ts = ts_lulus.nama_ts AND ts_lulus.prodi = '$prodi' WHERE c.prodi = '$prodi' AND c.status_mhs='LULUS' AND ts_lulus.nama_ts IN ('TS-2','TS-3','TS-4') GROUP BY ts_lulus.nama_ts ORDER BY ts_lulus.seq_id DESC";
+		$data = $this->db->query($sql);
+		return $data->result();
+	}
+
+	function tempat_kerja_lulusan_add(){
+		$prodi = $this->session->userdata('nama');
+		$data = array(
+			'jml_lulusan_terlacak'  => $this->input->post('jml_lulusan_terlacak'),
+			'jml_lulusan_terlacak_lokal'  => $this->input->post('jml_lulusan_terlacak_lokal'),
+			'jml_lulusan_terlacak_nasional' => $this->input->post('jml_lulusan_terlacak_nasional'),
+			'jml_lulusan_terlacak_internasional' => $this->input->post('jml_lulusan_terlacak_internasional'),
+			'prodi' => $prodi,
+			'ts' => $this->input->post('ts')
+		);
+		$result = $this->db->insert('tempat_kerja_lulusan', $data);
+		return $result;
+	}
+
+	function tempat_kerja_lulusan_edit(){
+		$seq_id = $this->input->post('seq_id');
+		$prodi = $this->session->userdata('nama');
+		$data = array(
+			'jml_lulusan_terlacak'  => $this->input->post('jml_lulusan_terlacak'),
+			'jml_lulusan_terlacak_lokal'  => $this->input->post('jml_lulusan_terlacak_lokal'),
+			'jml_lulusan_terlacak_nasional' => $this->input->post('jml_lulusan_terlacak_nasional'),
+			'jml_lulusan_terlacak_internasional' => $this->input->post('jml_lulusan_terlacak_internasional'),
+			'prodi' => $prodi,
+			'ts' => $this->input->post('ts')
+		);
+		$this->db->where('seq_id', $seq_id);
+		$result = $this->db->update('tempat_kerja_lulusan', $data);
+		return $result;
+	}
+
+	function tempat_kerja_lulusan_delete(){
+		$seq_id = $this->input->post('seq_id');
+		$this->db->where('seq_id', $seq_id);
+		$result = $this->db->delete('tempat_kerja_lulusan');
+		return $result;
+	}
+
+	function ref_kepuasan_pelanggan_lulusan_list(){
+		$prodi = $this->session->userdata('nama');
+		$sql = "SELECT ts_lulus.seq_id AS ts_id, ts_lulus.nama_ts, SUM(CASE WHEN LEFT(c.thn_lulus,4)=ts_lulus.tahun THEN 1 ELSE 0 END) AS jml, w.* FROM mahasiswa c INNER JOIN ts AS ts_lulus ON ts_lulus.tahun = LEFT(c.thn_lulus,4) AND ts_lulus.prodi = '$prodi' LEFT OUTER JOIN ref_kepuasan_pelanggan_lulusan w ON w.ts = ts_lulus.nama_ts AND ts_lulus.prodi = '$prodi' WHERE c.prodi = '$prodi' AND c.status_mhs='LULUS' AND ts_lulus.nama_ts IN ('TS-2','TS-3','TS-4') GROUP BY ts_lulus.nama_ts ORDER BY ts_lulus.seq_id DESC";
+		$data = $this->db->query($sql);
+		return $data->result();
+	}
+
+	function ref_kepuasan_pelanggan_lulusan_add(){
+		$prodi = $this->session->userdata('nama');
+		$data = array(
+			'jml_tanggapan_terlacak'  => $this->input->post('jml_tanggapan_terlacak'),
+			'prodi' => $prodi,
+			'ts' => $this->input->post('ts')
+		);
+		$result = $this->db->insert('ref_kepuasan_pelanggan_lulusan', $data);
+		return $result;
+	}
+
+	function ref_kepuasan_pelanggan_lulusan_edit(){
+		$seq_id = $this->input->post('seq_id');
+		$prodi = $this->session->userdata('nama');
+		$data = array(
+			'jml_tanggapan_terlacak'  => $this->input->post('jml_tanggapan_terlacak'),
+			'prodi' => $prodi,
+			'ts' => $this->input->post('ts')
+		);
+		$this->db->where('seq_id', $seq_id);
+		$result = $this->db->update('ref_kepuasan_pelanggan_lulusan', $data);
+		return $result;
+	}
+
+	function ref_kepuasan_pelanggan_lulusan_delete(){
+		$seq_id = $this->input->post('seq_id');
+		$this->db->where('seq_id', $seq_id);
+		$result = $this->db->delete('ref_kepuasan_pelanggan_lulusan');
+		return $result;
+	}
+
 }

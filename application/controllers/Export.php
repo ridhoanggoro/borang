@@ -712,6 +712,54 @@ class Export extends CI_Controller {
 							$col++;
 						}
 						break;
+					case '8d2':
+						$fileName = './assets/template/8d2.xlsx';
+						$objPHPExcel = $objReader->load($fileName);
+						$objPHPExcel->setActiveSheetIndex(0);
+						$objPHPExcel->getActiveSheet();
+						$data = $this->Model_master->kesesuaian_bidang_kerja_lulusan_list();
+						$col = 7;
+						$no = 1;
+						foreach ($data as $val) {
+							$objPHPExcel->setActiveSheetIndex()->setCellValue('B'.$col, $val->jml);
+							$objPHPExcel->setActiveSheetIndex()->setCellValue('C'.$col, $val->jml_lulusan_terlacak);
+							$objPHPExcel->setActiveSheetIndex()->setCellValue('D'.$col, $val->jml_lulusan_terlacak_rendah);
+							$objPHPExcel->setActiveSheetIndex()->setCellValue('E'.$col, $val->jml_lulusan_terlacak_sedang);
+							$objPHPExcel->setActiveSheetIndex()->setCellValue('F'.$col, $val->jml_lulusan_terlacak_tinggi);
+							$col++;
+						}
+						break;
+					case '8e1':
+						$fileName = './assets/template/8e1.xlsx';
+						$objPHPExcel = $objReader->load($fileName);
+						$objPHPExcel->setActiveSheetIndex(0);
+						$objPHPExcel->getActiveSheet();
+						$data = $this->Model_master->tempat_kerja_lulusan_list();
+						$col = 7;
+						$no = 1;
+						foreach ($data as $val) {
+							$objPHPExcel->setActiveSheetIndex()->setCellValue('B'.$col, $val->jml);
+							$objPHPExcel->setActiveSheetIndex()->setCellValue('C'.$col, $val->jml_lulusan_terlacak);
+							$objPHPExcel->setActiveSheetIndex()->setCellValue('D'.$col, $val->jml_lulusan_terlacak_lokal);
+							$objPHPExcel->setActiveSheetIndex()->setCellValue('E'.$col, $val->jml_lulusan_terlacak_nasional);
+							$objPHPExcel->setActiveSheetIndex()->setCellValue('F'.$col, $val->jml_lulusan_terlacak_internasional);
+							$col++;
+						}
+						break;
+					case 'Ref_8e2':
+						$fileName = './assets/template/Ref_8e2.xlsx';
+						$objPHPExcel = $objReader->load($fileName);
+						$objPHPExcel->setActiveSheetIndex(0);
+						$objPHPExcel->getActiveSheet();
+						$data = $this->Model_master->ref_kepuasan_pelanggan_lulusan_list();
+						$col = 7;
+						$no = 1;
+						foreach ($data as $val) {
+							$objPHPExcel->setActiveSheetIndex()->setCellValue('B'.$col, $val->jml);
+							$objPHPExcel->setActiveSheetIndex()->setCellValue('C'.$col, $val->jml_tanggapan_terlacak);
+							$col++;
+						}
+						break;
 	      default:
         // code...
         break;

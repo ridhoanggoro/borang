@@ -148,9 +148,9 @@
         <a class="collapse-item <?php echo $this->uri->segment(2) == 'prestasi_non_akademik' ? 'active': '' ?>" href="<?php echo site_url('luaran/prestasi_non_akademik'); ?>">*Prestasi Non-Akademik Mahasiswa</a>
         <a class="collapse-item <?php echo $this->uri->segment(2) == 'masa_studi_lulusan' ? 'active': '' ?>" href="<?php echo site_url('luaran/masa_studi_lulusan'); ?>">*Masa Studi Lulusan </a>
         <a class="collapse-item <?php echo $this->uri->segment(2) == 'waktu_tunggu_lulusan' ? 'active': '' ?>" href="<?php echo site_url('luaran/waktu_tunggu_lulusan'); ?>">*Waktu Tunggu Lulusan</a>
-        <a class="collapse-item <?php echo $this->uri->segment(2) == '#' ? 'active': '' ?>" href="<?php echo site_url('#'); ?>">*Kesesuaian Bidang Kerja Lulusan</a>
-        <a class="collapse-item <?php echo $this->uri->segment(2) == '#' ? 'active': '' ?>" href="<?php echo site_url('#'); ?>">*Tempat Kerja Lulusan</a>
-        <a class="collapse-item <?php echo $this->uri->segment(2) == '#' ? 'active': '' ?>" href="<?php echo site_url('#'); ?>">*Referensi Kepuasan Pengguna Lulusan</a>
+        <a class="collapse-item <?php echo $this->uri->segment(2) == 'kesesuaian_bidang_kerja_lulusan' ? 'active': '' ?>" href="<?php echo site_url('luaran/kesesuaian_bidang_kerja_lulusan'); ?>">*Kesesuaian Bidang Kerja Lulusan</a>
+        <a class="collapse-item <?php echo $this->uri->segment(2) == 'tempat_kerja_lulusan' ? 'active': '' ?>" href="<?php echo site_url('luaran/tempat_kerja_lulusan'); ?>">*Tempat Kerja Lulusan</a>
+        <a class="collapse-item <?php echo $this->uri->segment(2) == 'ref_kepuasan_pelanggan_lulusan' ? 'active': '' ?>" href="<?php echo site_url('luaran/ref_kepuasan_pelanggan_lulusan'); ?>">*Referensi Kepuasan Pengguna Lulusan</a>
         <a class="collapse-item <?php echo $this->uri->segment(2) == '#' ? 'active': '' ?>" href="<?php echo site_url('#'); ?>">*Kepuasan Pengguna Lulusan</a>
         <a class="collapse-item <?php echo $this->uri->segment(2) == '#' ? 'active': '' ?>" href="<?php echo site_url('#'); ?>">*Publikasi Ilmiah Mahasiswa</a>
 		    <a class="collapse-item <?php echo $this->uri->segment(2) == '#' ? 'active': '' ?>" href="<?php echo site_url('#'); ?>">*Karya Ilmiah yang Disitasi</a>
