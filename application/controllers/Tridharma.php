@@ -29,8 +29,56 @@ class Tridharma extends CI_Controller {
     }
 
     function pendidikan_edit(){
-      $data = $this->Model_master->tridharma_pendidikan_edit();
+      $config['upload_path']="./assets/document";
+  		$config['allowed_types']='xls|xlsx|jpg|png|pdf|docx|doc';
+  		$config['encrypt_name'] = TRUE;
+  		$this->load->library('upload',$config);
+  		$seq_id = $this->input->post('seq_id');
+  		$prodi = $this->session->userdata('nama');
+  		if($this->upload->do_upload("file_edit")){
+  			$docs = array('upload_data' => $this->upload->data());
+  			$file = $docs['upload_data']['file_name'];
+  			$data = array(
+  	      		'prodi' => $prodi,
+  	  				'lembaga_mitra'  => $this->input->post('mitra_edit'),
+  	  		    'tingkat'  => $this->input->post('tingkat_edit'),
+  	  		    'judul_kegiatan' => $this->input->post('judul_kegiatan_edit'),
+  	  		    'manfaat_bagi_ps' => $this->input->post('manfaat_bagi_ps_edit'),
+  	  				'durasi' => $this->input->post('waktu_edit'),
+  	  				'bukti_kerjasama' => $this->input->post('bukti_edit'),
+  	  				'tahun_berakhir' => $this->input->post('tahun_berakhir_edit'),
+  	  				'doc' => $file
+  	  		);
+  		} else {
+  			$data = array(
+  	      		'prodi' => $prodi,
+  	  				'lembaga_mitra'  => $this->input->post('mitra_edit'),
+  	  		    'tingkat'  => $this->input->post('tingkat_edit'),
+  	  		    'judul_kegiatan' => $this->input->post('judul_kegiatan_edit'),
+  	  		    'manfaat_bagi_ps' => $this->input->post('manfaat_bagi_ps_edit'),
+  	  				'durasi' => $this->input->post('waktu_edit'),
+  	  				'bukti_kerjasama' => $this->input->post('bukti_edit'),
+  	  				'tahun_berakhir' => $this->input->post('tahun_berakhir_edit'),
+  	  		);
+  		}
+      $data = $this->Model_master->tridharma_pendidikan_edit($seq_id, $data);
       echo json_encode($data);
+    }
+
+    function pendidikan_upload(){
+        $config['upload_path'] = './assets/temp/';
+        $config['allowed_types'] = 'xlsx|xls';
+        $this->load->library('PHPExcel');
+        $this->load->library('upload', $config);
+
+        if ($this->upload->do_upload('file_upload')){
+          $data = array('upload_data' => $this->upload->data());
+          $upload_data = $this->upload->data();
+          $filename = $upload_data['orig_name'];
+          $data = $this->Model_master->upload_excel($filename, '1-1');
+          unlink('./assets/upload/'.$filename);
+          echo json_encode($data);
+        }
     }
 
     function pendidikan_delete(){
