@@ -215,4 +215,32 @@ class Luaran extends CI_Controller {
       $data = $this->Model_master->ref_kepuasan_pelanggan_lulusan_delete();
   		echo json_encode($data);
     }
+
+    public function kepuasan_pengguna_lulusan()
+  	{
+  		$this->Model_security->getsecurity();
+  		$isi['title'] 	='Tabel (8.e.2) Kepuasan Pengguna Lulusan';
+  		$isi['content']	= 'luaran/kepuasan_pengguna_lulusan';      
+  		$this->load->view('default_page', $isi);
+  	}
+
+    function kepuasan_pengguna_lulusan_list(){
+  		$data = $this->Model_master->kepuasan_pengguna_lulusan_list();
+  		echo json_encode($data);
+  	}
+
+    function kepuasan_pengguna_lulusan_add(){
+      $data = $this->Model_master->kepuasan_pengguna_lulusan_add();
+  		echo json_encode($data);
+    }
+
+  	function kepuasan_pengguna_lulusan_edit(){
+      $data = $this->Model_master->kepuasan_pengguna_lulusan_edit();
+  		echo json_encode($data);
+    }
+
+  	function kepuasan_pengguna_lulusan_delete(){
+      $data = $this->Model_master->kepuasan_pengguna_lulusan_delete();
+  		echo json_encode($data);
+    }
   }

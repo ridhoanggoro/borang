@@ -1318,6 +1318,13 @@ class Model_master extends CI_model {
 		return $result;
 	}
 
+	function kepuasan_pengguna_lulusan_list(){
+		$prodi = $this->session->userdata('nama');
+		$sql = "SELECT a.nama,b.* FROM `jenis_publikasi` a LEFT OUTER JOIN kepuasan_pengguna_lulusan b on b.jns_kemampuan=a.id and b.prodi='$prodi' WHERE a.modul='kepuasan_pengguna_lulusan' GROUP by a.seq_id";
+		$data = $this->db->query($sql);
+		return $data->result();
+	}
+
 	function upload_excel($filename, $modul){
     ini_set('memory_limit', '-1');
     $inputFileName = './assets/temp/'.$filename;
