@@ -1325,6 +1325,100 @@ class Model_master extends CI_model {
 		return $data->result();
 	}
 
+	function jenis_kemampuan_list()
+	{
+		$this->db->where('modul', 'kepuasan_pengguna_lulusan');
+		$this->db->order_by('nama', 'id');
+		$data = $this->db->get('jenis_publikasi');
+		return $data;
+	}
+
+	function kepuasan_pengguna_lulusan_add(){
+		$prodi = $this->session->userdata('nama');
+		$data = array(
+			'jns_kemampuan'  => $this->input->post('jns_kemampuan'),
+			'sangat_baik'  => $this->input->post('sangat_baik'),
+			'baik'  => $this->input->post('baik'),
+			'cukup'  => $this->input->post('cukup'),
+			'kurang'  => $this->input->post('kurang'),
+			'rencana_tindak_lanjut'  => $this->input->post('rencana_tindak_lanjut'),
+			'prodi' => $prodi
+		);
+		$result = $this->db->insert('kepuasan_pengguna_lulusan', $data);
+		return $result;
+	}
+
+	function kepuasan_pengguna_lulusan_edit(){
+		$seq_id = $this->input->post('seq_id');
+		$prodi = $this->session->userdata('nama');
+		$data = array(
+			'jns_kemampuan'  => $this->input->post('jns_kemampuan'),
+			'sangat_baik'  => $this->input->post('sangat_baik'),
+			'baik'  => $this->input->post('baik'),
+			'cukup'  => $this->input->post('cukup'),
+			'kurang'  => $this->input->post('kurang'),
+			'rencana_tindak_lanjut'  => $this->input->post('rencana_tindak_lanjut'),
+			'prodi' => $prodi
+		);
+		$this->db->where('seq_id', $seq_id);
+		$result = $this->db->update('kepuasan_pengguna_lulusan', $data);
+		return $result;
+	}
+
+	function kepuasan_pengguna_lulusan_delete(){
+		$seq_id = $this->input->post('seq_id');
+		$this->db->where('seq_id', $seq_id);
+		$result = $this->db->delete('kepuasan_pengguna_lulusan');
+		return $result;
+	}
+
+	function publikasi_ilmiah_mhs_data_list(){
+		$role = $this->session->userdata('nama');
+		$sql = "SELECT a.nama, SUM(CASE WHEN(b.th_akademik = ts2.tahun AND b.prodi='$role') THEN jml_judul ELSE 0 END) AS ts2, SUM(CASE WHEN(b.th_akademik = ts1.tahun AND b.prodi='$role') THEN jml_judul ELSE 0 END) AS ts1, SUM(CASE WHEN(b.th_akademik = ts.tahun AND b.prodi='$role') THEN jml_judul ELSE 0 END) AS ts FROM `jenis_publikasi` a LEFT JOIN publikasi_ilmiah_mhs b on b.jenis_publikasi=a.id LEFT JOIN ts AS ts2 ON ts2.tahun = b.th_akademik AND ts2.prodi = '$role' AND ts2.nama_ts = 'TS-2' LEFT JOIN ts AS ts1 ON ts1.tahun = b.th_akademik AND ts1.prodi = '$role' AND ts1.nama_ts = 'TS-1' LEFT JOIN ts ON ts.tahun = b.th_akademik AND ts.prodi = '$role' AND ts.nama_ts = 'TS' WHERE a.modul='publikasi_ilmiah' GROUP by a.seq_id ";
+		$data = $this->db->query($sql);
+		return $data->result();
+	}
+
+	function karya_ilmiah_disitasi_mhs_data_list(){
+		$role = $this->session->userdata('nama');
+		$this->db->where('prodi', $role);
+		$data = $this->db->get('karya_ilmiah_disitasi_mhs');
+		return $data->result();
+	}
+
+	function karya_ilmiah_disitasi_mhs_add(){
+		$prodi = $this->session->userdata('nama');
+		$data = array(
+			'nama_dosen'  => $this->input->post('nama_dosen'),
+			'judul_artikel_disitasi'  => $this->input->post('judul_artikel_disitasi'),
+			'jumlah' => $this->input->post('jumlah'),
+			'prodi' => $prodi
+		);
+		$result = $this->db->insert('karya_ilmiah_disitasi_mhs', $data);
+		return $result;
+	}
+
+	function karya_ilmiah_disitasi_mhs_edit(){
+		$seq_id = $this->input->post('seq_id');
+		$prodi = $this->session->userdata('nama');
+    	$data = array(
+			'nama_dosen'  => $this->input->post('nama_dosen'),
+			'judul_artikel_disitasi'  => $this->input->post('judul_artikel_disitasi'),
+			'jumlah' => $this->input->post('jumlah'),
+			'prodi' => $prodi
+		);
+		$this->db->where('seq_id', $seq_id);
+		$result = $this->db->update('karya_ilmiah_disitasi_mhs', $data);
+		return $result;
+	}
+
+	function karya_ilmiah_disitasi_mhs_delete(){
+		$seq_id = $this->input->post('seq_id');
+		$this->db->where('seq_id', $seq_id);
+    	$result = $this->db->delete('karya_ilmiah_disitasi_mhs');
+   	 	return $result;
+	}
+
 	function upload_excel($filename, $modul){
     ini_set('memory_limit', '-1');
     $inputFileName = './assets/temp/'.$filename;

@@ -53,42 +53,55 @@
       </div>
       <div class="modal-body">
         <div class="form-row">
+          <div class="form-group col-md-12">
+            <label for="jns_kemampuan">Jenis Kemampuan</label>
+            <select id="jns_kemampuan" name="jns_kemampuan" class="custom-select" data-placeholder="Silahkan pilih..." required>
+              <option value=""></option>
+              <?php foreach ($data->result() as $value) { ?>
+              <option value="<?php echo $value->id; ?>"><?php echo $value->nama; ?></option>
+              <?php } ?>
+            </select>
+            <div id="id_check_result" class="help-block with-errors"></div>
+          </div>
+        </div>
+        <hr>
+          <h5>Tingkat Kepuasan Pengguna (%)</h5>
+        <hr>
+        <div class="form-row">
           <div class="form-group col-md-3">
-            <label for="jml_lulusan_terlacak">Jumlah Lulusan yang Terlacak</label>
-            <input type="number" min='1' max='9999' class="form-control" id="jml_lulusan_terlacak" name="jml_lulusan_terlacak" required>
+            <label for="sangat_baik">Sangat Baik</label>
+            <input type="number" min='1' max='9999' class="form-control" id="sangat_baik" name="sangat_baik" required>
             <div id="id_check_result" class="help-block with-errors"></div>
           </div>
           <div class="form-group col-md-3">
-            <label for="jml_lulusan_terlacak_rendah">Rendah</label>
-            <input type="number" min='1' max='9999' class="form-control" id="jml_lulusan_terlacak_rendah" name="jml_lulusan_terlacak_rendah" required>
+            <label for="baik">Baik</label>
+            <input type="number" min='1' max='9999' class="form-control" id="baik" name="baik" required>
             <div id="id_check_result" class="help-block with-errors"></div>
           </div>
           <div class="form-group col-md-3">
-            <label for="jml_lulusan_terlacak_sedang">Sedang</label>
-            <input type="number" min='1' max='9999' class="form-control" id="jml_lulusan_terlacak_sedang" name="jml_lulusan_terlacak_sedang" required>
+            <label for="cukup">Cukup</label>
+            <input type="number" min='1' max='9999' class="form-control" id="cukup" name="cukup" required>
             <div id="id_check_result" class="help-block with-errors"></div>
           </div>
           <div class="form-group col-md-3">
-            <label for="jml_lulusan_terlacak_tinggi">Tinggi</label>
-            <input type="number" min='1' max='9999' class="form-control" id="jml_lulusan_terlacak_tinggi" name="jml_lulusan_terlacak_tinggi" required>
+            <label for="kurang">Kurang</label>
+            <input type="number" min='1' max='9999' class="form-control" id="kurang" name="kurang" required>
             <div id="id_check_result" class="help-block with-errors"></div>
           </div>
         </div>
         <div class="form-row">
           <div class="form-group col-md-12">
-            <label for="ts">TS</label>
-            <select id="ts" name="ts" class="custom-select" data-placeholder="Silahkan pilih..." required>
-              <option value=""></option>
-            </select>
+            <label for="rencana_tindak_lanjut">Rencana Tindak Lanjut oleh UPPS/PS</label>
+            <textarea id="rencana_tindak_lanjut" rows="3" name="rencana_tindak_lanjut" class="form-control" required></textarea>
             <div id="id_check_result" class="help-block with-errors"></div>
           </div>
         </div>
       </div>
       <div class="modal-footer">
-      <button class="btn btn-secondary btn-icon-split btn-sm" data-dismiss="modal"><span class="icon text-white-50"><i class="fas fa-arrow-alt-circle-left"></i></i></span>
-      <span class="text">Batal</span></button>
-      <button type="submit" id="btn_save" class="btn btn-primary btn-icon-split btn-sm"><span class="icon text-white-50"><i class="fas fa-save"></i></span>
-      <span class="text">Simpan</span></button>
+        <button class="btn btn-secondary btn-icon-split btn-sm" data-dismiss="modal"><span class="icon text-white-50"><i class="fas fa-arrow-alt-circle-left"></i></i></span>
+        <span class="text">Batal</span></button>
+        <button type="submit" id="btn_save" class="btn btn-primary btn-icon-split btn-sm"><span class="icon text-white-50"><i class="fas fa-save"></i></span>
+        <span class="text">Simpan</span></button>
       </div>
     </div>
     </div>
@@ -110,33 +123,46 @@
       <div class="modal-body">
         <input type="text" hidden="" class="form-control" id="seq_id" name="seq_id">
         <div class="form-row">
+          <div class="form-group col-md-12">
+            <label for="jns_kemampuan_edit">Jenis Kemampuan</label>
+            <select id="jns_kemampuan_edit" name="jns_kemampuan_edit" class="custom-select" data-placeholder="Silahkan pilih..." required>
+              <option value=""></option>
+              <?php foreach ($data->result() as $value) { ?>
+              <option value="<?php echo $value->id; ?>"><?php echo $value->nama; ?></option>
+              <?php } ?>
+            </select>
+            <div id="id_check_result" class="help-block with-errors"></div>
+          </div>
+        </div>
+        <hr>
+          <h5>Tingkat Kepuasan Pengguna (%)</h5>
+        <hr>
+        <div class="form-row">
           <div class="form-group col-md-3">
-            <label for="jml_lulusan_terlacak_edit">Jumlah Lulusan yang Terlacak</label>
-            <input type="number" min='1' max='9999' class="form-control" id="jml_lulusan_terlacak_edit" name="jml_lulusan_terlacak_edit" required>
+            <label for="sangat_baik_edit">Sangat Baik</label>
+            <input type="number" min='1' max='9999' class="form-control" id="sangat_baik_edit" name="sangat_baik_edit" required>
             <div id="id_check_result" class="help-block with-errors"></div>
           </div>
           <div class="form-group col-md-3">
-            <label for="jml_lulusan_terlacak_rendah_edit">Rendah</label>
-            <input type="number" min='1' max='9999' class="form-control" id="jml_lulusan_terlacak_rendah_edit" name="jml_lulusan_terlacak_rendah_edit" required>
+            <label for="baik_edit">Baik</label>
+            <input type="number" min='1' max='9999' class="form-control" id="baik_edit" name="baik_edit" required>
             <div id="id_check_result" class="help-block with-errors"></div>
           </div>
           <div class="form-group col-md-3">
-            <label for="jml_lulusan_terlacak_sedang_edit">Sedang</label>
-            <input type="number" min='1' max='9999' class="form-control" id="jml_lulusan_terlacak_sedang_edit" name="jml_lulusan_terlacak_sedang_edit" required>
+            <label for="cukup_edit">Cukup</label>
+            <input type="number" min='1' max='9999' class="form-control" id="cukup_edit" name="cukup_edit" required>
             <div id="id_check_result" class="help-block with-errors"></div>
           </div>
           <div class="form-group col-md-3">
-            <label for="jml_lulusan_terlacak_tinggi_edit">Tinggi</label>
-            <input type="number" min='1' max='9999' class="form-control" id="jml_lulusan_terlacak_tinggi_edit" name="jml_lulusan_terlacak_tinggi_edit" required>
+            <label for="kurang_edit">Kurang</label>
+            <input type="number" min='1' max='9999' class="form-control" id="kurang_edit" name="kurang_edit" required>
             <div id="id_check_result" class="help-block with-errors"></div>
           </div>
         </div>
         <div class="form-row">
           <div class="form-group col-md-12">
-            <label for="ts_edit">TS</label>
-            <select id="ts_edit" name="ts_edit" class="custom-select" data-placeholder="Silahkan pilih..." required>
-              <option value=""></option>
-            </select>
+            <label for="rencana_tindak_lanjut_edit">Rencana Tindak Lanjut oleh UPPS/PS</label>
+            <textarea id="rencana_tindak_lanjut_edit" rows="3" name="rencana_tindak_lanjut_edit" class="form-control" required></textarea>
             <div id="id_check_result" class="help-block with-errors"></div>
           </div>
         </div>
@@ -202,7 +228,7 @@ $(document).ready(function(){
           '<td>'+data[i].kurang+'</td>'+
           '<td>'+data[i].rencana_tindak_lanjut+'</td>'+
           '<td style="text-align: center; vertical-align: middle;">'+
-              '<a href="javascript:void(0);" class="btn btn-info btn-circle btn-sm item_edit" data-toggle="tooltip" data-placement="top" title="Edit" data-seq_id="'+data[i].seq_id+'" data-jml_lulusan_terlacak="'+data[i].jml_lulusan_terlacak+'" data-jml_lulusan_terlacak_rendah="'+data[i].jml_lulusan_terlacak_rendah+'" data-jml_lulusan_terlacak_sedang="'+data[i].jml_lulusan_terlacak_sedang+'" data-jml_lulusan_terlacak_tinggi="'+data[i].jml_lulusan_terlacak_tinggi+'" data-ts="'+data[i].ts+'"><i class="fas fa-search"></i></a>'+' '+
+              '<a href="javascript:void(0);" class="btn btn-info btn-circle btn-sm item_edit" data-toggle="tooltip" data-placement="top" title="Edit" data-seq_id="'+data[i].seq_id+'" data-jns_kemampuan="'+data[i].jns_kemampuan+'" data-sangat_baik="'+data[i].sangat_baik+'" data-baik="'+data[i].baik+'" data-cukup="'+data[i].cukup+'" data-kurang="'+data[i].kurang+'" data-rencana_tindak_lanjut="'+data[i].rencana_tindak_lanjut+'"><i class="fas fa-search"></i></a>'+' '+
               '<a href="javascript:void(0);" class="btn btn-danger btn-circle btn-sm item_delete" data-toggle="tooltip" data-placement="top" title="Delete" data-seq_id="'+data[i].seq_id+'"><i class="fas fa-trash"></i></a>'+
           '</td>'+
           '</tr>';
@@ -214,23 +240,25 @@ $(document).ready(function(){
 
   //Save Data
   $('#btn_save').on('click',function(){
-    var jml_lulusan_terlacak = $('#jml_lulusan_terlacak').val();
-    var jml_lulusan_terlacak_rendah	 = $('#jml_lulusan_terlacak_rendah').val();
-    var jml_lulusan_terlacak_sedang = $('#jml_lulusan_terlacak_sedang').val();
-    var jml_lulusan_terlacak_tinggi = $('#jml_lulusan_terlacak_tinggi').val();
-    var ts = $('#ts').val();
+    var jns_kemampuan = $('#jns_kemampuan').val();
+    var sangat_baik	 = $('#sangat_baik').val();
+    var baik = $('#baik').val();
+    var cukup = $('#cukup').val();
+    var kurang = $('#kurang').val();
+    var rencana_tindak_lanjut = $('#rencana_tindak_lanjut').val();
 
     $.ajax({
       type : "POST",
-      url  : "<?php echo site_url('luaran/kesesuaian_bidang_kerja_lulusan_add')?>",
+      url  : "<?php echo site_url('luaran/kepuasan_pengguna_lulusan_add')?>",
       dataType : "JSON",
-      data : {jml_lulusan_terlacak:jml_lulusan_terlacak, jml_lulusan_terlacak_rendah:jml_lulusan_terlacak_rendah, jml_lulusan_terlacak_sedang:jml_lulusan_terlacak_sedang, jml_lulusan_terlacak_tinggi:jml_lulusan_terlacak_tinggi, ts:ts},
+      data : {jns_kemampuan:jns_kemampuan, sangat_baik:sangat_baik, baik:baik, cukup:cukup, kurang:kurang, rencana_tindak_lanjut:rencana_tindak_lanjut},
       success: function(data){
-        $('[name="jml_lulusan_terlacak"]').val("");
-        $('[name="jml_lulusan_terlacak_rendah"]').val("");
-        $('[name="jml_lulusan_terlacak_sedang"]').val("");
-        $('[name="jml_lulusan_terlacak_tinggi"]').val("");
-        $('[name="ts"]').val("");
+        $('[name="jns_kemampuan"]').val("");
+        $('[name="sangat_baik"]').val("");
+        $('[name="baik"]').val("");
+        $('[name="cukup"]').val("");
+        $('[name="kurang"]').val("");
+        $('[name="rencana_tindak_lanjut"]').val("");
         $('#Modal_Add').modal('hide');
         $.alert({
           title: 'Sukses!',
@@ -245,41 +273,45 @@ $(document).ready(function(){
   //fill data record
   $('#tampil_data').on('click','.item_edit',function(){
     var seq_id = $(this).data('seq_id');
-    var jml_lulusan_terlacak = $(this).data('jml_lulusan_terlacak');
-    var jml_lulusan_terlacak_rendah = $(this).data('jml_lulusan_terlacak_rendah');
-    var jml_lulusan_terlacak_sedang = $(this).data('jml_lulusan_terlacak_sedang');
-    var jml_lulusan_terlacak_tinggi = $(this).data('jml_lulusan_terlacak_tinggi');
-    var ts = $(this).data('ts');
+    var jns_kemampuan = $(this).data('jns_kemampuan');
+    var sangat_baik = $(this).data('sangat_baik');
+    var baik = $(this).data('baik');
+    var cukup = $(this).data('cukup');
+    var kurang = $(this).data('kurang');
+    var rencana_tindak_lanjut = $(this).data('rencana_tindak_lanjut');
 
     $('#Modal_Edit').modal('show');
     $('[name="seq_id"]').val(seq_id);
-    $('[name="jml_lulusan_terlacak_edit"]').val(jml_lulusan_terlacak);
-    $('[name="jml_lulusan_terlacak_rendah_edit"]').val(jml_lulusan_terlacak_rendah);
-    $('[name="jml_lulusan_terlacak_sedang_edit"]').val(jml_lulusan_terlacak_sedang);
-    $('[name="jml_lulusan_terlacak_tinggi_edit"]').val(jml_lulusan_terlacak_tinggi);
-    $('[name="ts_edit"]').val(ts);
+    $('[name="jns_kemampuan_edit"]').val(jns_kemampuan);
+    $('[name="sangat_baik_edit"]').val(sangat_baik);
+    $('[name="baik_edit"]').val(baik);
+    $('[name="cukup_edit"]').val(cukup);
+    $('[name="kurang_edit"]').val(kurang);
+    $('[name="rencana_tindak_lanjut_edit"]').val(rencana_tindak_lanjut);
   });
 
   //update record
   $('#btn_update').on('click',function(){
     var seq_id = $('#seq_id').val();
-    var jml_lulusan_terlacak = $('#jml_lulusan_terlacak_edit').val();
-    var jml_lulusan_terlacak_rendah = $('#jml_lulusan_terlacak_rendah_edit').val();
-    var jml_lulusan_terlacak_sedang = $('#jml_lulusan_terlacak_sedang_edit').val();
-    var jml_lulusan_terlacak_tinggi = $('#jml_lulusan_terlacak_tinggi_edit').val();
-    var ts = $('#ts_edit').val();
+    var jns_kemampuan = $('#jns_kemampuan_edit').val();
+    var sangat_baik = $('#sangat_baik_edit').val();
+    var baik = $('#baik_edit').val();
+    var cukup = $('#cukup_edit').val();
+    var kurang = $('#kurang_edit').val();
+    var rencana_tindak_lanjut = $('#rencana_tindak_lanjut_edit').val();
 
     $.ajax({
       type : "POST",
-      url  : "<?php echo site_url('luaran/kesesuaian_bidang_kerja_lulusan_edit')?>",
+      url  : "<?php echo site_url('luaran/kepuasan_pengguna_lulusan_edit')?>",
       dataType : "JSON",
-      data : {seq_id:seq_id, jml_lulusan_terlacak:jml_lulusan_terlacak, jml_lulusan_terlacak_rendah:jml_lulusan_terlacak_rendah, jml_lulusan_terlacak_sedang:jml_lulusan_terlacak_sedang, jml_lulusan_terlacak_tinggi:jml_lulusan_terlacak_tinggi, ts:ts},
+      data : {seq_id:seq_id, jns_kemampuan:jns_kemampuan, sangat_baik:sangat_baik, baik:baik, cukup:cukup, kurang:kurang, rencana_tindak_lanjut:rencana_tindak_lanjut},
       success: function(data){
-        $('[name="jml_lulusan_terlacak_edit"]').val("");
-        $('[name="jml_lulusan_terlacak_rendah_edit"]').val("");
-        $('[name="jml_lulusan_terlacak_sedang_edit"]').val("");
-        $('[name="jml_lulusan_terlacak_tinggi_edit"]').val("");
-        $('[name="ts_edit"]').val("");
+        $('[name="jns_kemampuan_edit"]').val("");
+        $('[name="sangat_baik_edit"]').val("");
+        $('[name="baik_edit"]').val("");
+        $('[name="cukup_edit"]').val("");
+        $('[name="kurang_edit"]').val("");
+        $('[name="rencana_tindak_lanjut_edit"]').val("");
         $('#Modal_Edit').modal('hide');
         $.alert({
           title: 'Sukses!',
@@ -303,7 +335,7 @@ $(document).ready(function(){
       var seq_id = $('#seq_id_delete').val();
       $.ajax({
           type : "POST",
-          url  : "<?php echo site_url('luaran/kesesuaian_bidang_kerja_lulusan_delete')?>",
+          url  : "<?php echo site_url('luaran/kepuasan_pengguna_lulusan_delete')?>",
           dataType : "JSON",
           data : {seq_id:seq_id},
           success: function(data){

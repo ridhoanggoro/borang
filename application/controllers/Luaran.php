@@ -220,7 +220,8 @@ class Luaran extends CI_Controller {
   	{
   		$this->Model_security->getsecurity();
   		$isi['title'] 	='Tabel (8.e.2) Kepuasan Pengguna Lulusan';
-  		$isi['content']	= 'luaran/kepuasan_pengguna_lulusan';      
+  		$isi['content']	= 'luaran/kepuasan_pengguna_lulusan';
+      $isi['data'] = $this->Model_master->jenis_kemampuan_list();
   		$this->load->view('default_page', $isi);
   	}
 
@@ -243,4 +244,58 @@ class Luaran extends CI_Controller {
       $data = $this->Model_master->kepuasan_pengguna_lulusan_delete();
   		echo json_encode($data);
     }
-  }
+
+    public function publikasi_ilmiah_mhs()
+  	{
+  		$this->Model_security->getsecurity();
+  		$isi['title'] 	='Publikasi Ilmiah Mahasiswa';
+  		$isi['content']	= 'luaran/publikasi_ilmiah_mhs';
+  		$this->load->view('default_page', $isi);
+  	}
+
+    function publikasi_ilmiah_mhs_data_list(){
+  		$data = $this->Model_master->publikasi_ilmiah_mhs_data_list();
+  		echo json_encode($data);
+  	}
+
+    public function pagelaran_ilmiah_mhs()
+  	{
+  		$this->Model_security->getsecurity();
+  		$isi['title'] 	='Pagelaran/Pameran/Presentasi/Publikasi Ilmiah Mahasiswa';
+  		$isi['content']	= 'luaran/pagelaran_ilmiah';
+  		$this->load->view('default_page', $isi);
+  	}
+
+    function pagelaran_ilmiah_mhs_data_list(){
+  		$data = $this->Model_master->pagelaran_ilmiah_mhs_data_list();
+  		echo json_encode($data);
+  	}
+
+    public function karya_ilmiah_disitasi_mhs()
+    {
+  		$this->Model_security->getsecurity();
+  		$isi['title'] 	='Karya Ilmiah Mahasiswa yang Disitasi';
+  		$isi['content']	= 'luaran/karya_ilmiah_disitasi';
+  		$this->load->view('default_page', $isi);
+    }
+
+    function karya_ilmiah_disitasi_data_list(){
+  		$data = $this->Model_master->karya_ilmiah_disitasi_mhs_data_list();
+  		echo json_encode($data);
+    }
+
+    function karya_ilmiah_disitasi_add(){
+  		$data = $this->Model_master->karya_ilmiah_disitasi_mhs_add();
+  		echo json_encode($data);
+  	}
+
+    function karya_ilmiah_disitasi_edit(){
+  		$data = $this->Model_master->karya_ilmiah_disitasi_mhs_edit();
+  		echo json_encode($data);
+  	}
+
+    function karya_ilmiah_disitasi_delete(){
+  		$data = $this->Model_master->karya_ilmiah_disitasi_mhs_delete();
+  		echo json_encode($data);
+  	}
+}

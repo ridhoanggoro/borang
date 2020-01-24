@@ -760,6 +760,54 @@ class Export extends CI_Controller {
 							$col++;
 						}
 						break;
+					case '8e2':
+						$fileName = './assets/template/8e2.xlsx';
+						$objPHPExcel = $objReader->load($fileName);
+						$objPHPExcel->setActiveSheetIndex(0);
+						$objPHPExcel->getActiveSheet();
+						$data = $this->Model_master->kepuasan_pengguna_lulusan_list();
+						$col = 7;
+						$no = 1;
+						foreach ($data as $val) {
+							$objPHPExcel->setActiveSheetIndex()->setCellValue('C'.$col, $val->sangat_baik);
+							$objPHPExcel->setActiveSheetIndex()->setCellValue('D'.$col, $val->baik);
+							$objPHPExcel->setActiveSheetIndex()->setCellValue('E'.$col, $val->cukup);
+							$objPHPExcel->setActiveSheetIndex()->setCellValue('F'.$col, $val->kurang);
+							$objPHPExcel->setActiveSheetIndex()->setCellValue('G'.$col, $val->rencana_tindak_lanjut);
+							$col++;
+						}
+						break;
+					case '8f1-1':
+			      $fileName = './assets/template/8f1-1.xlsx';
+			      $objPHPExcel = $objReader->load($fileName);
+			      $objPHPExcel->setActiveSheetIndex(0);
+			      $objPHPExcel->getActiveSheet();
+			      $data = $this->Model_master->publikasi_ilmiah_mhs_data_list();
+						$no = 1;
+			      $col = 7;
+			      foreach ($data as $val) {
+			        $objPHPExcel->setActiveSheetIndex()->setCellValue('C'.$col, $val->ts2);
+			        $objPHPExcel->setActiveSheetIndex()->setCellValue('D'.$col, $val->ts1);
+			        $objPHPExcel->setActiveSheetIndex()->setCellValue('E'.$col, $val->ts);
+			        $col++;
+			      }
+			      break;
+					case '8f2':
+						$fileName = './assets/template/8f2.xlsx';
+						$objPHPExcel = $objReader->load($fileName);
+						$objPHPExcel->setActiveSheetIndex(0);
+						$objPHPExcel->getActiveSheet();
+						$data = $this->Model_master->karya_ilmiah_disitasi_mhs_data_list();
+						$no = 1;
+						$col = 6;
+						foreach ($data as $val) {
+							$objPHPExcel->setActiveSheetIndex()->setCellValue('A'.$col, $no++);
+							$objPHPExcel->setActiveSheetIndex()->setCellValue('B'.$col, $val->nama_dosen);
+							$objPHPExcel->setActiveSheetIndex()->setCellValue('C'.$col, $val->judul_artikel_disitasi);
+							$objPHPExcel->setActiveSheetIndex()->setCellValue('D'.$col, $val->jumlah);
+							$col++;
+						}
+					break;
 	      default:
         // code...
         break;
