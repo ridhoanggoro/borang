@@ -201,6 +201,7 @@ $(document).ready(function(){
         $('[name="keterangan"]').val("");
         $('#Modal_Add').modal('hide');
         $.alert({
+          type: 'dark',
           title: 'Sukses!',
           content: 'Data Berhasil Disimpan!',
         });
@@ -242,6 +243,7 @@ $(document).ready(function(){
         $('[name="keterangan_edit"]').val("");
         $('#Modal_Edit').modal('hide');
         $.alert({
+          type: 'dark',
           title: 'Sukses!',
           content: 'Data Berhasil Di Perbaharui!',
         });
@@ -270,6 +272,7 @@ $(document).ready(function(){
               $('[name="seq_id_delete"]').val("");
               $('#Modal_Delete').modal('hide');
               $.alert({
+                type: 'dark',
                 title: 'Sukses!',
                 content: 'Data Berhasil Di Hapus!',
               });
