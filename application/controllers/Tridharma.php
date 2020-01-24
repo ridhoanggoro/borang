@@ -8,6 +8,7 @@ class Tridharma extends CI_Controller {
   		parent::__construct();
   		$this->load->model('Model_security');
   		$this->load->model('Model_master');
+      $this->load->model('Model_upload');
   	}
 
     public function pendidikan()
@@ -63,22 +64,6 @@ class Tridharma extends CI_Controller {
   		}
       $data = $this->Model_master->tridharma_pendidikan_edit($seq_id, $data);
       echo json_encode($data);
-    }
-
-    function pendidikan_upload(){
-        $config['upload_path'] = './assets/temp/';
-        $config['allowed_types'] = 'xlsx|xls';
-        $this->load->library('PHPExcel');
-        $this->load->library('upload', $config);
-
-        if ($this->upload->do_upload('file_upload')){
-          $data = array('upload_data' => $this->upload->data());
-          $upload_data = $this->upload->data();
-          $filename = $upload_data['orig_name'];
-          $data = $this->Model_master->upload_excel($filename, '1-1');
-          unlink('./assets/upload/'.$filename);
-          echo json_encode($data);
-        }
     }
 
     function pendidikan_delete(){

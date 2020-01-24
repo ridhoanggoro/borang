@@ -1578,42 +1578,4 @@ class Model_master extends CI_model {
     	$result = $this->db->delete('buku_isbn_mhs');
    	 	return $result;
 	}
-
-	function upload_excel($filename, $modul){
-    ini_set('memory_limit', '-1');
-    $inputFileName = './assets/temp/'.$filename;
-
-    try {
-        $objPHPExcel    = PHPExcel_IOFactory::load($inputFileName);
-        $prodi          = $this->session->userdata('nama');
-        $worksheet      = $objPHPExcel->getActiveSheet()->toArray(null,true,true,true);
-        $numRows        = count($worksheet);
-
-				switch ($modul) {
-					case '1-1':
-					for ($i=2; $i < ($numRows+1) ; $i++)
-					{
-								$data = array(
-												'prodi' => $worksheet[$i]["A"],
-												'lembaga_mitra' => $worksheet[$i]["B"],
-												'tingkat'  => $worksheet[$i]["C"],
-												'judul_kegiatan'  => $worksheet[$i]["D"],
-												'manfaat_bagi_ps'=> $worksheet[$i]["E"],
-												'durasi'  => $worksheet[$i]["F"],
-												'bukti_kerjasama' => $worksheet[$i]["G"],
-												'tahun_berakhir'=> $worksheet[$i]["H"]
-											);
-								$this->db->insert('tridarma_pendidikan', $data);
-					}
-					break;
-					default:
-						// code...
-						break;
-				}
-				return $numRows-1;
-			}
-			catch (Exception $e) {
-            return ('Error loading file :' . $e->getMessage());
-      }
-		}
 }
