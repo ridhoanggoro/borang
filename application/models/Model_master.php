@@ -1419,6 +1419,166 @@ class Model_master extends CI_model {
    	 	return $result;
 	}
 
+	function hki_paten_mhs_data_list(){
+		$role = $this->session->userdata('nama');
+		$this->db->where('prodi', $role);
+		$data = $this->db->get('hki_paten_mhs');
+		return $data->result();
+	}
+
+	function hki_paten_mhs_add(){
+		$prodi = $this->session->userdata('nama');
+		$data = array(
+			'luaran_penelitian'  => $this->input->post('luaran_penelitian'),
+  		'th_perolehan'  => $this->input->post('th_perolehan'),
+  		'keterangan' => $this->input->post('keterangan'),
+			'prodi' => $prodi
+		);
+		$result = $this->db->insert('hki_paten_mhs', $data);
+		return $result;
+	}
+
+	function hki_paten_mhs_edit(){
+		$seq_id = $this->input->post('seq_id');
+		$prodi = $this->session->userdata('nama');
+    $data = array(
+			'luaran_penelitian'  => $this->input->post('luaran_penelitian'),
+  		'th_perolehan'  => $this->input->post('th_perolehan'),
+  		'keterangan' => $this->input->post('keterangan'),
+			'prodi' => $prodi
+		);
+		$this->db->where('seq_id', $seq_id);
+  	$result = $this->db->update('hki_paten_mhs', $data);
+  	return $result;
+	}
+
+	function hki_paten_mhs_delete(){
+		$seq_id = $this->input->post('seq_id');
+		$this->db->where('seq_id', $seq_id);
+    	$result = $this->db->delete('hki_paten_mhs');
+   	 	return $result;
+	}
+
+	function hki_hak_cipta_mhs_data_list(){
+		$role = $this->session->userdata('nama');
+		$this->db->where('prodi', $role);
+		$data = $this->db->get('hki_hak_cipta_mhs');
+		return $data->result();
+	}
+
+	function hki_hak_cipta_mhs_add(){
+		$prodi = $this->session->userdata('nama');
+		$data = array(
+			'luaran_penelitian'  => $this->input->post('luaran_penelitian'),
+  		'th_perolehan'  => $this->input->post('th_perolehan'),
+  		'keterangan' => $this->input->post('keterangan'),
+			'prodi' => $prodi
+		);
+		$result = $this->db->insert('hki_hak_cipta_mhs', $data);
+		return $result;
+	}
+
+	function hki_hak_cipta_mhs_edit(){
+		$seq_id = $this->input->post('seq_id');
+		$prodi = $this->session->userdata('nama');
+    $data = array(
+			'luaran_penelitian'  => $this->input->post('luaran_penelitian'),
+  		'th_perolehan'  => $this->input->post('th_perolehan'),
+  		'keterangan' => $this->input->post('keterangan'),
+			'prodi' => $prodi
+		);
+		$this->db->where('seq_id', $seq_id);
+  	$result = $this->db->update('hki_hak_cipta_mhs', $data);
+  	return $result;
+	}
+
+	function hki_hak_cipta_mhs_delete(){
+		$seq_id = $this->input->post('seq_id');
+		$this->db->where('seq_id', $seq_id);
+    	$result = $this->db->delete('hki_hak_cipta_mhs');
+   	 	return $result;
+	}
+
+	function hki_teknologi_tepatguna_mhs_data_list(){
+		$role = $this->session->userdata('nama');
+		$this->db->where('prodi', $role);
+		$data = $this->db->get('hki_teknologi_tepatguna_mhs');
+		return $data->result();
+	}
+
+	function hki_teknologi_tepatguna_mhs_add(){
+		$prodi = $this->session->userdata('nama');
+		$data = array(
+			'luaran_penelitian'  => $this->input->post('luaran_penelitian'),
+  		'th_perolehan'  => $this->input->post('th_perolehan'),
+  		'keterangan' => $this->input->post('keterangan'),
+			'prodi' => $prodi
+		);
+		$result = $this->db->insert('hki_teknologi_tepatguna_mhs', $data);
+		return $result;
+	}
+
+	function hki_teknologi_tepatguna_mhs_edit(){
+		$seq_id = $this->input->post('seq_id');
+		$prodi = $this->session->userdata('nama');
+    	$data = array(
+			'luaran_penelitian'  => $this->input->post('luaran_penelitian'),
+			'th_perolehan'  => $this->input->post('th_perolehan'),
+			'keterangan' => $this->input->post('keterangan'),
+			'prodi' => $prodi
+		);
+		$this->db->where('seq_id', $seq_id);
+		$result = $this->db->update('hki_teknologi_tepatguna_mhs', $data);
+		return $result;
+	}
+
+	function hki_teknologi_tepatguna_mhs_delete(){
+		$seq_id = $this->input->post('seq_id');
+		$this->db->where('seq_id', $seq_id);
+    	$result = $this->db->delete('hki_teknologi_tepatguna_mhs');
+   	 	return $result;
+	}
+
+	function buku_isbn_mhs_data_list(){
+		$role = $this->session->userdata('nama');
+		$this->db->where('prodi', $role);
+		$data = $this->db->get('buku_isbn_mhs');
+		return $data->result();
+	}
+
+	function buku_isbn_mhs_add(){
+		$prodi = $this->session->userdata('nama');
+		$data = array(
+			'luaran_penelitian'  => $this->input->post('luaran_penelitian'),
+			'th_perolehan'  => $this->input->post('th_perolehan'),
+			'keterangan' => $this->input->post('keterangan'),
+			'prodi' => $prodi
+		);
+		$result = $this->db->insert('buku_isbn_mhs', $data);
+		return $result;
+	}
+
+	function buku_isbn_mhs_edit(){
+		$seq_id = $this->input->post('seq_id');
+		$prodi = $this->session->userdata('nama');
+    	$data = array(
+			'luaran_penelitian'  => $this->input->post('luaran_penelitian'),
+			'th_perolehan'  => $this->input->post('th_perolehan'),
+			'keterangan' => $this->input->post('keterangan'),
+			'prodi' => $prodi
+		);
+		$this->db->where('seq_id', $seq_id);
+		$result = $this->db->update('buku_isbn_mhs', $data);
+		return $result;
+	}
+
+	function buku_isbn_mhs_delete(){
+		$seq_id = $this->input->post('seq_id');
+		$this->db->where('seq_id', $seq_id);
+    	$result = $this->db->delete('buku_isbn_mhs');
+   	 	return $result;
+	}
+
 	function upload_excel($filename, $modul){
     ini_set('memory_limit', '-1');
     $inputFileName = './assets/temp/'.$filename;

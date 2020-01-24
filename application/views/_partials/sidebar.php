@@ -155,10 +155,10 @@
         <a class="collapse-item <?php echo $this->uri->segment(2) == 'publikasi_ilmiah_mhs' ? 'active': '' ?>" href="<?php echo site_url('luaran/publikasi_ilmiah_mhs'); ?>">*Publikasi Ilmiah Mahasiswa</a>
 		    <a class="collapse-item <?php echo $this->uri->segment(2) == 'pagelaran_ilmiah_mhs' ? 'active': '' ?>" href="<?php echo site_url('luaran/pagelaran_ilmiah_mhs'); ?>">*Karya Ilmiah yang Disitasi</a>
         <a class="collapse-item <?php echo $this->uri->segment(2) == 'karya_ilmiah_disitasi_mhs' ? 'active': '' ?>" href="<?php echo site_url('luaran/karya_ilmiah_disitasi_mhs'); ?>">*Produk Mahasiswa yang Diadopsi oleh Industri/Masyarakat</a>
-        <a class="collapse-item <?php echo $this->uri->segment(2) == '#' ? 'active': '' ?>" href="<?php echo site_url('#'); ?>">*Luaran Penelitian Mahasiswa-HKI Paten</a>
-        <a class="collapse-item <?php echo $this->uri->segment(2) == '#' ? 'active': '' ?>" href="<?php echo site_url('#'); ?>">*Luaran Penelitian Mahasiswa-HKI Hak Cipta</a>
-        <a class="collapse-item <?php echo $this->uri->segment(2) == '#' ? 'active': '' ?>" href="<?php echo site_url('#'); ?>">*Luaran Penelitian Mahasiswa-Teknologi Tepat Guna</a>
-        <a class="collapse-item <?php echo $this->uri->segment(2) == '#' ? 'active': '' ?>" href="<?php echo site_url('#'); ?>">*Luaran Penelitian Mahasiswa-Buku Ber-ISBN</a>
+        <a class="collapse-item <?php echo $this->uri->segment(2) == 'hki_paten_mhs' ? 'active': '' ?>" href="<?php echo site_url('luaran/hki_paten_mhs'); ?>">*Luaran Penelitian Mahasiswa-HKI Paten</a>
+        <a class="collapse-item <?php echo $this->uri->segment(2) == 'hki_hak_cipta_mhs' ? 'active': '' ?>" href="<?php echo site_url('luaran/hki_hak_cipta_mhs'); ?>">*Luaran Penelitian Mahasiswa-HKI Hak Cipta</a>
+        <a class="collapse-item <?php echo $this->uri->segment(2) == 'hki_teknologi_tepatguna_mhs' ? 'active': '' ?>" href="<?php echo site_url('luaran/hki_teknologi_tepatguna_mhs'); ?>">*Luaran Penelitian Mahasiswa-Teknologi Tepat Guna</a>
+        <a class="collapse-item <?php echo $this->uri->segment(2) == 'buku_isbn_mhs' ? 'active': '' ?>" href="<?php echo site_url('luaran/buku_isbn_mhs'); ?>">*Luaran Penelitian Mahasiswa-Buku Ber-ISBN</a>
 
       </div>
     </div>
