@@ -64,7 +64,7 @@
       <div class="modal-body">
         <div class="form-row">
           <div class="form-group col-md-12">
-            <label for="mitra">Upload Excel File, Klik <a href="<?php echo base_url('assets/upload/3.a.1.dosen_tetap.xlsx');?>" data-toggle="tooltip" data-placement="top" title="Download Template">disini</a> untuk unduh file template</label>
+            <label for="mitra">Upload Excel File, Klik <a href="<?php echo base_url('assets/upload/3.a.3.ewmp_dosen_tetap.xlsx');?>" data-toggle="tooltip" data-placement="top" title="Download Template">disini</a> untuk unduh file template</label>
             <input type="file" name="file_upload">
             <div id="id_check_result" class="help-block with-errors"></div>
           </div>
@@ -326,7 +326,7 @@ $(document).ready(function(){
   $('#upload').submit(function(e){
     e.preventDefault();
       $.ajax({
-        url:'<?php echo site_url('upload/excel_upload/'.encode_url('3.a.1'))?>',
+        url:'<?php echo site_url('upload/excel_upload/'.encode_url('3.a.3'))?>',
         type:"post",
         data:new FormData(this),
         processData:false,

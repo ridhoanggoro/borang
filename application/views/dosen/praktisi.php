@@ -8,6 +8,12 @@
         </span>
         <span class="text">Tambah Data</span>
       </a>
+      <a href="javascript:void(0);" data-toggle="modal" data-target="#Modal_Upload" class="btn btn-primary btn-icon-split btn-sm">
+        <span class="icon text-white-50">
+          <i class="fas fa-upload"></i>
+        </span>
+        <span class="text">Upload Data</span>
+      </a>
       <a href="<?php echo base_url('export/export_excel/'.encode_url('3a5'));?>" class="btn btn-success btn-icon-split btn-sm">
         <span class="icon text-white-50">
           <i class="fas fa-file-excel"></i>
@@ -38,6 +44,38 @@
     </div>
   </div>
 </div>
+
+<!-- MODAL UPLOAD -->
+<form class="form-horizontal" id="upload">
+  <div class="modal fade" id="Modal_Upload" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+      <h5 class="modal-title" id="exampleModalLabel">Upload Data Excel</h5>
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+      </div>
+      <div class="modal-body">
+        <div class="form-row">
+          <div class="form-group col-md-12">
+            <label for="mitra">Upload Excel File, Klik <a href="<?php echo base_url('assets/upload/3.a.5.dosen_praktisi.xlsx');?>" data-toggle="tooltip" data-placement="top" title="Download Template">disini</a> untuk unduh file template</label>
+            <input type="file" name="file_upload">
+            <div id="id_check_result" class="help-block with-errors"></div>
+          </div>
+      </div>
+    </div>
+      <div class="modal-footer">
+      <button class="btn btn-secondary btn-icon-split btn-sm" data-dismiss="modal"><span class="icon text-white-50"><i class="fas fa-arrow-alt-circle-left"></i></i></span>
+      <span class="text">Batal</span></button>
+      <button type="submit" id="btn_upload" class="btn btn-primary btn-icon-split btn-sm"><span class="icon text-white-50"><i class="fas fa-save"></i></span>
+      <span class="text">Upload</span></button>
+      </div>
+    </div>
+    </div>
+  </div>
+</form>
+<!--END MODAL UPLOAD-->
 
 <!-- MODAL ADD -->
 <form class="was-validated">
@@ -240,6 +278,29 @@ $(document).ready(function(){
       }
     });
   }
+
+  // upload data
+  $('#upload').submit(function(e){
+    e.preventDefault();
+      $.ajax({
+        url:'<?php echo site_url('upload/excel_upload/'.encode_url('3.a.5'))?>',
+        type:"post",
+        data:new FormData(this),
+        processData:false,
+        contentType:false,
+        cache:false,
+        async:false,
+        success: function(data){
+          $('#Modal_Upload').modal('hide');
+          $.alert({
+            title: 'Sukses!',
+            content: 'Data Berhasil Di Upload!',
+          });
+        show_data();
+      }
+    });
+  });
+  // end upload data
 
   //fill data record
   $('#tampil_data').on('click','.item_edit',function(){
