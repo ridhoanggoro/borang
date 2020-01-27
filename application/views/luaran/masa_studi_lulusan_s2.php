@@ -22,7 +22,6 @@
           <th rowspan="2" style="text-align: center; vertical-align: middle;">Rata-rata Masa Studi</th>
         </tr>
         <tr>
-            <th style="text-align: center; vertical-align: middle;">Akhir TS-4</th>
             <th style="text-align: center; vertical-align: middle;">Akhir TS-3</th>
             <th style="text-align: center; vertical-align: middle;">Akhir TS-2</th>
             <th style="text-align: center; vertical-align: middle;">Akhir TS-1</th>
@@ -52,11 +51,10 @@ $(document).ready(function(){
         for(i=0; i<data.length; i++){
           var tot=0;
           j = i + 1;
-          tot = parseInt(data[i].ts4) + parseInt(data[i].ts3) + parseInt(data[i].ts2) + parseInt(data[i].ts1) + parseInt(data[i].ts);
+          tot = parseInt(data[i].ts3) + parseInt(data[i].ts2) + parseInt(data[i].ts1) + parseInt(data[i].ts);
           html += '<tr>'+
           '<td>'+data[i].nama_ts+'</td>'+
           '<td>'+data[i].jml+'</td>'+
-          '<td>'+data[i].ts4+'</td>'+
           '<td>'+data[i].ts3+'</td>'+
           '<td>'+data[i].ts2+'</td>'+
           '<td>'+data[i].ts1+'</td>'+

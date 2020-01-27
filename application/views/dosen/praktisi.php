@@ -210,6 +210,7 @@
 <script type="text/javascript">
 $(document).ready(function(){
   show_data();
+  $('#mydata').dataTable();
   function show_data(){
     $.ajax({
       type  : 'ajax',

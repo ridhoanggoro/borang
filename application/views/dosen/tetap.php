@@ -27,18 +27,18 @@
     <table class="table table-striped table-bordered" id="mydata" width="100%" cellspacing="0">
       <thead>
         <tr>
-            <th>Nama Dosen</th>
-            <th>NIDN</th>
-            <th>Magister/Magister Terapan/Spesialis</th>
-            <th>Doktor/Doktor Terapan/Spesialis</th>
-            <th>Bidang Keahlian</th>
-            <th>Kesesuaian dengan Kompetensi Inti PS</th>
-            <th>Jabatan Akademik</th>
-            <th>Sertifikat Pendidik Profesional</th>
-            <th>Sertifikat Kompetensi/Profesi/Industri</th>
-            <th>Mata Kuliah yang Diampu pada PS yang Diakreditasi</th>
-            <th>Kesesuaian Bidang Keahlian dengan Mata Kuliah yang Diampu</th>
-            <th>Mata Kuliah yang Diampu pada PS Lain</th>
+            <th style="text-align: center; vertical-align: middle;">Nama Dosen</th>
+            <th style="text-align: center; vertical-align: middle;">NIDN</th>
+            <th style="text-align: center; vertical-align: middle;">Magister/Magister Terapan/Spesialis</th>
+            <th style="text-align: center; vertical-align: middle;">Doktor/Doktor Terapan/Spesialis</th>
+            <th style="text-align: center; vertical-align: middle;">Bidang Keahlian</th>
+            <th style="text-align: center; vertical-align: middle;">Kesesuaian dengan Kompetensi Inti PS</th>
+            <th style="text-align: center; vertical-align: middle;">Jabatan Akademik</th>
+            <th style="text-align: center; vertical-align: middle;">Sertifikat Pendidik Profesional</th>
+            <th style="text-align: center; vertical-align: middle;">Sertifikat Kompetensi/Profesi/Industri</th>
+            <th style="text-align: center; vertical-align: middle;">Mata Kuliah yang Diampu pada PS yang Diakreditasi</th>
+            <th style="text-align: center; vertical-align: middle;">Kesesuaian Bidang Keahlian dengan Mata Kuliah yang Diampu</th>
+            <th style="text-align: center; vertical-align: middle;">Mata Kuliah yang Diampu pada PS Lain</th>
             <th style="text-align: center;">Menu</th>
         </tr>
       </thead>

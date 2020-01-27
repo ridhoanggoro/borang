@@ -8,7 +8,7 @@
         </span>
         <span class="text">Tambah Data</span>
       </a>
-      <a href="<?php echo base_url('export/export_excel/'.encode_url('8d1_s1'));?>" class="btn btn-success btn-icon-split btn-sm">
+      <a href="<?php echo base_url('export/export_excel/'.encode_url('8d1_d3'));?>" class="btn btn-success btn-icon-split btn-sm">
         <span class="icon text-white-50">
           <i class="fas fa-file-excel"></i>
         </span>
@@ -29,9 +29,9 @@
           <th rowspan="2" style="text-align: center; vertical-align: middle;">Menu</th>
         </tr>
         <tr>
-          <th style="text-align: center; vertical-align: middle;">WT < 6 bulan</th>
-          <th style="text-align: center; vertical-align: middle;">6 ≤ WT ≤ 18 bulan</th>
-          <th style="text-align: center; vertical-align: middle;">WT > 18 bulan</th>
+          <th style="text-align: center; vertical-align: middle;">WT < 3 bulan</th>
+          <th style="text-align: center; vertical-align: middle;">3 ≤ WT ≤ 6 bulan</th>
+          <th style="text-align: center; vertical-align: middle;">WT > 6 bulan</th>
         </tr>
       </thead>
       <tbody id="tampil_data">
@@ -204,6 +204,7 @@
 <script type="text/javascript">
 $(document).ready(function(){
   show_data();
+  $('#mydata').dataTable();
   function show_data(){
     $.ajax({
       type  : 'ajax',

@@ -102,7 +102,8 @@ class Luaran extends CI_Controller {
       $prodi = $this->session->userdata('nama');
   		$role = substr($prodi, strlen($prodi)-2);
       if (strtoupper($role) == 'S1') { $view = 'luaran/waktu_tunggu_lulusan_s1'; }
-      else { $view = 'luaran/waktu_tunggu_lulusan_d3'; }
+      else if (strtoupper($role) == 'S1') { $view = 'luaran/waktu_tunggu_lulusan_d3'; }
+      else { $view = 'luaran/waktu_tunggu_lulusan_s2'; }
   		$isi['title'] 	='Waktu Tunggu Lulusan';
   		$isi['content']	= $view;
       $isi['ts_list'] = $this->Model_master->ts_list();
