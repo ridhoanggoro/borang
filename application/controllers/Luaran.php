@@ -300,6 +300,34 @@ class Luaran extends CI_Controller {
   		echo json_encode($data);
   	}
 
+    public function produk_dtps_mhs()
+    {
+  		$this->Model_security->getsecurity();
+  		$isi['title'] 	='Produk/Jasa DTPS yang Diadopsi oleh Industri/Masyarakat';
+  		$isi['content']	= 'luaran/produk_dtps';
+  		$this->load->view('default_page', $isi);
+    }
+
+    function produk_dtps_data_list(){
+		$data = $this->Model_master->produk_dtps_mhs_data_list();
+		echo json_encode($data);
+    }
+
+    function produk_dtps_add(){
+  		$data = $this->Model_master->produk_dtps_mhs_add();
+  		echo json_encode($data);
+  	}
+
+    function produk_dtps_edit(){
+  		$data = $this->Model_master->produk_dtps_mhs_edit();
+  		echo json_encode($data);
+  	}
+
+    function produk_dtps_delete(){
+  		$data = $this->Model_master->produk_dtps_mhs_delete();
+  		echo json_encode($data);
+  	}
+
     public function hki_paten_mhs()
     {
       $this->Model_security->getsecurity();

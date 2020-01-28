@@ -1381,6 +1381,13 @@ class Model_master extends CI_model {
 		return $data->result();
 	}
 
+	function pagelaran_ilmiah_mhs_data_list(){
+		$role = $this->session->userdata('nama');
+		$sql = "SELECT a.nama, SUM(CASE WHEN(b.th_akademik = ts2.tahun AND b.prodi='$role') THEN jml_judul ELSE 0 END) AS ts2, SUM(CASE WHEN(b.th_akademik = ts1.tahun AND b.prodi='$role') THEN jml_judul ELSE 0 END) AS ts1, SUM(CASE WHEN(b.th_akademik = ts.tahun AND b.prodi='$role') THEN jml_judul ELSE 0 END) AS ts FROM `jenis_publikasi` a LEFT JOIN pagelaran_ilmiah b on b.jenis_publikasi=a.id LEFT JOIN ts AS ts2 ON ts2.tahun = b.th_akademik AND ts2.prodi = '$role' AND ts2.nama_ts = 'TS-2' LEFT JOIN ts AS ts1 ON ts1.tahun = b.th_akademik AND ts1.prodi = '$role' AND ts1.nama_ts = 'TS-1' LEFT JOIN ts ON ts.tahun = b.th_akademik AND ts.prodi = '$role' AND ts.nama_ts = 'TS' WHERE a.modul='pagelaran_ilmiah' GROUP by a.seq_id ";
+		$data = $this->db->query($sql);
+		return $data->result();
+	}
+
 	function karya_ilmiah_disitasi_mhs_data_list(){
 		$role = $this->session->userdata('nama');
 		$this->db->where('prodi', $role);
@@ -1426,6 +1433,48 @@ class Model_master extends CI_model {
 		$this->db->where('prodi', $role);
 		$data = $this->db->get('hki_paten_mhs');
 		return $data->result();
+	}
+
+	function produk_dtps_mhs_data_list(){
+		$role = $this->session->userdata('nama');
+		$this->db->where('prodi', $role);
+		$data = $this->db->get('produk_dtps_mhs');
+		return $data->result();
+	}
+
+	function produk_dtps_mhs_add(){
+		$prodi = $this->session->userdata('nama');
+		$data = array(
+			'nama_dosen'  => $this->input->post('nama_dosen'),
+			'nama_produk'  => $this->input->post('nama_produk'),
+			'deskripsi' => $this->input->post('deskripsi'),
+			'bukti' => $this->input->post('bukti'),
+			'prodi' => $prodi
+		);
+		$result = $this->db->insert('produk_dtps_mhs', $data);
+		return $result;
+	}
+
+	function produk_dtps_mhs_edit(){
+		$seq_id = $this->input->post('seq_id');
+		$prodi = $this->session->userdata('nama');
+    	$data = array(
+			'nama_dosen'  => $this->input->post('nama_dosen'),
+			'nama_produk'  => $this->input->post('nama_produk'),
+			'deskripsi' => $this->input->post('deskripsi'),
+			'bukti' => $this->input->post('bukti'),
+			'prodi' => $prodi
+		);
+		$this->db->where('seq_id', $seq_id);
+		$result = $this->db->update('produk_dtps_mhs', $data);
+		return $result;
+	}
+
+	function produk_dtps_mhs_delete(){
+		$seq_id = $this->input->post('seq_id');
+		$this->db->where('seq_id', $seq_id);
+    	$result = $this->db->delete('produk_dtps_mhs');
+   	 	return $result;
 	}
 
 	function hki_paten_mhs_add(){

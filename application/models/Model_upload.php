@@ -365,6 +365,189 @@ class Model_upload extends CI_model {
 							$this->db->insert('pkm_dosen_mhs', $data);
 						}
 						break;
+					case '8.b.1':
+						for ($i=2; $i < ($numRows+1) ; $i++)
+						{
+							$data = array(
+								'nama_kegiatan' => $worksheet[$i]["A"],
+								'waktu' => $worksheet[$i]["B"],
+								'tingkat'  => $worksheet[$i]["C"],
+								'prestasi'  => $worksheet[$i]["D"],
+								'prodi' => $worksheet[$i]["E"]
+							);
+							$this->db->insert('prestasi_akad_mhs', $data);
+						}
+						break;
+					case '8.b.2':
+						for ($i=2; $i < ($numRows+1) ; $i++)
+						{
+							$data = array(
+								'nama_kegiatan' => $worksheet[$i]["A"],
+								'waktu' => $worksheet[$i]["B"],
+								'tingkat'  => $worksheet[$i]["C"],
+								'prestasi'  => $worksheet[$i]["D"],
+								'prodi' => $worksheet[$i]["E"]
+							);
+							$this->db->insert('prestasi_non_akad_mhs', $data);
+						}
+						break;
+					case '8.d.1':
+						for ($i=2; $i < ($numRows+1) ; $i++)
+						{
+							$data = array(
+								'jml_lulusan_terlacak' => $worksheet[$i]["A"],
+								'jml_lulusan_dipesan' => $worksheet[$i]["B"],
+								'wt_dibawah_3bln'  => $worksheet[$i]["C"],
+								'wt_3sd6_bulan'  => $worksheet[$i]["D"],
+								'wt_diatas_6bulan' => $worksheet[$i]["E"],
+								'prodi' => $worksheet[$i]["F"],
+								'ts' => $worksheet[$i]["G"]
+							);
+							$this->db->insert('waktu_tunggu_lulusan', $data);
+						}
+						break;
+					case '8.d.2':
+						for ($i=2; $i < ($numRows+1) ; $i++)
+						{
+							$data = array(
+								'jml_lulusan_terlacak' => $worksheet[$i]["A"],
+								'jml_lulusan_terlacak_rendah' => $worksheet[$i]["B"],
+								'jml_lulusan_terlacak_sedang'  => $worksheet[$i]["C"],
+								'jml_lulusan_terlacak_tinggi'  => $worksheet[$i]["D"],
+								'prodi' => $worksheet[$i]["E"],
+								'ts' => $worksheet[$i]["F"]
+							);
+							$this->db->insert('kesesuaian_bidang_kerja_lulusan', $data);
+						}
+						break;
+					case '8.e.1':
+						for ($i=2; $i < ($numRows+1) ; $i++)
+						{
+							$data = array(
+								'jml_lulusan_terlacak' => $worksheet[$i]["A"],
+								'jml_lulusan_terlacak_lokal' => $worksheet[$i]["B"],
+								'jml_lulusan_terlacak_nasional'  => $worksheet[$i]["C"],
+								'jml_lulusan_terlacak_internasional'  => $worksheet[$i]["D"],
+								'prodi' => $worksheet[$i]["E"],
+								'ts' => $worksheet[$i]["F"]
+							);
+							$this->db->insert('tempat_kerja_lulusan', $data);
+						}
+						break;
+					case '8.e.2':
+						for ($i=2; $i < ($numRows+1) ; $i++)
+						{
+							$data = array(
+								'jns_kemampuan' => $worksheet[$i]["A"],
+								'sangat_baik' => $worksheet[$i]["B"],
+								'baik'  => $worksheet[$i]["C"],
+								'cukup'  => $worksheet[$i]["D"],
+								'kurang' => $worksheet[$i]["E"],
+								'rencana_tindak_lanjut' => $worksheet[$i]["F"],
+								'prodi' => $worksheet[$i]["G"]
+							);
+							$this->db->insert('kepuasan_pengguna_lulusan', $data);
+						}
+						break;
+					case '8.e.2.ref':
+						for ($i=2; $i < ($numRows+1) ; $i++)
+						{
+							$data = array(
+								'ts' => $worksheet[$i]["A"],
+								'jml_tanggapan_terlacak' => $worksheet[$i]["B"],
+								'podi'  => $worksheet[$i]["C"]
+							);
+							$this->db->insert('ref_kepuasan_pelanggan_lulusan', $data);
+						}
+						break;
+					case '8.f.1-1':
+						for ($i=2; $i < ($numRows+1) ; $i++)
+						{
+							$data = array(
+								'jenis_publikasi' => $worksheet[$i]["A"],
+								'jml_judul' => $worksheet[$i]["B"],
+								'th_akademik'  => $worksheet[$i]["C"],
+								'prodi'  => $worksheet[$i]["D"]
+							);
+							$this->db->insert('publikasi_ilmiah_mhs', $data);
+						}
+						break;
+					case '8.f.1-2':
+						break;
+					case '8.f.2':
+						for ($i=2; $i < ($numRows+1) ; $i++)
+						{
+							$data = array(
+								'nama_dosen' => $worksheet[$i]["A"],
+								'judul_artikel_disitasi' => $worksheet[$i]["B"],
+								'jumlah'  => $worksheet[$i]["C"],
+								'prodi'  => $worksheet[$i]["D"]
+							);
+							$this->db->insert('karya_ilmiah_disitasi_mhs', $data);
+						}
+						break;
+					case '8.f.3':
+						for ($i=2; $i < ($numRows+1) ; $i++)
+						{
+							$data = array(
+								'nama_mhs' => $worksheet[$i]["A"],
+								'nama_produk' => $worksheet[$i]["B"],
+								'deskripsi'  => $worksheet[$i]["C"],
+								'bukti'  => $worksheet[$i]["D"],
+								'prodi'  => $worksheet[$i]["E"]
+							);
+							$this->db->insert('produk_dtps_mhs', $data);
+						}
+						break;
+					case '8.f.4-1':
+						for ($i=2; $i < ($numRows+1) ; $i++)
+						{
+							$data = array(
+								'nama_dosen' => $worksheet[$i]["A"],
+								'nama_produk' => $worksheet[$i]["B"],
+								'deskripsi'  => $worksheet[$i]["C"],
+								'bukti'  => $worksheet[$i]["D"],
+								'prodi'  => $worksheet[$i]["E"]
+							);
+							$this->db->insert('hki_paten_mhs', $data);
+						}
+						break;
+					case '8.f.4-2':
+						for ($i=2; $i < ($numRows+1) ; $i++)
+						{
+							$data = array(
+								'prodi' => $worksheet[$i]["A"],
+								'luaran_penelitian' => $worksheet[$i]["B"],
+								'th_perolehan'  => $worksheet[$i]["C"],
+								'keterangan'  => $worksheet[$i]["D"]
+							);
+							$this->db->insert('hki_hak_cipta_mhs', $data);
+						}
+						break;
+					case '8.f.4-3':
+						for ($i=2; $i < ($numRows+1) ; $i++)
+						{
+							$data = array(
+								'prodi' => $worksheet[$i]["A"],
+								'luaran_penelitian' => $worksheet[$i]["B"],
+								'th_perolehan'  => $worksheet[$i]["C"],
+								'keterangan'  => $worksheet[$i]["D"]
+							);
+							$this->db->insert('hki_teknologi_tepatguna_mhs', $data);
+						}
+						break;
+					case '8.f.4-4':
+						for ($i=2; $i < ($numRows+1) ; $i++)
+						{
+							$data = array(
+								'luaran_penelitian' => $worksheet[$i]["A"],
+								'th_perolehan' => $worksheet[$i]["B"],
+								'keterangan'  => $worksheet[$i]["C"],
+								'prodi'  => $worksheet[$i]["D"]
+							);
+							$this->db->insert('buku_isbn_mhs', $data);
+						}
+						break;
 					default:
 						// code...
 						break;
