@@ -58,7 +58,7 @@
       <div class="modal-body">
         <div class="form-row">
           <div class="form-group col-md-12">
-            <label for="mitra">Upload Excel File, Klik <a href="<?php echo base_url('assets/upload/1.3.tridarma_penelitian.xlsx');?>" data-toggle="tooltip" data-placement="top" title="Download Template">disini</a> untuk unduh file template</label>
+            <label for="mitra">Upload Excel File, Klik <a href="<?php echo base_url('assets/upload/1.3.tridarma_pkm.xlsx');?>" data-toggle="tooltip" data-placement="top" title="Download Template">disini</a> untuk unduh file template</label>
             <input type="file" name="file_upload">
             <div id="id_check_result" class="help-block with-errors"></div>
           </div>
