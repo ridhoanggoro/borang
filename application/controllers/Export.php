@@ -150,9 +150,8 @@ class Export extends CI_Controller {
 										 'style' => PHPExcel_Style_Border::BORDER_THIN
 								 )
 						 )
-				 );
-				$tot = 14 + ($no-2);
-				$objPHPExcel->getActiveSheet()->getStyle('A14:M'.$tot)->applyFromArray($styleArray);
+					 );
+				$objPHPExcel->getActiveSheet()->getStyle('A18:G'.$col)->applyFromArray($styleArray);
 	      break;
 			case '3a2':
 	      $fileName = './assets/template/3a2.xlsx';
@@ -883,7 +882,7 @@ class Export extends CI_Controller {
     header('Cache-Control: max-age=0');
 
     // If you're serving to IE over SSL, then the following may be needed
-    header ('Expires: Mon, 26 Jul 2020 05:00:00 GMT'); // Date in the past
+    header ('Expires: Mon, 26 Jul 2021 05:00:00 GMT'); // Date in the past
     header ('Last-Modified: '.gmdate('D, d M Y H:i:s').' GMT'); // always modified
     header ('Cache-Control: cache, must-revalidate'); // HTTP/1.1
     header ('Pragma: public'); // HTTP/1.0
