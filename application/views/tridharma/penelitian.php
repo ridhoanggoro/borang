@@ -150,7 +150,7 @@
 <!--END MODAL ADD-->
 
 <!-- MODAL EDIT -->
-<form class="was-validated">
+<form class="form-horizontal" id="submit">
   <div class="modal fade" id="Modal_Edit" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content">
@@ -210,11 +210,20 @@
             <div id="id_check_result" class="help-block with-errors"></div>
           </div>
         </div>
+        <input type="hidden" class="form-control" id="doc_edit" name="doc_edit" readonly>
+        <div class="form-row">
+          <label for="doc_edit">Dokumen </label><div id="status"></div>
+          <div class="form-group col-md-12">
+            <input type="file" class="custom-file-input" id="customFile" name="file_edit">
+            <label class="custom-file-label" for="customFile">Pilih file (pastikan file yang di upload dengan format PDF)</label>
+            <div id="id_check_result" class="help-block with-errors"></div>
+          </div>
+        </div>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary btn-icon-split btn-sm" data-dismiss="modal"><span class="icon text-white-50"><i class="fas fa-arrow-alt-circle-left"></i></i></span>
         <span class="text">Batal</span></button>
-        <button type="button" type="submit" id="btn_update" class="btn btn-primary btn-icon-split btn-sm"><span class="icon text-white-50"><i class="fas fa-save"></i></span>
+        <button type="submit" id="btn_update" class="btn btn-primary btn-icon-split btn-sm"><span class="icon text-white-50"><i class="fas fa-save"></i></span>
         <span class="text">Simpan</span></button>
       </div>
     </div>
@@ -254,6 +263,11 @@
 $(document).ready(function(){
   show_data();
   $('#mydata').dataTable();
+  // Add the following code if you want the name of the file appear on select
+  $(".custom-file-input").on("change", function() {
+    var fileName = $(this).val().split("\\").pop();
+    $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
+  });
   function show_data(){
     $.ajax({
       type  : 'ajax',
@@ -273,7 +287,8 @@ $(document).ready(function(){
           '<td>'+data[i].bukti_kerjasama+'</td>'+
           '<td>'+data[i].tahun_berakhir+'</td>'+
           '<td style="text-align:right;">'+
-              '<a href="javascript:void(0);" class="btn btn-info btn-circle btn-sm item_edit" data-toggle="tooltip" data-placement="top" title="Edit" data-seq_id="'+data[i].seq_id+'" data-lembaga_mitra="'+data[i].lembaga_mitra+'" data-tingkat="'+data[i].tingkat+'"data-judul_kegiatan="'+data[i].judul_kegiatan+'"data-manfaat_bagi_ps="'+data[i].manfaat_bagi_ps+'"data-durasi="'+data[i].durasi+'"data-bukti_kerjasama="'+data[i].bukti_kerjasama+'"data-tahun_berakhir="'+data[i].tahun_berakhir+'"><i class="fas fa-search"></i></a>'+' '+
+              '<a href="javascript:void(0);" class="btn btn-info btn-circle btn-sm item_edit" data-toggle="tooltip" data-placement="top" title="Edit" data-seq_id="'+data[i].seq_id+'" data-lembaga_mitra="'+data[i].lembaga_mitra+'" data-tingkat="'+data[i].tingkat+'"data-judul_kegiatan="'+data[i].judul_kegiatan+'"data-manfaat_bagi_ps="'+data[i].manfaat_bagi_ps+'" data-durasi="'+data[i].durasi+'"data-bukti_kerjasama="'+data[i].bukti_kerjasama+'"data-tahun_berakhir="'+data[i].tahun_berakhir+'" data-doc="'+data[i].doc+'"><i class="fas fa-search"></i></a>'+' '+
+              '<a href="<?php echo site_url('assets/document/')?>'+data[i].doc+'" class="btn btn-primary btn-circle btn-sm" data-toggle="tooltip" data-placement="top" title="Download Dokumen"><i class="fas fa-download"></i></a>'+
               '<a href="javascript:void(0);" class="btn btn-danger btn-circle btn-sm item_delete" data-toggle="tooltip" data-placement="top" title="Delete" data-seq_id="'+data[i].seq_id+'"><i class="fas fa-trash"></i></a>'+
           '</td>'+
           '</tr>';
@@ -349,6 +364,9 @@ $(document).ready(function(){
     var durasi          = $(this).data('durasi');
     var tahun_berakhir  = $(this).data('tahun_berakhir');
     var bukti           = $(this).data('bukti_kerjasama');
+    var doc             = $(this).data('doc');
+    if (doc) { $('#status').html('<span class="badge badge-success">Dokumen telah diunggah</span>');
+    } else { $('#status').html('<span class="badge badge-danger">Dokumen belum diunggah</span>'); }
 
     $('#Modal_Edit').modal('show');
     $('[name="seq_id"]').val(seq_id);
@@ -359,32 +377,21 @@ $(document).ready(function(){
     $('[name="waktu_edit"]').val(durasi);
     $('[name="tahun_berakhir_edit"]').val(tahun_berakhir);
     $('[name="bukti_edit"]').val(bukti);
+    $('[name="doc_edit"]').val(doc);
   });
 
-  //update record
-  $('#btn_update').on('click',function(){
-    var seq_id          = $('#seq_id').val();
-    var lembaga_mitra   = $('#mitra_edit').val();
-    var tingkat         = $('#tingkat_edit').val();
-    var judul_kegiatan  = $('#judul_kegiatan_edit').val();
-    var manfaat_bagi_ps = $('#manfaat_bagi_ps_edit').val();
-    var durasi          = $('#waktu_edit').val();
-    var tahun_berakhir  = $('#tahun_berakhir_edit').val();
-    var bukti           = $('#bukti_edit').val();
-
+  // Edit data
+  $('#submit').submit(function(e){
+    e.preventDefault();
     $.ajax({
-      type : "POST",
-      url  : "<?php echo site_url('tridharma/penelitian_edit')?>",
-      dataType : "JSON",
-      data : {seq_id:seq_id, lembaga_mitra:lembaga_mitra, tingkat:tingkat, judul_kegiatan:judul_kegiatan, manfaat_bagi_ps:manfaat_bagi_ps, durasi:durasi, tahun_berakhir:tahun_berakhir, bukti:bukti},
+      url:'<?php echo site_url('tridharma/penelitian_edit')?>',
+      type:"post",
+      data:new FormData(this),
+      processData:false,
+      contentType:false,
+      cache:false,
+      async:false,
       success: function(data){
-        $('[name="mitra_edit"]').val("");
-        $('[name="tingkat_edit"]').val("");
-        $('[name="judul_kegiatan_edit"]').val("");
-        $('[name="manfaat_bagi_ps_edit"]').val("");
-        $('[name="waktu_edit"]').val("");
-        $('[name="tahun_berakhir_edit"]').val("");
-        $('[name="bukti_edit"]').val("");
         $('#Modal_Edit').modal('hide');
         $.alert({
           title: 'Sukses!',
@@ -393,7 +400,6 @@ $(document).ready(function(){
         show_data();
       }
     });
-    return false;
   });
 
   //get data for delete record

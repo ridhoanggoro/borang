@@ -57,9 +57,9 @@ class Model_master extends CI_model {
 		$data = array(
 			'prodi' => $prodi,
 			'lembaga_mitra'  => $this->input->post('lembaga_mitra'),
-      		'tingkat'  => $this->input->post('tingkat'),
-      		'judul_kegiatan' => $this->input->post('judul_kegiatan'),
-      		'manfaat_bagi_ps' => $this->input->post('manfaat_bagi_ps'),
+  		'tingkat'  => $this->input->post('tingkat'),
+  		'judul_kegiatan' => $this->input->post('judul_kegiatan'),
+  		'manfaat_bagi_ps' => $this->input->post('manfaat_bagi_ps'),
 			'durasi' => $this->input->post('durasi'),
 			'bukti_kerjasama' => $this->input->post('bukti'),
 			'tahun_berakhir' => $this->input->post('tahun_berakhir')
@@ -69,21 +69,44 @@ class Model_master extends CI_model {
 	}
 
 	function tridharma_penelitian_edit(){
+		$config['upload_path']="./assets/document";
+		$config['allowed_types']='pdf';
+		$config['encrypt_name'] = TRUE;
+		$this->load->library('upload',$config);
 		$seq_id = $this->input->post('seq_id');
 		$prodi = $this->session->userdata('nama');
-    	$data = array(
-			'prodi' => $prodi,
-			'lembaga_mitra'  => $this->input->post('lembaga_mitra'),
-      		'tingkat'  => $this->input->post('tingkat'),
-      		'judul_kegiatan' => $this->input->post('judul_kegiatan'),
-      		'manfaat_bagi_ps' => $this->input->post('manfaat_bagi_ps'),
-			'durasi' => $this->input->post('durasi'),
-			'bukti_kerjasama' => $this->input->post('bukti'),
-			'tahun_berakhir' => $this->input->post('tahun_berakhir')
-    	);
-    	$this->db->where('seq_id', $seq_id);
-    	$result = $this->db->update('tridarma_penelitian', $data);
-    	return $result;
+
+		if($this->upload->do_upload("file_edit")){
+			$docs = array('upload_data' => $this->upload->data());
+			$file = $docs['upload_data']['file_name'];
+			$data = array(
+				'prodi' => $prodi,
+				'lembaga_mitra'  => $this->input->post('mitra_edit'),
+	  		'tingkat'  => $this->input->post('tingkat_edit'),
+	  		'judul_kegiatan' => $this->input->post('judul_kegiatan_edit'),
+	  		'manfaat_bagi_ps' => $this->input->post('manfaat_bagi_ps_edit'),
+				'durasi' => $this->input->post('waktu_edit'),
+				'bukti_kerjasama' => $this->input->post('bukti_edit'),
+				'tahun_berakhir' => $this->input->post('tahun_berakhir_edit'),
+				'doc' => $file
+	  	);
+		}
+		else {
+			$data = array(
+				'prodi' => $prodi,
+				'lembaga_mitra'  => $this->input->post('mitra_edit'),
+	  		'tingkat'  => $this->input->post('tingkat_edit'),
+	  		'judul_kegiatan' => $this->input->post('judul_kegiatan_edit'),
+	  		'manfaat_bagi_ps' => $this->input->post('manfaat_bagi_ps_edit'),
+				'durasi' => $this->input->post('waktu_edit'),
+				'bukti_kerjasama' => $this->input->post('bukti_edit'),
+				'tahun_berakhir' => $this->input->post('tahun_berakhir_edit')
+	  	);
+		}
+
+  	$this->db->where('seq_id', $seq_id);
+  	$result = $this->db->update('tridarma_penelitian', $data);
+  	return $result;
 	}
 
 	function tridharma_penelitian_delete(){
@@ -117,21 +140,44 @@ class Model_master extends CI_model {
 	}
 
 	function tridharma_pkm_edit(){
+		$config['upload_path']="./assets/document";
+		$config['allowed_types']='pdf';
+		$config['encrypt_name'] = TRUE;
+		$this->load->library('upload',$config);
 		$seq_id = $this->input->post('seq_id');
 		$prodi = $this->session->userdata('nama');
-    	$data = array(
-			'prodi' => $prodi,
-			'lembaga_mitra'  => $this->input->post('lembaga_mitra'),
-      		'tingkat'  => $this->input->post('tingkat'),
-      		'judul_kegiatan' => $this->input->post('judul_kegiatan'),
-      		'manfaat_bagi_ps' => $this->input->post('manfaat_bagi_ps'),
-			'durasi' => $this->input->post('durasi'),
-			'bukti_kerjasama' => $this->input->post('bukti'),
-			'tahun_berakhir' => $this->input->post('tahun_berakhir')
-    	);
-    	$this->db->where('seq_id', $seq_id);
-    	$result = $this->db->update('tridarma_pkm', $data);
-    	return $result;
+
+		if($this->upload->do_upload("file_edit")){
+			$docs = array('upload_data' => $this->upload->data());
+			$file = $docs['upload_data']['file_name'];
+			$data = array(
+				'prodi' => $prodi,
+				'lembaga_mitra'  => $this->input->post('mitra_edit'),
+				'tingkat'  => $this->input->post('tingkat_edit'),
+				'judul_kegiatan' => $this->input->post('judul_kegiatan_edit'),
+				'manfaat_bagi_ps' => $this->input->post('manfaat_bagi_ps_edit'),
+				'durasi' => $this->input->post('waktu_edit'),
+				'bukti_kerjasama' => $this->input->post('bukti_edit'),
+				'tahun_berakhir' => $this->input->post('tahun_berakhir_edit'),
+				'doc' => $file
+	  	);
+		}
+		else {
+			$data = array(
+				'prodi' => $prodi,
+				'lembaga_mitra'  => $this->input->post('mitra_edit'),
+				'tingkat'  => $this->input->post('tingkat_edit'),
+				'judul_kegiatan' => $this->input->post('judul_kegiatan_edit'),
+				'manfaat_bagi_ps' => $this->input->post('manfaat_bagi_ps_edit'),
+				'durasi' => $this->input->post('durasi_edit'),
+				'bukti_kerjasama' => $this->input->post('bukti_edit'),
+				'tahun_berakhir' => $this->input->post('tahun_berakhir_edit')
+	  	);
+		}
+
+		$this->db->where('seq_id', $seq_id);
+		$result = $this->db->update('tridarma_pkm', $data);
+		return $result;
 	}
 
 	function tridharma_pkm_delete(){
