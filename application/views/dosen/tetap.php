@@ -201,7 +201,7 @@
 <!--END MODAL ADD-->
 
 <!-- MODAL EDIT -->
-<form class="was-validated">
+<form class="was-validated" id="submit">
   <div class="modal fade" id="Modal_Edit" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content">
@@ -307,7 +307,16 @@
             <div id="id_check_result" class="help-block with-errors"></div>
           </div>
         </div>
-      </div>
+        <input type="hidden" class="form-control" id="doc_edit" name="doc_edit" readonly>
+          <div class="form-row">
+            <label for="doc_edit">Dokumen </label><div id="status"></div>
+            <div class="form-group col-md-12">
+              <input type="file" class="custom-file-input" id="customFile" name="file_edit">
+              <label class="custom-file-label" for="customFile">Pilih file (pastikan file yang di upload dengan format PDF)</label>
+              <div id="id_check_result" class="help-block with-errors"></div>
+            </div>
+          </div>
+        </div>
       <div class="modal-footer">
         <button class="btn btn-secondary btn-icon-split btn-sm" data-dismiss="modal"><span class="icon text-white-50"><i class="fas fa-arrow-alt-circle-left"></i></i></span>
         <span class="text">Batal</span></button>
@@ -351,6 +360,11 @@
 $(document).ready(function(){
   show_data();
   $('#mydata').dataTable();
+   // Add the following code if you want the name of the file appear on select
+  $(".custom-file-input").on("change", function() {
+    var fileName = $(this).val().split("\\").pop();
+    $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
+  });
   function show_data(){
     $.ajax({
       type  : 'ajax',
@@ -375,7 +389,8 @@ $(document).ready(function(){
           '<td>'+data[i].kesesuaian_bidang_keahlian+'</td>'+
           '<td>'+data[i].matakuliah_diampu_ps_lain+'</td>'+
           '<td style="text-align:right;">'+
-              '<a href="javascript:void(0);" class="btn btn-info btn-circle btn-sm item_edit" data-toggle="tooltip" data-placement="top" title="Edit" data-seq_id="'+data[i].seq_id+'" data-nidn="'+data[i].nidn+'" data-nama="'+data[i].nama+'" data-pendidikan_magister="'+data[i].pendidikan_magister+'" data-pendidikan_doktor="'+data[i].pendidikan_doktor+'" data-bidang_keahlian="'+data[i].bidang_keahlian+'"data-kesesuaian_kompetensi_inti_ps="'+data[i].kesesuaian_kompetensi_inti_ps+'" data-jabatan_akademik="'+data[i].jabatan_akademik+'" data-sertifikasi_profesional="'+data[i].sertifikasi_profesional+'" data-sertifikasi_kompetensi="'+data[i].sertifikasi_kompetensi+'" data-matakuliah_diampu="'+data[i].matakuliah_diampu+'" data-kesesuaian_bidang_keahlian="'+data[i].kesesuaian_bidang_keahlian+'" data-matakuliah_diampu_ps_lain="'+data[i].matakuliah_diampu_ps_lain+'" data-sertifikasi="'+data[i].sertifikasi+'"><i class="fas fa-search"></i></a>'+' '+
+              '<a href="javascript:void(0);" class="btn btn-info btn-circle btn-sm item_edit" data-toggle="tooltip" data-placement="top" title="Edit" data-seq_id="'+data[i].seq_id+'" data-nidn="'+data[i].nidn+'" data-nama="'+data[i].nama+'" data-pendidikan_magister="'+data[i].pendidikan_magister+'" data-pendidikan_doktor="'+data[i].pendidikan_doktor+'" data-bidang_keahlian="'+data[i].bidang_keahlian+'"data-kesesuaian_kompetensi_inti_ps="'+data[i].kesesuaian_kompetensi_inti_ps+'" data-jabatan_akademik="'+data[i].jabatan_akademik+'" data-sertifikasi_profesional="'+data[i].sertifikasi_profesional+'" data-sertifikasi_kompetensi="'+data[i].sertifikasi_kompetensi+'" data-matakuliah_diampu="'+data[i].matakuliah_diampu+'" data-kesesuaian_bidang_keahlian="'+data[i].kesesuaian_bidang_keahlian+'" data-matakuliah_diampu_ps_lain="'+data[i].matakuliah_diampu_ps_lain+'" data-sertifikasi="'+data[i].sertifikasi+'" data-doc="'+data[i].doc+'"><i class="fas fa-search"></i></a>'+' '+
+              '<a href="<?php echo site_url('assets/document/')?>'+data[i].doc+'" class="btn btn-primary btn-circle btn-sm" data-toggle="tooltip" data-placement="top" title="Download Dokumen"><i class="fas fa-download"></i></a>'+
               '<a href="javascript:void(0);" class="btn btn-danger btn-circle btn-sm item_delete" data-toggle="tooltip" data-placement="top" title="Delete" data-seq_id="'+data[i].seq_id+'"><i class="fas fa-trash"></i></a>'+
           '</td>'+
           '</tr>';
@@ -470,6 +485,9 @@ $(document).ready(function(){
     var kesesuaian_bidang_keahlian = $(this).data('kesesuaian_bidang_keahlian');
     var matakuliah_diampu_ps_lain = $(this).data('matakuliah_diampu_ps_lain');
     var sertifikasi = $(this).data('sertifikasi');
+    var doc = $(this).data('doc');
+    if (doc) { $('#status').html('<span class="badge badge-success">Dokumen telah diunggah</span>');
+    } else { $('#status').html('<span class="badge badge-danger">Dokumen belum diunggah</span>'); }
 
     $('#Modal_Edit').modal('show');
     $('[name="seq_id"]').val(seq_id);
@@ -486,44 +504,21 @@ $(document).ready(function(){
     $('[name="kesesuaian_bidang_keahlian_edit"]').val(kesesuaian_bidang_keahlian);
     $('[name="matakuliah_diampu_ps_lain_edit"]').val(matakuliah_diampu_ps_lain);
     $('[name="sertifikasi_edit"]').val(sertifikasi);
+    $('[name="doc_edit"]').val(doc);
   });
 
-  //update record
-  $('#btn_update').on('click',function(){
-    var seq_id = $('#seq_id').val();
-    var nidn = $('#nidn_edit').val();
-    var nama = $('#nama_edit').val();
-    var pendidikan_magister = $('#pendidikan_magister_edit').val();
-    var pendidikan_doktor = $('#pendidikan_doktor_edit').val();
-    var bidang_keahlian = $('#bidang_keahlian_edit').val();
-    var kesesuaian_kompetensi_inti_ps = $('#kesesuaian_kompetensi_inti_ps_edit').val();
-    var jabatan_akademik = $('#jabatan_akademik_edit').val();
-    var sertifikasi_profesional = $('#sertifikasi_profesional_edit').val();
-    var sertifikasi_kompetensi = $('#sertifikasi_kompetensi_edit').val();
-    var matakuliah_diampu = $('#matakuliah_diampu_edit').val();
-    var kesesuaian_bidang_keahlian = $('#kesesuaian_bidang_keahlian_edit').val();
-    var matakuliah_diampu_ps_lain = $('#matakuliah_diampu_ps_lain_edit').val();
-    var sertifikasi = $('#sertifikasi_edit').val();
-
+  // Edit data
+  $('#submit').submit(function(e){
+    e.preventDefault();
     $.ajax({
-      type : "POST",
-      url  : "<?php echo site_url('dosen/dosen_tetap_edit')?>",
-      dataType : "JSON",
-      data : {seq_id:seq_id, nidn:nidn, nama:nama, pendidikan_magister:pendidikan_magister, pendidikan_doktor:pendidikan_doktor, bidang_keahlian:bidang_keahlian, kesesuaian_kompetensi_inti_ps:kesesuaian_kompetensi_inti_ps, jabatan_akademik:jabatan_akademik, sertifikasi_profesional:sertifikasi_profesional, sertifikasi_kompetensi: sertifikasi_kompetensi, matakuliah_diampu:matakuliah_diampu, kesesuaian_bidang_keahlian:kesesuaian_bidang_keahlian, matakuliah_diampu_ps_lain:matakuliah_diampu_ps_lain, sertifikasi:sertifikasi},
+      url:'<?php echo site_url('dosen/dosen_tetap_edit')?>',
+      type:"post",
+      data:new FormData(this),
+      processData:false,
+      contentType:false,
+      cache:false,
+      async:false,
       success: function(data){
-        $('[name="nidn_edit"]').val("");
-        $('[name="nama_edit"]').val("");
-        $('[name="pendidikan_magister_edit"]').val("");
-        $('[name="pendidikan_doktor_edit"]').val("");
-        $('[name="bidang_keahlian_edit"]').val("");
-        $('[name="kesesuaian_kompetensi_inti_ps_edit"]').val("");
-        $('[name="jabatan_akademik_edit"]').val("");
-        $('[name="sertifikasi_kompetensi_edit"]').val("");
-        $('[name="sertifikasi_profesional_edit"]').val("");
-        $('[name="matakuliah_diampu_edit"]').val("");
-        $('[name="kesesuaian_bidang_keahlian_edit"]').val("");
-        $('[name="matakuliah_diampu_ps_lain_edit"]').val("");
-        $('[name="sertifikasi_edit"]').val("");
         $('#Modal_Edit').modal('hide');
         $.alert({
           title: 'Sukses!',
@@ -532,7 +527,6 @@ $(document).ready(function(){
         show_data();
       }
     });
-    return false;
   });
 
   //get data for delete record
