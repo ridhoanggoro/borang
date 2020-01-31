@@ -308,7 +308,7 @@ class Model_master extends CI_model {
 	  		);
 		}
 
-		$this->db->where('seq_id', $seq_id);
+			$this->db->where('seq_id', $seq_id);
     	$result = $this->db->update('dosen', $data);
     	return $result;
 	}
@@ -361,19 +361,43 @@ class Model_master extends CI_model {
 	}
 
 	function ewmp_edit(){
+		$config['upload_path']="./assets/document";
+		$config['allowed_types']='pdf';
+		$config['encrypt_name'] = TRUE;
+		$this->load->library('upload',$config);
 		$seq_id = $this->input->post('seq_id');
 		$prodi = $this->session->userdata('nama');
-    	$data = array(
-				'nik_nidn' => $this->input->post('nik_nidn'),
-				'dtps'  => $this->input->post('dtps'),
-	  		'ps_yang_diakreditasi'  => $this->input->post('ps_yang_diakreditasi'),
-	  		'ps_lain_di_dalam_pt' => $this->input->post('ps_lain_di_dalam_pt'),
-	  		'ps_lain_di_luar_pt' => $this->input->post('ps_lain_di_luar_pt'),
-				'penelitian' => $this->input->post('penelitian'),
-				'pkm' => $this->input->post('pkm'),
-				'tugas_tambahan' => $this->input->post('tugas_tambahan'),
+
+		if($this->upload->do_upload("file_edit")){
+			$docs = array('upload_data' => $this->upload->data());
+			$file = $docs['upload_data']['file_name'];
+			$data = array(
+				'nik_nidn' => $this->input->post('nidn_edit'),
+				'dtps'  => $this->input->post('dtps_edit'),
+	  		'ps_yang_diakreditasi'  => $this->input->post('ps_yang_diakreditasi_edit'),
+	  		'ps_lain_di_dalam_pt' => $this->input->post('ps_lain_di_dalam_pt_edit'),
+	  		'ps_lain_di_luar_pt' => $this->input->post('ps_lain_di_luar_pt_edit'),
+				'penelitian' => $this->input->post('penelitian_edit'),
+				'pkm' => $this->input->post('pkm_edit'),
+				'tugas_tambahan' => $this->input->post('tugas_tambahan_edit'),
+				'prodi' => $prodi,
+				'doc' => $file
+	  		);
+		}
+		else {
+			$data = array(
+				'nik_nidn' => $this->input->post('nidn_edit'),
+				'dtps'  => $this->input->post('dtps_edit'),
+	  		'ps_yang_diakreditasi'  => $this->input->post('ps_yang_diakreditasi_edit'),
+	  		'ps_lain_di_dalam_pt' => $this->input->post('ps_lain_di_dalam_pt_edit'),
+	  		'ps_lain_di_luar_pt' => $this->input->post('ps_lain_di_luar_pt_edit'),
+				'penelitian' => $this->input->post('penelitian_edit'),
+				'pkm' => $this->input->post('pkm_edit'),
+				'tugas_tambahan' => $this->input->post('tugas_tambahan_edit'),
 				'prodi' => $prodi
-			);
+	  		);
+			}
+
 			$this->db->where('seq_id', $seq_id);
     	$result = $this->db->update('ekuivalen_dosen_mengajar', $data);
     	return $result;
@@ -417,24 +441,53 @@ class Model_master extends CI_model {
 	}
 
 	function dosen_tdk_tetap_edit(){
+		$config['upload_path']="./assets/document";
+		$config['allowed_types']='pdf';
+		$config['encrypt_name'] = TRUE;
+		$this->load->library('upload',$config);
 		$seq_id = $this->input->post('seq_id');
 		$prodi = $this->session->userdata('nama');
-    	$data = array(
-				'nidn' => $this->input->post('nidn'),
-				'nama'  => $this->input->post('nama'),
-	  		'pendidikan_magister'  => $this->input->post('pendidikan_magister'),
-	  		'pendidikan_doktor' => $this->input->post('pendidikan_doktor'),
-	  		'bidang_keahlian' => $this->input->post('bidang_keahlian'),
-				'kesesuaian_kompetensi_inti_ps' => $this->input->post('kesesuaian_kompetensi_inti_ps'),
-				'jabatan_akademik' => $this->input->post('jabatan_akademik'),
-				'sertifikasi_profesional' => $this->input->post('sertifikasi_profesional'),
-				'sertifikasi_kompetensi' => $this->input->post('sertifikasi_kompetensi'),
-				'matakuliah_diampu' => $this->input->post('matakuliah_diampu'),
-				'kesesuaian_bidang_keahlian' => $this->input->post('kesesuaian_bidang_keahlian'),
-				'matakuliah_diampu_ps_lain' => $this->input->post('matakuliah_diampu_ps_lain'),
+
+		if($this->upload->do_upload("file_edit")){
+			$docs = array('upload_data' => $this->upload->data());
+			$file = $docs['upload_data']['file_name'];
+			$data = array(
+				'nidn' => $this->input->post('nidn_edit'),
+				'nama'  => $this->input->post('nama_edit'),
+	  		'pendidikan_magister'  => $this->input->post('pendidikan_ps_edit'),
+	  		'pendidikan_doktor' => $this->input->post('pendidikan_doktor_edit'),
+	  		'bidang_keahlian' => $this->input->post('bidang_keahlian_edit'),
+				'kesesuaian_kompetensi_inti_ps' => $this->input->post('kesesuaian_kompetensi_inti_ps_edit'),
+				'jabatan_akademik' => $this->input->post('jabatan_akademik_edit'),
+				'sertifikasi_profesional' => $this->input->post('sertifikasi_profesional_edit'),
+				'sertifikasi_kompetensi' => $this->input->post('sertifikasi_kompetensi_edit'),
+				'matakuliah_diampu' => $this->input->post('matakuliah_diampu_edit'),
+				'kesesuaian_bidang_keahlian' => $this->input->post('kesesuaian_bidang_keahlian_edit'),
+				'matakuliah_diampu_ps_lain' => $this->input->post('matakuliah_diampu_ps_lain_edit'),
+				'prodi' => $prodi,
+				'status' => 'TIDAK TETAP',
+				'doc' => $file
+	  		);
+		}
+		else {
+			$data = array(
+				'nidn' => $this->input->post('nidn_edit'),
+				'nama'  => $this->input->post('nama_edit'),
+	  		'pendidikan_magister'  => $this->input->post('pendidikan_ps_edit'),
+	  		'pendidikan_doktor' => $this->input->post('pendidikan_doktor_edit'),
+	  		'bidang_keahlian' => $this->input->post('bidang_keahlian_edit'),
+				'kesesuaian_kompetensi_inti_ps' => $this->input->post('kesesuaian_kompetensi_inti_ps_edit'),
+				'jabatan_akademik' => $this->input->post('jabatan_akademik_edit'),
+				'sertifikasi_profesional' => $this->input->post('sertifikasi_profesional_edit'),
+				'sertifikasi_kompetensi' => $this->input->post('sertifikasi_kompetensi_edit'),
+				'matakuliah_diampu' => $this->input->post('matakuliah_diampu_edit'),
+				'kesesuaian_bidang_keahlian' => $this->input->post('kesesuaian_bidang_keahlian_edit'),
+				'matakuliah_diampu_ps_lain' => $this->input->post('matakuliah_diampu_ps_lain_edit'),
 				'prodi' => $prodi,
 				'status' => 'TIDAK TETAP'
-			);
+	  		);
+			}
+
 			$this->db->where('seq_id', $seq_id);
     	$result = $this->db->update('dosen', $data);
     	return $result;
@@ -472,19 +525,43 @@ class Model_master extends CI_model {
 	}
 
 	function dosen_praktisi_edit(){
+		$config['upload_path']="./assets/document";
+		$config['allowed_types']='pdf';
+		$config['encrypt_name'] = TRUE;
+		$this->load->library('upload',$config);
 		$seq_id = $this->input->post('seq_id');
 		$prodi = $this->session->userdata('nama');
-    $data = array(
-				'nik_nidn' => $this->input->post('nik_nidn'),
-				'nama_dosen'  => $this->input->post('nama_dosen'),
-	  		'perusahaan'  => $this->input->post('perusahaan'),
-	  		'pendidikan_tertinggi' => $this->input->post('pendidikan_tertinggi'),
-	  		'bidang_keahlian' => $this->input->post('bidang_keahlian'),
-				'sertifikat_profesi' => $this->input->post('sertifikat_profesi'),
-				'matakuliah_diampu' => $this->input->post('matakuliah_diampu'),
-				'sks' => $this->input->post('sks'),
-				'prodi' => $prodi
-			);
+
+		if($this->upload->do_upload("file_edit")){
+			$docs = array('upload_data' => $this->upload->data());
+			$file = $docs['upload_data']['file_name'];
+			$data = array(
+				'nik_nidn' => $this->input->post('nidk_edit'),
+				'nama_dosen'  => $this->input->post('nama_edit'),
+	  		'perusahaan'  => $this->input->post('perusahaan_edit'),
+	  		'pendidikan_tertinggi' => $this->input->post('pendidikan_tertinggi_edit'),
+	  		'bidang_keahlian' => $this->input->post('bidang_keahlian_edit'),
+				'sertifikat_profesi' => $this->input->post('sertifikat_profesi_edit'),
+				'matakuliah_diampu' => $this->input->post('matakuliah_diampu_edit'),
+				'sks' => $this->input->post('bobot_edit'),
+				'prodi' => $prodi,
+				'doc' => $file
+	  		);
+			}
+			else {
+				$data = array(
+					'nik_nidn' => $this->input->post('nidk_edit'),
+					'nama_dosen'  => $this->input->post('nama_edit'),
+		  		'perusahaan'  => $this->input->post('perusahaan_edit'),
+		  		'pendidikan_tertinggi' => $this->input->post('pendidikan_tertinggi_edit'),
+		  		'bidang_keahlian' => $this->input->post('bidang_keahlian_edit'),
+					'sertifikat_profesi' => $this->input->post('sertifikat_profesi_edit'),
+					'matakuliah_diampu' => $this->input->post('matakuliah_diampu_edit'),
+					'sks' => $this->input->post('bobot_edit'),
+					'prodi' => $prodi
+	  		);
+			}
+
 			$this->db->where('seq_id', $seq_id);
     	$result = $this->db->update('dosen_praktisi', $data);
     	return $result;
@@ -519,16 +596,37 @@ class Model_master extends CI_model {
 	}
 
 	function rekognisi_edit(){
+		$config['upload_path']="./assets/document";
+		$config['allowed_types']='pdf';
+		$config['encrypt_name'] = TRUE;
+		$this->load->library('upload',$config);
 		$seq_id = $this->input->post('seq_id');
 		$prodi = $this->session->userdata('nama');
-    $data = array(
-			'nama'  => $this->input->post('nama'),
-  		'bidang_keahlian'  => $this->input->post('bidang_keahlian'),
-  		'bukti_pendukung' => $this->input->post('bukti_pendukung'),
-  		'tingkat' => $this->input->post('tingkat'),
-			'tahun' => $this->input->post('tahun'),
-			'prodi' => $prodi
-		);
+
+		if($this->upload->do_upload("file_edit")){
+			$docs = array('upload_data' => $this->upload->data());
+			$file = $docs['upload_data']['file_name'];
+			$data = array(
+				'nama'  => $this->input->post('nama_edit'),
+	  		'bidang_keahlian'  => $this->input->post('bidang_keahlian_edit'),
+	  		'bukti_pendukung' => $this->input->post('bukti_pendukung_edit'),
+	  		'tingkat' => $this->input->post('tingkat_edit'),
+				'tahun' => $this->input->post('tahun_edit'),
+				'prodi' => $prodi,
+				'doc' => $file
+	  		);
+			}
+			else {
+				$data = array(
+					'nama'  => $this->input->post('nama_edit'),
+		  		'bidang_keahlian'  => $this->input->post('bidang_keahlian_edit'),
+		  		'bukti_pendukung' => $this->input->post('bukti_pendukung_edit'),
+		  		'tingkat' => $this->input->post('tingkat_edit'),
+					'tahun' => $this->input->post('tahun_edit'),
+					'prodi' => $prodi
+	  		);
+			}
+
 		$this->db->where('seq_id', $seq_id);
   	$result = $this->db->update('rekognisi_dpts', $data);
   	return $result;
