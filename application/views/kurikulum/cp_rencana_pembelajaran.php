@@ -205,7 +205,7 @@
 <!--END MODAL ADD-->
 
 <!-- MODAL EDIT -->
-<form class="was-validated">
+<form class="was-validated" id="submit">
   <div class="modal fade" id="Modal_Edit" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content">
@@ -309,6 +309,15 @@
             <div id="id_check_result" class="help-block with-errors"></div>
           </div>
         </div>
+        <input type="hidden" class="form-control" id="doc_edit" name="doc_edit" readonly>
+        <div class="form-row">
+          <label for="doc_edit">Dokumen </label><div id="status"></div>
+          <div class="form-group col-md-12">
+            <input type="file" class="custom-file-input" id="customFile" name="file_edit">
+            <label class="custom-file-label" for="customFile">Pilih file (pastikan file yang di upload dengan format PDF)</label>
+            <div id="id_check_result" class="help-block with-errors"></div>
+          </div>
+        </div>
       </div>
       <div class="modal-footer">
         <button class="btn btn-secondary btn-icon-split btn-sm" data-dismiss="modal"><span class="icon text-white-50"><i class="fas fa-arrow-alt-circle-left"></i></i></span>
@@ -379,7 +388,8 @@ $(document).ready(function(){
           '<td style="text-align: center;">'+data[i].dokumen_pembelajaran+'</td>'+
           '<td style="text-align: center;">'+data[i].unit_penyelenggara+'</td>'+
           '<td style="text-align: center;">'+
-              '<a href="javascript:void(0);" class="btn btn-info btn-circle btn-sm item_edit" data-toggle="tooltip" title="Edit" data-seq_id="'+data[i].seq_id+'" data-semester="'+data[i].semester+'" data-kode_matkul="'+data[i].kode_matkul+'" data-nama_matkul="'+data[i].nama_matkul+'" data-matkul_kopetensi="'+data[i].matkul_kopetensi+'" data-kuliah="'+data[i].kuliah+'" data-seminar="'+data[i].seminar+'" data-praktikum="'+data[i].praktikum+'" data-konversi_jam="'+data[i].konversi_jam+'" data-sikap="'+data[i].sikap+'" data-pengetahuan="'+data[i].pengetahuan+'" data-keterampilan_umum="'+data[i].keterampilan_umum+'" data-keterampilan_khusus="'+data[i].keterampilan_khusus+'" data-dokumen_pembelajaran="'+data[i].dokumen_pembelajaran+'" data-unit_penyelenggara="'+data[i].unit_penyelenggara+'"><i class="fas fa-search"></i></a>'+
+              '<a href="javascript:void(0);" class="btn btn-info btn-circle btn-sm item_edit" data-toggle="tooltip" title="Edit" data-seq_id="'+data[i].seq_id+'" data-semester="'+data[i].semester+'" data-kode_matkul="'+data[i].kode_matkul+'" data-nama_matkul="'+data[i].nama_matkul+'" data-matkul_kopetensi="'+data[i].matkul_kopetensi+'" data-kuliah="'+data[i].kuliah+'" data-seminar="'+data[i].seminar+'" data-praktikum="'+data[i].praktikum+'" data-konversi_jam="'+data[i].konversi_jam+'" data-sikap="'+data[i].sikap+'" data-pengetahuan="'+data[i].pengetahuan+'" data-keterampilan_umum="'+data[i].keterampilan_umum+'" data-keterampilan_khusus="'+data[i].keterampilan_khusus+'" data-dokumen_pembelajaran="'+data[i].dokumen_pembelajaran+'" data-unit_penyelenggara="'+data[i].unit_penyelenggara+'" data-doc="'+data[i].doc+'"><i class="fas fa-search"></i></a>'+
+              '<a href="<?php echo site_url('assets/document/')?>'+data[i].doc+'" class="btn btn-primary btn-circle btn-sm" data-toggle="tooltip" data-placement="top" title="Download Dokumen"><i class="fas fa-download"></i></a>'+
               '<a href="javascript:void(0);" class="btn btn-danger btn-circle btn-sm item_delete" data-toggle="tooltip" data-placement="top" title="Delete" data-seq_id="'+data[i].seq_id+'"><i class="fas fa-trash"></i></a>'+
           '</td>'+
           '</tr>';
@@ -430,6 +440,9 @@ $(document).ready(function(){
     var keterampilan_khusus = $(this).data('keterampilan_khusus');
     var dokumen_pembelajaran = $(this).data('dokumen_pembelajaran');
     var unit_penyelenggara = $(this).data('unit_penyelenggara');
+    var doc = $(this).data('doc');
+    if (doc) { $('#status').html('<span class="badge badge-success">Dokumen telah diunggah</span>');
+    } else { $('#status').html('<span class="badge badge-danger">Dokumen belum diunggah</span>'); }
 
     $('#Modal_Edit').modal('show');
     $('[name="seq_id"]').val(seq_id);
@@ -463,6 +476,7 @@ $(document).ready(function(){
     }
     $('[name="dokumen_pembelajaran_edit"]').val(dokumen_pembelajaran);
     $('[name="unit_penyelenggara_edit"]').val(unit_penyelenggara);
+    $('[name="doc_edit"]').val(doc);
     $('[name="semester_edit"]').focus();
   });
 
@@ -516,6 +530,28 @@ $(document).ready(function(){
       }
     });
     return false;
+  });
+
+    // Edit data
+  $('#submit').submit(function(e){
+    e.preventDefault();
+    $.ajax({
+      url:'<?php echo site_url('dosen/cp_rencana_pembelajaran_edit')?>',
+      type:"post",
+      data:new FormData(this),
+      processData:false,
+      contentType:false,
+      cache:false,
+      async:false,
+      success: function(data){
+        $('#Modal_Edit').modal('hide');
+        $.alert({
+          title: 'Sukses!',
+          content: 'Data Berhasil Di Perbaharui!',
+        });
+        show_data();
+      }
+    });
   });
 
   //update record

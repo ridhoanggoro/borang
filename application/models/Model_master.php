@@ -625,11 +625,11 @@ class Model_master extends CI_model {
 					'tahun' => $this->input->post('tahun_edit'),
 					'prodi' => $prodi
 	  		);
-			}
+		}
 
 		$this->db->where('seq_id', $seq_id);
-  	$result = $this->db->update('rekognisi_dpts', $data);
-  	return $result;
+	  	$result = $this->db->update('rekognisi_dpts', $data);
+	  	return $result;
 	}
 
 	function rekognisi_delete(){
@@ -687,17 +687,36 @@ class Model_master extends CI_model {
 	}
 
 	function hki_paten_edit(){
+		$config['upload_path']="./assets/document";
+		$config['allowed_types']='pdf';
+		$config['encrypt_name'] = TRUE;
+		$this->load->library('upload',$config);
 		$seq_id = $this->input->post('seq_id');
 		$prodi = $this->session->userdata('nama');
-    $data = array(
-			'luaran_penelitian'  => $this->input->post('luaran_penelitian'),
-  		'th_perolehan'  => $this->input->post('th_perolehan'),
-  		'keterangan' => $this->input->post('keterangan'),
-			'prodi' => $prodi
-		);
+
+		if($this->upload->do_upload("file_edit")){
+			$docs = array('upload_data' => $this->upload->data());
+			$file = $docs['upload_data']['file_name'];
+			$data = array(
+				'luaran_penelitian'  => $this->input->post('luaran_penelitian_edit'),
+		  		'th_perolehan'  => $this->input->post('th_perolehan_edit'),
+		  		'keterangan' => $this->input->post('keterangan_edit'),
+				'prodi' => $prodi,
+				'doc' => $file
+	  		);
+			}
+			else {
+				$data = array(
+				'luaran_penelitian'  => $this->input->post('luaran_penelitian_edit'),
+		  		'th_perolehan'  => $this->input->post('th_perolehan_edit'),
+		  		'keterangan' => $this->input->post('keterangan_edit'),
+				'prodi' => $prodi,
+	  		);
+		}
+
 		$this->db->where('seq_id', $seq_id);
-  	$result = $this->db->update('hki_paten', $data);
-  	return $result;
+	  	$result = $this->db->update('hki_paten', $data);
+	  	return $result;
 	}
 
 	function hki_paten_delete(){
@@ -727,17 +746,36 @@ class Model_master extends CI_model {
 	}
 
 	function hki_hak_cipta_edit(){
+		$config['upload_path']="./assets/document";
+		$config['allowed_types']='pdf';
+		$config['encrypt_name'] = TRUE;
+		$this->load->library('upload',$config);
 		$seq_id = $this->input->post('seq_id');
 		$prodi = $this->session->userdata('nama');
-    $data = array(
-			'luaran_penelitian'  => $this->input->post('luaran_penelitian'),
-  		'th_perolehan'  => $this->input->post('th_perolehan'),
-  		'keterangan' => $this->input->post('keterangan'),
-			'prodi' => $prodi
-		);
+
+		if($this->upload->do_upload("file_edit")){
+			$docs = array('upload_data' => $this->upload->data());
+			$file = $docs['upload_data']['file_name'];
+			$data = array(
+					'luaran_penelitian'  => $this->input->post('luaran_penelitian_edit'),
+			  		'th_perolehan'  => $this->input->post('th_perolehan_edit'),
+			  		'keterangan' => $this->input->post('keterangan_edit'),
+					'prodi' => $prodi,
+					'doc' => $file
+	  			);
+		}
+		else {
+			$data = array(
+				'luaran_penelitian'  => $this->input->post('luaran_penelitian_edit'),
+		  		'th_perolehan'  => $this->input->post('th_perolehan_edit'),
+		  		'keterangan' => $this->input->post('keterangan_edit'),
+				'prodi' => $prodi,
+  			);
+		}
+	
 		$this->db->where('seq_id', $seq_id);
-  	$result = $this->db->update('hki_hak_cipta', $data);
-  	return $result;
+	  	$result = $this->db->update('hki_hak_cipta', $data);
+	  	return $result;
 	}
 
 	function hki_hak_cipta_delete(){
@@ -767,14 +805,33 @@ class Model_master extends CI_model {
 	}
 
 	function hki_teknologi_tepatguna_edit(){
+		$config['upload_path']="./assets/document";
+		$config['allowed_types']='pdf';
+		$config['encrypt_name'] = TRUE;
+		$this->load->library('upload',$config);
 		$seq_id = $this->input->post('seq_id');
 		$prodi = $this->session->userdata('nama');
-    	$data = array(
-			'luaran_penelitian'  => $this->input->post('luaran_penelitian'),
-			'th_perolehan'  => $this->input->post('th_perolehan'),
-			'keterangan' => $this->input->post('keterangan'),
-			'prodi' => $prodi
-		);
+
+		if($this->upload->do_upload("file_edit")){
+			$docs = array('upload_data' => $this->upload->data());
+			$file = $docs['upload_data']['file_name'];
+			$data = array(
+					'luaran_penelitian'  => $this->input->post('luaran_penelitian_edit'),
+			  		'th_perolehan'  => $this->input->post('th_perolehan_edit'),
+			  		'keterangan' => $this->input->post('keterangan_edit'),
+					'prodi' => $prodi,
+					'doc' => $file
+	  			);
+		}
+		else {
+			$data = array(
+				'luaran_penelitian'  => $this->input->post('luaran_penelitian_edit'),
+		  		'th_perolehan'  => $this->input->post('th_perolehan_edit'),
+		  		'keterangan' => $this->input->post('keterangan_edit'),
+				'prodi' => $prodi,
+  			);
+		}
+
 		$this->db->where('seq_id', $seq_id);
 		$result = $this->db->update('hki_teknologi_tepatguna', $data);
 		return $result;
@@ -807,14 +864,32 @@ class Model_master extends CI_model {
 	}
 
 	function buku_isbn_edit(){
+		$config['upload_path']="./assets/document";
+		$config['allowed_types']='pdf';
+		$config['encrypt_name'] = TRUE;
+		$this->load->library('upload',$config);
 		$seq_id = $this->input->post('seq_id');
 		$prodi = $this->session->userdata('nama');
-    	$data = array(
-			'luaran_penelitian'  => $this->input->post('luaran_penelitian'),
-			'th_perolehan'  => $this->input->post('th_perolehan'),
-			'keterangan' => $this->input->post('keterangan'),
-			'prodi' => $prodi
-		);
+
+		if($this->upload->do_upload("file_edit")){
+			$docs = array('upload_data' => $this->upload->data());
+			$file = $docs['upload_data']['file_name'];
+			$data = array(
+					'luaran_penelitian'  => $this->input->post('luaran_penelitian_edit'),
+			  		'th_perolehan'  => $this->input->post('th_perolehan_edit'),
+			  		'keterangan' => $this->input->post('keterangan_edit'),
+					'prodi' => $prodi,
+					'doc' => $file
+	  			);
+		}
+		else {
+			$data = array(
+				'luaran_penelitian'  => $this->input->post('luaran_penelitian_edit'),
+		  		'th_perolehan'  => $this->input->post('th_perolehan_edit'),
+		  		'keterangan' => $this->input->post('keterangan_edit'),
+				'prodi' => $prodi,
+  			);
+		}
 		$this->db->where('seq_id', $seq_id);
 		$result = $this->db->update('buku_isbn', $data);
 		return $result;
@@ -847,14 +922,33 @@ class Model_master extends CI_model {
 	}
 
 	function karya_ilmiah_disitasi_edit(){
+		$config['upload_path']="./assets/document";
+		$config['allowed_types']='pdf';
+		$config['encrypt_name'] = TRUE;
+		$this->load->library('upload',$config);
 		$seq_id = $this->input->post('seq_id');
 		$prodi = $this->session->userdata('nama');
-    	$data = array(
-			'nama_dosen'  => $this->input->post('nama_dosen'),
-			'judul_artikel_disitasi'  => $this->input->post('judul_artikel_disitasi'),
-			'jumlah' => $this->input->post('jumlah'),
-			'prodi' => $prodi
-		);
+
+		if($this->upload->do_upload("file_edit")){
+			$docs = array('upload_data' => $this->upload->data());
+			$file = $docs['upload_data']['file_name'];
+			$data = array(
+				'nama_dosen'  => $this->input->post('nama_dosen_edit'),
+				'judul_artikel_disitasi'  => $this->input->post('judul_artikel_disitasi_edit'),
+				'jumlah' => $this->input->post('jumlah_edit'),
+				'prodi' => $prodi,
+				'doc' => $file
+	  		);
+			}
+			else {
+				$data = array(
+				'nama_dosen'  => $this->input->post('nama_dosen_edit'),
+				'judul_artikel_disitasi'  => $this->input->post('judul_artikel_disitasi_edit'),
+				'jumlah' => $this->input->post('jumlah_edit'),
+				'prodi' => $prodi
+	  		);
+		}
+
 		$this->db->where('seq_id', $seq_id);
 		$result = $this->db->update('karya_ilmiah_disitasi', $data);
 		return $result;
@@ -888,15 +982,35 @@ class Model_master extends CI_model {
 	}
 
 	function produk_dtps_edit(){
+		$config['upload_path']="./assets/document";
+		$config['allowed_types']='pdf';
+		$config['encrypt_name'] = TRUE;
+		$this->load->library('upload',$config);
 		$seq_id = $this->input->post('seq_id');
 		$prodi = $this->session->userdata('nama');
-    	$data = array(
-			'nama_dosen'  => $this->input->post('nama_dosen'),
-			'nama_produk'  => $this->input->post('nama_produk'),
-			'deskripsi' => $this->input->post('deskripsi'),
-			'bukti' => $this->input->post('bukti'),
-			'prodi' => $prodi
-		);
+
+		if($this->upload->do_upload("file_edit")){
+			$docs = array('upload_data' => $this->upload->data());
+			$file = $docs['upload_data']['file_name'];
+			$data = array(
+				'nama_dosen'  => $this->input->post('nama_dosen_edit'),
+				'nama_produk'  => $this->input->post('nama_produk_edit'),
+				'deskripsi' => $this->input->post('deskripsi_edit'),
+				'bukti' => $this->input->post('bukti_edit'),
+				'prodi' => $prodi,
+				'doc' => $file
+	  		);
+			}
+			else {
+				$data = array(
+				'nama_dosen'  => $this->input->post('nama_dosen_edit'),
+				'nama_produk'  => $this->input->post('nama_produk_edit'),
+				'deskripsi' => $this->input->post('deskripsi_edit'),
+				'bukti' => $this->input->post('bukti_edit'),
+				'prodi' => $prodi
+	  		);
+		}
+
 		$this->db->where('seq_id', $seq_id);
 		$result = $this->db->update('produk_dtps', $data);
 		return $result;
