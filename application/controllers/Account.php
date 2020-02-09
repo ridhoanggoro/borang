@@ -66,10 +66,18 @@ class Account extends CI_Controller {
 		redirect('home');
 	}
 
-	public function reset_pwd()
+	public function adm_reset_pwd()
 	{
         $data['title']    = 'Reset Password';
         $data['content']  = 'change_pwd';
+        $data['modal']    = '';
+        $this->load->view('default_page', $data);
+	}
+
+	public function reset_pwd()
+	{
+        $data['title']    = 'Reset Password';
+        $data['content']  = 'user_change_pwd';
         $data['modal']    = '';
         $this->load->view('default_page', $data);
 	}
@@ -120,6 +128,22 @@ class Account extends CI_Controller {
 			echo $this->session->set_flashdata('msg','Password Berhasil Di Reset');
 			redirect('account\reset_pwd');
 		}
+	}
 
+	function usr_reset_pwd()
+	{
+		$id 	= $this->input->post('uid');
+		$pw1 	= $this->input->post('pwd1');
+		$pw2	= $this->input->post('pwd2');
+		if (strcmp($pw1, $pw2) !== 0)
+		{
+			echo $this->session->set_flashdata('msg','<label class="text-danger"><span class="fas fa-times"></span> Password Tidak Cocok, Harap Ulangi Kembali</label>');
+			redirect('account\reset_pwd');
+		}
+		else{
+			$this->Model_security->change_password($id, $pw1);
+			echo $this->session->set_flashdata('msg','<label class="text-success"><span class="fas fa-check"></span> Password Anda Berhasil Dirubah</label>');
+			redirect('account\reset_pwd');
+		}
 	}
 }

@@ -36,8 +36,7 @@
         <div class="form-row">
           <div class="form-group col-md-4">
             <label for="userid">UserID</label>
-            <input type="text" class="form-control" id="userid" name="userid" required>
-            <div id="id_check_result" class="help-block with-errors"></div>
+            <input type="text" class="form-control" id="userid" name="userid" required><div id="id_check_result"></div>
           </div> 
         </div>
         <div class="form-row">
@@ -80,43 +79,43 @@
       <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Edit Matakuliah</h5>
+            <h5 class="modal-title" id="exampleModalLabel">Edit User</h5>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>
           </div>
           <div class="modal-body">
+            <input type="text" hidden="" class="form-control" id="seq_id" name="seq_id">
                 <div class="form-row">
-                    <input type="text" hidden="" class="form-control" id="seq_id" name="seq_id">
-                   
-                 <div class="form-group col-md-4">
-                    <label for="kd_matkul">Kode Matakuliah</label>
-                    <input type="text" class="form-control" id="kd_matkul_edit" name="kd_matkul_edit" readonly>
-                </div>
-        </div>
-                <div class="form-row">
-                  <div class="form-group col-md-8">
-                    <label for="nama_matkul">Nama </label>
-                    <input type="text" class="form-control" id="nama_matkul_edit" name="nama_matkul_edit">
+                  <div class="form-group col-md-4">
+                    <label for="userid_edit">UserID</label>
+                    <input type="text" class="form-control" id="userid_edit" name="userid_edit" readonly="">
                   </div>
                 </div>
                 <div class="form-row">
-            <div class="form-group col-md-2">
-            <label for="sks">SKS</label>
-            <select id="sks_edit" name="sks_edit" class="custom-select mr-sm-2" data-placeholder="Please select...">
-              <option value=""></option>
-              <option value="1">1</option>
-              <option value="2">2</option>
-              <option value="3">3</option>
-              <option value="4">4</option>
-              <option value="5">5</option>
-              <option value="6">6</option>
-              <option value="7">7</option>
-              <option value="8">8</option>       
-            </select>
-            </div>
-                  </div>               
-          
+                  <div class="form-group col-md-8">
+                  <label for="nama_edit">Nama </label>
+                  <input type="text" class="form-control" id="nama_edit" name="nama_edit" required>
+                  <div class="invalid-feedback">Harap Masukan Nama</div>
+                  </div>
+                </div>
+                <div class="form-row">
+                  <div class="form-group col-md-12">
+                  <label for="role_edit">Role</label>
+                   <select id="role_edit" name="role_edit" class="custom-select" data-placeholder="Please select..." required>
+                        <option value="ADMIN">ADMIN</option>
+                        <option value="PIMPINAN">PIMPINAN</option>
+                        <option value="SUPER ADMIN">SUPER ADMIN</option>       
+                    </select>
+                  </div>
+                </div>
+                <div class="form-row">
+                  <div class="form-group col-md-8">
+                  <label for="pwd_edit">Password </label>
+                  <input type="password" class="form-control" id="pwd_edit" name="pwd_edit" required>
+                  </div>
+                </div>               
+          </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
             <button type="button" type="submit" id="btn_update" class="btn btn-primary">Update</button>
@@ -124,7 +123,6 @@
         </div>
       </div>
     </div>
-  </div>
 </form>
 <!--END MODAL EDIT-->
 
@@ -175,7 +173,7 @@
                                 '<td>'+data[i].role+'</td>'+
                                 '<td>'+data[i].login_terakhir+'</td>'+
                                 '<td style="text-align:right;">'+
-                                    '<a href="javascript:void(0);" class="btn btn-info btn-circle btn-sm item_edit" data-toggle="tooltip" data-placement="top" title="Edit" data-seq_id="'+data[i].seq_id+'" data-kd_matkul="'+data[i].kd_matkul+'" data-nama_matkul="'+data[i].nama_matkul+'"data-sks="'+data[i].sks+'"data-prodi="'+data[i].prodi+'"><i class="fas fa-search"></i></a>'+' '+
+                                    '<a href="javascript:void(0);" class="btn btn-info btn-circle btn-sm item_edit" data-toggle="tooltip" data-placement="top" title="Edit" data-seq_id="'+data[i].seq_id+'" data-userid="'+data[i].userid+'" data-nama_lengkap="'+data[i].nama_lengkap+'"data-role="'+data[i].role+'"data-login_terakhir="'+data[i].login_terakhir+'"><i class="fas fa-search"></i></a>'+' '+
                                     '<a href="javascript:void(0);" class="btn btn-danger btn-circle btn-sm item_delete" data-toggle="tooltip" data-placement="top" title="Delete" data-seq_id="'+data[i].seq_id+'"><i class="fas fa-trash"></i></a>'+
                                 '</td>'+
                                 '</tr>';
@@ -221,7 +219,7 @@
                  
                    $.alert({            
                       title: 'Sukses!',
-                      content: 'Account Berhasil Disimpan!',
+                      content: 'Account Berhasil Di Tambah!',
                     }); 
           
                     show_data();
@@ -233,38 +231,36 @@
  
         //get data for update record
         $('#tampil_data').on('click','.item_edit',function(){
-            var seq_id         = $(this).data('seq_id');
-            var kd_matkul      = $(this).data('kd_matkul');
-            var nama_matkul    = $(this).data('nama_matkul');
-            var sks            = $(this).data('sks');
-            var prodi          = $(this).data('prodi');           
+            var seq_id          = $(this).data('seq_id');
+            var userid          = $(this).data('userid');
+            var nama_lengkap    = $(this).data('nama_lengkap');
+            var role            = $(this).data('role');        
              
             $('#Modal_Edit').modal('show');
             $('[name="seq_id"]').val(seq_id);
-            $('[name="kd_matkul_edit"]').val(kd_matkul);
-            $('[name="nama_matkul_edit"]').val(nama_matkul);
-            $('[name="sks_edit"]').val(sks);
-            $('[name="prodi_edit"]').val(prodi);           
+            $('[name="userid_edit"]').val(userid);
+            $('[name="nama_edit"]').val(nama_lengkap);
+            $('[name="role_edit"]').val(role);         
         });
  
         //update record to database
          $('#btn_update').on('click',function(){
-            var seq_id         = $('#seq_id').val();    
-            var kd_matkul      = $('#kd_matkul_edit').val();
-            var nama_matkul    = $('#nama_matkul_edit').val();
-            var sks            = $('#sks_edit').val();
-            var prodi          = $('#prodi_edit').val();          
+            var seq_id          = $('#seq_id').val();    
+            var userid          = $('#userid_edit').val();
+            var nama_lengkap    = $('#nama_lengkap_edit').val();
+            var role            = $('#role_edit').val(); 
+            var pass            = $('#pwd_edit').val();        
 
             $.ajax({
                 type : "POST",
-                url  : "<?php echo site_url('admin/master/update_matakuliah')?>",
+                url  : "<?php echo site_url('account/upd_pwd')?>",
                 dataType : "JSON",
-                data : {seq_id:seq_id, kd_matkul:kd_matkul, nama_matkul:nama_matkul, sks:sks, prodi:prodi},
+                data : {seq_id:seq_id, userid:userid, nama_lengkap:nama_lengkap, role:role, pwd:pass},
                 success: function(data){
-                    $('[name="kd_matkul_edit"]').val(kd_matkul);
-                    $('[name="nama_matkul_edit"]').val(nama_matkul);
-                    $('[name="sks_edit"]').val(sks);
-                    $('[name="prodi_lengkap_edit"]').val(prodi);
+                    $('[name="userid_edit"]').val(kd_matkul);
+                    $('[name="nama_lengkap_edit"]').val(nama_matkul);
+                    $('[name="role_edit"]').val(sks);
+                    $('[name="pwd_edit"]').val(prodi);
                     $('#Modal_Edit').modal('hide');
                     show_data();
                 }

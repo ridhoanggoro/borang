@@ -133,7 +133,7 @@
 <!--END MODAL ADD-->
 
 <!-- MODAL EDIT -->
-<form class="was-validated">
+<form class="was-validated" id="submit">
   <div class="modal fade" id="Modal_Edit" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content">
@@ -175,6 +175,15 @@
           <div class="form-group col-md-3">
             <label for="tahun_edit">Tahun (YYYY)</label>
             <input type="number" min='2000' max='9999' class="form-control" id="tahun_edit" name="tahun_edit" required>
+            <div id="id_check_result" class="help-block with-errors"></div>
+          </div>
+        </div>
+        <input type="hidden" class="form-control" id="doc_edit" name="doc_edit" readonly>
+        <div class="form-row">
+          <label for="doc_edit">Dokumen </label><div id="status"></div>
+          <div class="form-group col-md-12">
+            <input type="file" class="custom-file-input" id="customFile" name="file_edit">
+            <label class="custom-file-label" for="customFile">Pilih file (pastikan file yang di upload dengan format PDF)</label>
             <div id="id_check_result" class="help-block with-errors"></div>
           </div>
         </div>
@@ -240,7 +249,8 @@ $(document).ready(function(){
           '<td>'+data[i].bentuk_integrasi+'</td>'+
           '<td>'+data[i].tahun+'</td>'+
           '<td style="text-align:right;">'+
-              '<a href="javascript:void(0);" class="btn btn-info btn-circle btn-sm item_edit" data-toggle="tooltip" data-placement="top" title="Edit" data-seq_id="'+data[i].seq_id+'" data-judul="'+data[i].judul+'" data-nama_dosen="'+data[i].nama_dosen+'" data-matkul="'+data[i].matkul+'" data-bentuk_integrasi="'+data[i].bentuk_integrasi+'" data-tahun="'+data[i].tahun+'"><i class="fas fa-search"></i></a>'+' '+
+              '<a href="javascript:void(0);" class="btn btn-info btn-circle btn-sm item_edit" data-toggle="tooltip" data-placement="top" title="Edit" data-seq_id="'+data[i].seq_id+'" data-judul="'+data[i].judul+'" data-nama_dosen="'+data[i].nama_dosen+'" data-matkul="'+data[i].matkul+'" data-bentuk_integrasi="'+data[i].bentuk_integrasi+'" data-tahun="'+data[i].tahun+'" data-doc="'+data[i].doc+'"><i class="fas fa-search"></i></a>'+' '+
+              '<a href="<?php echo site_url('assets/document/')?>'+data[i].doc+'" class="btn btn-primary btn-circle btn-sm" data-toggle="tooltip" data-placement="top" title="Download Dokumen"><i class="fas fa-download"></i></a>'+
               '<a href="javascript:void(0);" class="btn btn-danger btn-circle btn-sm item_delete" data-toggle="tooltip" data-placement="top" title="Delete" data-seq_id="'+data[i].seq_id+'"><i class="fas fa-trash"></i></a>'+
           '</td>'+
           '</tr>';
@@ -311,6 +321,9 @@ $(document).ready(function(){
     var matkul = $(this).data('matkul');
     var bentuk_integrasi = $(this).data('bentuk_integrasi');
     var tahun = $(this).data('tahun');
+    var doc = $(this).data('doc');
+    if (doc) { $('#status').html('<span class="badge badge-success">Dokumen telah diunggah</span>');
+    } else { $('#status').html('<span class="badge badge-danger">Dokumen belum diunggah</span>'); }
 
     $('#Modal_Edit').modal('show');
     $('[name="seq_id"]').val(seq_id);
@@ -319,28 +332,21 @@ $(document).ready(function(){
     $('[name="matkul_edit"]').val(matkul);
     $('[name="bentuk_integrasi_edit"]').val(bentuk_integrasi);
     $('[name="tahun_edit"]').val(tahun);
+    $('[name="doc_edit"]').val(doc);
   });
 
-  //update record
-  $('#btn_update').on('click',function(){
-    var seq_id = $('#seq_id').val();
-    var judul = $('#judul_edit').val();
-    var nama_dosen = $('#nama_dosen_edit').val();
-    var matkul = $('#matkul_edit').val();
-    var bentuk_integrasi = $('#bentuk_integrasi_edit').val();
-    var tahun = $('#tahun_edit').val();
-
+    // Edit data
+  $('#submit').submit(function(e){
+    e.preventDefault();
     $.ajax({
-      type : "POST",
-      url  : "<?php echo site_url('kurikulum/integrasi_pkm_edit')?>",
-      dataType : "JSON",
-      data : {seq_id:seq_id, judul:judul, nama_dosen:nama_dosen, matkul:matkul, bentuk_integrasi:bentuk_integrasi, tahun:tahun},
+      url:'<?php echo site_url('kurikulum/integrasi_pkm_edit')?>',
+      type:"post",
+      data:new FormData(this),
+      processData:false,
+      contentType:false,
+      cache:false,
+      async:false,
       success: function(data){
-        $('[name="judul_edit"]').val("");
-        $('[name="nama_dosen_edit"]').val("");
-        $('[name="bentuk_integrasi_edit"]').val("");
-        $('[name="matkul_edit"]').val("");
-        $('[name="tahun_edit"]').val("");
         $('#Modal_Edit').modal('hide');
         $.alert({
           title: 'Sukses!',
@@ -349,8 +355,8 @@ $(document).ready(function(){
         show_data();
       }
     });
-    return false;
   });
+
 
   //get data for delete record
   $('#tampil_data').on('click','.item_delete',function(){

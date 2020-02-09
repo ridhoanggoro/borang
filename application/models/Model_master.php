@@ -1063,7 +1063,7 @@ class Model_master extends CI_model {
 	function cp_rencana_pembelajaran_edit(){
 		$seq_id = $this->input->post('seq_id');
 		$prodi = $this->session->userdata('nama');
-    $data = array(
+    	$data = array(
 			'semester'  => $this->input->post('semester'),
 			'kode_matkul'  => $this->input->post('kode_matkul'),
 			'nama_matkul' => $this->input->post('nama_matkul'),
@@ -1114,19 +1114,40 @@ class Model_master extends CI_model {
 	}
 
 	function integrasi_pkm_edit(){
+		$config['upload_path']="./assets/document";
+		$config['allowed_types']='pdf';
+		$config['encrypt_name'] = TRUE;
+		$this->load->library('upload',$config);
 		$seq_id = $this->input->post('seq_id');
 		$prodi = $this->session->userdata('nama');
-    $data = array(
-			'judul'  => $this->input->post('judul'),
-			'nama_dosen'  => $this->input->post('nama_dosen'),
-			'matkul' => $this->input->post('matkul'),
-			'bentuk_integrasi' => $this->input->post('bentuk_integrasi'),
-			'tahun' => $this->input->post('tahun'),
-			'prodi' => $prodi
-		);
+
+		if($this->upload->do_upload("file_edit")){
+			$docs = array('upload_data' => $this->upload->data());
+			$file = $docs['upload_data']['file_name'];
+			$data = array(
+				'judul'  => $this->input->post('judul_edit'),
+				'nama_dosen'  => $this->input->post('nama_dosen_edit'),
+				'matkul' => $this->input->post('matkul_edit'),
+				'bentuk_integrasi' => $this->input->post('bentuk_integrasi_edit'),
+				'tahun' => $this->input->post('tahun_edit'),
+				'prodi' => $prodi,
+				'doc' => $file
+	  			);
+			}
+			else {
+				$data = array(
+				'judul'  => $this->input->post('judul_edit'),
+				'nama_dosen'  => $this->input->post('nama_dosen_edit'),
+				'matkul' => $this->input->post('matkul_edit'),
+				'bentuk_integrasi' => $this->input->post('bentuk_integrasi_edit'),
+				'tahun' => $this->input->post('tahun_edit'),
+				'prodi' => $prodi
+	  		);
+		}
+
 		$this->db->where('seq_id', $seq_id);
-  	$result = $this->db->update('integrasi_pkm', $data);
-  	return $result;
+	  	$result = $this->db->update('integrasi_pkm', $data);
+	  	return $result;
 	}
 
 	function integrasi_pkm_delete(){
@@ -1157,8 +1178,8 @@ class Model_master extends CI_model {
 		$prodi = $this->session->userdata('nama');
 		$data = array(
 			'aspek_ukuran'  => $this->input->post('aspek_ukuran'),
-  		'sangat_baik'  => $this->input->post('sangat_baik'),
-  		'baik' => $this->input->post('baik'),
+	  		'sangat_baik'  => $this->input->post('sangat_baik'),
+	  		'baik' => $this->input->post('baik'),
 			'cukup' => $this->input->post('cukup'),
 			'kurang' => $this->input->post('kurang'),
 			'rencana_tindaklanjut' => $this->input->post('rencana_tindaklanjut'),
@@ -1169,20 +1190,42 @@ class Model_master extends CI_model {
 	}
 
 	function kepuasan_mahasiswa_edit(){
+		$config['upload_path']="./assets/document";
+		$config['allowed_types']='pdf';
+		$config['encrypt_name'] = TRUE;
+		$this->load->library('upload',$config);
 		$seq_id = $this->input->post('seq_id');
 		$prodi = $this->session->userdata('nama');
-    $data = array(
-			'aspek_ukuran'  => $this->input->post('aspek_ukuran'),
-			'sangat_baik'  => $this->input->post('sangat_baik'),
-			'baik' => $this->input->post('baik'),
-			'cukup' => $this->input->post('cukup'),
-			'kurang' => $this->input->post('kurang'),
-			'rencana_tindaklanjut' => $this->input->post('rencana_tindaklanjut'),
-			'prodi' => $prodi
-		);
+
+		if($this->upload->do_upload("file_edit")){
+			$docs = array('upload_data' => $this->upload->data());
+			$file = $docs['upload_data']['file_name'];
+			$data = array(
+				'aspek_ukuran'  => $this->input->post('aspek_ukuran_edit'),
+				'sangat_baik'  => $this->input->post('sangat_baik_edit'),
+				'baik' => $this->input->post('baik_edit'),
+				'cukup' => $this->input->post('cukup_edit'),
+				'kurang' => $this->input->post('kurang_edit'),
+				'rencana_tindaklanjut' => $this->input->post('rencana_tindaklanjut_edit'),
+				'prodi' => $prodi,
+				'doc' => $file
+	  			);
+			}
+			else {
+				$data = array(
+				'aspek_ukuran'  => $this->input->post('aspek_ukuran_edit'),
+				'sangat_baik'  => $this->input->post('sangat_baik_edit'),
+				'baik' => $this->input->post('baik_edit'),
+				'cukup' => $this->input->post('cukup_edit'),
+				'kurang' => $this->input->post('kurang_edit'),
+				'rencana_tindaklanjut' => $this->input->post('rencana_tindaklanjut_edit'),
+				'prodi' => $prodi
+	  		);
+		}
+
 		$this->db->where('seq_id', $seq_id);
-  	$result = $this->db->update('kepuasan_pelanggan', $data);
-  	return $result;
+	  	$result = $this->db->update('kepuasan_pelanggan', $data);
+	  	return $result;
 	}
 
 	function kepuasan_mahasiswa_delete(){
@@ -1214,19 +1257,40 @@ class Model_master extends CI_model {
 	}
 
 	function penelitian_dosen_dan_mhs_edit(){
+		$config['upload_path']="./assets/document";
+		$config['allowed_types']='pdf';
+		$config['encrypt_name'] = TRUE;
+		$this->load->library('upload',$config);
 		$seq_id = $this->input->post('seq_id');
 		$prodi = $this->session->userdata('nama');
-    $data = array(
-			'nama_dosen'  => $this->input->post('nama_dosen'),
-  		'tema_penelitian'  => $this->input->post('tema_penelitian'),
-  		'nama_mhs' => $this->input->post('nama_mhs'),
-			'judul_kegiatan' => $this->input->post('judul_kegiatan'),
-			'tahun' => $this->input->post('tahun'),
-			'prodi' => $prodi
-		);
+
+		if($this->upload->do_upload("file_edit")){
+			$docs = array('upload_data' => $this->upload->data());
+			$file = $docs['upload_data']['file_name'];
+			$data = array(
+				'nama_dosen'  => $this->input->post('nama_dosen_edit'),
+		  		'tema_penelitian'  => $this->input->post('tema_penelitian_edit'),
+		  		'nama_mhs' => $this->input->post('nama_mhs_edit'),
+				'judul_kegiatan' => $this->input->post('judul_kegiatan_edit'),
+				'tahun' => $this->input->post('tahun_edit'),
+				'prodi' => $prodi,
+				'doc' => $file
+	  			);
+			}
+			else {
+				$data = array(
+				'nama_dosen'  => $this->input->post('nama_dosen_edit'),
+		  		'tema_penelitian'  => $this->input->post('tema_penelitian_edit'),
+		  		'nama_mhs' => $this->input->post('nama_mhs_edit'),
+				'judul_kegiatan' => $this->input->post('judul_kegiatan_edit'),
+				'tahun' => $this->input->post('tahun_edit'),
+				'prodi' => $prodi
+	  		);
+		}
+
 		$this->db->where('seq_id', $seq_id);
-  	$result = $this->db->update('penelitian_dosen_mhs', $data);
-  	return $result;
+	  	$result = $this->db->update('penelitian_dosen_mhs', $data);
+	  	return $result;
 	}
 
 	function penelitian_dosen_dan_mhs_delete(){
@@ -1258,19 +1322,40 @@ class Model_master extends CI_model {
 	}
 
 	function penelitian_mhs_tesis_edit(){
+		$config['upload_path']="./assets/document";
+		$config['allowed_types']='pdf';
+		$config['encrypt_name'] = TRUE;
+		$this->load->library('upload',$config);
 		$seq_id = $this->input->post('seq_id');
 		$prodi = $this->session->userdata('nama');
-    $data = array(
-			'nama_dosen'  => $this->input->post('nama_dosen'),
-  		'tema_penelitian'  => $this->input->post('tema_penelitian'),
-  		'nama_mhs' => $this->input->post('nama_mhs'),
-			'judul_kegiatan' => $this->input->post('judul_kegiatan'),
-			'tahun' => $this->input->post('tahun'),
-			'prodi' => $prodi
-		);
+
+		if($this->upload->do_upload("file_edit")){
+			$docs = array('upload_data' => $this->upload->data());
+			$file = $docs['upload_data']['file_name'];
+			$data = array(
+				'nama_dosen'  => $this->input->post('nama_dosen_edit'),
+		  		'tema_penelitian'  => $this->input->post('tema_penelitian_edit'),
+		  		'nama_mhs' => $this->input->post('nama_mhs_edit'),
+				'judul_kegiatan' => $this->input->post('judul_kegiatan_edit'),
+				'tahun' => $this->input->post('tahun_edit'),
+				'prodi' => $prodi,
+				'doc' => $file
+	  			);
+			}
+			else {
+				$data = array(
+				'nama_dosen'  => $this->input->post('nama_dosen_edit'),
+		  		'tema_penelitian'  => $this->input->post('tema_penelitian_edit'),
+		  		'nama_mhs' => $this->input->post('nama_mhs_edit'),
+				'judul_kegiatan' => $this->input->post('judul_kegiatan_edit'),
+				'tahun' => $this->input->post('tahun_edit'),
+				'prodi' => $prodi
+	  		);
+		}
+
 		$this->db->where('seq_id', $seq_id);
-  	$result = $this->db->update('penelitian_mhs_tesis', $data);
-  	return $result;
+	  	$result = $this->db->update('penelitian_mhs_tesis', $data);
+	  	return $result;
 	}
 
 	function penelitian_mhs_tesis_delete(){
@@ -1302,19 +1387,40 @@ class Model_master extends CI_model {
 	}
 
 	function pkm_dosen_dan_mhs_edit(){
+		$config['upload_path']="./assets/document";
+		$config['allowed_types']='pdf';
+		$config['encrypt_name'] = TRUE;
+		$this->load->library('upload',$config);
 		$seq_id = $this->input->post('seq_id');
 		$prodi = $this->session->userdata('nama');
-    $data = array(
-			'nama_dosen'  => $this->input->post('nama_dosen'),
-  		'tema_penelitian'  => $this->input->post('tema_penelitian'),
-  		'nama_mhs' => $this->input->post('nama_mhs'),
-			'judul_kegiatan' => $this->input->post('judul_kegiatan'),
-			'tahun' => $this->input->post('tahun'),
-			'prodi' => $prodi
-		);
+
+		if($this->upload->do_upload("file_edit")){
+			$docs = array('upload_data' => $this->upload->data());
+			$file = $docs['upload_data']['file_name'];
+			$data = array(
+				'nama_dosen'  => $this->input->post('nama_dosen_edit'),
+		  		'tema_penelitian'  => $this->input->post('tema_penelitian_edit'),
+		  		'nama_mhs' => $this->input->post('nama_mhs_edit'),
+				'judul_kegiatan' => $this->input->post('judul_kegiatan_edit'),
+				'tahun' => $this->input->post('tahun_edit'),
+				'prodi' => $prodi,
+				'doc' => $file
+	  			);
+			}
+			else {
+				$data = array(
+				'nama_dosen'  => $this->input->post('nama_dosen_edit'),
+		  		'tema_penelitian'  => $this->input->post('tema_penelitian_edit'),
+		  		'nama_mhs' => $this->input->post('nama_mhs_edit'),
+				'judul_kegiatan' => $this->input->post('judul_kegiatan_edit'),
+				'tahun' => $this->input->post('tahun_edit'),
+				'prodi' => $prodi
+	  		);
+		}
+
 		$this->db->where('seq_id', $seq_id);
-  	$result = $this->db->update('pkm_dosen_mhs', $data);
-  	return $result;
+	  	$result = $this->db->update('pkm_dosen_mhs', $data);
+	  	return $result;
 	}
 
 	function pkm_dosen_dan_mhs_delete(){

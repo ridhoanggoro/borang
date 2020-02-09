@@ -23,15 +23,15 @@ class Dana extends CI_Controller {
 	{
 		parent::__construct();
 		$this->load->model('Model_security');
-    $this->load->model('Model_master');
+    	$this->load->model('Model_master');
 	}
 
 	function penggunaan_dana(){
-    $this->Model_security->getsecurity();
-    $isi['title'] 	='Penggunaan Dana';
-    $isi['content']	= 'dana/penggunaan_dana';
-    $this->load->view('default_page', $isi);
-  }
+	    $this->Model_security->getsecurity();
+	    $isi['title'] 	='Penggunaan Dana';
+	    $isi['content']	= 'dana/penggunaan_dana';
+	    $this->load->view('default_page', $isi);
+	 }
 
 	function penggunaan_dana_data_list(){
 		$data = $this->Model_master->penggunaan_dana_data_list();

@@ -3,19 +3,19 @@
     <h6 class="m-0 font-weight-bold text-primary"><?php echo $title; ?></h6>
   </div>
   <div class="card-body">
-    <span class="badge badge-danger"><?php echo $this->session->flashdata('msg');?></span>
-        <form class="login-form" action="<?php echo site_url('account/upd_pwd');?>" method="post">
+        <?php echo $this->session->flashdata('msg');?>
+        <form class="login-form" action="<?php echo site_url('account/usr_reset_pwd');?>" method="post">
             <div class="form-row">
                 <div class="form-group col-md-4">
                     <label>User ID</label>
                     <div class="form-group"> 
-                        <input type="text" name="uid" class="form-control" placeholder="user ID"> 
+                        <input type="text" name="uid" class="form-control" value="<?php echo $this->session->userdata('userid'); ?>" readonly=""> 
                     </div> 
-                    <label>New Password</label>
+                    <label>Password Baru</label>
                     <div class="form-group pass_show"> 
                         <input type="password" name="pwd1" class="form-control" placeholder="New Password"> 
                     </div> 
-                    <label>Confirm Password</label>
+                    <label>Konfirmasi Password</label>
                     <div class="form-group pass_show"> 
                         <input type="password" name="pwd2" class="form-control" placeholder="Confirm Password"> 
                     </div>
