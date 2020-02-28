@@ -121,7 +121,7 @@
 <!--END MODAL ADD-->
 
 <!-- MODAL EDIT -->
-<form class="was-validated">
+<form class="was-validated" id="submit">
   <div class="modal fade" id="Modal_Edit" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content">
@@ -152,6 +152,15 @@
           <div class="form-group col-md-12">
             <label for="keterangan_edit">Keterangan</label>
             <textarea class="form-control" rows="4" id="keterangan_edit" name="keterangan_edit" required></textarea>
+            <div id="id_check_result" class="help-block with-errors"></div>
+          </div>
+        </div>
+        <input type="hidden" class="form-control" id="doc_edit" name="doc_edit" readonly>
+        <div class="form-row">
+          <label for="doc_edit">Dokumen </label><div id="status"></div>
+          <div class="form-group col-md-12">
+            <input type="file" class="custom-file-input" id="customFile" name="file_edit">
+            <label class="custom-file-label" for="customFile">Pilih file (pastikan file yang di upload dengan format PDF)</label>
             <div id="id_check_result" class="help-block with-errors"></div>
           </div>
         </div>
@@ -216,7 +225,8 @@ $(document).ready(function(){
           '<td>'+data[i].th_perolehan+'</td>'+
           '<td>'+data[i].keterangan+'</td>'+
           '<td style="text-align:right;">'+
-              '<a href="javascript:void(0);" class="btn btn-info btn-circle btn-sm item_edit" data-toggle="tooltip" data-placement="top" title="Edit" data-seq_id="'+data[i].seq_id+'" data-luaran_penelitian="'+data[i].luaran_penelitian+'" data-th_perolehan="'+data[i].th_perolehan+'" data-keterangan="'+data[i].keterangan+'"><i class="fas fa-search"></i></a>'+' '+
+              '<a href="javascript:void(0);" class="btn btn-info btn-circle btn-sm item_edit" data-toggle="tooltip" data-placement="top" title="Edit" data-seq_id="'+data[i].seq_id+'" data-luaran_penelitian="'+data[i].luaran_penelitian+'" data-th_perolehan="'+data[i].th_perolehan+'" data-keterangan="'+data[i].keterangan+'" data-doc="'+data[i].doc+'"><i class="fas fa-search"></i></a>'+' '+
+              '<a href="<?php echo site_url('assets/document/')?>'+data[i].doc+'" class="btn btn-primary btn-circle btn-sm" data-toggle="tooltip" data-placement="top" title="Download Dokumen"><i class="fas fa-download"></i></a>'+
               '<a href="javascript:void(0);" class="btn btn-danger btn-circle btn-sm item_delete" data-toggle="tooltip" data-placement="top" title="Delete" data-seq_id="'+data[i].seq_id+'"><i class="fas fa-trash"></i></a>'+
           '</td>'+
           '</tr>';
@@ -281,30 +291,30 @@ $(document).ready(function(){
     var luaran_penelitian = $(this).data('luaran_penelitian');
     var th_perolehan = $(this).data('th_perolehan');
     var keterangan = $(this).data('keterangan');
+    var doc = $(this).data('doc');
+    if (doc) { $('#status').html('<span class="badge badge-success">Dokumen telah diunggah</span>');
+    } else { $('#status').html('<span class="badge badge-danger">Dokumen belum diunggah</span>'); }
 
     $('#Modal_Edit').modal('show');
     $('[name="seq_id"]').val(seq_id);
     $('[name="luaran_penelitian_edit"]').val(luaran_penelitian);
     $('[name="th_perolehan_edit"]').val(th_perolehan);
     $('[name="keterangan_edit"]').val(keterangan);
+    $('[name="doc_edit"]').val(doc);
   });
 
-  //update record
-  $('#btn_update').on('click',function(){
-    var seq_id = $('#seq_id').val();
-    var luaran_penelitian = $('#luaran_penelitian_edit').val();
-    var th_perolehan = $('#th_perolehan_edit').val();
-    var keterangan = $('#keterangan_edit').val();
-
+  // Edit data
+  $('#submit').submit(function(e){
+    e.preventDefault();
     $.ajax({
-      type : "POST",
-      url  : "<?php echo site_url('luaran/hki_paten_mhs_edit')?>",
-      dataType : "JSON",
-      data : {seq_id:seq_id, luaran_penelitian:luaran_penelitian, th_perolehan:th_perolehan, keterangan:keterangan},
+      url:'<?php echo site_url('luaran/hki_paten_mhs_edit')?>',
+      type:"post",
+      data:new FormData(this),
+      processData:false,
+      contentType:false,
+      cache:false,
+      async:false,
       success: function(data){
-        $('[name="luaran_penelitian_edit"]').val("");
-        $('[name="th_perolehan_edit"]').val("");
-        $('[name="keterangan_edit"]').val("");
         $('#Modal_Edit').modal('hide');
         $.alert({
           title: 'Sukses!',
@@ -313,7 +323,6 @@ $(document).ready(function(){
         show_data();
       }
     });
-    return false;
   });
 
   //get data for delete record
