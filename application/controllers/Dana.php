@@ -37,4 +37,15 @@ class Dana extends CI_Controller {
 		$data = $this->Model_master->penggunaan_dana_data_list();
 		echo json_encode($data);
 	}
+
+	function add_dana(){
+	    $this->Model_security->getsecurity();
+	    $isi['title'] 	='Tambah/Rubah Penggunaan Dana';
+	    $isi['content']	= 'dana/add_penggunaan_dana';
+	    $this->load->view('default_page', $isi);
+	 }
+
+	 function save_dana(){
+
+	 }
 }

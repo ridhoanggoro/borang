@@ -2,7 +2,7 @@
   <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
     <h6 class="m-0 font-weight-bold text-primary"><?php echo $title; ?></h6>
     <div class="float-right">
-      <a href="javascript:void(0);" data-toggle="modal" data-target="#Modal_Add" class="btn btn-primary btn-icon-split btn-sm">
+      <a href="<?php echo site_url('dana/add_dana'); ?>" class="btn btn-primary btn-icon-split btn-sm">
         <span class="icon text-white-50">
           <i class="fas fa-folder-plus"></i>
         </span>
