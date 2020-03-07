@@ -2179,4 +2179,10 @@ class Model_master extends CI_model {
     	$result = $this->db->delete('buku_isbn_mhs');
    	 	return $result;
 	}
+
+	function update_data($id, $table, $value){
+		$this->db->where('seq_id', $id);
+		$result = $this->db->update($table, $value);
+		return $result;
+	}
 }

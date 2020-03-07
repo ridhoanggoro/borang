@@ -1,12 +1,24 @@
+<?php 
+  $info = $this->session->flashdata('msg');
+  if (!empty ($info)) {
+    echo $info;
+  }
+?>
 <div class="card shadow">
   <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
     <h6 class="m-0 font-weight-bold text-primary"><?php echo $title; ?></h6>
     <div class="float-right">
-      <a href="<?php echo site_url('dana/add_dana'); ?>" class="btn btn-primary btn-icon-split btn-sm">
+      <a href="<?php echo site_url('dana/add_dana/fakultas'); ?>" class="btn btn-primary btn-icon-split btn-sm">
         <span class="icon text-white-50">
           <i class="fas fa-folder-plus"></i>
         </span>
-        <span class="text">Tambah Data</span>
+        <span class="text">Tambah Data Fakultas</span>
+      </a>
+      <a href="<?php echo site_url('dana/add_dana/prodi'); ?>" class="btn btn-primary btn-icon-split btn-sm">
+        <span class="icon text-white-50">
+          <i class="fas fa-folder-plus"></i>
+        </span>
+        <span class="text">Tambah Data Prodi</span>
       </a>
       <a href="<?php echo base_url('export/export_excel/'.encode_url('4'));?>" class="btn btn-success btn-icon-split btn-sm">
         <span class="icon text-white-50">
@@ -24,8 +36,8 @@
           <tr>
             <th rowspan="2" style="text-align: center; vertical-align: middle;">No</th>
             <th rowspan="2" style="text-align: center; vertical-align: middle;">Jenis Penggunaan</th>
-            <th colspan="4" style="text-align: center; vertical-align: middle;">Unit Pengelola Program Studi (Rupiah)</th>
             <th colspan="4" style="text-align: center; vertical-align: middle;">Program Studi (Rupiah)</th>
+            <th colspan="4" style="text-align: center; vertical-align: middle;">Unit Pengelola Program Studi (Rupiah)</th>
           </tr>
           <tr>
             <th style="text-align: center; vertical-align: middle;">TS-2</th>

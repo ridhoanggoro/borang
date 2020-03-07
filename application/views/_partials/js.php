@@ -10,5 +10,6 @@
 <script src="<?php echo base_url('assets/jquery-confirm/jquery-confirm.min.js') ?>"></script>
 <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/chosen/1.8.6/chosen.jquery.min.js"></script> -->
 <script src="<?php echo base_url('assets/chosen/dist/js/chosen.jquery.min.js') ?>"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/cleave.js/1.5.6/cleave.min.js"></script>
 
-<?php echo $this->uri->segment(2) == 'penggunaan_dana' ? '<script src="'.base_url('assets/js/dana.js').'"></script>': '' ;?>
+<?php echo $this->uri->segment(1) == 'dana' ? '<script src="'.base_url('assets/js/dana.js').'"></script>': '' ;?>
