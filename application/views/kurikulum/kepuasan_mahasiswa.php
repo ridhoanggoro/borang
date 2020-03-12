@@ -110,22 +110,22 @@
         <div class="form-row">
           <div class="form-group col-md-3">
             <label for="sangat_baik">Sangat Baik</label>
-            <input type="number" min="0" max="100" class="form-control" id="sangat_baik" name="sangat_baik" required>
+            <input type="text" class="form-control" id="sangat_baik" name="sangat_baik" required>
             <div id="id_check_result" class="help-block with-errors"></div>
           </div>
           <div class="form-group col-md-3">
             <label for="baik">Baik</label>
-            <input type="number" min="0" max="100" class="form-control" id="baik" name="baik" required>
+            <input type="text" class="form-control" id="baik" name="baik" required>
             <div id="id_check_result" class="help-block with-errors"></div>
           </div>
           <div class="form-group col-md-3">
             <label for="cukup">Cukup</label>
-            <input type="number" min="0" max="100" class="form-control" id="cukup" name="cukup" required>
+            <input type="text" class="form-control" id="cukup" name="cukup" required>
             <div id="id_check_result" class="help-block with-errors"></div>
           </div>
           <div class="form-group col-md-3">
             <label for="kurang">Kurang</label>
-            <input type="number" min="0" max="100" class="form-control" id="kurang" name="kurang" required>
+            <input type="text" class="form-control" id="kurang" name="kurang" required>
             <div id="id_check_result" class="help-block with-errors"></div>
           </div>
         </div>
@@ -180,22 +180,22 @@
         <div class="form-row">
           <div class="form-group col-md-3">
             <label for="sangat_baik_edit">Sangat Baik</label>
-            <input type="number" min="0" max="100" class="form-control" id="sangat_baik_edit" name="sangat_baik_edit" required>
+            <input type="text" class="form-control" id="sangat_baik_edit" name="sangat_baik_edit" required>
             <div id="id_check_result" class="help-block with-errors"></div>
           </div>
           <div class="form-group col-md-3">
             <label for="baik_edit">Baik</label>
-            <input type="number" min="0" max="100" class="form-control" id="baik_edit" name="baik_edit" required>
+            <input type="text" class="form-control" id="baik_edit" name="baik_edit" required>
             <div id="id_check_result" class="help-block with-errors"></div>
           </div>
           <div class="form-group col-md-3">
             <label for="cukup_edit">Cukup</label>
-            <input type="number" min="0" max="100" class="form-control" id="cukup_edit" name="cukup_edit" required>
+            <input type="text" class="form-control" id="cukup_edit" name="cukup_edit" required>
             <div id="id_check_result" class="help-block with-errors"></div>
           </div>
           <div class="form-group col-md-3">
             <label for="kurang_edit">Kurang</label>
-            <input type="number" min="0" max="100" class="form-control" id="kurang_edit" name="kurang_edit" required>
+            <input type="text" class="form-control" id="kurang_edit" name="kurang_edit" required>
             <div id="id_check_result" class="help-block with-errors"></div>
           </div>
         </div>
