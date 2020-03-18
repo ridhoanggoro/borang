@@ -290,10 +290,10 @@ $(document).ready(function(){
         }
         html += '<tr>'+
           '<th style="text-align: center;">Jumlah</th>'+
-          '<th style="text-align: center;">'+w+'</th>'+
-          '<th style="text-align: center;">'+x+'</th>'+
-          '<th style="text-align: center;">'+y+'</th>'+
-          '<th style="text-align: center;">'+z+'</th>'+
+          '<th style="text-align: center;">'+w.toFixed(2)+'</th>'+
+          '<th style="text-align: center;">'+x.toFixed(2)+'</th>'+
+          '<th style="text-align: center;">'+y.toFixed(2)+'</th>'+
+          '<th style="text-align: center;">'+z.toFixed(2)+'</th>'+
           '<th colspan="2" style="text-align: center;"></th>'+
         '</tr>';
         $('#tampil_data').html(html);
