@@ -98,7 +98,7 @@
             <select id="aspek_ukuran" name="aspek_ukuran" class="custom-select" data-placeholder="Silahkan pilih..." required>
               <option value=""></option>
               <?php foreach ($aspek_list->result() as $value) { ?>
-              <option value="<?php echo $value->id; ?>"><?php echo word_limiter($value->nama,12); ?></option>
+              <option value="<?php echo $value->id; ?>"><?php echo word_limiter($value->nama,10); ?></option>
               <?php } ?>
             </select>
             <div id="id_check_result" class="help-block with-errors"></div>
@@ -168,7 +168,7 @@
             <select id="aspek_ukuran_edit" name="aspek_ukuran_edit" class="custom-select" data-placeholder="Silahkan pilih..." required>
               <option value=""></option>
               <?php foreach ($aspek_list->result() as $value) { ?>
-              <option value="<?php echo $value->id; ?>"><?php echo word_limiter($value->nama,12); ?></option>
+              <option value="<?php echo $value->id; ?>"><?php echo word_limiter($value->nama,10); ?></option>
               <?php } ?>
             </select>
             <div id="id_check_result" class="help-block with-errors"></div>
@@ -325,7 +325,8 @@ $(document).ready(function(){
   // end upload data
 
   //Save Data
-  $('#simpan').submit('click',function(){
+  $('#simpan').submit(function(e){
+    e.preventDefault();
     var aspek_ukuran = $('#aspek_ukuran').val();
     var sangat_baik = $('#sangat_baik').val();
     var baik = $('#baik').val();
@@ -414,7 +415,7 @@ $(document).ready(function(){
       var seq_id = $('#seq_id_delete').val();
       $.ajax({
           type : "POST",
-          url  : "<?php echo site_url('dosen/kepuasan_mahasiswa_delete')?>",
+          url  : "<?php echo site_url('kurikulum/kepuasan_mahasiswa_delete')?>",
           dataType : "JSON",
           data : {seq_id:seq_id},
           success: function(data){
