@@ -81,7 +81,7 @@
 <!--END MODAL UPLOAD-->
 
 <!-- MODAL ADD -->
-<form class="was-validated">
+<form class="was-validated" id="simpan">
   <div class="modal fade" id="Modal_Add" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content">
@@ -98,7 +98,7 @@
             <select id="aspek_ukuran" name="aspek_ukuran" class="custom-select" data-placeholder="Silahkan pilih..." required>
               <option value=""></option>
               <?php foreach ($aspek_list->result() as $value) { ?>
-              <option value="<?php echo $value->id; ?>"><?php echo $value->nama; ?></option>
+              <option value="<?php echo $value->id; ?>"><?php echo word_limiter($value->nama,12); ?></option>
               <?php } ?>
             </select>
             <div id="id_check_result" class="help-block with-errors"></div>
@@ -168,7 +168,7 @@
             <select id="aspek_ukuran_edit" name="aspek_ukuran_edit" class="custom-select" data-placeholder="Silahkan pilih..." required>
               <option value=""></option>
               <?php foreach ($aspek_list->result() as $value) { ?>
-              <option value="<?php echo $value->id; ?>"><?php echo $value->nama; ?></option>
+              <option value="<?php echo $value->id; ?>"><?php echo word_limiter($value->nama,12); ?></option>
               <?php } ?>
             </select>
             <div id="id_check_result" class="help-block with-errors"></div>
@@ -259,15 +259,20 @@
 $(document).ready(function(){
   show_data();
   function show_data(){
+    var w=0,x=0,y=0,z=0;
     $.ajax({
       type  : 'ajax',
       url   : '<?php echo site_url('kurikulum/kepuasan_mahasiswa_list')?>',
       async : false,
       dataType : 'json',
       success : function(data){
-        var html = '';
+        var html = '';        
         var i;
         for(i=0; i<data.length; i++){
+          w = w + parseFloat(data[i].sangat_baik);
+          x = x + parseFloat(data[i].baik);
+          y = y + parseFloat(data[i].cukup);
+          z = z + parseFloat(data[i].kurang);
           j = i + 1;
           html += '<tr>'+
           '<td>'+data[i].nama+'</td>'+
@@ -283,6 +288,14 @@ $(document).ready(function(){
           '</td>'+
           '</tr>';
         }
+        html += '<tr>'+
+          '<th style="text-align: center;">Jumlah</th>'+
+          '<th style="text-align: center;">'+w+'</th>'+
+          '<th style="text-align: center;">'+x+'</th>'+
+          '<th style="text-align: center;">'+y+'</th>'+
+          '<th style="text-align: center;">'+z+'</th>'+
+          '<th colspan="2" style="text-align: center;"></th>'+
+        '</tr>';
         $('#tampil_data').html(html);
       }
     });
@@ -312,7 +325,7 @@ $(document).ready(function(){
   // end upload data
 
   //Save Data
-  $('#btn_save').on('click',function(){
+  $('#simpan').submit('click',function(){
     var aspek_ukuran = $('#aspek_ukuran').val();
     var sangat_baik = $('#sangat_baik').val();
     var baik = $('#baik').val();

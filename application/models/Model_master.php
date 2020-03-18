@@ -1159,18 +1159,18 @@ class Model_master extends CI_model {
 
 	function kepuasan_mahasiswa_list(){
 		$prodi = $this->session->userdata('nama');
-		$sql = "SELECT b.*, a.nama FROM jenis_publikasi a LEFT OUTER JOIN kepuasan_pelanggan b ON a.id=b.aspek_ukuran AND b.prodi='$prodi' WHERE a.modul='kepuasan_mahasiswa' ";
+		$sql = "SELECT b.seq_id,b.aspek_ukuran, ifnull(b.sangat_baik,0) as sangat_baik, ifnull(b.baik,0) as baik, ifnull(b.cukup,0) as cukup, ifnull(b.kurang,0) as kurang, ifnull(b.rencana_tindaklanjut,'-') as rencana_tindaklanjut,b.prodi,b.doc, a.nama FROM jenis_publikasi a LEFT OUTER JOIN kepuasan_pelanggan b ON a.id=b.aspek_ukuran AND b.prodi='$prodi' WHERE a.modul='kepuasan_mahasiswa' ";
 		$data = $this->db->query($sql);
 		return $data->result();
 	}
 
 	function aspek_list()
 	{
-		$sql = "SELECT seq_id,id,CONCAT(LEFT(nama, 100),'  .....') AS nama FROM jenis_publikasi WHERE modul='kepuasan_mahasiswa'";
-		// $this->db->where('modul', 'kepuasan_mahasiswa');
-		// $this->db->order_by('nama', 'ASC');
-		// $data = $this->db->get('jenis_publikasi');
-		$data = $this->db->query($sql);
+		//$sql = "SELECT seq_id,id,CONCAT(LEFT(nama, 100),'  .....') AS nama FROM jenis_publikasi WHERE modul='kepuasan_mahasiswa'";
+		$this->db->where('modul', 'kepuasan_mahasiswa');
+		$this->db->order_by('nama', 'ASC');
+		$data = $this->db->get('jenis_publikasi');
+		//$data = $this->db->query($sql);
 		return $data;
 	}
 
