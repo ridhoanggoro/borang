@@ -83,7 +83,7 @@
 <!--END MODAL UPLOAD-->
 
 <!-- MODAL ADD -->
-<form class="was-validated">
+<form class="was-validated" id="insert">
   <div class="modal fade" id="Modal_Add" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content">
