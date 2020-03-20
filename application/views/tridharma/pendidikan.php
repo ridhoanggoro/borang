@@ -59,7 +59,7 @@
         <div class="form-row">
           <div class="form-group col-md-12">
             <label for="mitra">Upload Excel File, Klik <a href="<?php echo base_url('assets/upload/1.1.tridarma_pendidikan.xlsx');?>" data-toggle="tooltip" data-placement="top" title="Download Template">disini</a> untuk unduh file template</label>
-            <input type="file" name="file_upload">
+            <input type="file" id="file_upload" name="file_upload" required>
             <div id="id_check_result" class="help-block with-errors"></div>
           </div>
       </div>
@@ -359,9 +359,10 @@ $('#tampil_data').on('click','.item_edit',function(){
         async:false,
         success: function(data){
           $('#Modal_Upload').modal('hide');
+          $("#file_upload").val(null);
           $.alert({
             title: 'Sukses!',
-            content: 'Data Berhasil Di Upload!',
+            content: '<b>'+data+'</b> Data Berhasil Di Upload!',
           });
         show_data();
       }

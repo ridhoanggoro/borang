@@ -16,14 +16,16 @@ class Upload extends CI_Controller {
     $this->load->library('upload', $config);
     $category = decode_url($this->uri->segment(3));
 
-    if ($this->upload->do_upload('file_upload')){
-      $data = array('upload_data' => $this->upload->data());
-      $upload_data = $this->upload->data();
-      $filename = $upload_data['orig_name'];
-      $filesize = $upload_data['file_size'];
-      $jum = $this->Model_upload->upload_excel($filename, $category);
-      unlink('./assets/upload/'.$filename);
-      echo json_encode($data);
-    }
+
+        if ($this->upload->do_upload('file_upload')){
+          $data = array('upload_data' => $this->upload->data());
+          $upload_data = $this->upload->data();
+          $filename = $upload_data['orig_name'];
+          $filesize = $upload_data['file_size'];
+          $jum = $this->Model_upload->upload_excel($filename, $category);
+          unlink('./assets/temp/'.$filename);
+          echo json_encode($jum);
+        }
+      }
+
   }
-}
