@@ -14,7 +14,7 @@
         </span>
         <span class="text">Upload Data</span>
       </a>
-      <a href="<?php echo base_url('export/export_excel/'.encode_url('3b7'));?>" class="btn btn-success btn-icon-split btn-sm">
+      <a href="<?php echo base_url('export/export_excel/'.encode_url('3b6'));?>" class="btn btn-success btn-icon-split btn-sm">
         <span class="icon text-white-50">
           <i class="fas fa-file-excel"></i>
         </span>
@@ -32,6 +32,7 @@
             <th>Nama Produk/Jasa</th>
             <th>Deskripsi Produk/Jasa</th>
             <th>Bukti</th>
+            <th>Tahun</th>
             <th style="text-align: center;">Menu</th>
         </tr>
       </thead>
@@ -107,9 +108,14 @@
           </div>
         </div>
         <div class="form-row">
-          <div class="form-group col-md-12">
+          <div class="form-group col-md-9">
             <label for="bukti">Bukti</label>
             <input type="text" class="form-control" id="bukti" name="bukti" required>
+            <div id="id_check_result" class="help-block with-errors"></div>
+          </div>
+          <div class="form-group col-md-3">
+            <label for="tahun">Tahun</label>
+            <input type="text" class="form-control" id="tahun" name="tahun" required>
             <div id="id_check_result" class="help-block with-errors"></div>
           </div>
         </div>
@@ -160,9 +166,14 @@
           </div>
         </div>
         <div class="form-row">
-          <div class="form-group col-md-12">
+          <div class="form-group col-md-9">
             <label for="bukti_edit">Bukti</label>
             <input type="text" class="form-control" id="bukti_edit" name="bukti_edit" required>
+            <div id="id_check_result" class="help-block with-errors"></div>
+          </div>
+          <div class="form-group col-md-3">
+            <label for="tahun_edit">Tahun</label>
+            <input type="text" class="form-control" id="tahun_edit" name="tahun_edit" required>
             <div id="id_check_result" class="help-block with-errors"></div>
           </div>
         </div>
@@ -236,8 +247,9 @@ $(document).ready(function(){
           '<td>'+data[i].nama_produk+'</td>'+
           '<td>'+data[i].deskripsi+'</td>'+
           '<td>'+data[i].bukti+'</td>'+
+          '<td>'+data[i].tahun+'</td>'+
           '<td style="text-align:right;">'+
-              '<a href="javascript:void(0);" class="btn btn-info btn-circle btn-sm item_edit" data-toggle="tooltip" data-placement="top" title="Edit" data-seq_id="'+data[i].seq_id+'" data-nama_dosen="'+data[i].nama_dosen+'" data-nama_produk="'+data[i].nama_produk+'" data-deskripsi="'+data[i].deskripsi+'" data-bukti="'+data[i].bukti+'" data-doc="'+data[i].doc+'"><i class="fas fa-search"></i></a>'+' '+
+              '<a href="javascript:void(0);" class="btn btn-info btn-circle btn-sm item_edit" data-toggle="tooltip" data-placement="top" title="Edit" data-seq_id="'+data[i].seq_id+'" data-nama_dosen="'+data[i].nama_dosen+'" data-nama_produk="'+data[i].nama_produk+'" data-deskripsi="'+data[i].deskripsi+'" data-bukti="'+data[i].bukti+'" data-doc="'+data[i].doc+'" data-tahun="'+data[i].tahun+'"><i class="fas fa-search"></i></a>'+' '+
                '<a href="<?php echo site_url('assets/document/')?>'+data[i].doc+'" class="btn btn-primary btn-circle btn-sm" data-toggle="tooltip" data-placement="top" title="Download Dokumen"><i class="fas fa-download"></i></a>'+
               '<a href="javascript:void(0);" class="btn btn-danger btn-circle btn-sm item_delete" data-toggle="tooltip" data-placement="top" title="Delete" data-seq_id="'+data[i].seq_id+'"><i class="fas fa-trash"></i></a>'+
           '</td>'+
@@ -278,17 +290,19 @@ $(document).ready(function(){
     var nama_produk = $('#nama_produk').val();
     var deskripsi = $('#deskripsi').val();
     var bukti = $('#bukti').val();
+    var tahun = $('#tahun').val();
 
     $.ajax({
       type : "POST",
       url  : "<?php echo site_url('dosen/produk_dtps_add')?>",
       dataType : "JSON",
-      data : {nama_dosen:nama_dosen, nama_produk:nama_produk, deskripsi:deskripsi, bukti:bukti},
+      data : {nama_dosen:nama_dosen, nama_produk:nama_produk, deskripsi:deskripsi, bukti:bukti, tahun:tahun},
       success: function(data){
         $('[name="nama_dosen"]').val("");
         $('[name="nama_produk"]').val("");
         $('[name="deskripsi"]').val("");
         $('[name="bukti"]').val("");
+        $('[name="tahun"]').val("");
         $('#Modal_Add').modal('hide');
         $.alert({
           title: 'Sukses!',
@@ -308,6 +322,7 @@ $(document).ready(function(){
     var deskripsi = $(this).data('deskripsi');
     var bukti = $(this).data('bukti');
     var doc = $(this).data('doc');
+    var tahun = $(this).data('tahun');
     if (doc) { $('#status').html('<span class="badge badge-success">Dokumen telah diunggah</span>');
     } else { $('#status').html('<span class="badge badge-danger">Dokumen belum diunggah</span>'); }
 
@@ -317,6 +332,7 @@ $(document).ready(function(){
     $('[name="nama_produk_edit"]').val(nama_produk);
     $('[name="deskripsi_edit"]').val(deskripsi);
     $('[name="bukti_edit"]').val(bukti);
+    $('[name="tahun_edit"]').val(tahun);
     $('[name="doc_edit"]').val(doc);
   });
 
