@@ -16,7 +16,7 @@ class Model_security extends CI_model {
 	public function validate($id, $pwd)
 	{
 		$dec_pwd = $this->hash($pwd);
-		$param = array('userid' => $id, 'pwd' => $dec_pwd);
+		$param = array('userid' => $id, 'pwd' => $dec_pwd, 'role' => 'BORANG');
 		$this->db->where($param);
 		$result = $this->db->get('user_info');
 		return $result;	

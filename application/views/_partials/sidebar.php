@@ -28,7 +28,7 @@
   </div>
 
   <!-- Nav Item - Pages Collapse Menu -->
-  <?php if($this->session->userdata('role')==='SUPER ADMIN' || $this->session->userdata('role')==='ADMIN'):?>
+  <?php if($this->session->userdata('role')==='SUPER ADMIN' || $this->session->userdata('role')==='BORANG'):?>
   <li class="nav-item <?php echo $this->uri->segment(1) == 'tridharma' ? 'active': '' ?>">
     <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
       <i class="fas fa-fw fa-cog"></i>
@@ -159,7 +159,6 @@
         <a class="collapse-item <?php echo $this->uri->segment(2) == 'hki_hak_cipta_mhs' ? 'active': '' ?>" href="<?php echo site_url('luaran/hki_hak_cipta_mhs'); ?>">*8.f.4-2.Luaran Penelitian Mahasiswa-HKI Hak Cipta</a>
         <a class="collapse-item <?php echo $this->uri->segment(2) == 'hki_teknologi_tepatguna_mhs' ? 'active': '' ?>" href="<?php echo site_url('luaran/hki_teknologi_tepatguna_mhs'); ?>">*8.f.4-3.Luaran Penelitian Mahasiswa-Teknologi Tepat Guna</a>
         <a class="collapse-item <?php echo $this->uri->segment(2) == 'buku_isbn_mhs' ? 'active': '' ?>" href="<?php echo site_url('luaran/buku_isbn_mhs'); ?>">*8.f.4-4.Luaran Penelitian Mahasiswa-Buku Ber-ISBN</a>
-
       </div>
     </div>
   </li>

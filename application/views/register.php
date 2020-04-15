@@ -50,7 +50,7 @@
           <div class="form-group col-md-12">
           <label for="role">Role</label>
            <select id="role" name="role" class="custom-select" data-placeholder="Please select..." required>
-                <option value="ADMIN">ADMIN</option>
+                <option value="BORANG">BORANG</option>
                 <option value="PIMPINAN">PIMPINAN</option>
                 <option value="SUPER ADMIN">SUPER ADMIN</option>       
             </select>
@@ -103,7 +103,7 @@
                   <div class="form-group col-md-12">
                   <label for="role_edit">Role</label>
                    <select id="role_edit" name="role_edit" class="custom-select" data-placeholder="Please select..." required>
-                        <option value="ADMIN">ADMIN</option>
+                        <option value="BORANG">BORANG</option>
                         <option value="PIMPINAN">PIMPINAN</option>
                         <option value="SUPER ADMIN">SUPER ADMIN</option>       
                     </select>
