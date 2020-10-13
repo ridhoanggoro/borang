@@ -43,6 +43,7 @@ class Dosen extends CI_Controller {
   		$this->Model_security->getsecurity();
   		$isi['title'] 	='Dosen Pembimbing Utama Tugas Akhir';
   		$isi['content']	= 'dosen/pa';
+      $isi['dosen'] = $this->Model_master->dosen_list();
   		$this->load->view('default_page', $isi);
   	}
 
@@ -50,6 +51,11 @@ class Dosen extends CI_Controller {
   		$data = $this->Model_master->dosen_pa_data_list();
   		echo json_encode($data);
   	}
+
+    function dosen_pa_add(){
+      $data = $this->Model_master->dosen_pa_add();
+      echo json_encode($data);
+    }
 
     public function ewmp()
   	{

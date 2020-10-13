@@ -359,6 +359,20 @@ class Model_master extends CI_model
         $data = $this->db->query($sql);
         return $data->result();
     }
+
+    function dosen_pa_add()
+    {
+        $prodi  = $this->session->userdata('nama');
+        $data   = array(
+            'nik_nidn_pembimbing' => $this->input->post('nik_nidn_pembimbing'),
+            'th_akademik' => $this->input->post('th_akademik'),
+            'jumlah' => $this->input->post('jumlah'),
+            'mhs_pa' => $this->input->post('mhs_pa'),
+            'prodi' => $prodi
+        );
+        $result = $this->db->insert('dosen_ta', $data);
+        return $result;
+    }
     
     function ewmp_data_list()
     {
