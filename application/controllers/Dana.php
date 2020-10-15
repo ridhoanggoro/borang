@@ -127,7 +127,7 @@ class Dana extends CI_Controller
         $prodi  = $this->session->userdata('nama');
         $cek = $this->db->query("SELECT d.seq_id, ts.nama_ts, ts.tahun FROM dana_prodi d INNER JOIN ts ON ts.prodi=d.prodi AND ts.tahun=d.th_akademik WHERE ts.nama_ts IN ('TS','TS-1','TS-2') AND ts.prodi='$prodi' ")->num_rows();
         if ($cek > 0) {
-            $get_id = $this->db->query("SELECT d.seq_id,ts.nama_ts,ts.tahun FROM dana_prodi d INNER JOIN ts ON ts.prodi='$prodi' AND ts.tahun=d.th_akademik")->result_array();
+            $get_id = $this->db->query("SELECT d.seq_id, ts.nama_ts, ts.tahun FROM dana_prodi d INNER JOIN ts ON ts.prodi=d.prodi AND ts.tahun=d.th_akademik WHERE ts.nama_ts IN ('TS','TS-1','TS-2') AND ts.prodi='$prodi' ")->result_array();
             foreach ($get_id as $j) {
                 if ($j['nama_ts'] == "TS") {
                     $data = array(
@@ -256,7 +256,7 @@ class Dana extends CI_Controller
         $cek = $this->db->query("SELECT d.seq_id, ts.nama_ts, ts.tahun FROM dana_fakultas d INNER JOIN ts ON ts.prodi=d.prodi AND ts.tahun=d.th_akademik WHERE ts.nama_ts IN ('TS','TS-1','TS-2') AND ts.prodi='$prodi' ")->num_rows();
 
         if ($cek > 0) {
-            $get_id = $this->db->query("SELECT d.seq_id,ts.nama_ts,ts.tahun FROM dana_fakultas d INNER JOIN ts ON ts.prodi='$prodi' AND ts.tahun=d.th_akademik")->result_array();
+            $get_id = $this->db->query("SELECT d.seq_id, ts.nama_ts, ts.tahun FROM dana_fakultas d INNER JOIN ts ON ts.prodi=d.prodi AND ts.tahun=d.th_akademik WHERE ts.nama_ts IN ('TS','TS-1','TS-2') AND ts.prodi='$prodi'")->result_array();
             foreach ($get_id as $j) {
                 if ($j['nama_ts'] == "TS") {
                     $data = array(
