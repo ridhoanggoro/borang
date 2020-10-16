@@ -43,8 +43,8 @@ SELECT
   Sum(b_biaya_tenaga_kependidikan_ts1) AS b_biaya_tenaga_kependidikan_ts1,
   Sum(b_biaya_operasional_pembelajaran_ts1) AS b_biaya_operasional_pembelajaran_ts1,
   Sum(b_biaya_operasional_tidak_langsung_ts1) AS b_biaya_operasional_tidak_langsung_ts1,
-  Sum(b_biaya_dosen_ts2) AS b_biaya_operasional_kemahasiswaan_ts1,
-  Sum(b_biaya_operasional_kemahasiswaan_ts1) AS b_biaya_penelitian_ts1,
+  Sum(b_biaya_operasional_kemahasiswaan_ts1) AS b_biaya_operasional_kemahasiswaan_ts1,
+  Sum(b_biaya_penelitian_ts1) AS b_biaya_penelitian_ts1,
   Sum(b_biaya_pkm_ts1) AS b_biaya_pkm_ts1,
   Sum(b_biaya_investasi_sdm_ts1) AS b_biaya_investasi_sdm_ts1,
   Sum(b_biaya_investasi_sarana_ts1) AS b_biaya_investasi_sarana_ts1,
@@ -273,7 +273,7 @@ FROM
       '' AS b_biaya_investasi_sarana_ts,
       '' AS b_biaya_investasi_prasarana_ts
     FROM
-      `dana_prodi` b
+      dana_prodi b
       LEFT JOIN ts AS ts2 ON ts2.tahun = b.th_akademik
       AND ts2.prodi = '$prodi'
       AND ts2.nama_ts = 'TS-2'
@@ -406,7 +406,7 @@ FROM
         CASE WHEN(b.th_akademik = ts.tahun AND b.prodi = '$prodi') THEN biaya_investasi_prasarana ELSE 0 end
       ) AS b_biaya_investasi_prasarana_ts
     FROM
-      `dana_fakultas` b
+      dana_fakultas b
       LEFT JOIN ts AS ts2 ON ts2.tahun = b.th_akademik
       AND ts2.nama_ts = 'TS-2'
       AND ts2.prodi = '$prodi'
