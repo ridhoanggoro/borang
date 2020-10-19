@@ -394,19 +394,40 @@ class Model_master extends CI_model
     function ewmp_add()
     {
         $prodi  = $this->session->userdata('nama');
-        $data   = array(
-            'nik_nidn' => $this->input->post('nik_nidn'),
-            'dtps' => $this->input->post('dtps'),
-            'ps_yang_diakreditasi' => $this->input->post('ps_yang_diakreditasi'),
-            'ps_lain_di_dalam_pt' => $this->input->post('ps_lain_di_dalam_pt'),
-            'ps_lain_di_luar_pt' => $this->input->post('ps_lain_di_luar_pt'),
-            'penelitian' => $this->input->post('penelitian'),
-            'pkm' => $this->input->post('pkm'),
-            'tugas_tambahan' => $this->input->post('tugas_tambahan'),
-            'prodi' => $prodi
-        );
-        $result = $this->db->insert('ekuivalen_dosen_mengajar', $data);
+        $nik = $this->input->post('nik_nidn');
+        $cek =  $this->db->query("select * from ekuivalen_dosen_mengajar where nik_nidn='$nik'")->num_rows();
+        if ($cek > 0) {
+            $data   = array(
+                'dtps' => $this->input->post('dtps'),
+                'ps_yang_diakreditasi' => $this->input->post('ps_yang_diakreditasi'),
+                'ps_lain_di_dalam_pt' => $this->input->post('ps_lain_di_dalam_pt'),
+                'ps_lain_di_luar_pt' => $this->input->post('ps_lain_di_luar_pt'),
+                'penelitian' => $this->input->post('penelitian'),
+                'pkm' => $this->input->post('pkm'),
+                'tugas_tambahan' => $this->input->post('tugas_tambahan'),
+                'prodi' => $prodi
+            );
+
+            $this->db->where('nik_nidn', $nik);
+            $result = $this->db->update('ekuivalen_dosen_mengajar', $data);
+
+        } else {
+            $data   = array(
+                'nik_nidn' => $this->input->post('nik_nidn'),
+                'dtps' => $this->input->post('dtps'),
+                'ps_yang_diakreditasi' => $this->input->post('ps_yang_diakreditasi'),
+                'ps_lain_di_dalam_pt' => $this->input->post('ps_lain_di_dalam_pt'),
+                'ps_lain_di_luar_pt' => $this->input->post('ps_lain_di_luar_pt'),
+                'penelitian' => $this->input->post('penelitian'),
+                'pkm' => $this->input->post('pkm'),
+                'tugas_tambahan' => $this->input->post('tugas_tambahan'),
+                'prodi' => $prodi
+            );
+            $result = $this->db->insert('ekuivalen_dosen_mengajar', $data);
+            
+        }
         return $result;
+        
     }
     
     function ewmp_edit()
