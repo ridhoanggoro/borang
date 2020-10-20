@@ -377,7 +377,7 @@ class Model_master extends CI_model
     function ewmp_data_list()
     {
         $role = $this->session->userdata('nama');
-        $sql  = "SELECT a.*, dosen.nama FROM `ekuivalen_dosen_mengajar` a INNER JOIN dosen on dosen.nidn=a.nik_nidn WHERE a.prodi='$role'";
+        $sql  = "SELECT a.*, dosen.nama FROM `ekuivalen_dosen_mengajar` a INNER JOIN dosen on dosen.nidn=a.nik_nidn AND dosen.prodi=a.prodi WHERE a.prodi='$role'";
         $data = $this->db->query($sql);
         return $data->result();
     }
