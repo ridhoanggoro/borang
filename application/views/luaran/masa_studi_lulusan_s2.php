@@ -17,7 +17,7 @@
         <tr>
           <th rowspan="2" style="text-align: center; vertical-align: middle;">Tahun Masuk</th>
           <th rowspan="2" style="text-align: center; vertical-align: middle;">Jumlah Mahasiswa Diterima</th>
-          <th colspan="5" style="text-align: center; vertical-align: middle;">Jumlah Mahasiswa yang lulus pada</th>
+          <th colspan="4" style="text-align: center; vertical-align: middle;">Jumlah Mahasiswa yang lulus pada</th>
           <th rowspan="2" style="text-align: center; vertical-align: middle;">Jumlah Lulusan s.d. akhir TS </th>
           <th rowspan="2" style="text-align: center; vertical-align: middle;">Rata-rata Masa Studi</th>
         </tr>
