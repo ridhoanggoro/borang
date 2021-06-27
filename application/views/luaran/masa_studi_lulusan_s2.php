@@ -2,7 +2,7 @@
   <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
     <h6 class="m-0 font-weight-bold text-primary"><?php echo $title; ?></h6>
     <div class="float-right">
-      <a href="<?php echo base_url('export/export_excel/'.encode_url('8c_d3'));?>" class="btn btn-success btn-icon-split btn-sm">
+      <a href="<?php echo base_url('export/export_excel/'.encode_url('8c_s2'));?>" class="btn btn-success btn-icon-split btn-sm">
         <span class="icon text-white-50">
           <i class="fas fa-file-excel"></i>
         </span>
