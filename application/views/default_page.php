@@ -13,7 +13,14 @@
   <div id="wrapper">
 
     <!-- Sidebar -->
-    <?php $this->load->view("_partials/sidebar.php"); ?>
+    <?php $nama = $this->session->userdata('nama');  
+    $jenjang  = substr($nama, strlen($nama) - 2); 
+    if ($jenjang == 'D3') {
+      $this->load->view("_partials/sidebar_d3.php");
+    } else {
+      $this->load->view("_partials/sidebar.php");
+    }
+    ?>
     <!-- End of Sidebar -->
 
     <!-- Content Wrapper -->
