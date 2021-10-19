@@ -17,6 +17,10 @@
     $jenjang  = substr($nama, strlen($nama) - 2); 
     if ($jenjang == 'D3') {
       $this->load->view("_partials/sidebar_d3.php");
+    } elseif ($jenjang == 'S3') {
+      $this->load->view("_partials/sidebar_s3.php");
+    } elseif ($jenjang == 'S2') {
+      $this->load->view("_partials/sidebar_s2.php");
     } else {
       $this->load->view("_partials/sidebar.php");
     }
