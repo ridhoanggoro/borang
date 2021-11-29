@@ -5,12 +5,15 @@ class Model_security extends CI_model {
 
 	public function getsecurity()
 	{
-		$username = $this->session->userdata('userid');
-		if (empty($username)) 
-		{
-			$this->session->sess_destroy();
+		if (!$this->session->has_userdata('logged_in') || $this->session->logged_in !== true) {
+			if (!empty($_SERVER['QUERY_STRING'])) {
+				$uri = uri_string() . '?' . $_SERVER['QUERY_STRING'];
+			} else {
+				$uri = uri_string();
+			}
+			$this->session->set_userdata('redirect', $uri);
 			redirect('account');
-		}
+		} 
 	}
 
 	public function validate($id, $pwd)

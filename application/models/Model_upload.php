@@ -37,7 +37,13 @@ class Model_upload extends CI_model
 							'bukti_kerjasama' => $worksheet[$i]['6'],
 							'tahun_berakhir' => $worksheet[$i]['7']
 						);
-						$this->db->insert('tridarma_pendidikan', $data);
+
+						if (!$this->db->insert('tridarma_pendidikan', $data))
+                        {
+                            $error = $this->db->error();
+                            $retVal = array('stat' => -1, 'col' => $i, 'isi' => $error['message'], 'data_ok' => $i-1);
+                            return $retVal;
+                        }
 					}
 					break;
 
@@ -53,7 +59,13 @@ class Model_upload extends CI_model
 							'bukti_kerjasama' => $worksheet[$i]['6'],
 							'tahun_berakhir' => $worksheet[$i]['7']
 						);
-						$this->db->insert('tridarma_penelitian', $data);
+					
+						if (!$this->db->insert('tridarma_penelitian', $data))
+                        {
+                            $error = $this->db->error();
+                            $retVal = array('stat' => -1, 'col' => $i, 'isi' => $error['message'], 'data_ok' => $i-1);
+                            return $retVal;
+                        }
 					}
 					break;
 
@@ -69,7 +81,13 @@ class Model_upload extends CI_model
 							'bukti_kerjasama' => $worksheet[$i]['6'],
 							'tahun_berakhir' => $worksheet[$i]['7']
 						);
-						$this->db->insert('tridarma_pkm', $data);
+						
+						if (!$this->db->insert('tridarma_pkm', $data))
+                        {
+                            $error = $this->db->error();
+                            $retVal = array('stat' => -1, 'col' => $i, 'isi' => $error['message'], 'data_ok' => $i-1);
+                            return $retVal;
+                        }
 					}
 					break;
 
@@ -94,7 +112,13 @@ class Model_upload extends CI_model
 							'prodi' => $worksheet[$i]['15'],
 							'sertifikasi' => $worksheet[$i]['16']
 						);
-						$this->db->insert('dosen', $data);
+						
+						if (!$this->db->insert('dosen', $data))
+                        {
+                            $error = $this->db->error();
+                            $retVal = array('stat' => -1, 'col' => $i, 'isi' => $error['message'], 'data_ok' => $i-1);
+                            return $retVal;
+                        }
 					}
 					break;
 
@@ -112,7 +136,13 @@ class Model_upload extends CI_model
 							'tugas_tambahan' => $worksheet[$i]['8'],
 							'prodi' => $worksheet[$i]['9']
 						);
-						$this->db->insert('ekuivalen_dosen_mengajar', $data);
+						
+						if (!$this->db->insert('ekuivalen_dosen_mengajar', $data))
+                        {
+                            $error = $this->db->error();
+                            $retVal = array('stat' => -1, 'col' => $i, 'isi' => $error['message'], 'data_ok' => $i-1);
+                            return $retVal;
+                        }
 					}
 					break;
 
@@ -134,7 +164,13 @@ class Model_upload extends CI_model
 							'status' => $worksheet[$i]['12'],
 							'prodi' => $worksheet[$i]['13']
 						);
-						$this->db->insert('dosen', $data);
+						
+						if (!$this->db->insert('dosen', $data))
+                        {
+                            $error = $this->db->error();
+                            $retVal = array('stat' => -1, 'col' => $i, 'isi' => $error['message'], 'data_ok' => $i-1);
+                            return $retVal;
+                        }
 					}
 					break;
 
@@ -151,7 +187,13 @@ class Model_upload extends CI_model
 							'sks' => $worksheet[$i]['7'],
 							'prodi' => $worksheet[$i]['8']
 						);
-						$this->db->insert('dosen_praktisi', $data);
+						
+						if (!$this->db->insert('dosen_praktisi', $data))
+                        {
+                            $error = $this->db->error();
+                            $retVal = array('stat' => -1, 'col' => $i, 'isi' => $error['message'], 'data_ok' => $i-1);
+                            return $retVal;
+                        }
 					}
 					break;
 
@@ -165,7 +207,13 @@ class Model_upload extends CI_model
 							'tahun' => $worksheet[$i]['4'],
 							'prodi	' => $worksheet[$i]['5']
 						);
-						$this->db->insert('rekognisi_dpts', $data);
+						
+						if (!$this->db->insert('rekognisi_dpts', $data))
+                        {
+                            $error = $this->db->error();
+                            $retVal = array('stat' => -1, 'col' => $i, 'isi' => $error['message'], 'data_ok' => $i-1);
+                            return $retVal;
+                        }
 					}
 					break;
 
@@ -177,7 +225,13 @@ class Model_upload extends CI_model
 							'th_akademik'  => $worksheet[$i]['2'],
 							'prodi' => $worksheet[$i]['3']
 						);
-						$this->db->insert('penelitian_dosen', $data);
+						
+						if (!$this->db->insert('penelitian_dosen', $data))
+                        {
+                            $error = $this->db->error();
+                            $retVal = array('stat' => -1, 'col' => $i, 'isi' => $error['message'], 'data_ok' => $i-1);
+                            return $retVal;
+                        }
 					}
 					break;
 
@@ -189,7 +243,13 @@ class Model_upload extends CI_model
 							'th_akademik'  => $worksheet[$i]['2'],
 							'prodi' => $worksheet[$i]['3']
 						);
-						$this->db->insert('pkm_dosen', $data);
+						
+						if (!$this->db->insert('pkm_dosen', $data))
+                        {
+                            $error = $this->db->error();
+                            $retVal = array('stat' => -1, 'col' => $i, 'isi' => $error['message'], 'data_ok' => $i-1);
+                            return $retVal;
+                        }
 					}
 					break;
 
@@ -201,7 +261,13 @@ class Model_upload extends CI_model
 							'th_akademik'  => $worksheet[$i]['2'],
 							'prodi' => $worksheet[$i]['3']
 						);
-						$this->db->insert('publikasi_ilmiah', $data);
+					
+						if (!$this->db->insert('publikasi_ilmiah', $data))
+                        {
+                            $error = $this->db->error();
+                            $retVal = array('stat' => -1, 'col' => $i, 'isi' => $error['message'], 'data_ok' => $i-1);
+                            return $retVal;
+                        }
 					}
 					break;
 
@@ -213,7 +279,13 @@ class Model_upload extends CI_model
 							'th_akademik'  => $worksheet[$i]['2'],
 							'prodi' => $worksheet[$i]['3']
 						);
-						$this->db->insert('pagelaran_ilmiah', $data);
+						
+						if (!$this->db->insert('pagelaran_ilmiah', $data))
+                        {
+                            $error = $this->db->error();
+                            $retVal = array('stat' => -1, 'col' => $i, 'isi' => $error['message'], 'data_ok' => $i-1);
+                            return $retVal;
+                        }
 					}
 					break;
 
@@ -227,7 +299,13 @@ class Model_upload extends CI_model
 							'tahun'  => $worksheet[$i]['4'],
 							'prodi'  => $worksheet[$i]['5']
 						);
-						$this->db->insert('produk_dtps', $data);
+						
+						if (!$this->db->insert('produk_dtps', $data))
+                        {
+                            $error = $this->db->error();
+                            $retVal = array('stat' => -1, 'col' => $i, 'isi' => $error['message'], 'data_ok' => $i-1);
+                            return $retVal;
+                        }
 					}
 					break;
 
@@ -240,7 +318,13 @@ class Model_upload extends CI_model
 							'bukti'  => $worksheet[$i]['3'],
 							'prodi'  => $worksheet[$i]['4']
 						);
-						$this->db->insert('hki_paten', $data);
+						
+						if (!$this->db->insert('hki_paten', $data))
+                        {
+                            $error = $this->db->error();
+                            $retVal = array('stat' => -1, 'col' => $i, 'isi' => $error['message'], 'data_ok' => $i-1);
+                            return $retVal;
+                        }
 					}
 					break;
 
@@ -252,7 +336,13 @@ class Model_upload extends CI_model
 							'th_perolehan' => $worksheet[$i]['2'],
 							'keterangan' => $worksheet[$i]['3']
 						);
-						$this->db->insert('hki_hak_cipta', $data);
+						
+						if (!$this->db->insert('hki_hak_cipta', $data))
+                        {
+                            $error = $this->db->error();
+                            $retVal = array('stat' => -1, 'col' => $i, 'isi' => $error['message'], 'data_ok' => $i-1);
+                            return $retVal;
+                        }
 					}
 					break;
 
@@ -264,7 +354,13 @@ class Model_upload extends CI_model
 							'th_perolehan' => $worksheet[$i]['2'],
 							'keterangan' => $worksheet[$i]['3']
 						);
-						$this->db->insert('hki_teknologi_tepatguna', $data);
+						
+						if (!$this->db->insert('hki_teknologi_tepatguna', $data))
+                        {
+                            $error = $this->db->error();
+                            $retVal = array('stat' => -1, 'col' => $i, 'isi' => $error['message'], 'data_ok' => $i-1);
+                            return $retVal;
+                        }
 					}
 					break;
 
@@ -276,7 +372,13 @@ class Model_upload extends CI_model
 							'keterangan' => $worksheet[$i]['2'],
 							'prodi' => $worksheet[$i]['3']
 						);
-						$this->db->insert('buku_isbn', $data);
+						
+						if (!$this->db->insert('buku_isbn', $data))
+                        {
+                            $error = $this->db->error();
+                            $retVal = array('stat' => -1, 'col' => $i, 'isi' => $error['message'], 'data_ok' => $i-1);
+                            return $retVal;
+                        }
 					}
 					break;
 
@@ -299,7 +401,13 @@ class Model_upload extends CI_model
 							'unit_penyelenggara' => $worksheet[$i]['13'],
 							'prodi' => $worksheet[$i]['14']
 						);
-						$this->db->insert('kurikulum', $data);
+						
+						if (!$this->db->insert('kurikulum', $data))
+                        {
+                            $error = $this->db->error();
+                            $retVal = array('stat' => -1, 'col' => $i, 'isi' => $error['message'], 'data_ok' => $i-1);
+                            return $retVal;
+                        }
 					}
 					break;
 
@@ -313,7 +421,13 @@ class Model_upload extends CI_model
 							'tahun' => $worksheet[$i]['4'],
 							'prodi' => $worksheet[$i]['5']
 						);
-						$this->db->insert('integrasi_pkm', $data);
+						
+						if (!$this->db->insert('integrasi_pkm', $data))
+                        {
+                            $error = $this->db->error();
+                            $retVal = array('stat' => -1, 'col' => $i, 'isi' => $error['message'], 'data_ok' => $i-1);
+                            return $retVal;
+                        }
 					}
 					break;
 
@@ -328,7 +442,13 @@ class Model_upload extends CI_model
 							'rencana_tindaklanjut' => $worksheet[$i]['5'],
 							'prodi' => $worksheet[$i]['6']
 						);
-						$this->db->insert('kepuasan_pelanggan', $data);
+						
+						if (!$this->db->insert('kepuasan_pelanggan', $data))
+                        {
+                            $error = $this->db->error();
+                            $retVal = array('stat' => -1, 'col' => $i, 'isi' => $error['message'], 'data_ok' => $i-1);
+                            return $retVal;
+                        }
 					}
 					break;
 
@@ -342,7 +462,13 @@ class Model_upload extends CI_model
 							'tahun' => $worksheet[$i]['4'],
 							'prodi' => $worksheet[$i]['5']
 						);
-						$this->db->insert('penelitian_dosen_mhs', $data);
+						
+						if (!$this->db->insert('penelitian_dosen_mhs', $data))
+                        {
+                            $error = $this->db->error();
+                            $retVal = array('stat' => -1, 'col' => $i, 'isi' => $error['message'], 'data_ok' => $i-1);
+                            return $retVal;
+                        }
 					}
 					break;
 
@@ -356,7 +482,13 @@ class Model_upload extends CI_model
 							'tahun' => $worksheet[$i]['4'],
 							'prodi' => $worksheet[$i]['5']
 						);
-						$this->db->insert('penelitian_mhs_tesis', $data);
+						
+						if (!$this->db->insert('penelitian_mhs_tesis', $data))
+                        {
+                            $error = $this->db->error();
+                            $retVal = array('stat' => -1, 'col' => $i, 'isi' => $error['message'], 'data_ok' => $i-1);
+                            return $retVal;
+                        }
 					}
 					break;
 
@@ -370,7 +502,13 @@ class Model_upload extends CI_model
 							'tahun' => $worksheet[$i]['4'],
 							'prodi' => $worksheet[$i]['5']
 						);
-						$this->db->insert('pkm_dosen_mhs', $data);
+						
+						if (!$this->db->insert('pkm_dosen_mhs', $data))
+                        {
+                            $error = $this->db->error();
+                            $retVal = array('stat' => -1, 'col' => $i, 'isi' => $error['message'], 'data_ok' => $i-1);
+                            return $retVal;
+                        }
 					}
 					break;
 
@@ -383,7 +521,13 @@ class Model_upload extends CI_model
 							'prestasi' => $worksheet[$i]['3'],
 							'prodi' => $worksheet[$i]['4']
 						);
-						$this->db->insert('prestasi_akad_mhs', $data);
+						
+						if (!$this->db->insert('prestasi_akad_mhs', $data))
+                        {
+                            $error = $this->db->error();
+                            $retVal = array('stat' => -1, 'col' => $i, 'isi' => $error['message'], 'data_ok' => $i-1);
+                            return $retVal;
+                        }
 					}
 					break;
 
@@ -396,7 +540,13 @@ class Model_upload extends CI_model
 							'prestasi' => $worksheet[$i]['3'],
 							'prodi' => $worksheet[$i]['4']
 						);
-						$this->db->insert('prestasi_non_akad_mhs', $data);
+						
+						if (!$this->db->insert('prestasi_non_akad_mhs', $data))
+                        {
+                            $error = $this->db->error();
+                            $retVal = array('stat' => -1, 'col' => $i, 'isi' => $error['message'], 'data_ok' => $i-1);
+                            return $retVal;
+                        }
 					}
 					break;
 
@@ -411,7 +561,13 @@ class Model_upload extends CI_model
 							'prodi' => $worksheet[$i]['5'],
 							'ts' => $worksheet[$i]['6']
 						);
-						$this->db->insert('waktu_tunggu_lulusan', $data);
+						
+						if (!$this->db->insert('waktu_tunggu_lulusan', $data))
+                        {
+                            $error = $this->db->error();
+                            $retVal = array('stat' => -1, 'col' => $i, 'isi' => $error['message'], 'data_ok' => $i-1);
+                            return $retVal;
+                        }
 					}
 					break;
 
@@ -425,7 +581,13 @@ class Model_upload extends CI_model
 							'prodi' => $worksheet[$i]['4'],
 							'ts' => $worksheet[$i]['5']
 						);
-						$this->db->insert('kesesuaian_bidang_kerja_lulusan', $data);
+						
+						if (!$this->db->insert('kesesuaian_bidang_kerja_lulusan', $data))
+                        {
+                            $error = $this->db->error();
+                            $retVal = array('stat' => -1, 'col' => $i, 'isi' => $error['message'], 'data_ok' => $i-1);
+                            return $retVal;
+                        }
 					}
 					break;
 
@@ -439,7 +601,13 @@ class Model_upload extends CI_model
 							'prodi' => $worksheet[$i]['4'],
 							'ts' => $worksheet[$i]['5']
 						);
-						$this->db->insert('tempat_kerja_lulusan', $data);
+						
+						if (!$this->db->insert('tempat_kerja_lulusan', $data))
+                        {
+                            $error = $this->db->error();
+                            $retVal = array('stat' => -1, 'col' => $i, 'isi' => $error['message'], 'data_ok' => $i-1);
+                            return $retVal;
+                        }
 					}
 					break;
 
@@ -454,7 +622,13 @@ class Model_upload extends CI_model
 							'rencana_tindak_lanjut' => $worksheet[$i]['5'],
 							'prodi' => $worksheet[$i]['6']
 						);
-						$this->db->insert('kepuasan_pengguna_lulusan', $data);
+						
+						if (!$this->db->insert('kepuasan_pengguna_lulusan', $data))
+                        {
+                            $error = $this->db->error();
+                            $retVal = array('stat' => -1, 'col' => $i, 'isi' => $error['message'], 'data_ok' => $i-1);
+                            return $retVal;
+                        }
 					}
 					break;
 
@@ -465,7 +639,13 @@ class Model_upload extends CI_model
 							'jml_tanggapan_terlacak' => $worksheet[$i]['1'],
 							'podi' => $worksheet[$i]['2']
 						);
-						$this->db->insert('ref_kepuasan_pelanggan_lulusan', $data);
+						
+						if (!$this->db->insert('ref_kepuasan_pelanggan_lulusan', $data))
+                        {
+                            $error = $this->db->error();
+                            $retVal = array('stat' => -1, 'col' => $i, 'isi' => $error['message'], 'data_ok' => $i-1);
+                            return $retVal;
+                        }
 					}
 					break;
 
@@ -477,7 +657,13 @@ class Model_upload extends CI_model
 							'th_akademik'  => $worksheet[$i]['2'],
 							'prodi' => $worksheet[$i]['3']
 						);
-						$this->db->insert('publikasi_ilmiah_mhs', $data);
+						
+						if (!$this->db->insert('publikasi_ilmiah_mhs', $data))
+                        {
+                            $error = $this->db->error();
+                            $retVal = array('stat' => -1, 'col' => $i, 'isi' => $error['message'], 'data_ok' => $i-1);
+                            return $retVal;
+                        }
 					}
 					break;
 
@@ -492,7 +678,13 @@ class Model_upload extends CI_model
 							'jumlah' => $worksheet[$i]['2'],
 							'prodi' => $worksheet[$i]['3']
 						);
-						$this->db->insert('karya_ilmiah_disitasi_mhs', $data);
+						
+						if (!$this->db->insert('karya_ilmiah_disitasi_mhs', $data))
+                        {
+                            $error = $this->db->error();
+                            $retVal = array('stat' => -1, 'col' => $i, 'isi' => $error['message'], 'data_ok' => $i-1);
+                            return $retVal;
+                        }
 					}
 					break;
 
@@ -506,7 +698,13 @@ class Model_upload extends CI_model
 							'tahun'  => $worksheet[$i]['4'],
 							'prodi'  => $worksheet[$i]['5']
 						);
-						$this->db->insert('produk_dtps_mhs', $data);
+						
+						if (!$this->db->insert('produk_dtps_mhs', $data))
+                        {
+                            $error = $this->db->error();
+                            $retVal = array('stat' => -1, 'col' => $i, 'isi' => $error['message'], 'data_ok' => $i-1);
+                            return $retVal;
+                        }
 					}
 					break;
 
@@ -519,7 +717,13 @@ class Model_upload extends CI_model
 							'bukti'  => $worksheet[$i]['3'],
 							'prodi'  => $worksheet[$i]['4']
 						);
-						$this->db->insert('hki_paten_mhs', $data);
+						
+						if (!$this->db->insert('hki_paten_mhs', $data))
+                        {
+                            $error = $this->db->error();
+                            $retVal = array('stat' => -1, 'col' => $i, 'isi' => $error['message'], 'data_ok' => $i-1);
+                            return $retVal;
+                        }
 					}
 					break;
 
@@ -531,7 +735,13 @@ class Model_upload extends CI_model
 							'th_perolehan' => $worksheet[$i]['2'],
 							'keterangan' => $worksheet[$i]['3']
 						);
-						$this->db->insert('hki_hak_cipta_mhs', $data);
+						
+						if (!$this->db->insert('hki_hak_cipta_mhs', $data))
+                        {
+                            $error = $this->db->error();
+                            $retVal = array('stat' => -1, 'col' => $i, 'isi' => $error['message'], 'data_ok' => $i-1);
+                            return $retVal;
+                        }
 					}
 					break;
 
@@ -543,7 +753,13 @@ class Model_upload extends CI_model
 							'th_perolehan' => $worksheet[$i]['2'],
 							'keterangan' => $worksheet[$i]['3']
 						);
-						$this->db->insert('hki_teknologi_tepatguna_mhs', $data);
+					
+						if (!$this->db->insert('hki_teknologi_tepatguna_mhs', $data))
+                        {
+                            $error = $this->db->error();
+                            $retVal = array('stat' => -1, 'col' => $i, 'isi' => $error['message'], 'data_ok' => $i-1);
+                            return $retVal;
+                        }
 					}
 					break;
 
@@ -555,7 +771,13 @@ class Model_upload extends CI_model
 							'keterangan' => $worksheet[$i]['2'],
 							'prodi' => $worksheet[$i]['3']
 						);
-						$this->db->insert('buku_isbn_mhs', $data);
+
+						if (!$this->db->insert('buku_isbn_mhs', $data))
+                        {
+                            $error = $this->db->error();
+                            $retVal = array('stat' => -1, 'col' => $i, 'isi' => $error['message'], 'data_ok' => $i-1);
+                            return $retVal;
+                        }
 					}
 					break;
 
@@ -563,9 +785,10 @@ class Model_upload extends CI_model
 						// code...
 					break;
 			}
-			return $numRows - 1;
+			$retVal = array('stat' => $numRows);
+            return $retVal;
 		} catch (Exception $e) {
-			return ('Error loading file :' . $e->getMessage());
+			return $i;
 		}
 	}
 }

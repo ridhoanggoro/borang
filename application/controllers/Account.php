@@ -49,7 +49,11 @@ class Account extends CI_Controller {
 				'logged_in' => TRUE
 			);
 			$this->session->set_userdata($sesdata);
-			redirect('home');
+			if ($this->session->has_userdata('redirect')) {
+				redirect($this->session->redirect);
+			} else {
+				redirect('home');
+			}
 		}else{
 			echo $this->session->set_flashdata('msg','USERID atau PASSWORD salah');
 			redirect('account');
