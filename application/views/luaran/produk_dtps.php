@@ -28,7 +28,7 @@
       <thead>
         <tr>
             <th>No</th>
-            <th>Nama Dosen</th>
+            <th>Nama Mahasiswa</th>
             <th>Nama Produk/Jasa</th>
             <th>Deskripsi Produk/Jasa</th>
             <th>Bukti</th>
@@ -89,7 +89,7 @@
       <div class="modal-body">
         <div class="form-row">
           <div class="form-group col-md-12">
-            <label for="nama_dosen">Nama Dosen</label>
+            <label for="nama_dosen">Nama Mahasiswa</label>
             <textarea class="form-control" rows="3" id="nama_dosen" name="nama_dosen" required></textarea>
           </div>
         </div>

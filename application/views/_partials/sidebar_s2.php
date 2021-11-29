@@ -28,7 +28,7 @@
   </div>
 
   <!-- Nav Item - Pages Collapse Menu -->
-  <?php if($this->session->userdata('role')==='SUPER ADMIN' || $this->session->userdata('role')==='ADMIN'):?>
+  <?php if($this->session->userdata('role')==='SUPER ADMIN' || $this->session->userdata('role')==='BORANG'):?>
   <li class="nav-item <?php echo $this->uri->segment(1) == 'tridharma' ? 'active': '' ?>">
     <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
       <i class="fas fa-fw fa-cog"></i>

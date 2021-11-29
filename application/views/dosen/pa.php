@@ -75,7 +75,7 @@
         </div>
         <div class="form-row">
           <div class="form-group col-md-4">
-            <label for="mhs_pa">Kategori Mahasiswa PA</label>
+            <label for="mhs_pa">Kategori Mahasiswa TA</label>
             <select id="mhs_pa" name="mhs_pa" class="custom-select" data-placeholder="Silahkan pilih..." required>
                  <option value=""></option>
                  <option value="PS sendiri">PS Sendiri</option>

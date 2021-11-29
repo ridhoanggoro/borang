@@ -392,6 +392,7 @@ class Export extends CI_Controller {
 				$objPHPExcel->setActiveSheetIndex()->setCellValue('C'.$col, $val->nama_produk);
 				$objPHPExcel->setActiveSheetIndex()->setCellValue('D'.$col, $val->deskripsi);
 				$objPHPExcel->setActiveSheetIndex()->setCellValue('E'.$col, $val->bukti);
+				$objPHPExcel->setActiveSheetIndex()->setCellValue('F'.$col, $val->tahun);
 				$col++;
 			}
 		break;
@@ -655,6 +656,25 @@ class Export extends CI_Controller {
 							$objPHPExcel->setActiveSheetIndex()->setCellValue('K'.$col, $val->masa_studi);
 							$col++;
 						}
+					break;
+						case '8c_s2':
+						$fileName = './assets/template/8c_s2.xlsx';
+						$objPHPExcel = $objReader->load($fileName);
+						$objPHPExcel->setActiveSheetIndex(0);
+						$objPHPExcel->getActiveSheet();
+						$data = $this->Model_master->masa_studi_lulusan_list();
+						$col = 8;
+						$no = 1;
+						foreach ($data as $val) {
+							$objPHPExcel->setActiveSheetIndex()->setCellValue('A'.$col, $val->nama_ts);
+							$objPHPExcel->setActiveSheetIndex()->setCellValue('B'.$col, $val->jml);
+							$objPHPExcel->setActiveSheetIndex()->setCellValue('C'.$col, $val->ts3);
+							$objPHPExcel->setActiveSheetIndex()->setCellValue('D'.$col, $val->ts2);
+							$objPHPExcel->setActiveSheetIndex()->setCellValue('E'.$col, $val->ts1);
+							$objPHPExcel->setActiveSheetIndex()->setCellValue('F'.$col, $val->ts);
+							$objPHPExcel->setActiveSheetIndex()->setCellValue('H'.$col, $val->masa_studi);
+							$col++;
+						}
 						break;
 					case '8c_d3':
 						$fileName = './assets/template/8c_d3.xlsx';
@@ -673,25 +693,6 @@ class Export extends CI_Controller {
 							$objPHPExcel->setActiveSheetIndex()->setCellValue('F'.$col, $val->ts1);
 							$objPHPExcel->setActiveSheetIndex()->setCellValue('G'.$col, $val->ts);
 							$objPHPExcel->setActiveSheetIndex()->setCellValue('I'.$col, $val->masa_studi);
-							$col++;
-						}
-						break;
-					case '8c_s2':
-						$fileName = './assets/template/8c_s2.xlsx';
-						$objPHPExcel = $objReader->load($fileName);
-						$objPHPExcel->setActiveSheetIndex(0);
-						$objPHPExcel->getActiveSheet();
-						$data = $this->Model_master->masa_studi_lulusan_list();
-						$col = 7;
-						$no = 1;
-						foreach ($data as $val) {
-							$objPHPExcel->setActiveSheetIndex()->setCellValue('A'.$col, $val->nama_ts);
-							$objPHPExcel->setActiveSheetIndex()->setCellValue('B'.$col, $val->jml);
-							$objPHPExcel->setActiveSheetIndex()->setCellValue('C'.$col, $val->ts3);
-							$objPHPExcel->setActiveSheetIndex()->setCellValue('D'.$col, $val->ts2);
-							$objPHPExcel->setActiveSheetIndex()->setCellValue('E'.$col, $val->ts1);
-							$objPHPExcel->setActiveSheetIndex()->setCellValue('F'.$col, $val->ts);
-							$objPHPExcel->setActiveSheetIndex()->setCellValue('H'.$col, $val->masa_studi);
 							$col++;
 						}
 						break;
@@ -831,16 +832,16 @@ class Export extends CI_Controller {
 						$objPHPExcel = $objReader->load($fileName);
 						$objPHPExcel->setActiveSheetIndex(0);
 						$objPHPExcel->getActiveSheet();
-						$data = $this->Model_master->karya_ilmiah_disitasi_mhs_data_list();
+						$data = $this->Model_master->produk_dtps_mhs_data_list();
 						$no = 1;
 						$col = 6;
 						foreach ($data as $val) {
 							$objPHPExcel->setActiveSheetIndex()->setCellValue('A'.$col, $no++);
-							$objPHPExcel->setActiveSheetIndex()->setCellValue('B'.$col, $val->nama_dosen);
+							$objPHPExcel->setActiveSheetIndex()->setCellValue('B'.$col, $val->nama_mhs);
 							$objPHPExcel->setActiveSheetIndex()->setCellValue('C'.$col, $val->nama_produk);
 							$objPHPExcel->setActiveSheetIndex()->setCellValue('D'.$col, $val->deskripsi);
 							$objPHPExcel->setActiveSheetIndex()->setCellValue('E'.$col, $val->bukti);
-							$objPHPExcel->setActiveSheetIndex()->setCellValue('E'.$col, $val->tahun);
+							$objPHPExcel->setActiveSheetIndex()->setCellValue('F'.$col, $val->tahun);
 							$col++;
 						}
 					break;

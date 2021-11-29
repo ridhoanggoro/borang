@@ -312,6 +312,7 @@ $(document).ready(function(){
         var jml=0;
         var rata2=0;
         for(i=0; i<data.length; i++){
+
           jml = parseInt(data[i].ps_yang_diakreditasi)+parseInt(data[i].ps_lain_di_dalam_pt)+parseInt(data[i].ps_lain_di_luar_pt)+parseInt(data[i].penelitian)+parseInt(data[i].pkm)+parseInt(data[i].tugas_tambahan);
           rata2 = jml/2;
           html += '<tr>'+
