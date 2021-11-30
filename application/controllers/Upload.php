@@ -23,7 +23,7 @@ class Upload extends CI_Controller
 						$upload_data = $this->upload->data();
 						$filename = $upload_data['file_name'];
 						$filesize = $upload_data['file_size'];
-						$jum = $this->Model_upload->upload_excel($filename, $category, $mode);
+						$jum = $this->Model_upload->upload_excel($filename, $category);
 						unlink('./assets/temp/' . $filename);
 						if ($jum['stat'] == -1) {
 								$retval['jum'] = $jum['col'];

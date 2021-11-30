@@ -46,7 +46,7 @@
 
 <!-- MODAL UPLOAD -->
 <form class="form-horizontal" id="upload">
-  <div class="modal fade" id="Modal_Upload" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal fade" id="Modal_Upload" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -77,8 +77,8 @@
 <!--END MODAL UPLOAD-->
 
 <!-- MODAL ADD -->
-<form class="was-validated">
-  <div class="modal fade" id="Modal_Add" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<form class="was-validated" id="tambah">
+  <div class="modal fade" id="Modal_Add" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -151,7 +151,7 @@
 
 <!-- MODAL EDIT -->
 <form class="form-horizontal" id="submit">
-  <div class="modal fade" id="Modal_Edit" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal fade" id="Modal_Edit" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -358,14 +358,31 @@ $('#tampil_data').on('click','.item_edit',function(){
         cache:false,
         async:false,
         success: function(data){
-          $('#Modal_Upload').modal('hide');
-          $("#file_upload").val(null);
-          $.alert({
-            title: 'Sukses!',
-            content: '<b>'+data+'</b> Data Berhasil Di Upload!',
-          });
-        show_data();
-      }
+          if(data.msg == "ok") {
+                 $('#Modal_Upload').modal('hide');
+                 $("#file_upload").val(null);
+                 $.confirm({
+                     title: 'Sukses!',
+                     content: 'Sebanyak <b>' + data.jum + '</b> Data Berhasil Di Upload!',
+                     buttons: {
+                         somethingElse: {
+                             text: 'OK',
+                             btnClass: 'btn-blue',
+                             action: function() {
+                                show_data();
+                             }
+                         }
+                     }
+                 });
+             } else {
+                 $.alert({
+                     title: 'Error!',
+                     type: 'red',
+                     content: '<b>' + data.msg + '</b>',
+                 });
+             }
+       
+        }
     });
   });
   // end upload data

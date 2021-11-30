@@ -22,13 +22,13 @@ class Model_upload extends CI_model
 			$reader->setReadDataOnly(true);
 			$spreadsheet = $reader->load($inputFileName);
 			$worksheet   = $spreadsheet->getActiveSheet()->toArray();
-			$prodi       = $this->session->userdata('nama');
+			$prodi       = strtoupper($this->session->userdata('nama'));
 
 			switch ($modul) {
 				case '1-1':
 					for ($i = 2; $i < ($numRows + 1); $i++) {
 						$data = array(
-							'prodi' => $worksheet[$i]['0'],
+							'prodi' => $prodi,
 							'lembaga_mitra' => $worksheet[$i]['1'],
 							'tingkat' => $worksheet[$i]['2'],
 							'judul_kegiatan' => $worksheet[$i]['3'],
@@ -50,7 +50,7 @@ class Model_upload extends CI_model
 				case '1-2':
 					for ($i = 2; $i < ($numRows + 1); $i++) {
 						$data = array(
-							'prodi' => $worksheet[$i]['0'],
+							'prodi' => $prodi,
 							'lembaga_mitra' => $worksheet[$i]['1'],
 							'tingkat' => $worksheet[$i]['2'],
 							'judul_kegiatan' => $worksheet[$i]['3'],
@@ -72,7 +72,7 @@ class Model_upload extends CI_model
 				case '1-3':
 					for ($i = 2; $i < ($numRows + 1); $i++) {
 						$data = array(
-							'prodi' => $worksheet[$i]['0'],
+							'prodi' => $prodi,
 							'lembaga_mitra' => $worksheet[$i]['1'],
 							'tingkat' => $worksheet[$i]['2'],
 							'judul_kegiatan' => $worksheet[$i]['3'],
@@ -331,7 +331,7 @@ class Model_upload extends CI_model
 				case '3.b.7-2':
 					for ($i = 2; $i < ($numRows + 1); $i++) {
 						$data = array(
-							'prodi' => $worksheet[$i]['0'],
+							'prodi' => $prodi,
 							'luaran_penelitian' => $worksheet[$i]['1'],
 							'th_perolehan' => $worksheet[$i]['2'],
 							'keterangan' => $worksheet[$i]['3']
@@ -349,7 +349,7 @@ class Model_upload extends CI_model
 				case '3.b.7-3':
 					for ($i = 2; $i < ($numRows + 1); $i++) {
 						$data = array(
-							'prodi' => $worksheet[$i]['0'],
+							'prodi' => $prodi,
 							'luaran_penelitian' => $worksheet[$i]['1'],
 							'th_perolehan' => $worksheet[$i]['2'],
 							'keterangan' => $worksheet[$i]['3']
@@ -730,7 +730,7 @@ class Model_upload extends CI_model
 				case '8.f.4-2':
 					for ($i = 2; $i < ($numRows + 1); $i++) {
 						$data = array(
-							'prodi' => $worksheet[$i]['0'],
+							'prodi' => $prodi,
 							'luaran_penelitian' => $worksheet[$i]['1'],
 							'th_perolehan' => $worksheet[$i]['2'],
 							'keterangan' => $worksheet[$i]['3']
@@ -748,7 +748,7 @@ class Model_upload extends CI_model
 				case '8.f.4-3':
 					for ($i = 2; $i < ($numRows + 1); $i++) {
 						$data = array(
-							'prodi' => $worksheet[$i]['0'],
+							'prodi' => $prodi,
 							'luaran_penelitian' => $worksheet[$i]['1'],
 							'th_perolehan' => $worksheet[$i]['2'],
 							'keterangan' => $worksheet[$i]['3']
