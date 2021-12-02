@@ -23,19 +23,20 @@ class Model_upload extends CI_model
 			$spreadsheet = $reader->load($inputFileName);
 			$worksheet   = $spreadsheet->getActiveSheet()->toArray();
 			$prodi       = strtoupper($this->session->userdata('nama'));
+			$numRows     = count($worksheet)-1;
 
 			switch ($modul) {
 				case '1-1':
-					for ($i = 2; $i < ($numRows + 1); $i++) {
+					for ($i = 1; $i < ($numRows + 1); $i++) {
 						$data = array(
 							'prodi' => $prodi,
-							'lembaga_mitra' => $worksheet[$i]['1'],
-							'tingkat' => $worksheet[$i]['2'],
-							'judul_kegiatan' => $worksheet[$i]['3'],
-							'manfaat_bagi_ps' => $worksheet[$i]['4'],
-							'durasi' => $worksheet[$i]['5'],
-							'bukti_kerjasama' => $worksheet[$i]['6'],
-							'tahun_berakhir' => $worksheet[$i]['7']
+							'lembaga_mitra' => $worksheet[$i]['0'],
+							'tingkat' => $worksheet[$i]['1'],
+							'judul_kegiatan' => $worksheet[$i]['2'],
+							'manfaat_bagi_ps' => $worksheet[$i]['3'],
+							'durasi' => $worksheet[$i]['4'],
+							'bukti_kerjasama' => $worksheet[$i]['5'],
+							'tahun_berakhir' => $worksheet[$i]['6']
 						);
 
 						if (!$this->db->insert('tridarma_pendidikan', $data))
@@ -48,16 +49,16 @@ class Model_upload extends CI_model
 					break;
 
 				case '1-2':
-					for ($i = 2; $i < ($numRows + 1); $i++) {
+					for ($i = 1; $i < ($numRows + 1); $i++) {
 						$data = array(
 							'prodi' => $prodi,
-							'lembaga_mitra' => $worksheet[$i]['1'],
-							'tingkat' => $worksheet[$i]['2'],
-							'judul_kegiatan' => $worksheet[$i]['3'],
-							'manfaat_bagi_ps' => $worksheet[$i]['4'],
-							'durasi' => $worksheet[$i]['5'],
-							'bukti_kerjasama' => $worksheet[$i]['6'],
-							'tahun_berakhir' => $worksheet[$i]['7']
+							'lembaga_mitra' => $worksheet[$i]['0'],
+							'tingkat' => $worksheet[$i]['1'],
+							'judul_kegiatan' => $worksheet[$i]['2'],
+							'manfaat_bagi_ps' => $worksheet[$i]['3'],
+							'durasi' => $worksheet[$i]['4'],
+							'bukti_kerjasama' => $worksheet[$i]['5'],
+							'tahun_berakhir' => $worksheet[$i]['6']
 						);
 					
 						if (!$this->db->insert('tridarma_penelitian', $data))
@@ -70,16 +71,16 @@ class Model_upload extends CI_model
 					break;
 
 				case '1-3':
-					for ($i = 2; $i < ($numRows + 1); $i++) {
+					for ($i = 1; $i < ($numRows + 1); $i++) {
 						$data = array(
 							'prodi' => $prodi,
-							'lembaga_mitra' => $worksheet[$i]['1'],
-							'tingkat' => $worksheet[$i]['2'],
-							'judul_kegiatan' => $worksheet[$i]['3'],
-							'manfaat_bagi_ps' => $worksheet[$i]['4'],
-							'durasi' => $worksheet[$i]['5'],
-							'bukti_kerjasama' => $worksheet[$i]['6'],
-							'tahun_berakhir' => $worksheet[$i]['7']
+							'lembaga_mitra' => $worksheet[$i]['0'],
+							'tingkat' => $worksheet[$i]['1'],
+							'judul_kegiatan' => $worksheet[$i]['2'],
+							'manfaat_bagi_ps' => $worksheet[$i]['3'],
+							'durasi' => $worksheet[$i]['4'],
+							'bukti_kerjasama' => $worksheet[$i]['5'],
+							'tahun_berakhir' => $worksheet[$i]['6']
 						);
 						
 						if (!$this->db->insert('tridarma_pkm', $data))
@@ -92,7 +93,7 @@ class Model_upload extends CI_model
 					break;
 
 				case '3.a.1':
-					for ($i = 2; $i < ($numRows + 1); $i++) {
+					for ($i = 1; $i < ($numRows + 1); $i++) {
 						$data = array(
 							'npd' => $worksheet[$i]['0'],
 							'nidn' => $worksheet[$i]['1'],
@@ -109,8 +110,8 @@ class Model_upload extends CI_model
 							'matakuliah_diampu_ps_lain' => $worksheet[$i]['12'],
 							'kesesuaian_bidang_keahlian' => $worksheet[$i]['13'],
 							'status' => $worksheet[$i]['14'],
-							'prodi' => $worksheet[$i]['15'],
-							'sertifikasi' => $worksheet[$i]['16']
+							'prodi' => $prodi,
+							'sertifikasi' => $worksheet[$i]['15']
 						);
 						
 						if (!$this->db->insert('dosen', $data))
@@ -123,7 +124,7 @@ class Model_upload extends CI_model
 					break;
 
 				case '3.a.3':
-					for ($i = 2; $i < ($numRows + 1); $i++) {
+					for ($i = 1; $i < ($numRows + 1); $i++) {
 						$data = array(
 							'nik_nidn' => $worksheet[$i]['0'],
 							'nama_dosen' => $worksheet[$i]['1'],
@@ -134,7 +135,7 @@ class Model_upload extends CI_model
 							'penelitian' => $worksheet[$i]['6'],
 							'pkm' => $worksheet[$i]['7'],
 							'tugas_tambahan' => $worksheet[$i]['8'],
-							'prodi' => $worksheet[$i]['9']
+							'prodi' => $prodi
 						);
 						
 						if (!$this->db->insert('ekuivalen_dosen_mengajar', $data))
@@ -147,7 +148,7 @@ class Model_upload extends CI_model
 					break;
 
 				case '3.a.4':
-					for ($i = 2; $i < ($numRows + 1); $i++) {
+					for ($i = 1; $i < ($numRows + 1); $i++) {
 						$data = array(
 							'npd' => $worksheet[$i]['0'],
 							'nidn' => $worksheet[$i]['1'],
@@ -162,7 +163,7 @@ class Model_upload extends CI_model
 							'matakuliah_diampu_ps_lain' => $worksheet[$i]['10'],
 							'kesesuaian_bidang_keahlian' => $worksheet[$i]['11'],
 							'status' => $worksheet[$i]['12'],
-							'prodi' => $worksheet[$i]['13']
+							'prodi' => $prodi
 						);
 						
 						if (!$this->db->insert('dosen', $data))
@@ -175,7 +176,7 @@ class Model_upload extends CI_model
 					break;
 
 				case '3.a.5':
-					for ($i = 2; $i < ($numRows + 1); $i++) {
+					for ($i = 1; $i < ($numRows + 1); $i++) {
 						$data = array(
 							'nik_nidn' => $worksheet[$i]['0'],
 							'nama_dosen' => $worksheet[$i]['1'],
@@ -185,7 +186,7 @@ class Model_upload extends CI_model
 							'sertifikat_profesi' => $worksheet[$i]['5'],
 							'matakuliah_diampu' => $worksheet[$i]['6'],
 							'sks' => $worksheet[$i]['7'],
-							'prodi' => $worksheet[$i]['8']
+							'prodi' => $prodi
 						);
 						
 						if (!$this->db->insert('dosen_praktisi', $data))
@@ -198,14 +199,14 @@ class Model_upload extends CI_model
 					break;
 
 				case '3.b.1':
-					for ($i = 2; $i < ($numRows + 1); $i++) {
+					for ($i = 1; $i < ($numRows + 1); $i++) {
 						$data = array(
 							'nama' => $worksheet[$i]['0'],
 							'bidang_keahlian' => $worksheet[$i]['1'],
 							'bukti_pendukung' => $worksheet[$i]['2'],
 							'tingkat'  => $worksheet[$i]['3'],
 							'tahun' => $worksheet[$i]['4'],
-							'prodi	' => $worksheet[$i]['5']
+							'prodi	' => $prodi
 						);
 						
 						if (!$this->db->insert('rekognisi_dpts', $data))
@@ -218,12 +219,12 @@ class Model_upload extends CI_model
 					break;
 
 				case '3.b.2':
-					for ($i = 2; $i < ($numRows + 1); $i++) {
+					for ($i = 1; $i < ($numRows + 1); $i++) {
 						$data = array(
 							'sumber_biaya' => $worksheet[$i]['0'],
 							'jml_judul' => $worksheet[$i]['1'],
 							'th_akademik'  => $worksheet[$i]['2'],
-							'prodi' => $worksheet[$i]['3']
+							'prodi' => $prodi
 						);
 						
 						if (!$this->db->insert('penelitian_dosen', $data))
@@ -236,12 +237,12 @@ class Model_upload extends CI_model
 					break;
 
 				case '3.b.3':
-					for ($i = 2; $i < ($numRows + 1); $i++) {
+					for ($i = 1; $i < ($numRows + 1); $i++) {
 						$data = array(
 							'sumber_biaya' => $worksheet[$i]['0'],
 							'jml_judul' => $worksheet[$i]['1'],
 							'th_akademik'  => $worksheet[$i]['2'],
-							'prodi' => $worksheet[$i]['3']
+							'prodi' => $prodi
 						);
 						
 						if (!$this->db->insert('pkm_dosen', $data))
@@ -254,12 +255,12 @@ class Model_upload extends CI_model
 					break;
 
 				case '3.b.4-1':
-					for ($i = 2; $i < ($numRows + 1); $i++) {
+					for ($i = 1; $i < ($numRows + 1); $i++) {
 						$data = array(
 							'jenis_publikasi' => $worksheet[$i]['0'],
 							'jml_judul' => $worksheet[$i]['1'],
 							'th_akademik'  => $worksheet[$i]['2'],
-							'prodi' => $worksheet[$i]['3']
+							'prodi' => $prodi
 						);
 					
 						if (!$this->db->insert('publikasi_ilmiah', $data))
@@ -272,12 +273,12 @@ class Model_upload extends CI_model
 					break;
 
 				case '3.b.4-2':
-					for ($i = 2; $i < ($numRows + 1); $i++) {
+					for ($i = 1; $i < ($numRows + 1); $i++) {
 						$data = array(
 							'jenis_publikasi' => $worksheet[$i]['0'],
 							'jml_judul' => $worksheet[$i]['1'],
 							'th_akademik'  => $worksheet[$i]['2'],
-							'prodi' => $worksheet[$i]['3']
+							'prodi' => $prodi
 						);
 						
 						if (!$this->db->insert('pagelaran_ilmiah', $data))
@@ -290,14 +291,14 @@ class Model_upload extends CI_model
 					break;
 
 				case '3.b.6':
-					for ($i = 2; $i < ($numRows + 1); $i++) {
+					for ($i = 1; $i < ($numRows + 1); $i++) {
 						$data = array(
 							'nama_dosen' => $worksheet[$i]['0'],
 							'nama_produk' => $worksheet[$i]['1'],
 							'deskripsi' => $worksheet[$i]['2'],
 							'bukti'  => $worksheet[$i]['3'],
 							'tahun'  => $worksheet[$i]['4'],
-							'prodi'  => $worksheet[$i]['5']
+							'prodi'  => $prodi
 						);
 						
 						if (!$this->db->insert('produk_dtps', $data))
@@ -310,13 +311,13 @@ class Model_upload extends CI_model
 					break;
 
 				case '3.b.7-1':
-					for ($i = 2; $i < ($numRows + 1); $i++) {
+					for ($i = 1; $i < ($numRows + 1); $i++) {
 						$data = array(
 							'nama_dosen' => $worksheet[$i]['0'],
 							'nama_produk' => $worksheet[$i]['1'],
 							'deskripsi' => $worksheet[$i]['2'],
 							'bukti'  => $worksheet[$i]['3'],
-							'prodi'  => $worksheet[$i]['4']
+							'prodi'  => $prodi
 						);
 						
 						if (!$this->db->insert('hki_paten', $data))
@@ -329,12 +330,12 @@ class Model_upload extends CI_model
 					break;
 
 				case '3.b.7-2':
-					for ($i = 2; $i < ($numRows + 1); $i++) {
+					for ($i = 1; $i < ($numRows + 1); $i++) {
 						$data = array(
 							'prodi' => $prodi,
-							'luaran_penelitian' => $worksheet[$i]['1'],
-							'th_perolehan' => $worksheet[$i]['2'],
-							'keterangan' => $worksheet[$i]['3']
+							'luaran_penelitian' => $worksheet[$i]['0'],
+							'th_perolehan' => $worksheet[$i]['1'],
+							'keterangan' => $worksheet[$i]['2']
 						);
 						
 						if (!$this->db->insert('hki_hak_cipta', $data))
@@ -347,12 +348,12 @@ class Model_upload extends CI_model
 					break;
 
 				case '3.b.7-3':
-					for ($i = 2; $i < ($numRows + 1); $i++) {
+					for ($i = 1; $i < ($numRows + 1); $i++) {
 						$data = array(
 							'prodi' => $prodi,
-							'luaran_penelitian' => $worksheet[$i]['1'],
-							'th_perolehan' => $worksheet[$i]['2'],
-							'keterangan' => $worksheet[$i]['3']
+							'luaran_penelitian' => $worksheet[$i]['0'],
+							'th_perolehan' => $worksheet[$i]['1'],
+							'keterangan' => $worksheet[$i]['2']
 						);
 						
 						if (!$this->db->insert('hki_teknologi_tepatguna', $data))
@@ -365,12 +366,12 @@ class Model_upload extends CI_model
 					break;
 
 				case '3.b.7-4':
-					for ($i = 2; $i < ($numRows + 1); $i++) {
+					for ($i = 1; $i < ($numRows + 1); $i++) {
 						$data = array(
 							'luaran_penelitian' => $worksheet[$i]['0'],
 							'th_perolehan' => $worksheet[$i]['1'],
 							'keterangan' => $worksheet[$i]['2'],
-							'prodi' => $worksheet[$i]['3']
+							'prodi' => $prodi
 						);
 						
 						if (!$this->db->insert('buku_isbn', $data))
@@ -383,7 +384,7 @@ class Model_upload extends CI_model
 					break;
 
 				case '5.a':
-					for ($i = 2; $i < ($numRows + 1); $i++) {
+					for ($i = 1; $i < ($numRows + 1); $i++) {
 						$data = array(
 							'semester' => $worksheet[$i]['0'],
 							'kode_matkul' => $worksheet[$i]['1'],
@@ -399,7 +400,7 @@ class Model_upload extends CI_model
 							'keterampilan_khusus	' => $worksheet[$i]['11'],
 							'dokumen_pembelajaran' => $worksheet[$i]['12'],
 							'unit_penyelenggara' => $worksheet[$i]['13'],
-							'prodi' => $worksheet[$i]['14']
+							'prodi' => $prodi
 						);
 						
 						if (!$this->db->insert('kurikulum', $data))
@@ -412,14 +413,14 @@ class Model_upload extends CI_model
 					break;
 
 				case '5.b':
-					for ($i = 2; $i < ($numRows + 1); $i++) {
+					for ($i = 1; $i < ($numRows + 1); $i++) {
 						$data = array(
 							'judul' => $worksheet[$i]['0'],
 							'nama_dosen' => $worksheet[$i]['1'],
 							'matkul'  => $worksheet[$i]['2'],
 							'bentuk_integrasi' => $worksheet[$i]['3'],
 							'tahun' => $worksheet[$i]['4'],
-							'prodi' => $worksheet[$i]['5']
+							'prodi' => $prodi
 						);
 						
 						if (!$this->db->insert('integrasi_pkm', $data))
@@ -432,7 +433,7 @@ class Model_upload extends CI_model
 					break;
 
 				case '5.c':
-					for ($i = 2; $i < ($numRows + 1); $i++) {
+					for ($i = 1; $i < ($numRows + 1); $i++) {
 						$data = array(
 							'aspek_ukuran' => $worksheet[$i]['0'],
 							'sangat_baik' => $worksheet[$i]['1'],
@@ -440,7 +441,7 @@ class Model_upload extends CI_model
 							'cukup'  => $worksheet[$i]['3'],
 							'kurang' => $worksheet[$i]['4'],
 							'rencana_tindaklanjut' => $worksheet[$i]['5'],
-							'prodi' => $worksheet[$i]['6']
+							'prodi' => $prodi
 						);
 						
 						if (!$this->db->insert('kepuasan_pelanggan', $data))
@@ -453,14 +454,14 @@ class Model_upload extends CI_model
 					break;
 
 				case '6.a':
-					for ($i = 2; $i < ($numRows + 1); $i++) {
+					for ($i = 1; $i < ($numRows + 1); $i++) {
 						$data = array(
 							'nama_dosen' => $worksheet[$i]['0'],
 							'tema_penelitian' => $worksheet[$i]['1'],
 							'nama_mhs' => $worksheet[$i]['2'],
 							'judul_kegiatan' => $worksheet[$i]['3'],
 							'tahun' => $worksheet[$i]['4'],
-							'prodi' => $worksheet[$i]['5']
+							'prodi' => $prodi
 						);
 						
 						if (!$this->db->insert('penelitian_dosen_mhs', $data))
@@ -473,14 +474,14 @@ class Model_upload extends CI_model
 					break;
 
 				case '6.b':
-					for ($i = 2; $i < ($numRows + 1); $i++) {
+					for ($i = 1; $i < ($numRows + 1); $i++) {
 						$data = array(
 							'nama_dosen' => $worksheet[$i]['0'],
 							'tema_penelitian' => $worksheet[$i]['1'],
 							'nama_mhs' => $worksheet[$i]['2'],
 							'judul_kegiatan' => $worksheet[$i]['3'],
 							'tahun' => $worksheet[$i]['4'],
-							'prodi' => $worksheet[$i]['5']
+							'prodi' => $prodi
 						);
 						
 						if (!$this->db->insert('penelitian_mhs_tesis', $data))
@@ -493,14 +494,14 @@ class Model_upload extends CI_model
 					break;
 
 				case '7':
-					for ($i = 2; $i < ($numRows + 1); $i++) {
+					for ($i = 1; $i < ($numRows + 1); $i++) {
 						$data = array(
 							'nama_dosen' => $worksheet[$i]['0'],
 							'tema_penelitian' => $worksheet[$i]['1'],
 							'nama_mhs' => $worksheet[$i]['2'],
 							'judul_kegiatan' => $worksheet[$i]['3'],
 							'tahun' => $worksheet[$i]['4'],
-							'prodi' => $worksheet[$i]['5']
+							'prodi' => $prodi
 						);
 						
 						if (!$this->db->insert('pkm_dosen_mhs', $data))
@@ -513,13 +514,13 @@ class Model_upload extends CI_model
 					break;
 
 				case '8.b.1':
-					for ($i = 2; $i < ($numRows + 1); $i++) {
+					for ($i = 1; $i < ($numRows + 1); $i++) {
 						$data = array(
 							'nama_kegiatan' => $worksheet[$i]['0'],
 							'waktu' => $worksheet[$i]['1'],
 							'tingkat'  => $worksheet[$i]['2'],
 							'prestasi' => $worksheet[$i]['3'],
-							'prodi' => $worksheet[$i]['4']
+							'prodi' => $prodi
 						);
 						
 						if (!$this->db->insert('prestasi_akad_mhs', $data))
@@ -532,13 +533,13 @@ class Model_upload extends CI_model
 					break;
 
 				case '8.b.2':
-					for ($i = 2; $i < ($numRows + 1); $i++) {
+					for ($i = 1; $i < ($numRows + 1); $i++) {
 						$data = array(
 							'nama_kegiatan' => $worksheet[$i]['0'],
 							'waktu' => $worksheet[$i]['1'],
 							'tingkat'  => $worksheet[$i]['2'],
 							'prestasi' => $worksheet[$i]['3'],
-							'prodi' => $worksheet[$i]['4']
+							'prodi' => $prodi
 						);
 						
 						if (!$this->db->insert('prestasi_non_akad_mhs', $data))
@@ -551,15 +552,15 @@ class Model_upload extends CI_model
 					break;
 
 				case '8.d.1':
-					for ($i = 2; $i < ($numRows + 1); $i++) {
+					for ($i = 1; $i < ($numRows + 1); $i++) {
 						$data = array(
 							'jml_lulusan_terlacak' => $worksheet[$i]['0'],
 							'jml_lulusan_dipesan' => $worksheet[$i]['1'],
 							'wt_dibawah_3bln'  => $worksheet[$i]['2'],
 							'wt_3sd6_bulan' => $worksheet[$i]['3'],
 							'wt_diatas_6bulan' => $worksheet[$i]['4'],
-							'prodi' => $worksheet[$i]['5'],
-							'ts' => $worksheet[$i]['6']
+							'prodi' => $prodi,
+							'ts' => $worksheet[$i]['5']
 						);
 						
 						if (!$this->db->insert('waktu_tunggu_lulusan', $data))
@@ -572,14 +573,14 @@ class Model_upload extends CI_model
 					break;
 
 				case '8.d.2':
-					for ($i = 2; $i < ($numRows + 1); $i++) {
+					for ($i = 1; $i < ($numRows + 1); $i++) {
 						$data = array(
 							'jml_lulusan_terlacak' => $worksheet[$i]['0'],
 							'jml_lulusan_terlacak_rendah' => $worksheet[$i]['1'],
 							'jml_lulusan_terlacak_sedang'  => $worksheet[$i]['2'],
 							'jml_lulusan_terlacak_tinggi'  => $worksheet[$i]['3'],
-							'prodi' => $worksheet[$i]['4'],
-							'ts' => $worksheet[$i]['5']
+							'prodi' => $prodi,
+							'ts' => $worksheet[$i]['4']
 						);
 						
 						if (!$this->db->insert('kesesuaian_bidang_kerja_lulusan', $data))
@@ -592,14 +593,14 @@ class Model_upload extends CI_model
 					break;
 
 				case '8.e.1':
-					for ($i = 2; $i < ($numRows + 1); $i++) {
+					for ($i = 1; $i < ($numRows + 1); $i++) {
 						$data = array(
 							'jml_lulusan_terlacak' => $worksheet[$i]['0'],
 							'jml_lulusan_terlacak_lokal' => $worksheet[$i]['1'],
 							'jml_lulusan_terlacak_nasional' => $worksheet[$i]['2'],
 							'jml_lulusan_terlacak_internasional' => $worksheet[$i]['3'],
-							'prodi' => $worksheet[$i]['4'],
-							'ts' => $worksheet[$i]['5']
+							'prodi' => $prodi,
+							'ts' => $worksheet[$i]['4']
 						);
 						
 						if (!$this->db->insert('tempat_kerja_lulusan', $data))
@@ -612,7 +613,7 @@ class Model_upload extends CI_model
 					break;
 
 				case '8.e.2':
-					for ($i = 2; $i < ($numRows + 1); $i++) {
+					for ($i = 1; $i < ($numRows + 1); $i++) {
 						$data = array(
 							'jns_kemampuan' => $worksheet[$i]['0'],
 							'sangat_baik' => $worksheet[$i]['1'],
@@ -620,7 +621,7 @@ class Model_upload extends CI_model
 							'cukup'  => $worksheet[$i]['3'],
 							'kurang' => $worksheet[$i]['4'],
 							'rencana_tindak_lanjut' => $worksheet[$i]['5'],
-							'prodi' => $worksheet[$i]['6']
+							'prodi' => $prodi
 						);
 						
 						if (!$this->db->insert('kepuasan_pengguna_lulusan', $data))
@@ -633,11 +634,11 @@ class Model_upload extends CI_model
 					break;
 
 				case '8.e.2.ref':
-					for ($i = 2; $i < ($numRows + 1); $i++) {
+					for ($i = 1; $i < ($numRows + 1); $i++) {
 						$data = array(
 							'ts' => $worksheet[$i]['0'],
 							'jml_tanggapan_terlacak' => $worksheet[$i]['1'],
-							'podi' => $worksheet[$i]['2']
+							'podi' => $prodi
 						);
 						
 						if (!$this->db->insert('ref_kepuasan_pelanggan_lulusan', $data))
@@ -650,12 +651,12 @@ class Model_upload extends CI_model
 					break;
 
 				case '8.f.1-1':
-					for ($i = 2; $i < ($numRows + 1); $i++) {
+					for ($i = 1; $i < ($numRows + 1); $i++) {
 						$data = array(
 							'jenis_publikasi' => $worksheet[$i]['0'],
 							'jml_judul' => $worksheet[$i]['1'],
 							'th_akademik'  => $worksheet[$i]['2'],
-							'prodi' => $worksheet[$i]['3']
+							'prodi' => $prodi
 						);
 						
 						if (!$this->db->insert('publikasi_ilmiah_mhs', $data))
@@ -671,12 +672,12 @@ class Model_upload extends CI_model
 					break;
 
 				case '8.f.2':
-					for ($i = 2; $i < ($numRows + 1); $i++) {
+					for ($i = 1; $i < ($numRows + 1); $i++) {
 						$data = array(
 							'nama_dosen' => $worksheet[$i]['0'],
 							'judul_artikel_disitasi' => $worksheet[$i]['1'],
 							'jumlah' => $worksheet[$i]['2'],
-							'prodi' => $worksheet[$i]['3']
+							'prodi' => $prodi
 						);
 						
 						if (!$this->db->insert('karya_ilmiah_disitasi_mhs', $data))
@@ -689,14 +690,14 @@ class Model_upload extends CI_model
 					break;
 
 				case '8.f.3':
-					for ($i = 2; $i < ($numRows + 1); $i++) {
+					for ($i = 1; $i < ($numRows + 1); $i++) {
 						$data = array(
 							'nama_mhs' => $worksheet[$i]['0'],
 							'nama_produk' => $worksheet[$i]['1'],
 							'deskripsi' => $worksheet[$i]['2'],
 							'bukti'  => $worksheet[$i]['3'],
 							'tahun'  => $worksheet[$i]['4'],
-							'prodi'  => $worksheet[$i]['5']
+							'prodi'  => $prodi
 						);
 						
 						if (!$this->db->insert('produk_dtps_mhs', $data))
@@ -709,13 +710,13 @@ class Model_upload extends CI_model
 					break;
 
 				case '8.f.4-1':
-					for ($i = 2; $i < ($numRows + 1); $i++) {
+					for ($i = 1; $i < ($numRows + 1); $i++) {
 						$data = array(
 							'nama_dosen' => $worksheet[$i]['0'],
 							'nama_produk' => $worksheet[$i]['1'],
 							'deskripsi' => $worksheet[$i]['2'],
 							'bukti'  => $worksheet[$i]['3'],
-							'prodi'  => $worksheet[$i]['4']
+							'prodi'  => $prodi
 						);
 						
 						if (!$this->db->insert('hki_paten_mhs', $data))
@@ -728,12 +729,12 @@ class Model_upload extends CI_model
 					break;
 
 				case '8.f.4-2':
-					for ($i = 2; $i < ($numRows + 1); $i++) {
+					for ($i = 1; $i < ($numRows + 1); $i++) {
 						$data = array(
 							'prodi' => $prodi,
-							'luaran_penelitian' => $worksheet[$i]['1'],
-							'th_perolehan' => $worksheet[$i]['2'],
-							'keterangan' => $worksheet[$i]['3']
+							'luaran_penelitian' => $worksheet[$i]['0'],
+							'th_perolehan' => $worksheet[$i]['1'],
+							'keterangan' => $worksheet[$i]['2']
 						);
 						
 						if (!$this->db->insert('hki_hak_cipta_mhs', $data))
@@ -746,12 +747,12 @@ class Model_upload extends CI_model
 					break;
 
 				case '8.f.4-3':
-					for ($i = 2; $i < ($numRows + 1); $i++) {
+					for ($i = 1; $i < ($numRows + 1); $i++) {
 						$data = array(
 							'prodi' => $prodi,
-							'luaran_penelitian' => $worksheet[$i]['1'],
-							'th_perolehan' => $worksheet[$i]['2'],
-							'keterangan' => $worksheet[$i]['3']
+							'luaran_penelitian' => $worksheet[$i]['0'],
+							'th_perolehan' => $worksheet[$i]['1'],
+							'keterangan' => $worksheet[$i]['2']
 						);
 					
 						if (!$this->db->insert('hki_teknologi_tepatguna_mhs', $data))
@@ -764,12 +765,12 @@ class Model_upload extends CI_model
 					break;
 
 				case '8.f.4-4':
-					for ($i = 2; $i < ($numRows + 1); $i++) {
+					for ($i = 1; $i < ($numRows + 1); $i++) {
 						$data = array(
 							'luaran_penelitian' => $worksheet[$i]['0'],
 							'th_perolehan' => $worksheet[$i]['1'],
 							'keterangan' => $worksheet[$i]['2'],
-							'prodi' => $worksheet[$i]['3']
+							'prodi' => $prodi
 						);
 
 						if (!$this->db->insert('buku_isbn_mhs', $data))

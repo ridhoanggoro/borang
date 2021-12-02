@@ -64,6 +64,9 @@
   <!-- Logout Modal-->
   <?php $this->load->view("_partials/modal.php"); ?>
 
+  <!-- Upload Modal (Jika Diperlukan) -->
+  <?php $this->load->view("_partials/modal_upload.php"); ?>
+
   <!-- Bootstrap core & JavaScript-->
   <?php $this->load->view("_partials/js.php"); ?>
   <script type="text/javascript">

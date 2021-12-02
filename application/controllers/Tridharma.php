@@ -16,6 +16,7 @@ class Tridharma extends CI_Controller
 		$this->Model_security->getsecurity();
 		$isi['title'] = 'Tridharma Pendidikan';
 		$isi['content'] = 'tridharma/pendidikan';
+		$isi['template_link'] = base_url().'assets/upload/1.1.tridarma_pendidikan.xlsx';
 		$this->load->view('default_page', $isi);
 	}
 
@@ -80,6 +81,7 @@ class Tridharma extends CI_Controller
 		$this->Model_security->getsecurity();
 		$isi['title'] = 'Tridharma Penelitian';
 		$isi['content'] = 'tridharma/penelitian';
+		$isi['template_link'] = base_url().'assets/upload/1.2.tridarma_penelitian.xlsx';
 		$this->load->view('default_page', $isi);
 	}
 
@@ -112,6 +114,7 @@ class Tridharma extends CI_Controller
 		$this->Model_security->getsecurity();
 		$isi['title'] = 'Kerjasama Pengabdian Kepada Masyarakat';
 		$isi['content'] = 'tridharma/pkm';
+		$isi['template_link'] = base_url().'assets/upload/1.1.tridarma_pendidikan.xlsx';
 		$this->load->view('default_page', $isi);
 	}
 

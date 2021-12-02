@@ -14,7 +14,6 @@ class Upload extends CI_Controller
 		{
 				$config['upload_path'] = './assets/temp/';
 				$config['allowed_types'] = 'xlsx|xls';
-				$this->load->library('PHPExcel');
 				$this->load->library('upload', $config);
 				$category = decode_url($this->uri->segment(3));
 

@@ -44,38 +44,6 @@
   </div>
 </div>
 
-<!-- MODAL UPLOAD -->
-<form class="form-horizontal" id="upload">
-  <div class="modal fade" id="Modal_Upload" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-      <h5 class="modal-title" id="exampleModalLabel">Upload Data Excel</h5>
-      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-        <span aria-hidden="true">&times;</span>
-      </button>
-      </div>
-      <div class="modal-body">
-        <div class="form-row">
-          <div class="form-group col-md-12">
-            <label for="mitra">Upload Excel File, Klik <a href="<?php echo base_url('assets/upload/1.1.tridarma_pendidikan.xlsx');?>" data-toggle="tooltip" data-placement="top" title="Download Template">disini</a> untuk unduh file template</label>
-            <input type="file" id="file_upload" name="file_upload" required>
-            <div id="id_check_result" class="help-block with-errors"></div>
-          </div>
-      </div>
-    </div>
-      <div class="modal-footer">
-      <button class="btn btn-secondary btn-icon-split btn-sm" data-dismiss="modal"><span class="icon text-white-50"><i class="fas fa-arrow-alt-circle-left"></i></i></span>
-      <span class="text">Batal</span></button>
-      <button type="submit" id="btn_upload" class="btn btn-primary btn-icon-split btn-sm"><span class="icon text-white-50"><i class="fas fa-save"></i></span>
-      <span class="text">Upload</span></button>
-      </div>
-    </div>
-    </div>
-  </div>
-</form>
-<!--END MODAL UPLOAD-->
-
 <!-- MODAL ADD -->
 <form class="was-validated" id="tambah">
   <div class="modal fade" id="Modal_Add" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -260,193 +228,204 @@
 <!--END MODAL DELETE-->
 
 <script type="text/javascript">
-    $(document).ready(function(){
-      show_data();
-      $('#mydata').dataTable();
-      // Add the following code if you want the name of the file appear on select
-      $(".custom-file-input").on("change", function() {
-        var fileName = $(this).val().split("\\").pop();
-        $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
-      });
-      function show_data(){
-        $.ajax({
-          type  : 'ajax',
-          url   : '<?php echo site_url('tridharma/pendidikan_data_list')?>',
-          async : false,
-          dataType : 'json',
-          success : function(data){
-            var html = '';
-            var i;
-            for(i=0; i<data.length; i++){
-              html += '<tr>'+
-              '<td>'+data[i].lembaga_mitra+'</td>'+
-              '<td>'+data[i].tingkat+'</td>'+
-              '<td>'+data[i].judul_kegiatan+'</td>'+
-              '<td>'+data[i].manfaat_bagi_ps+'</td>'+
-              '<td>'+data[i].durasi+'</td>'+
-              '<td>'+data[i].bukti_kerjasama+'</td>'+
-              '<td>'+data[i].tahun_berakhir+'</td>'+
-              '<td style="text-align:center;">'+
-                  '<a href="javascript:void(0);" class="btn btn-info btn-circle btn-sm item_edit" data-toggle="tooltip" data-placement="top" title="Edit" data-seq_id="'+data[i].seq_id+'" data-lembaga_mitra="'+data[i].lembaga_mitra+'" data-tingkat="'+data[i].tingkat+'"data-judul_kegiatan="'+data[i].judul_kegiatan+'"data-manfaat_bagi_ps="'+data[i].manfaat_bagi_ps+'"data-durasi="'+data[i].durasi+'"data-bukti_kerjasama="'+data[i].bukti_kerjasama+'"data-tahun_berakhir="'+data[i].tahun_berakhir+'" data-doc="'+data[i].doc+'"><i class="fas fa-search"></i></a>'+' '+
-                  '<a href="<?php echo site_url('assets/document/')?>'+data[i].doc+'" class="btn btn-primary btn-circle btn-sm" data-toggle="tooltip" data-placement="top" title="Download Dokumen"><i class="fas fa-download"></i></a>'+
-                  '<a href="javascript:void(0);" class="btn btn-danger btn-circle btn-sm item_delete" data-toggle="tooltip" data-placement="top" title="Delete" data-seq_id="'+data[i].seq_id+'"><i class="fas fa-trash"></i></a>'+
-              '</td>'+
-              '</tr>';
-            }
-            $('#tampil_data').html(html);
-          }
-        });
-      }
-
-$('#tampil_data').on('click','.item_edit',function(){
-    var seq_id          = $(this).data('seq_id');
-    var lembaga_mitra   = $(this).data('lembaga_mitra');
-    var tingkat         = $(this).data('tingkat');
-    var judul_kegiatan  = $(this).data('judul_kegiatan');
-    var manfaat_bagi_ps = $(this).data('manfaat_bagi_ps');
-    var durasi          = $(this).data('durasi');
-    var tahun_berakhir  = $(this).data('tahun_berakhir');
-    var bukti           = $(this).data('bukti_kerjasama');
-    var doc             = $(this).data('doc');
-    if (doc) { $('#status').html('<span class="badge badge-success">Dokumen telah diunggah</span>');
-    } else { $('#status').html('<span class="badge badge-danger">Dokumen belum diunggah</span>'); }
-
-    $('#Modal_Edit').modal('show');
-    $('[name="seq_id"]').val(seq_id);
-    $('[name="mitra_edit"]').val(lembaga_mitra);
-    $('[name="tingkat_edit"]').val(tingkat);
-    $('[name="judul_kegiatan_edit"]').val(judul_kegiatan);
-    $('[name="manfaat_bagi_ps_edit"]').val(manfaat_bagi_ps);
-    $('[name="waktu_edit"]').val(durasi);
-    $('[name="tahun_berakhir_edit"]').val(tahun_berakhir);
-    $('[name="bukti_edit"]').val(bukti);
-    $('[name="doc_edit"]').val(doc);
-
-  });
-
-  // Edit data
-  $('#submit').submit(function(e){
-      e.preventDefault();
-           $.ajax({
-               url:'<?php echo site_url('tridharma/pendidikan_edit')?>',
-               type:"post",
-               data:new FormData(this),
-               processData:false,
-               contentType:false,
-               cache:false,
-               async:false,
-                success: function(data){
-                  $('#Modal_Edit').modal('hide');
-                  $.alert({
-                    title: 'Sukses!',
-                    content: 'Data Berhasil Di Perbaharui!',
-                  });
-                  show_data();
-                }
-              });
-            });
-
-    // upload data
-    $('#upload').submit(function(e){
-      e.preventDefault();
-      $.ajax({
-        url:'<?php echo site_url('upload/excel_upload/'.encode_url('1-1'))?>',
-        type:"post",
-        data:new FormData(this),
-        processData:false,
-        contentType:false,
-        cache:false,
-        async:false,
-        success: function(data){
-          if(data.msg == "ok") {
-                 $('#Modal_Upload').modal('hide');
-                 $("#file_upload").val(null);
-                 $.confirm({
-                     title: 'Sukses!',
-                     content: 'Sebanyak <b>' + data.jum + '</b> Data Berhasil Di Upload!',
-                     buttons: {
-                         somethingElse: {
-                             text: 'OK',
-                             btnClass: 'btn-blue',
-                             action: function() {
-                                show_data();
-                             }
-                         }
-                     }
-                 });
-             } else {
-                 $.alert({
-                     title: 'Error!',
-                     type: 'red',
-                     content: '<b>' + data.msg + '</b>',
-                 });
-             }
-       
-        }
-    });
-  });
-  // end upload data
-
-  //Save Data
-  $('#btn_save').on('click',function(){
-    var lembaga_mitra   = $('#mitra').val();
-    var tingkat         = $('#tingkat').val();
-    var judul_kegiatan  = $('#judul_kegiatan').val();
-    var manfaat_bagi_ps = $('#manfaat_bagi_ps').val();
-    var durasi          = $('#waktu').val();
-    var tahun_berakhir  = $('#tahun_berakhir').val();
-    var bukti           = $('#bukti').val();
-    $.ajax({
-      type : "POST",
-      url  : "<?php echo site_url('tridharma/pendidikan_add')?>",
-      dataType : "JSON",
-      data : {lembaga_mitra:lembaga_mitra, tingkat:tingkat, judul_kegiatan:judul_kegiatan, manfaat_bagi_ps:manfaat_bagi_ps, durasi:durasi, tahun_berakhir:tahun_berakhir, bukti:bukti},
-      success: function(data){
-        $('[name="mitra"]').val("");
-        $('[name="tingkat"]').val("");
-        $('[name="judul_kegiatan"]').val("");
-        $('[name="manfaat_bagi_ps"]').val("");
-        $('[name="waktu"]').val("");
-        $('[name="tahun_berakhir"]').val("");
-        $('[name="bukti"]').val("");
-        $('#Modal_Add').modal('hide');
-        $.alert({
-          title: 'Sukses!',
-          content: 'Data Berhasil Disimpan!',
-        });
+    $(document).ready(function() {
         show_data();
-      }
+        $('#mydata').dataTable();
+
+        function show_data() {
+            $.ajax({
+                type: 'ajax',
+                url: '<?php echo site_url('tridharma/pendidikan_data_list')?>',
+                async: false,
+                dataType: 'json',
+                success: function(data) {
+                    var html = '';
+                    var i;
+                    for (i = 0; i < data.length; i++) {
+                        html += '<tr>' +
+                            '<td>' + data[i].lembaga_mitra + '</td>' +
+                            '<td>' + data[i].tingkat + '</td>' +
+                            '<td>' + data[i].judul_kegiatan + '</td>' +
+                            '<td>' + data[i].manfaat_bagi_ps + '</td>' +
+                            '<td>' + data[i].durasi + '</td>' +
+                            '<td>' + data[i].bukti_kerjasama + '</td>' +
+                            '<td>' + data[i].tahun_berakhir + '</td>' +
+                            '<td style="text-align:center;">' +
+                            '<a href="javascript:void(0);" class="btn btn-info btn-circle btn-sm item_edit" data-toggle="tooltip" data-placement="top" title="Edit" data-seq_id="' + data[i].seq_id + '" data-lembaga_mitra="' + data[i].lembaga_mitra + '" data-tingkat="' + data[i].tingkat + '"data-judul_kegiatan="' + data[i].judul_kegiatan + '"data-manfaat_bagi_ps="' + data[i].manfaat_bagi_ps + '"data-durasi="' + data[i].durasi + '"data-bukti_kerjasama="' + data[i].bukti_kerjasama + '"data-tahun_berakhir="' + data[i].tahun_berakhir + '" data-doc="' + data[i].doc + '"><i class="fas fa-search"></i></a>' + ' ' +
+                            '<a href="<?php echo site_url('assets/document/')?>' + data[i].doc + '" class="btn btn-primary btn-circle btn-sm" data-toggle="tooltip" data-placement="top" title="Download Dokumen"><i class="fas fa-download"></i></a>' +
+                            '<a href="javascript:void(0);" class="btn btn-danger btn-circle btn-sm item_delete" data-toggle="tooltip" data-placement="top" title="Delete" data-seq_id="' + data[i].seq_id + '"><i class="fas fa-trash"></i></a>' +
+                            '</td>' +
+                            '</tr>';
+                    }
+                    $('#tampil_data').html(html);
+                }
+            });
+        }
+
+        $('#tampil_data').on('click', '.item_edit', function() {
+            var seq_id = $(this).data('seq_id');
+            var lembaga_mitra = $(this).data('lembaga_mitra');
+            var tingkat = $(this).data('tingkat');
+            var judul_kegiatan = $(this).data('judul_kegiatan');
+            var manfaat_bagi_ps = $(this).data('manfaat_bagi_ps');
+            var durasi = $(this).data('durasi');
+            var tahun_berakhir = $(this).data('tahun_berakhir');
+            var bukti = $(this).data('bukti_kerjasama');
+            var doc = $(this).data('doc');
+            if (doc) {
+                $('#status').html('<span class="badge badge-success">Dokumen telah diunggah</span>');
+            } else {
+                $('#status').html('<span class="badge badge-danger">Dokumen belum diunggah</span>');
+            }
+
+            $('#Modal_Edit').modal('show');
+            $('[name="seq_id"]').val(seq_id);
+            $('[name="mitra_edit"]').val(lembaga_mitra);
+            $('[name="tingkat_edit"]').val(tingkat);
+            $('[name="judul_kegiatan_edit"]').val(judul_kegiatan);
+            $('[name="manfaat_bagi_ps_edit"]').val(manfaat_bagi_ps);
+            $('[name="waktu_edit"]').val(durasi);
+            $('[name="tahun_berakhir_edit"]').val(tahun_berakhir);
+            $('[name="bukti_edit"]').val(bukti);
+            $('[name="doc_edit"]').val(doc);
+
+        });
+
+        // Edit data
+        $('#submit').submit(function(e) {
+            e.preventDefault();
+            $.ajax({
+                url: '<?php echo site_url('tridharma/pendidikan_edit')?>',
+                type: "post",
+                data: new FormData(this),
+                processData: false,
+                contentType: false,
+                cache: false,
+                async: false,
+                success: function(data) {
+                    $('#Modal_Edit').modal('hide');
+                    $.alert({
+                        title: 'Sukses!',
+                        content: 'Data Berhasil Di Perbaharui!',
+                    });
+                    show_data();
+                }
+            });
+        });
+
+        // upload data
+        $('#upload').submit(function(e) {
+            e.preventDefault();
+            $.ajax({
+                url: '<?php echo site_url('upload/excel_upload/'.encode_url('1-1'))?>',
+                type: "post",
+                data: new FormData(this),
+                dataType: 'json',
+                processData: false,
+                contentType: false,
+                cache: false,
+                async: false,
+                success: function(data) {
+                    if (data.msg == "ok") {
+                        $('#Modal_Upload').modal('hide');
+                        $("#file_upload").val(null);
+                        $.confirm({
+                            title: 'Sukses!',
+                            content: 'Sebanyak <b>' + data.jum + '</b> Data Berhasil Di Upload!',
+                            buttons: {
+                                somethingElse: {
+                                    text: 'OK',
+                                    btnClass: 'btn-blue',
+                                    action: function() {
+                                        show_data();
+                                    }
+                                }
+                            }
+                        });
+                    } else {
+                        $.alert({
+                            title: 'Error!',
+                            type: 'red',
+                            content: '<b>' + data.msg + '</b>',
+                        });
+                    }
+
+                }
+            });
+        });
+        // end upload data
+
+        //Save Data
+        $('#tambah').submit(function(e) {
+            e.preventDefault();
+            var lembaga_mitra = $('#mitra').val();
+            var tingkat = $('#tingkat').val();
+            var judul_kegiatan = $('#judul_kegiatan').val();
+            var manfaat_bagi_ps = $('#manfaat_bagi_ps').val();
+            var durasi = $('#waktu').val();
+            var tahun_berakhir = $('#tahun_berakhir').val();
+            var bukti = $('#bukti').val();
+            $.ajax({
+                type: "POST",
+                url: "<?php echo site_url('tridharma/pendidikan_add')?>",
+                dataType: "JSON",
+                data: {
+                    lembaga_mitra: lembaga_mitra,
+                    tingkat: tingkat,
+                    judul_kegiatan: judul_kegiatan,
+                    manfaat_bagi_ps: manfaat_bagi_ps,
+                    durasi: durasi,
+                    tahun_berakhir: tahun_berakhir,
+                    bukti: bukti
+                },
+                success: function(data) {
+                    $('[name="mitra"]').val("");
+                    $('[name="tingkat"]').val("");
+                    $('[name="judul_kegiatan"]').val("");
+                    $('[name="manfaat_bagi_ps"]').val("");
+                    $('[name="waktu"]').val("");
+                    $('[name="tahun_berakhir"]').val("");
+                    $('[name="bukti"]').val("");
+                    $('#Modal_Add').modal('hide');
+                    $.alert({
+                        title: 'Sukses!',
+                        content: 'Data Berhasil Disimpan!',
+                    });
+                    show_data();
+                }
+            });
+            return false;
+        });
+
+        //get data for delete record
+        $('#tampil_data').on('click', '.item_delete', function() {
+            var seq_id = $(this).data('seq_id');
+            $('#Modal_Delete').modal('show');
+            $('[name="seq_id_delete"]').val(seq_id);
+        });
+
+        //delete record to database
+        $('#btn_delete').on('click', function() {
+            var seq_id = $('#seq_id_delete').val();
+            $.ajax({
+                type: "POST",
+                url: "<?php echo site_url('tridharma/pendidikan_delete')?>",
+                dataType: "JSON",
+                data: {
+                    seq_id: seq_id
+                },
+                success: function(data) {
+                    $('[name="seq_id_delete"]').val("");
+                    $('#Modal_Delete').modal('hide');
+                    $.alert({
+                        title: 'Sukses!',
+                        content: 'Data Berhasil Di Hapus!',
+                    });
+                    show_data();
+                }
+            });
+            return false;
+        });
+
     });
-    return false;
-  });
-
-  //get data for delete record
-  $('#tampil_data').on('click','.item_delete',function(){
-      var seq_id = $(this).data('seq_id');
-      $('#Modal_Delete').modal('show');
-      $('[name="seq_id_delete"]').val(seq_id);
-  });
-
-  //delete record to database
-   $('#btn_delete').on('click',function(){
-      var seq_id = $('#seq_id_delete').val();
-      $.ajax({
-          type : "POST",
-          url  : "<?php echo site_url('tridharma/pendidikan_delete')?>",
-          dataType : "JSON",
-          data : {seq_id:seq_id},
-          success: function(data){
-              $('[name="seq_id_delete"]').val("");
-              $('#Modal_Delete').modal('hide');
-              $.alert({
-                title: 'Sukses!',
-                content: 'Data Berhasil Di Hapus!',
-              });
-              show_data();
-          }
-      });
-      return false;
-  });
-
-});
 </script>
