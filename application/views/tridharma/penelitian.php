@@ -46,8 +46,8 @@
 
 <!-- MODAL ADD -->
 <form class="was-validated">
-  <div class="modal fade" id="Modal_Add" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg" role="document">
+  <div class="modal fade" id="Modal_Add" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-scrollable" role="document">
     <div class="modal-content">
       <div class="modal-header">
       <h5 class="modal-title" id="exampleModalLabel">Tambah Data</h5>
@@ -119,8 +119,8 @@
 
 <!-- MODAL EDIT -->
 <form class="form-horizontal" id="submit">
-  <div class="modal fade" id="Modal_Edit" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg" role="document">
+  <div class="modal fade" id="Modal_Edit" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-scrollable" role="document">
     <div class="modal-content">
       <div class="modal-header">
       <h5 class="modal-title" id="exampleModalLabel">Lihat/Edit Data</h5>
@@ -200,42 +200,10 @@
 </form>
 <!--END MODAL EDIT-->
 
-<!--MODAL DELETE-->
-<form>
-    <div class="modal fade" id="Modal_Delete" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-      <div class="modal-dialog" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Konfirmasi Hapus Data</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-          <div class="modal-body">
-               Anda yakin ingin menghapus data ini? Data yang sudah dihapus tidak dapat dikembalikan!
-          </div>
-          <div class="modal-footer">
-            <input type="hidden" name="seq_id_delete" id="seq_id_delete" class="form-control">
-            <button type="button" class="btn btn-secondary btn-icon-split btn-sm" data-dismiss="modal"><span class="icon text-white-50"><i class="fas fa-arrow-alt-circle-left"></i></i></span>
-            <span class="text">Batal</span></button>
-            <button type="button" type="submit" id="btn_delete" class="btn btn-danger btn-icon-split btn-sm"><span class="icon text-white-50"><i class="fas fa-save"></i></span>
-            <span class="text">Hapus</span></button>
-          </div>
-        </div>
-      </div>
-    </div>
-</form>
-<!--END MODAL DELETE-->
-
 <script type="text/javascript">
 $(document).ready(function(){
   show_data();
   $('#mydata').dataTable();
-  // Add the following code if you want the name of the file appear on select
-  $(".custom-file-input").on("change", function() {
-    var fileName = $(this).val().split("\\").pop();
-    $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
-  });
   function show_data(){
     $.ajax({
       type  : 'ajax',
@@ -300,27 +268,48 @@ $(document).ready(function(){
     });
 
     // upload data
-    $('#upload').submit(function(e){
-      e.preventDefault();
-      $.ajax({
-        url:'<?php echo site_url('upload/excel_upload/'.encode_url('1-2'))?>',
-        type:"post",
-        data:new FormData(this),
-        processData:false,
-        contentType:false,
-        cache:false,
-        async:false,
-        success: function(data){
-          $('#Modal_Upload').modal('hide');
-          $.alert({
-            title: 'Sukses!',
-            content: 'Data Berhasil Di Upload!',
-          });
-        show_data();
-      }
-    });
-  });
-  // end upload data
+    $('#upload').submit(function(e) {
+            e.preventDefault();
+            $.ajax({
+                url: '<?php echo site_url('upload/excel_upload/'.encode_url('1-2'))?>',
+                type: "post",
+                data: new FormData(this),
+                dataType: 'json',
+                processData: false,
+                contentType: false,
+                cache: false,
+                async: false,
+                success: function(data) {
+                    if (data.msg == "ok") {
+                        $('#Modal_Upload').modal('hide');
+                        $("#file_upload").val(null);
+                        $.confirm({
+                            title: 'Sukses!',
+                            content: 'Sebanyak <b>' + data.jum + '</b> Data Berhasil Di Upload!',
+                            buttons: {
+                                somethingElse: {
+                                    text: 'OK',
+                                    btnClass: 'btn-blue',
+                                    action: function() {
+                                        show_data();
+                                    }
+                                }
+                            }
+                        });
+                    } else {
+                        $.alert({
+                            icon: 'fas fa-exclamation-triangle',
+                            title: 'Error!',
+                            type: 'red',
+                            typeAnimated: true,
+                            content: data.msg,
+                        });
+                    }
+
+                }
+            });
+        });
+        // end upload data
 
   //fill data record
   $('#tampil_data').on('click','.item_edit',function(){
