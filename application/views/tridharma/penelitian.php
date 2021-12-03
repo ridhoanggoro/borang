@@ -44,38 +44,6 @@
   </div>
 </div>
 
-<!-- MODAL UPLOAD -->
-<form class="form-horizontal" id="upload">
-  <div class="modal fade" id="Modal_Upload" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-      <h5 class="modal-title" id="exampleModalLabel">Upload Data Excel</h5>
-      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-        <span aria-hidden="true">&times;</span>
-      </button>
-      </div>
-      <div class="modal-body">
-        <div class="form-row">
-          <div class="form-group col-md-12">
-            <label for="mitra">Upload Excel File, Klik <a href="<?php echo base_url('assets/upload/1.2.tridarma_penelitian.xlsx');?>" data-toggle="tooltip" data-placement="top" title="Download Template">disini</a> untuk unduh file template</label>
-            <input type="file" name="file_upload">
-            <div id="id_check_result" class="help-block with-errors"></div>
-          </div>
-      </div>
-    </div>
-      <div class="modal-footer">
-      <button class="btn btn-secondary btn-icon-split btn-sm" data-dismiss="modal"><span class="icon text-white-50"><i class="fas fa-arrow-alt-circle-left"></i></i></span>
-      <span class="text">Batal</span></button>
-      <button type="submit" id="btn_upload" class="btn btn-primary btn-icon-split btn-sm"><span class="icon text-white-50"><i class="fas fa-save"></i></span>
-      <span class="text">Upload</span></button>
-      </div>
-    </div>
-    </div>
-  </div>
-</form>
-<!--END MODAL UPLOAD-->
-
 <!-- MODAL ADD -->
 <form class="was-validated">
   <div class="modal fade" id="Modal_Add" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
