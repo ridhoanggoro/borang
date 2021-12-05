@@ -114,7 +114,7 @@ class Tridharma extends CI_Controller
 		$this->Model_security->getsecurity();
 		$isi['title'] = 'Kerjasama Pengabdian Kepada Masyarakat';
 		$isi['content'] = 'tridharma/pkm';
-		$isi['template_link'] = base_url().'assets/upload/1.1.tridarma_pendidikan.xlsx';
+		$isi['template_link'] = base_url().'assets/upload/1.3.tridarma_pkm.xlsx';
 		$this->load->view('default_page', $isi);
 	}
 

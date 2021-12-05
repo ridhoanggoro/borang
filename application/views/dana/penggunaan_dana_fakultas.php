@@ -2,9 +2,17 @@
   <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
     <h6 class="m-0 font-weight-bold text-primary"><?php echo $title; ?></h6>
     <form action="<?php echo site_url('dana/simpan_penggunaan_dana_fakultas');?>" method="post">
-    <div class="float-right">
-      <button type="submit" class="btn btn-primary"><i class="fa fa-check"></i> Simpan Data</button>
-    </div>
+    <a href="<?php echo base_url('dana/penggunaan_dana');?>" class="btn btn-danger btn-icon-split btn-sm">
+      <span class="icon text-white-50">
+        <i class="fas fa-arrow-circle-left"></i>
+      </span>
+      <span class="text">Kembali Ke Halaman Sebelumnya</span>
+    </a>
+    <button type="submit" class="btn btn-primary btn-icon-split btn-sm"><span class="icon text-white-50">
+          <i class="fas fa-save"></i>
+        </span>
+        <span class="text">Simpan Data</span>
+    </button>
   </div>
   <div class="card-body">
     <div class="table">    

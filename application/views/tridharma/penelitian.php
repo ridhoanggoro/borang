@@ -203,13 +203,12 @@
 <script type="text/javascript">
 $(document).ready(function(){
   show_data();
-  $('#mydata').dataTable();
+  
   function show_data(){
     $.ajax({
-      type  : 'ajax',
       url   : '<?php echo site_url('tridharma/penelitian_data_list')?>',
-      async : false,
       dataType : 'json',
+      async : false,
       success : function(data){
         var html = '';
         var i;
@@ -232,6 +231,8 @@ $(document).ready(function(){
         $('#tampil_data').html(html);
       }
     });
+
+    $('#mydata').dataTable();
   }
 
     //Save Data

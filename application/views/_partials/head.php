@@ -18,7 +18,6 @@
 <!-- Custom styles for this page -->
 <link href="<?php echo base_url('assets/datatables/dataTables.bootstrap4.min.css') ?>" rel="stylesheet">
 <link href="<?php echo base_url('assets/chosen/dist/css/component-chosen.css') ?>" rel="stylesheet">
-<!-- <link href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.css"  rel="stylesheet"> -->
 <link href="<?php echo base_url('assets/jquery-confirm/jquery-confirm.min.css') ?>" rel="stylesheet">
 <!-- Bootstrap core JavaScript-->
 <script src="<?php echo base_url('assets/jquery/jquery.min.js') ?>"></script>

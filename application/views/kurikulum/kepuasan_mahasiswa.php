@@ -48,38 +48,6 @@
   </div>
 </div>
 
-<!-- MODAL UPLOAD -->
-<form class="form-horizontal" id="upload">
-  <div class="modal fade" id="Modal_Upload" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-      <h5 class="modal-title" id="exampleModalLabel">Upload Data Excel</h5>
-      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-        <span aria-hidden="true">&times;</span>
-      </button>
-      </div>
-      <div class="modal-body">
-        <div class="form-row">
-          <div class="form-group col-md-12">
-            <label for="mitra">Upload Excel File, Klik <a href="<?php echo base_url('assets/upload/5.c.kepuasan_pelanggan.xlsx');?>" data-toggle="tooltip" data-placement="top" title="Download Template">disini</a> untuk unduh file template</label>
-            <input type="file" name="file_upload">
-            <div id="id_check_result" class="help-block with-errors"></div>
-          </div>
-      </div>
-    </div>
-      <div class="modal-footer">
-      <button class="btn btn-secondary btn-icon-split btn-sm" data-dismiss="modal"><span class="icon text-white-50"><i class="fas fa-arrow-alt-circle-left"></i></i></span>
-      <span class="text">Batal</span></button>
-      <button type="submit" id="btn_upload" class="btn btn-primary btn-icon-split btn-sm"><span class="icon text-white-50"><i class="fas fa-save"></i></span>
-      <span class="text">Upload</span></button>
-      </div>
-    </div>
-    </div>
-  </div>
-</form>
-<!--END MODAL UPLOAD-->
-
 <!-- MODAL ADD -->
 <form class="was-validated" id="simpan">
   <div class="modal fade" id="Modal_Add" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -228,33 +196,6 @@
 </form>
 <!--END MODAL EDIT-->
 
-<!--MODAL DELETE-->
-<form>
-    <div class="modal fade" id="Modal_Delete" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-      <div class="modal-dialog" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Konfirmasi Hapus Data</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-          <div class="modal-body">
-               Anda yakin ingin menghapus data ini? Data yang sudah dihapus tidak dapat dikembalikan!
-          </div>
-          <div class="modal-footer">
-            <input type="hidden" name="seq_id_delete" id="seq_id_delete" class="form-control">
-            <button class="btn btn-secondary btn-icon-split btn-sm" data-dismiss="modal"><span class="icon text-white-50"><i class="fas fa-arrow-alt-circle-left"></i></i></span>
-            <span class="text">Batal</span></button>
-            <button type="submit" id="btn_delete" class="btn btn-danger btn-icon-split btn-sm"><span class="icon text-white-50"><i class="fas fa-save"></i></span>
-            <span class="text">Hapus</span></button>
-          </div>
-        </div>
-      </div>
-    </div>
-</form>
-<!--END MODAL DELETE-->
-
 <script type="text/javascript">
 $(document).ready(function(){
   show_data();
@@ -269,11 +210,10 @@ $(document).ready(function(){
         var html = '';        
         var i;
         for(i=0; i<data.length; i++){
-          w = w + parseFloat(data[i].sangat_baik);
-          x = x + parseFloat(data[i].baik);
-          y = y + parseFloat(data[i].cukup);
-          z = z + parseFloat(data[i].kurang);
-          j = i + 1;
+          w += parseFloat(data[i].sangat_baik);
+          x += parseFloat(data[i].baik);
+          y += parseFloat(data[i].cukup);
+          z += parseFloat(data[i].kurang);
           html += '<tr>'+
           '<td>'+data[i].nama+'</td>'+
           '<td>'+data[i].sangat_baik+'</td>'+

@@ -28,6 +28,7 @@ class Luaran extends CI_Controller {
   		$this->Model_security->getsecurity();
   		$isi['title'] 	='Prestasi Akademik Mahasiswa';
   		$isi['content']	= 'luaran/prestasi_akad_mhs';
+		$isi['template_link'] = base_url().'assets/upload/8.b.1.prestasi_akad_mhs.xlsx';
   		$this->load->view('default_page', $isi);
   	}
 
@@ -56,6 +57,7 @@ class Luaran extends CI_Controller {
   		$this->Model_security->getsecurity();
   		$isi['title'] 	='Prestasi Non-akademik Mahasiswa';
   		$isi['content']	= 'luaran/prestasi_non_akad_mhs';
+		$isi['template_link'] = base_url().'assets/upload/8.b.2.prestasi_non_akad_mhs.xlsx';
   		$this->load->view('default_page', $isi);
   	}
 
@@ -82,12 +84,12 @@ class Luaran extends CI_Controller {
     public function masa_studi_lulusan()
   	{
   		$this->Model_security->getsecurity();
-      $prodi = $this->session->userdata('nama');
+      	$prodi = $this->session->userdata('nama');
   		$role = substr($prodi, strlen($prodi)-2);
-      if (strtoupper($role) == 'S1') { $view = 'luaran/masa_studi_lulusan_s1'; }
-	  else if (strtoupper($role) == 'S2') { $view = 'luaran/masa_studi_lulusan_s2'; }
-      else if (strtoupper($role) == 'S3') { $view = 'luaran/masa_studi_lulusan_s3'; }
-	  else { $view = 'luaran/masa_studi_lulusan_d3'; }
+		if (strtoupper($role) == 'S1') { $view = 'luaran/masa_studi_lulusan_s1'; }
+		else if (strtoupper($role) == 'S2') { $view = 'luaran/masa_studi_lulusan_s2'; }
+		else if (strtoupper($role) == 'S3') { $view = 'luaran/masa_studi_lulusan_s3'; }
+		else { $view = 'luaran/masa_studi_lulusan_d3'; }
 	  
   		$isi['title'] 	='Masa Studi Lulusan ';
   		$isi['content']	= $view;
@@ -102,14 +104,14 @@ class Luaran extends CI_Controller {
     public function waktu_tunggu_lulusan()
   	{
   		$this->Model_security->getsecurity();
-      $prodi = $this->session->userdata('nama');
+      	$prodi = $this->session->userdata('nama');
   		$role = substr($prodi, strlen($prodi)-2);
       if (strtoupper($role) == 'S1') { $view = 'luaran/waktu_tunggu_lulusan_s1'; }
       else if (strtoupper($role) == 'D3') { $view = 'luaran/waktu_tunggu_lulusan_d3'; }
       else { $view = 'luaran/waktu_tunggu_lulusan_s2'; }
   		$isi['title'] 	='Waktu Tunggu Lulusan';
   		$isi['content']	= $view;
-      $isi['ts_list'] = $this->Model_master->ts_list();
+      	$isi['ts_list'] = $this->Model_master->ts_list();
   		$this->load->view('default_page', $isi);
   	}
 
@@ -136,9 +138,9 @@ class Luaran extends CI_Controller {
     public function kesesuaian_bidang_kerja_lulusan()
   	{
   		$this->Model_security->getsecurity();
-  		$isi['title'] 	='Tabel 8.d.2) Kesesuaian Bidang Kerja Lulusan';
+  		$isi['title'] 	='Tabel (8.d.2) Kesesuaian Bidang Kerja Lulusan';
   		$isi['content']	= 'luaran/kesesuaian_bidang_kerja_lulusan';
-      $isi['ts_list'] = $this->Model_master->ts_list();
+      	$isi['ts_list'] = $this->Model_master->ts_list();
   		$this->load->view('default_page', $isi);
   	}
 
@@ -165,9 +167,9 @@ class Luaran extends CI_Controller {
     public function tempat_kerja_lulusan()
   	{
   		$this->Model_security->getsecurity();
-  		$isi['title'] 	='Tabel 8.e.1) Tempat Kerja Lulusan';
+  		$isi['title'] 	='Tabel (8.e.1) Tempat Kerja Lulusan';
   		$isi['content']	= 'luaran/tempat_kerja_lulusan';
-      $isi['ts_list'] = $this->Model_master->ts_list();
+      	$isi['ts_list'] = $this->Model_master->ts_list();
   		$this->load->view('default_page', $isi);
   	}
 
@@ -196,7 +198,7 @@ class Luaran extends CI_Controller {
   		$this->Model_security->getsecurity();
   		$isi['title'] 	='Tabel Referensi untuk Tabel (8.e.2) Kepuasan Pengguna Lulusan';
   		$isi['content']	= 'luaran/kepuasan_pelanggan_lulusan';
-      $isi['ts_list'] = $this->Model_master->ts_list();
+      	$isi['ts_list'] = $this->Model_master->ts_list();
   		$this->load->view('default_page', $isi);
   	}
 
@@ -225,7 +227,7 @@ class Luaran extends CI_Controller {
   		$this->Model_security->getsecurity();
   		$isi['title'] 	='Tabel (8.e.2) Kepuasan Pengguna Lulusan';
   		$isi['content']	= 'luaran/kepuasan_pengguna_lulusan';
-      $isi['data'] = $this->Model_master->jenis_kemampuan_list();
+      	$isi['data'] = $this->Model_master->jenis_kemampuan_list();
   		$this->load->view('default_page', $isi);
   	}
 
@@ -254,6 +256,7 @@ class Luaran extends CI_Controller {
   		$this->Model_security->getsecurity();
   		$isi['title'] 	='Publikasi Ilmiah Mahasiswa';
   		$isi['content']	= 'luaran/publikasi_ilmiah_mhs';
+		$isi['template_link'] = base_url().'assets/upload/8.f.1-1.publikasi_ilmiah_mhs.xlsx';
   		$this->load->view('default_page', $isi);
   	}
 
@@ -336,6 +339,7 @@ class Luaran extends CI_Controller {
       $this->Model_security->getsecurity();
       $isi['title'] 	='Luaran Penelitian/PkM yang Dihasilkan oleh Mahasiswa';
       $isi['content']	= 'luaran/hki_paten';
+	  $isi['template_link'] = base_url().'assets/upload/8.f.4-1.hki_paten_mhs.xlsx';
       $this->load->view('default_page', $isi);
     }
 
@@ -364,6 +368,7 @@ class Luaran extends CI_Controller {
       $this->Model_security->getsecurity();
       $isi['title'] 	='Luaran Penelitian/PkM yang Dihasilkan oleh Mahasiswa';
       $isi['content']	= 'luaran/hki_hak_cipta';
+	  $isi['template_link'] = base_url().'assets/upload/8.f.4-2.hki_hak_cipta_mhs.xlsx';
       $this->load->view('default_page', $isi);
     }
 
@@ -392,6 +397,7 @@ class Luaran extends CI_Controller {
       $this->Model_security->getsecurity();
       $isi['title'] 	='Luaran Penelitian/PkM yang Dihasilkan oleh Mahasiswa';
       $isi['content']	= 'luaran/hki_teknologi_tepatguna';
+	  $isi['template_link'] = base_url().'assets/upload/8.f.4-3.hki_teknologi_tepatguna_mhs.xlsx';
       $this->load->view('default_page', $isi);
     }
 
@@ -420,6 +426,7 @@ class Luaran extends CI_Controller {
   		$this->Model_security->getsecurity();
   		$isi['title'] 	='Bagian-4 Buku Ber-ISBN, Book Chapter';
   		$isi['content']	= 'luaran/buku_isbn';
+		$isi['template_link'] = base_url().'assets/upload/8.f.4-4.buku_isbn_mhs.xlsx';
   		$this->load->view('default_page', $isi);
     }
 

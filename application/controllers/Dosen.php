@@ -15,6 +15,7 @@ class Dosen extends CI_Controller {
   		$this->Model_security->getsecurity();
   		$isi['title'] 	='Dosen Tetap Perguruan Tinggi';
   		$isi['content']	= 'dosen/tetap';
+		$isi['template_link'] = base_url().'assets/upload/3.a.1.dosen_tetap.xlsx';
   		$this->load->view('default_page', $isi);
   	}
 
@@ -62,7 +63,8 @@ class Dosen extends CI_Controller {
   		$this->Model_security->getsecurity();
   		$isi['title'] 	='Ekuivalen Waktu Mengajar Penuh (EWMP) Dosen Tetap Perguruan Tinggi';
   		$isi['content']	= 'dosen/ewmp';
-      $isi['dosen'] = $this->Model_master->dosen_list();
+     	$isi['dosen'] = $this->Model_master->dosen_list();
+	  	$isi['template_link'] = base_url().'assets/upload/3.a.3.ewmp_dosen_tetap.xlsx';
   		$this->load->view('default_page', $isi);
   	}
 
@@ -91,6 +93,7 @@ class Dosen extends CI_Controller {
   		$this->Model_security->getsecurity();
   		$isi['title'] 	='Dosen Tidak Tetap Perguruan Tinggi';
   		$isi['content']	= 'dosen/tidak_tetap';
+		$isi['template_link'] = base_url().'assets/upload/3.a.4.dosen_tidak_tetap.xlsx';
   		$this->load->view('default_page', $isi);
   	}
 
@@ -119,6 +122,7 @@ class Dosen extends CI_Controller {
   		$this->Model_security->getsecurity();
   		$isi['title'] 	='Dosen Industri/Praktisi';
   		$isi['content']	= 'dosen/praktisi';
+		$isi['template_link'] = base_url().'assets/upload/3.a.5.dosen_praktisi.xlsx';
   		$this->load->view('default_page', $isi);
   	}
 
@@ -147,6 +151,7 @@ class Dosen extends CI_Controller {
   		$this->Model_security->getsecurity();
   		$isi['title'] 	='Pengakuan/Rekognisi Dosen';
   		$isi['content']	= 'dosen/rekognisi';
+		$isi['template_link'] = base_url().'assets/upload/3.b.1.pengakuan_dtps.xlsx';
   		$this->load->view('default_page', $isi);
   	}
 
@@ -175,6 +180,7 @@ class Dosen extends CI_Controller {
   		$this->Model_security->getsecurity();
   		$isi['title'] 	='Penelitian DTPS';
   		$isi['content']	= 'dosen/penelitian_dtps';
+		$isi['template_link'] = base_url().'assets/upload/3.b.2.penelitian_dtps.xlsx';
   		$this->load->view('default_page', $isi);
   	}
 
@@ -188,6 +194,7 @@ class Dosen extends CI_Controller {
   		$this->Model_security->getsecurity();
   		$isi['title'] 	='PkM DTPS';
   		$isi['content']	= 'dosen/pkm_dtps';
+		$isi['template_link'] = base_url().'assets/upload/3.b.3.pkm_dosen.xlsx';
   		$this->load->view('default_page', $isi);
   	}
 
@@ -201,6 +208,7 @@ class Dosen extends CI_Controller {
   		$this->Model_security->getsecurity();
   		$isi['title'] 	='Publikasi Ilmiah DTPS';
   		$isi['content']	= 'dosen/publikasi_ilmiah_dtps';
+		$isi['template_link'] = base_url().'assets/upload/3.b.4-1.publikasi_ilmiah.xlsx';
   		$this->load->view('default_page', $isi);
   	}
 
@@ -214,6 +222,7 @@ class Dosen extends CI_Controller {
   		$this->Model_security->getsecurity();
   		$isi['title'] 	='Pagelaran/Pameran/Presentasi/Publikasi Ilmiah DTPS';
   		$isi['content']	= 'dosen/pagelaran_ilmiah';
+		$isi['template_link'] = base_url().'assets/upload/3.b.4-2.pagelaran_dtps.xlsx';
   		$this->load->view('default_page', $isi);
   	}
 
@@ -227,6 +236,7 @@ class Dosen extends CI_Controller {
       $this->Model_security->getsecurity();
       $isi['title'] 	='Bagian-1 HKI (Paten, Paten Sederhana)';
       $isi['content']	= 'dosen/hki_paten';
+	  $isi['template_link'] = base_url().'assets/upload/3.b.7-1.hki_paten.xlsx';
       $this->load->view('default_page', $isi);
     }
 
@@ -255,6 +265,7 @@ class Dosen extends CI_Controller {
       $this->Model_security->getsecurity();
       $isi['title'] 	='Bagian-2 HKI (Hak Cipta, Desain Produk Industri, dll.)';
       $isi['content']	= 'dosen/hki_hak_cipta';
+	  $isi['template_link'] = base_url().'assets/upload/3.b.7-2.hki_hak_cipta.xlsx';
       $this->load->view('default_page', $isi);
     }
 
@@ -283,6 +294,7 @@ class Dosen extends CI_Controller {
       $this->Model_security->getsecurity();
       $isi['title'] 	='Bagian-3 Teknologi Tepat Guna, Produk, Karya Seni, Rekayasa Sosial';
       $isi['content']	= 'dosen/hki_teknologi_tepatguna';
+	  $isi['template_link'] = base_url().'assets/upload/3.b.7-3.hki_teknologi_tepatguna.xlsx';
       $this->load->view('default_page', $isi);
     }
 
@@ -311,6 +323,7 @@ class Dosen extends CI_Controller {
   		$this->Model_security->getsecurity();
   		$isi['title'] 	='Bagian-4 Buku Ber-ISBN, Book Chapter';
   		$isi['content']	= 'dosen/buku_isbn';
+		$isi['template_link'] = base_url().'assets/upload/3.b.7-4.buku_isbn.xlsx';
   		$this->load->view('default_page', $isi);
     }
 
@@ -339,6 +352,7 @@ class Dosen extends CI_Controller {
   		$this->Model_security->getsecurity();
   		$isi['title'] 	='Karya Ilmiah DTPS yang Disitasi';
   		$isi['content']	= 'dosen/karya_ilmiah_disitasi';
+		$isi['template_link'] = base_url().'assets/upload/3.b.5.karya_ilmiah_disitasi.xlsx';
   		$this->load->view('default_page', $isi);
     }
 
@@ -366,6 +380,7 @@ class Dosen extends CI_Controller {
       {
     		$this->Model_security->getsecurity();
     		$isi['title'] 	='Produk/Jasa DTPS yang Diadopsi oleh Industri/Masyarakat';
+			$isi['template_link'] = base_url().'assets/upload/3.b.6.produk_dtps.xlsx';
     		$isi['content']	= 'dosen/produk_dtps';
     		$this->load->view('default_page', $isi);
       }

@@ -14,6 +14,7 @@ class Penelitian extends CI_Controller {
     $this->Model_security->getsecurity();
     $isi['title'] 	='Penelitian DTPS yang Melibatkan Mahasiswa';
     $isi['content']	= 'penelitian/penelitian_dosen_dan_mhs';
+    $isi['template_link'] = base_url().'assets/upload/6.a.penelitian_dosen_mhs.xlsx';
     $this->load->view('default_page', $isi);
   }
 

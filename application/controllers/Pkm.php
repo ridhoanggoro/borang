@@ -14,6 +14,7 @@ class Pkm extends CI_Controller {
     $this->Model_security->getsecurity();
     $isi['title'] 	='PkM DTPS yang Melibatkan Mahasiswa';
     $isi['content']	= 'penelitian/pkm_dosen_dan_mhs';
+    $isi['template_link'] = base_url().'assets/upload/7.pkm_dosen_mhs.xlsx';
     $this->load->view('default_page', $isi);
   }
 

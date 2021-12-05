@@ -14,6 +14,7 @@ class Kurikulum extends CI_Controller {
     $this->Model_security->getsecurity();
     $isi['title'] 	='Kurikulum, Capaian Pembelajaran, dan Rencana Pembelajaran';
     $isi['content']	= 'kurikulum/cp_rencana_pembelajaran';
+	$isi['template_link'] = base_url().'assets/upload/5.a.kurikulum.xlsx';
     $this->load->view('default_page', $isi);
   }
 
@@ -41,6 +42,7 @@ class Kurikulum extends CI_Controller {
 		$this->Model_security->getsecurity();
 		$isi['title'] 	='Integrasi Kegiatan Penelitan/PkM dalam Pembelajaran';
 		$isi['content']	= 'kurikulum/integrasi_pkm';
+		$isi['template_link'] = base_url().'assets/upload/5.b.integrasi_pkm.xlsx';
 		$this->load->view('default_page', $isi);
 	}
 
@@ -69,6 +71,7 @@ class Kurikulum extends CI_Controller {
 		$isi['title'] 	='Kepuasan Mahasiswa';
 		$isi['content']	= 'kurikulum/kepuasan_mahasiswa';
 		$isi['aspek_list'] = $this->Model_master->aspek_list();
+		$isi['template_link'] = base_url().'assets/upload/5.c.kepuasan_pelanggan.xlsx';
 		$this->load->view('default_page', $isi);
 	}
 
