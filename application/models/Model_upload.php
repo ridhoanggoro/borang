@@ -110,6 +110,7 @@ class Model_upload extends CI_model
 							'matakuliah_diampu_ps_lain' => $worksheet[$i]['12'],
 							'kesesuaian_bidang_keahlian' => $worksheet[$i]['13'],
 							'status' => $worksheet[$i]['14'],
+							'status_forlap' =>$worksheet[$i]['16'],
 							'prodi' => $prodi,
 							'sertifikasi' => $worksheet[$i]['15']
 						);

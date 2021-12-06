@@ -9,6 +9,17 @@ class Model_master extends CI_model
         parent::__construct();
         $this->load->model('Model_security');
     }
+
+    function getSelectedData($table, $param, $col_order='')
+	{
+		if (!empty($col_order))
+		{
+			$query = $this->db->order_by($col_order, 'ASC')->get_where($table, $param);
+			return $query;
+		} else {
+			return $this->db->get_where($table, $param);
+		}
+	}
     
     function tridharma_pendidikan_list()
     {
@@ -20,16 +31,26 @@ class Model_master extends CI_model
     
     function tridharma_pendidikan_add()
     {
-        $prodi  = $this->session->userdata('nama');
+        $config['upload_path'] = "./assets/document";
+        $config['allowed_types'] = 'xls|xlsx|jpg|png|pdf|docx|doc';
+        $config['encrypt_name'] = TRUE;
+        $this->load->library('upload', $config);
+        $prodi = $this->session->userdata('nama');
+        $file = '';
+        if ($this->upload->do_upload("dokumen")) {
+            $docs = array('upload_data' => $this->upload->data());
+            $file = $docs['upload_data']['file_name'];
+        }
         $data   = array(
-            'prodi' => $prodi,
+            'prodi' => strtoupper($prodi),
             'lembaga_mitra' => $this->input->post('lembaga_mitra'),
             'tingkat' => $this->input->post('tingkat'),
             'judul_kegiatan' => $this->input->post('judul_kegiatan'),
             'manfaat_bagi_ps' => $this->input->post('manfaat_bagi_ps'),
             'durasi' => $this->input->post('durasi'),
-            'bukti_kerjasama' => $this->input->post('bukti'),
-            'tahun_berakhir' => $this->input->post('tahun_berakhir')
+            'bukti_kerjasama' => $this->input->post('bukti_kerjasama'),
+            'tahun_berakhir' => $this->input->post('tahun_berakhir'),
+            'doc' => $file
         );
         $result = $this->db->insert('tridarma_pendidikan', $data);
         return $result;
@@ -60,7 +81,16 @@ class Model_master extends CI_model
     
     function tridharma_penelitian_add()
     {
-        $prodi  = $this->session->userdata('nama');
+        $config['upload_path'] = "./assets/document";
+        $config['allowed_types'] = 'xls|xlsx|jpg|png|pdf|docx|doc';
+        $config['encrypt_name'] = TRUE;
+        $this->load->library('upload', $config);
+        $prodi = strtoupper($this->session->userdata('nama'));
+        $file = '';
+        if ($this->upload->do_upload("dokumen")) {
+            $docs = array('upload_data' => $this->upload->data());
+            $file = $docs['upload_data']['file_name'];
+        }
         $data   = array(
             'prodi' => $prodi,
             'lembaga_mitra' => $this->input->post('lembaga_mitra'),
@@ -68,8 +98,9 @@ class Model_master extends CI_model
             'judul_kegiatan' => $this->input->post('judul_kegiatan'),
             'manfaat_bagi_ps' => $this->input->post('manfaat_bagi_ps'),
             'durasi' => $this->input->post('durasi'),
-            'bukti_kerjasama' => $this->input->post('bukti'),
-            'tahun_berakhir' => $this->input->post('tahun_berakhir')
+            'bukti_kerjasama' => $this->input->post('bukti_kerjasama'),
+            'tahun_berakhir' => $this->input->post('tahun_berakhir'),
+            'doc' => $file
         );
         $result = $this->db->insert('tridarma_penelitian', $data);
         return $result;
@@ -136,16 +167,26 @@ class Model_master extends CI_model
     
     function tridharma_pkm_add()
     {
-        $prodi  = $this->session->userdata('nama');
+        $config['upload_path'] = "./assets/document";
+        $config['allowed_types'] = 'xls|xlsx|jpg|png|pdf|docx|doc';
+        $config['encrypt_name'] = TRUE;
+        $this->load->library('upload', $config);
+        $prodi = strtoupper($this->session->userdata('nama'));
+        $file = '';
+        if ($this->upload->do_upload("dokumen")) {
+            $docs = array('upload_data' => $this->upload->data());
+            $file = $docs['upload_data']['file_name'];
+        }
         $data   = array(
             'prodi' => $prodi,
-            'lembaga_mitra' => $this->input->post('lembaga_mitra'),
+            'lembaga_mitra' => $this->input->post('mitra'),
             'tingkat' => $this->input->post('tingkat'),
             'judul_kegiatan' => $this->input->post('judul_kegiatan'),
             'manfaat_bagi_ps' => $this->input->post('manfaat_bagi_ps'),
-            'durasi' => $this->input->post('durasi'),
+            'durasi' => $this->input->post('waktu'),
             'bukti_kerjasama' => $this->input->post('bukti'),
-            'tahun_berakhir' => $this->input->post('tahun_berakhir')
+            'tahun_berakhir' => $this->input->post('tahun_berakhir'),
+            'doc' => $file
         );
         $result = $this->db->insert('tridarma_pkm', $data);
         return $result;
@@ -258,8 +299,18 @@ class Model_master extends CI_model
     
     function dosen_tetap_add()
     {
-        $prodi  = $this->session->userdata('nama');
+        $config['upload_path'] = "./assets/document";
+        $config['allowed_types'] = 'xls|xlsx|jpg|png|pdf|docx|doc';
+        $config['encrypt_name'] = TRUE;
+        $this->load->library('upload', $config);
+        $prodi = strtoupper($this->session->userdata('nama'));
+        $file = '';
+        if ($this->upload->do_upload("dokumen")) {
+            $docs = array('upload_data' => $this->upload->data());
+            $file = $docs['upload_data']['file_name'];
+        }
         $data   = array(
+            'npd' => '',
             'nidn' => $this->input->post('nidn'),
             'nama' => $this->input->post('nama'),
             'pendidikan_magister' => $this->input->post('pendidikan_magister'),
@@ -270,10 +321,14 @@ class Model_master extends CI_model
             'sertifikasi_profesional' => $this->input->post('sertifikasi_profesional'),
             'sertifikasi_kompetensi' => $this->input->post('sertifikasi_kompetensi'),
             'matakuliah_diampu' => $this->input->post('matakuliah_diampu'),
+            'pendidikan_tertinggi' => $this->input->post('pendidikan_tertinggi'),
             'kesesuaian_bidang_keahlian' => $this->input->post('kesesuaian_bidang_keahlian'),
             'matakuliah_diampu_ps_lain' => $this->input->post('matakuliah_diampu_ps_lain'),
             'prodi' => $prodi,
-            'status' => 'TETAP'
+            'status' => 'TETAP',
+            'status_forlap' => $this->input->post('status_forlap'),
+            'sertifikasi' => $this->input->post('sertifikasi'),
+            'doc' => $file
         );
         $result = $this->db->insert('dosen', $data);
         return $result;
@@ -307,6 +362,7 @@ class Model_master extends CI_model
                 'kesesuaian_bidang_keahlian' => $this->input->post('kesesuaian_bidang_keahlian_edit'),
                 'matakuliah_diampu_ps_lain' => $this->input->post('matakuliah_diampu_ps_lain_edit'),
                 'sertifikasi' => $this->input->post('sertifikasi_edit'),
+                'status_forlap' => $this->input->post('status_forlap_edit'),
                 'prodi' => $prodi,
                 'status' => 'TETAP',
                 'doc' => $file
@@ -326,6 +382,7 @@ class Model_master extends CI_model
                 'kesesuaian_bidang_keahlian' => $this->input->post('kesesuaian_bidang_keahlian_edit'),
                 'matakuliah_diampu_ps_lain' => $this->input->post('matakuliah_diampu_ps_lain_edit'),
                 'sertifikasi' => $this->input->post('sertifikasi_edit'),
+                'status_forlap' => $this->input->post('status_forlap_edit'),
                 'prodi' => $prodi,
                 'status' => 'TETAP'
             );

@@ -163,22 +163,27 @@
     </div>
   </li>
 
-  <?php elseif($this->session->userdata('role')==='PIMPINAN'):?>
-  <li class="nav-item active">
-    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
-      <i class="fas fa-fw fa-cog"></i>
-      <span>SLIP GAJI</span>
+  <?php endif;?>
+  <!-- Divider -->
+  <hr class="sidebar-divider d-none d-md-block">
+
+  <div class="sidebar-heading">
+    Pengaturan Aplikasi
+  </div>
+
+  <li class="nav-item <?php echo $this->uri->segment(1) == 'master' ? 'active': '' ?>">
+    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapse10" aria-expanded="true" aria-controls="collapseTwo">
+      <i class="fas fa-fw fa-wrench"></i>
+      <span>Manajemen Data</span>
     </a>
-    <div id="collapseTwo" class="collapse show" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+    <div id="collapse10" class="collapse <?php echo $this->uri->segment(1) == 'master' ? 'show': '' ?>" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
       <div class="bg-white py-2 collapse-inner rounded">
-        <h6 class="collapse-header">User Menu:</h6>
-        <a class="collapse-item <?php echo $this->uri->segment(3) == 'slip_gaji' ? 'active': '' ?>" href="<?php echo site_url('admin/gaji/slip_gaji'); ?>">Cetak Slip</a>
-        <a class="collapse-item <?php echo $this->uri->segment(3) == 'ganti_password' ? 'active': '' ?>" href="<?php echo site_url('admin/karyawan/ganti_password'); ?>">Ganti Password</a>
+        <h6 class="collapse-header">Konfigurasi Data Awal e-Borang</h6>        
+        <a class="collapse-item <?php echo $this->uri->segment(2) == 'master_ts' ? 'active': '' ?>" href="<?php echo site_url('master/master_ts'); ?>">Master TS</a>
+        <a class="collapse-item <?php echo $this->uri->segment(2) == 'buku_isbn_mhs' ? 'active': '' ?>" href="<?php echo site_url('page/master_lab'); ?>">Master Laboratorium</a>
       </div>
     </div>
   </li>
-  <?php endif;?>
-  <!-- Divider -->
   <hr class="sidebar-divider d-none d-md-block">
 
   <!-- Sidebar Toggler (Sidebar) -->

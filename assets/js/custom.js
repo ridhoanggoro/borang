@@ -169,6 +169,21 @@ function hapus(tabel, id, returl) {
     });
     return false;
 }
+
+function e_ts(id, tbl) {
+    $('#Modal_Add').modal('show');
+    $.ajax({
+        type: "GET",
+        url: `${base_url}master/details_by_id/${id}/${tbl}`,
+        dataType: 'json',
+        success: function(data) {
+            $("#seq_id").val(data.seq_id);
+            $("#nama_ts").val(data.nama_ts);
+            $("#tahun").val(data.tahun);
+        }
+    });
+    return false;
+}
 /**
  *
  * End Script Save Data Dari Modal

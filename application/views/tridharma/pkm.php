@@ -45,7 +45,7 @@
 </div>
 
 <!-- MODAL ADD -->
-<form class="was-validated">
+<form class="was-validated" id="tambah">
   <div class="modal fade" id="Modal_Add" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content">
@@ -104,11 +104,19 @@
             <div id="id_check_result" class="help-block with-errors"></div>
           </div>
         </div>
+        <div class="form-row">
+          <label for="doc_edit">Dokumen </label>
+          <div class="form-group col-md-12">
+            <input type="file" class="custom-file-input" id="dokumen" name="dokumen">
+            <label class="custom-file-label" for="dokumen">Pilih file (pastikan file yang di upload dengan format PDF)</label>
+            <div id="id_check_result" class="help-block with-errors"></div>
+          </div>
+        </div>
       </div>
       <div class="modal-footer">
-      <button type="button" class="btn btn-secondary btn-icon-split btn-sm" data-dismiss="modal"><span class="icon text-white-50"><i class="fas fa-arrow-alt-circle-left"></i></i></span>
+      <button class="btn btn-secondary btn-icon-split btn-sm" data-dismiss="modal"><span class="icon text-white-50"><i class="fas fa-arrow-alt-circle-left"></i></i></span>
       <span class="text">Batal</span></button>
-      <button type="button" type="submit" id="btn_save" class="btn btn-primary btn-icon-split btn-sm"><span class="icon text-white-50"><i class="fas fa-save"></i></span>
+      <button type="submit" id="btn_save" class="btn btn-primary btn-icon-split btn-sm"><span class="icon text-white-50"><i class="fas fa-save"></i></span>
       <span class="text">Simpan</span></button>
       </div>
     </div>
@@ -283,20 +291,17 @@ $('#upload').submit(function(e) {
   // end upload data
 
   //Save Data
-  $('#btn_save').on('click',function(){
-    var lembaga_mitra   = $('#mitra').val();
-    var tingkat         = $('#tingkat').val();
-    var judul_kegiatan  = $('#judul_kegiatan').val();
-    var manfaat_bagi_ps = $('#manfaat_bagi_ps').val();
-    var durasi          = $('#waktu').val();
-    var tahun_berakhir  = $('#tahun_berakhir').val();
-    var bukti           = $('#bukti').val();
+  $('#tambah').submit(function(e) {
+    e.preventDefault();
     $.ajax({
-      type : "POST",
       url  : "<?php echo site_url('tridharma/pkm_add')?>",
-      dataType : "JSON",
-      data : {lembaga_mitra:lembaga_mitra, tingkat:tingkat, judul_kegiatan:judul_kegiatan, manfaat_bagi_ps:manfaat_bagi_ps, durasi:durasi, tahun_berakhir:tahun_berakhir, bukti:bukti},
-      success: function(data){
+      type: "post",
+      data: new FormData(this),
+      processData: false,
+      contentType: false,
+      cache: false,
+      async: false,
+      success: function(data) {
         $('[name="mitra"]').val("");
         $('[name="tingkat"]').val("");
         $('[name="judul_kegiatan"]').val("");

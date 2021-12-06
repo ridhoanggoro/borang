@@ -50,9 +50,9 @@
 </div>
 
 <!-- MODAL ADD -->
-<form class="was-validated">
-  <div class="modal fade" id="Modal_Add" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg" role="document">
+<form class="was-validated" id="tambah">
+  <div class="modal fade" id="Modal_Add" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-scrollable" role="document">
     <div class="modal-content">
       <div class="modal-header">
       <h5 class="modal-title" id="exampleModalLabel">Tambah Data</h5>
@@ -86,22 +86,16 @@
           </div>
         </div>
         <div class="form-row">
-          <div class="form-group col-md-12">
-            <label for="bidang_keahlian">Bidang Keahlian</label>
-            <input type="text" class="form-control" id="bidang_keahlian" name="bidang_keahlian" required>
-            <div id="id_check_result" class="help-block with-errors"></div>
-          </div>
-        </div>
-        <div class="form-row">
-          <div class="form-group col-md-4">
-          <label for="kesesuaian_kompetensi_inti_ps">Kesesuaian dengan Kompetensi Inti PS</label>
-           <select id="kesesuaian_kompetensi_inti_ps" name="kesesuaian_kompetensi_inti_ps" class="custom-select" data-placeholder="Silahkan pilih..." required>
+          <div class="form-group col-md-6">
+          <label for="pendidikan_tertinggi">Pendidikan Tertinggi</label>
+           <select id="pendidikan_tertinggi" name="pendidikan_tertinggi" class="custom-select" data-placeholder="Silahkan pilih..." required>
                 <option value=""></option>
-                <option value="YA">YA</option>
-                <option value="TIDAK">TIDAK</option>
+                <option value="S1">S1</option>
+                <option value="S2">S2</option>
+                <option value="S3">S3</option>>
             </select>
           </div>
-          <div class="form-group col-md-4">
+          <div class="form-group col-md-6">
           <label for="jabatan_akademik">Jabatan Akademik</label>
            <select id="jabatan_akademik" name="jabatan_akademik" class="custom-select" data-placeholder="Silahkan pilih..." required>
                 <option value=""></option>
@@ -112,7 +106,25 @@
                 <option value="GURU BESAR">GURU BESAR</option>
             </select>
           </div>
-          <div class="form-group col-md-4">
+        </div>
+        <div class="form-row">
+          <div class="form-group col-md-12">
+            <label for="bidang_keahlian">Bidang Keahlian</label>
+            <input type="text" class="form-control" id="bidang_keahlian" name="bidang_keahlian" required>
+            <div id="id_check_result" class="help-block with-errors"></div>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group col-md-6">
+          <label for="kesesuaian_kompetensi_inti_ps">Kesesuaian dengan Kompetensi Inti PS</label>
+           <select id="kesesuaian_kompetensi_inti_ps" name="kesesuaian_kompetensi_inti_ps" class="custom-select" data-placeholder="Silahkan pilih..." required>
+                <option value=""></option>
+                <option value="YA">YA</option>
+                <option value="TIDAK">TIDAK</option>
+            </select>
+          </div>
+
+          <div class="form-group col-md-6">
           <label for="sertifikasi">Sertifikasi</label>
            <select id="sertifikasi" name="sertifikasi" class="custom-select" data-placeholder="Silahkan pilih..." required>
                 <option value=""></option>
@@ -134,14 +146,24 @@
           </div>
         </div>
         <div class="form-row">
-          <div class="form-group col-md-6">
+          <div class="form-group col-md-12">
             <label for="matakuliah_diampu">Mata Kuliah yang Diampu pada PS yang Diakreditasi</label>
             <input type="text" class="form-control" id="matakuliah_diampu" name="matakuliah_diampu" required>
             <div id="id_check_result" class="help-block with-errors"></div>
           </div>
-          <div class="form-group col-md-6">
+        </div>
+        <div class="form-row">          
+          <div class="form-group col-md-8">
           <label for="kesesuaian_bidang_keahlian">Kesesuaian Bidang Keahlian dengan Mata Kuliah yang Diampu</label>
            <select id="kesesuaian_bidang_keahlian" name="kesesuaian_bidang_keahlian" class="custom-select" data-placeholder="Silahkan pilih..." required>
+                <option value=""></option>
+                <option value="YA">YA</option>
+                <option value="TIDAK">TIDAK</option>
+            </select>
+          </div>
+          <div class="form-group col-md-4">
+          <label for="status_forlap">Status Forlap</label>
+           <select id="status_forlap" name="status_forlap" class="custom-select" data-placeholder="Silahkan pilih..." required>
                 <option value=""></option>
                 <option value="YA">YA</option>
                 <option value="TIDAK">TIDAK</option>
@@ -152,6 +174,14 @@
           <div class="form-group col-md-12">
             <label for="matakuliah_diampu_ps_lain">Mata Kuliah yang Diampu pada PS Lain</label>
             <input type="text" class="form-control" id="matakuliah_diampu_ps_lain" name="matakuliah_diampu_ps_lain" required>
+            <div id="id_check_result" class="help-block with-errors"></div>
+          </div>
+        </div>
+        <div class="form-row">
+          <label for="dokumen">Dokumen </label>
+          <div class="form-group col-md-12">
+            <input type="file" class="custom-file-input" id="dokumen" name="dokumen">
+            <label class="custom-file-label" for="dokumen">Pilih file (pastikan file yang di upload dengan format PDF)</label>
             <div id="id_check_result" class="help-block with-errors"></div>
           </div>
         </div>
@@ -170,8 +200,8 @@
 
 <!-- MODAL EDIT -->
 <form class="was-validated" id="submit">
-  <div class="modal fade" id="Modal_Edit" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg" role="document">
+  <div class="modal fade" id="Modal_Edit" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-scrollable" role="document">
     <div class="modal-content">
       <div class="modal-header">
       <h5 class="modal-title" id="exampleModalLabel">Lihat/Edit Data</h5>
@@ -206,6 +236,19 @@
           </div>
         </div>
         <div class="form-row">
+          <div class="form-group col-md-4">
+          <label for="jabatan_akademik_edit">Pendidikan Tertinggi</label>
+           <select id="jabatan_akademik_edit" name="jabatan_akademik_edit" class="custom-select" data-placeholder="Silahkan pilih..." required>
+                <option value=""></option>
+                <option value="TENAGA PENGAJAR">TENAGA PENGAJAR</option>
+                <option value="LEKTOR">LEKTOR</option>
+                <option value="ASISTEN AHLI">ASISTEN AHLI</option>
+                <option value="LEKTOR KEPALA">LEKTOR KEPALA</option>
+                <option value="GURU BESAR">GURU BESAR</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-row">
           <div class="form-group col-md-12">
             <label for="bidang_keahlian_edit">Bidang Keahlian</label>
             <input type="text" class="form-control" id="bidang_keahlian_edit" name="bidang_keahlian_edit" required>
@@ -235,6 +278,16 @@
           <div class="form-group col-md-4">
           <label for="sertifikasi_edit">Sertifikasi</label>
            <select id="sertifikasi_edit" name="sertifikasi_edit" class="custom-select" data-placeholder="Silahkan pilih..." required>
+                <option value=""></option>
+                <option value="YA">YA</option>
+                <option value="TIDAK">TIDAK</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group col-md-12">
+          <label for="status_forlap_edit">Status Forlap</label>
+           <select id="status_forlap_edit" name="status_forlap_edit" class="custom-select" data-placeholder="Silahkan pilih..." required>
                 <option value=""></option>
                 <option value="YA">YA</option>
                 <option value="TIDAK">TIDAK</option>
@@ -326,7 +379,7 @@ $(document).ready(function(){
           '<td>'+data[i].kesesuaian_bidang_keahlian+'</td>'+
           '<td>'+data[i].matakuliah_diampu_ps_lain+'</td>'+
           '<td style="text-align:right;">'+
-              '<a href="javascript:void(0);" class="btn btn-info btn-circle btn-sm item_edit" data-toggle="tooltip" data-placement="top" title="Edit" data-seq_id="'+data[i].seq_id+'" data-nidn="'+data[i].nidn+'" data-nama="'+data[i].nama+'" data-pendidikan_magister="'+data[i].pendidikan_magister+'" data-pendidikan_doktor="'+data[i].pendidikan_doktor+'" data-bidang_keahlian="'+data[i].bidang_keahlian+'"data-kesesuaian_kompetensi_inti_ps="'+data[i].kesesuaian_kompetensi_inti_ps+'" data-jabatan_akademik="'+data[i].jabatan_akademik+'" data-sertifikasi_profesional="'+data[i].sertifikasi_profesional+'" data-sertifikasi_kompetensi="'+data[i].sertifikasi_kompetensi+'" data-matakuliah_diampu="'+data[i].matakuliah_diampu+'" data-kesesuaian_bidang_keahlian="'+data[i].kesesuaian_bidang_keahlian+'" data-matakuliah_diampu_ps_lain="'+data[i].matakuliah_diampu_ps_lain+'" data-sertifikasi="'+data[i].sertifikasi+'" data-doc="'+data[i].doc+'"><i class="fas fa-search"></i></a>'+' '+
+              '<a href="javascript:void(0);" class="btn btn-info btn-circle btn-sm item_edit" data-toggle="tooltip" data-placement="top" title="Edit" data-seq_id="'+data[i].seq_id+'" data-nidn="'+data[i].nidn+'" data-nama="'+data[i].nama+'" data-pendidikan_magister="'+data[i].pendidikan_magister+'" data-pendidikan_doktor="'+data[i].pendidikan_doktor+'" data-bidang_keahlian="'+data[i].bidang_keahlian+'"data-kesesuaian_kompetensi_inti_ps="'+data[i].kesesuaian_kompetensi_inti_ps+'" data-jabatan_akademik="'+data[i].jabatan_akademik+'" data-sertifikasi_profesional="'+data[i].sertifikasi_profesional+'" data-sertifikasi_kompetensi="'+data[i].sertifikasi_kompetensi+'" data-matakuliah_diampu="'+data[i].matakuliah_diampu+'" data-kesesuaian_bidang_keahlian="'+data[i].kesesuaian_bidang_keahlian+'" data-matakuliah_diampu_ps_lain="'+data[i].matakuliah_diampu_ps_lain+'" data-sertifikasi="'+data[i].sertifikasi+'" data-status_forlap="'+data[i].status_forlap+'" data-doc="'+data[i].doc+'"><i class="fas fa-search"></i></a>'+' '+
               '<a href="<?php echo site_url('assets/document/')?>'+data[i].doc+'" class="btn btn-primary btn-circle btn-sm" data-toggle="tooltip" data-placement="top" title="Download Dokumen"><i class="fas fa-download"></i></a>'+
               '<a href="javascript:void(0);" class="btn btn-danger btn-circle btn-sm item_delete" data-toggle="tooltip" data-placement="top" title="Delete" data-seq_id="'+data[i].seq_id+'"><i class="fas fa-trash"></i></a>'+
           '</td>'+
@@ -382,27 +435,18 @@ $('#upload').submit(function(e) {
   // end upload data
 
   //Save Data
-  $('#btn_save').on('click',function(){
-    var nidn = $('#nidn').val();
-    var nama = $('#nama').val();
-    var pendidikan_magister = $('#pendidikan_magister').val();
-    var pendidikan_doktor = $('#pendidikan_doktor').val();
-    var bidang_keahlian = $('#bidang_keahlian').val();
-    var kesesuaian_kompetensi_inti_ps  = $('#kesesuaian_kompetensi_inti_ps').val();
-    var jabatan_akademik = $('#jabatan_akademik').val();
-    var sertifikasi_profesional = $('#sertifikasi_profesional').val();
-    var sertifikasi_kompetensi = $('#sertifikasi_kompetensi').val();
-    var matakuliah_diampu = $('#matakuliah_diampu').val();
-    var kesesuaian_bidang_keahlian = $('#kesesuaian_bidang_keahlian').val();
-    var matakuliah_diampu_ps_lain = $('#matakuliah_diampu_ps_lain').val();
-    var sertifikasi = $('#sertifikasi').val();
+  $('#tambah').submit(function(e) {
+    e.preventDefault();
 
     $.ajax({
-      type : "POST",
       url  : "<?php echo site_url('dosen/dosen_tetap_add')?>",
-      dataType : "JSON",
-      data : {nidn:nidn, nama:nama, pendidikan_magister:pendidikan_magister, pendidikan_doktor:pendidikan_doktor, bidang_keahlian:bidang_keahlian, kesesuaian_kompetensi_inti_ps:kesesuaian_kompetensi_inti_ps, jabatan_akademik:jabatan_akademik, sertifikasi_profesional:sertifikasi_profesional, sertifikasi_kompetensi: sertifikasi_kompetensi, matakuliah_diampu:matakuliah_diampu, kesesuaian_bidang_keahlian:kesesuaian_bidang_keahlian, matakuliah_diampu_ps_lain:matakuliah_diampu_ps_lain, sertifikasi:sertifikasi},
-      success: function(data){
+      type: "post",
+      data: new FormData(this),
+      processData: false,
+      contentType: false,
+      cache: false,
+      async: false,
+      success: function(data) {
         $('[name="nidn"]').val("");
         $('[name="nama"]').val("");
         $('[name="pendidikan_magister"]').val("");
@@ -416,6 +460,7 @@ $('#upload').submit(function(e) {
         $('[name="kesesuaian_bidang_keahlian"]').val("");
         $('[name="matakuliah_diampu_ps_lain"]').val("");
         $('[name="sertifikasi"]').val("");
+        $('[name="status_forlap"]').val("");
         $('#Modal_Add').modal('hide');
         $.alert({
           title: 'Sukses!',
@@ -443,6 +488,7 @@ $('#upload').submit(function(e) {
     var kesesuaian_bidang_keahlian = $(this).data('kesesuaian_bidang_keahlian');
     var matakuliah_diampu_ps_lain = $(this).data('matakuliah_diampu_ps_lain');
     var sertifikasi = $(this).data('sertifikasi');
+    var status_forlap = $(this).data('status_forlap');
     var doc = $(this).data('doc');
     if (doc) { $('#status').html('<span class="badge badge-success">Dokumen telah diunggah</span>');
     } else { $('#status').html('<span class="badge badge-danger">Dokumen belum diunggah</span>'); }
@@ -462,6 +508,7 @@ $('#upload').submit(function(e) {
     $('[name="kesesuaian_bidang_keahlian_edit"]').val(kesesuaian_bidang_keahlian);
     $('[name="matakuliah_diampu_ps_lain_edit"]').val(matakuliah_diampu_ps_lain);
     $('[name="sertifikasi_edit"]').val(sertifikasi);
+    $('[name="status_forlap_edit"]').val(status_forlap);
     $('[name="doc_edit"]').val(doc);
   });
 
