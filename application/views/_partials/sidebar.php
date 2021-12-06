@@ -68,8 +68,8 @@
         <a class="collapse-item <?php echo $this->uri->segment(2) == 'dosen_pa' ? 'active': '' ?>" href="<?php echo site_url('dosen/dosen_pa'); ?>">*3.a.2.Dosen Pembimbing Utama TA</a>
         <a class="collapse-item <?php echo $this->uri->segment(2) == 'ewmp' ? 'active': '' ?>" href="<?php echo site_url('dosen/ewmp'); ?>">*3.a.3.EWMP Dosen Tetap PT</a>
         <a class="collapse-item <?php echo $this->uri->segment(2) == 'dosen_tdk_tetap' ? 'active': '' ?>" href="<?php echo site_url('dosen/dosen_tdk_tetap'); ?>">*3.a.4.Dosen Tidak Tetap </a>
-        <a class="collapse-item <?php echo $this->uri->segment(2) == 'dosen_praktisi' ? 'active': '' ?>" href="<?php echo site_url('dosen/dosen_praktisi'); ?>">*3.a.5.Dosen Industri/Praktisi</a>
-        <a class="collapse-item <?php echo $this->uri->segment(2) == 'rekognisi' ? 'active': '' ?>" href="<?php echo site_url('dosen/rekognisi'); ?>">*3.b.1.Pengakuan/Rekognisi Dosen</a>
+        <a class="collapse-item <?php echo $this->uri->segment(2) == 'dosen_praktisi' ? 'active': '' ?>" href="<?php echo site_url('dosen/dosen_praktisi'); ?>">*3.a.5. Dosen Industri / Praktisi</a>
+        <a class="collapse-item <?php echo $this->uri->segment(2) == 'rekognisi' ? 'active': '' ?>" href="<?php echo site_url('dosen/rekognisi'); ?>">*3.b.1 Pengakuan / Rekognisi Dosen</a>
         <a class="collapse-item <?php echo $this->uri->segment(2) == 'penelitian_dtps' ? 'active': '' ?>" href="<?php echo site_url('dosen/penelitian_dtps'); ?>">*3.b.2.Penelitian DTPS</a>
         <a class="collapse-item <?php echo $this->uri->segment(2) == 'pkm_dtps' ? 'active': '' ?>" href="<?php echo site_url('dosen/pkm_dtps'); ?>">*3.b.3.PkM DTPS</a>
         <a class="collapse-item <?php echo $this->uri->segment(2) == 'publikasi_ilmiah_dtps' ? 'active': '' ?>" href="<?php echo site_url('dosen/publikasi_ilmiah_dtps'); ?>">*3.b.4-1.Publikasi Ilmiah DTPS</a>
