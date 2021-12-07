@@ -417,15 +417,33 @@ class Model_master extends CI_model
         return $data->result();
     }
 
+    function dosen_pa_list()
+    {
+        $role = $this->session->userdata('nama');
+        $sql = "SELECT a.*,b.nama FROM `dosen_ta` a INNER JOIN dosen b ON a.nik_nidn_pembimbing = b.nidn WHERE a.prodi='$role'";
+        $data = $this->db->query($sql);
+        return $data->result();
+    }
+
     function dosen_pa_add()
     {
-        $prodi  = $this->session->userdata('nama');
+        $config['upload_path'] = "./assets/document";
+        $config['allowed_types'] = 'xls|xlsx|jpg|png|pdf|docx|doc';
+        $config['encrypt_name'] = TRUE;
+        $this->load->library('upload', $config);
+        $prodi = strtoupper($this->session->userdata('nama'));
+        $file = '';
+        if ($this->upload->do_upload("dokumen")) {
+            $docs = array('upload_data' => $this->upload->data());
+            $file = $docs['upload_data']['file_name'];
+        }
         $data   = array(
-            'nik_nidn_pembimbing' => $this->input->post('nik_nidn_pembimbing'),
-            'th_akademik' => $this->input->post('th_akademik'),
-            'jumlah' => $this->input->post('jumlah'),
+            'nik_nidn_pembimbing' => $this->input->post('nidn'),
+            'th_akademik' => $this->input->post('thn_akademik'),
+            'jumlah' => $this->input->post('jml'),
             'mhs_pa' => $this->input->post('mhs_pa'),
-            'prodi' => $prodi
+            'prodi' => $prodi,
+            'doc' => $file
         );
         $result = $this->db->insert('dosen_ta', $data);
         return $result;

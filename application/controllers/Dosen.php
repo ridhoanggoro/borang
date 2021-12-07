@@ -49,7 +49,7 @@ class Dosen extends CI_Controller {
   	}
 
     function dosen_pa_data_list(){
-  		$data = $this->Model_master->dosen_pa_data_list();
+  		$data = $this->Model_master->dosen_pa_list();
   		echo json_encode($data);
   	}
 

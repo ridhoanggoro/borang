@@ -184,6 +184,30 @@ function e_ts(id, tbl) {
     });
     return false;
 }
+
+function e_pa(id, tbl) {
+    $('#Modal_Add').modal('show');
+    $.ajax({
+        type: "GET",
+        url: `${base_url}master/details_by_id/${id}/${tbl}`,
+        dataType: 'json',
+        success: function(data) {
+            var doc = data.doc;
+             if(doc) {
+                 $('#status').html('<span class="badge badge-success">Dokumen telah diunggah</span>');
+             } else {
+                 $('#status').html('<span class="badge badge-danger">Dokumen belum diunggah</span>');
+             }
+            $("#seq_id").val(data.seq_id);
+            $("#nidn").val(data.nik_nidn_pembimbing);
+            $("#jml").val(data.jumlah);
+            $("#mhs_pa").val(data.mhs_pa);
+            $("#thn_akademik").val(data.th_akademik);
+            $("#doc_edit").val(doc);
+        }
+    });
+    return false;
+}
 /**
  *
  * End Script Save Data Dari Modal
