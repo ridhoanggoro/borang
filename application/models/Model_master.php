@@ -450,8 +450,18 @@ class Model_master extends CI_model
     
     function ewmp_add()
     {
-        $prodi  = $this->session->userdata('nama');
-        $nik = $this->input->post('nik_nidn');
+        $config['upload_path'] = "./assets/document";
+        $config['allowed_types'] = 'xls|xlsx|jpg|png|pdf|docx|doc';
+        $config['encrypt_name'] = TRUE;
+        $this->load->library('upload', $config);
+        $prodi = strtoupper($this->session->userdata('nama'));
+        $file = '';
+        if ($this->upload->do_upload("dokumen")) {
+            $docs = array('upload_data' => $this->upload->data());
+            $file = $docs['upload_data']['file_name'];
+        }
+
+        $nik = $this->input->post('nidn');
         $cek =  $this->db->query("select * from ekuivalen_dosen_mengajar where nik_nidn='$nik'")->num_rows();
         if ($cek > 0) {
             $data   = array(
@@ -462,7 +472,8 @@ class Model_master extends CI_model
                 'penelitian' => $this->input->post('penelitian'),
                 'pkm' => $this->input->post('pkm'),
                 'tugas_tambahan' => $this->input->post('tugas_tambahan'),
-                'prodi' => $prodi
+                'prodi' => $prodi,
+                'doc' => $file
             );
 
             $this->db->where('nik_nidn', $nik);
@@ -470,7 +481,8 @@ class Model_master extends CI_model
 
         } else {
             $data   = array(
-                'nik_nidn' => $this->input->post('nik_nidn'),
+                'nik_nidn' => $this->input->post('nidn'),
+                'nama_dosen' => '',
                 'dtps' => $this->input->post('dtps'),
                 'ps_yang_diakreditasi' => $this->input->post('ps_yang_diakreditasi'),
                 'ps_lain_di_dalam_pt' => $this->input->post('ps_lain_di_dalam_pt'),
@@ -478,7 +490,8 @@ class Model_master extends CI_model
                 'penelitian' => $this->input->post('penelitian'),
                 'pkm' => $this->input->post('pkm'),
                 'tugas_tambahan' => $this->input->post('tugas_tambahan'),
-                'prodi' => $prodi
+                'prodi' => $prodi,
+                'doc' => $file
             );
             $result = $this->db->insert('ekuivalen_dosen_mengajar', $data);
             

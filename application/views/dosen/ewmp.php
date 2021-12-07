@@ -51,8 +51,8 @@
 </div>
 
 <!-- MODAL ADD -->
-<form class="was-validated" id="insert">
-  <div class="modal fade" id="Modal_Add" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<form class="was-validated" id="tambah">
+  <div class="modal fade" id="Modal_Add" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -75,7 +75,7 @@
           </div>
           <div class="d-none">
             <label for="nama">Nama</label>
-            <input type="text" class="form-control" id="nama" name="nama" required>
+            <input type="text" class="form-control" id="nama" name="nama">
             <div id="id_check_result" class="help-block with-errors"></div>
           </div>
         </div>
@@ -91,35 +91,43 @@
           </div>
           <div class="form-group col-md-4">
             <label for="ps_yang_diakreditasi">Pendidikan PS yang Diakreditasi</label>
-            <input type="text" class="form-control" id="ps_yang_diakreditasi" name="ps_yang_diakreditasi" required>
+            <input type="number" class="form-control" id="ps_yang_diakreditasi" name="ps_yang_diakreditasi" required>
             <div id="id_check_result" class="help-block with-errors"></div>
           </div>
           <div class="form-group col-md-4">
             <label for="ps_lain_di_dalam_pt">Pendidikan PS Lain di dalam PT</label>
-            <input type="text" class="form-control" id="ps_lain_di_dalam_pt" name="ps_lain_di_dalam_pt" required>
+            <input type="number" class="form-control" id="ps_lain_di_dalam_pt" name="ps_lain_di_dalam_pt" required>
             <div id="id_check_result" class="help-block with-errors"></div>
           </div>
         </div>
         <div class="form-row">
           <div class="form-group col-md-4">
           <label for="ps_lain_di_luar_pt">Pendidikan PS Lain di luar PT</label>
-          <input type="text" class="form-control" id="ps_lain_di_luar_pt" name="ps_lain_di_luar_pt" required>
+          <input type="number" class="form-control" id="ps_lain_di_luar_pt" name="ps_lain_di_luar_pt" required>
           </div>
           <div class="form-group col-md-4">
             <label for="penelitian">Penelitian</label>
-            <input type="text" class="form-control" id="penelitian" name="penelitian" required>
+            <input type="number" class="form-control" id="penelitian" name="penelitian" required>
             <div id="id_check_result" class="help-block with-errors"></div>
           </div>
           <div class="form-group col-md-4">
             <label for="pkm">PKM</label>
-            <input type="text" class="form-control" id="pkm" name="pkm" required>
+            <input type="number" class="form-control" id="pkm" name="pkm" required>
             <div id="id_check_result" class="help-block with-errors"></div>
           </div>
         </div>
         <div class="form-row">
           <div class="form-group col-md-12">
             <label for="tugas_tambahan">Tugas Tambahan</label>
-            <input type="text" class="form-control" id="tugas_tambahan" name="tugas_tambahan" required>
+            <input type="number" class="form-control" id="tugas_tambahan" name="tugas_tambahan" required>
+            <div id="id_check_result" class="help-block with-errors"></div>
+          </div>
+        </div>
+        <div class="form-row">
+          <label for="dokumen">Dokumen </label>
+          <div class="form-group col-md-12">
+            <input type="file" class="custom-file-input" id="dokumen" name="dokumen">
+            <label class="custom-file-label" for="dokumen">Pilih file (pastikan file yang di upload dengan format PDF)</label>
             <div id="id_check_result" class="help-block with-errors"></div>
           </div>
         </div>
@@ -138,7 +146,7 @@
 
 <!-- MODAL EDIT -->
 <form class="was-validated" id="submit">
-  <div class="modal fade" id="Modal_Edit" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal fade" id="Modal_Edit" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -178,19 +186,19 @@
           </div>
           <div class="form-group col-md-4">
             <label for="ps_yang_diakreditasi_edit">Pendidikan PS yang Diakreditasi</label>
-            <input type="text" class="form-control" id="ps_yang_diakreditasi_edit" name="ps_yang_diakreditasi_edit" required>
+            <input type="number" class="form-control" id="ps_yang_diakreditasi_edit" name="ps_yang_diakreditasi_edit" required>
             <div id="id_check_result" class="help-block with-errors"></div>
           </div>
           <div class="form-group col-md-4">
             <label for="ps_lain_di_dalam_pt_edit">Pendidikan PS Lain di dalam PT</label>
-            <input type="text" class="form-control" id="ps_lain_di_dalam_pt_edit" name="ps_lain_di_dalam_pt_edit" required>
+            <input type="number" class="form-control" id="ps_lain_di_dalam_pt_edit" name="ps_lain_di_dalam_pt_edit" required>
             <div id="id_check_result" class="help-block with-errors"></div>
           </div>
         </div>
         <div class="form-row">
           <div class="form-group col-md-4">
           <label for="ps_lain_di_luar_pt_edit">Pendidikan PS Lain di luar PT</label>
-          <input type="text" class="form-control" id="ps_lain_di_luar_pt_edit" name="ps_lain_di_luar_pt_edit" required>
+          <input type="number" class="form-control" id="ps_lain_di_luar_pt_edit" name="ps_lain_di_luar_pt_edit" required>
           </div>
           <div class="form-group col-md-4">
             <label for="penelitian_edit">Penelitian</label>
@@ -199,7 +207,7 @@
           </div>
           <div class="form-group col-md-4">
             <label for="pkm_edit">PKM</label>
-            <input type="text" class="form-control" id="pkm_edit" name="pkm_edit" required>
+            <input type="number" class="form-control" id="pkm_edit" name="pkm_edit" required>
             <div id="id_check_result" class="help-block with-errors"></div>
           </div>
         </div>
@@ -280,7 +288,7 @@ $(document).ready(function(){
   }
 
   // upload data
-$('#upload').submit(function(e) {
+  $('#upload').submit(function(e) {
       e.preventDefault();
       $.ajax({
           url: '<?php echo site_url('upload/excel_upload/'.encode_url('3.a.3'))?>',
@@ -352,22 +360,17 @@ $('#upload').submit(function(e) {
   });
 
   //Save Data
-  $('#btn_save').on('click',function(){
-    var nik_nidn = $('#nidn').val();
-    var dtps = $('#dpts').val();
-    var ps_yang_diakreditasi = $('#ps_yang_diakreditasi').val();
-    var ps_lain_di_dalam_pt = $('#ps_lain_di_dalam_pt').val();
-    var ps_lain_di_luar_pt = $('#ps_lain_di_luar_pt').val();
-    var penelitian  = $('#penelitian').val();
-    var pkm = $('#pkm').val();
-    var tugas_tambahan = $('#tugas_tambahan').val();
-
+  $('#tambah').submit(function(e) {
+    e.preventDefault();
     $.ajax({
-      type : "POST",
       url  : "<?php echo site_url('dosen/ewmp_add')?>",
-      dataType : "JSON",
-      data : {nik_nidn:nik_nidn, dtps:dtps, ps_yang_diakreditasi:ps_yang_diakreditasi, ps_lain_di_dalam_pt:ps_lain_di_dalam_pt, ps_lain_di_luar_pt:ps_lain_di_luar_pt, penelitian:penelitian, pkm:pkm, tugas_tambahan:tugas_tambahan},
-      success: function(data){
+      type: "post",
+      data: new FormData(this),
+      processData: false,
+      contentType: false,
+      cache: false,
+      async: false,
+      success: function(data) {
         $('[name="nidn"]').val("");
         $('[name="dpts"]').val("");
         $('[name="ps_yang_diakreditasi"]').val("");
@@ -417,7 +420,7 @@ $('#upload').submit(function(e) {
   });
 
   //delete record to database
-   $('#btn_delete').on('click',function(){
+  $('#btn_delete').on('click',function(){
       var seq_id = $('#seq_id_delete').val();
       $.ajax({
           type : "POST",
