@@ -46,7 +46,7 @@
 </div>
 
 <!-- MODAL ADD -->
-<form class="was-validated">
+<form class="was-validated" id="tambah">
   <div class="modal fade" id="Modal_Add" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content">
@@ -99,6 +99,14 @@
           <div class="form-group col-md-4">
             <label for="sks">Bobot Kredit (sks)</label>
             <input type="number" class="form-control" id="sks" name="sks" required>
+            <div id="id_check_result" class="help-block with-errors"></div>
+          </div>
+        </div>
+        <div class="form-row">
+          <label for="dokumen">Dokumen </label>
+          <div class="form-group col-md-12">
+            <input type="file" class="custom-file-input" id="dokumen" name="dokumen">
+            <label class="custom-file-label" for="dokumen">Pilih file (pastikan file yang di upload dengan format PDF)</label>
             <div id="id_check_result" class="help-block with-errors"></div>
           </div>
         </div>
@@ -175,7 +183,7 @@
         </div>
         <input type="hidden" class="form-control" id="doc_edit" name="doc_edit" readonly>
         <div class="form-row">
-          <label for="doc_edit">Dokumen </label><div id="status"></div>
+          <label for="doc_edit" id="status">Dokumen </label>
           <div class="form-group col-md-12">
             <input type="file" class="custom-file-input" id="customFile" name="file_edit">
             <label class="custom-file-label" for="customFile">Pilih file (pastikan file yang di upload dengan format PDF)</label>
@@ -236,7 +244,7 @@ $(document).ready(function(){
   }
 
    // upload data
-$('#upload').submit(function(e) {
+  $('#upload').submit(function(e) {
       e.preventDefault();
       $.ajax({
           url: '<?php echo site_url('upload/excel_upload/'.encode_url('3.a.5'))?>',
@@ -291,8 +299,8 @@ $('#upload').submit(function(e) {
     var matakuliah_diampu = $(this).data('matakuliah_diampu');
     var sks = $(this).data('sks');
     var doc = $(this).data('doc');
-    if (doc) { $('#status').html('<span class="badge badge-success"> Dokumen telah diunggah</span>');
-    } else { $('#status').html('<span class="badge badge-danger"> Dokumen belum diunggah</span>'); }
+    if (doc) { $('#status').html('<label>Dokumen <span class="badge badge-success"> Dokumen telah diunggah</span></label>');
+    } else { $('#status').html('<label>Dokumen <span class="badge badge-danger"> Dokumen belum diunggah</span></label>'); }
 
     $('#Modal_Edit').modal('show');
     $('[name="seq_id"]').val(seq_id);
@@ -309,31 +317,21 @@ $('#upload').submit(function(e) {
   });
 
   //Save Data
-  $('#btn_save').on('click',function(){
-    var nik_nidn = $('#nidk').val();
-    var nama = $('#nama').val();
-    var perusahaan = $('#perusahaan').val();
-    var pendidikan_tertinggi = $('#pendidikan_tertinggi').val();
-    var bidang_keahlian = $('#bidang_keahlian').val();
-    var sertifikat_profesi  = $('#sertifikat_profesi').val();
-    var matakuliah_diampu = $('#matakuliah_diampu').val();
-    var sks = $('#sks').val();
+  $('#tambah').submit(function(e) {
+    e.preventDefault();
 
     $.ajax({
-      type : "POST",
       url  : "<?php echo site_url('dosen/dosen_praktisi_add')?>",
+      type: "post",
+      data: new FormData(this),
       dataType : "JSON",
-      data : {nik_nidn:nik_nidn, nama:nama, perusahaan:perusahaan, pendidikan_tertinggi:pendidikan_tertinggi, bidang_keahlian:bidang_keahlian, sertifikat_profesi:sertifikat_profesi, matakuliah_diampu:matakuliah_diampu, sks:sks},
-      success: function(data){
-        $('[name="nik_nidn"]').val("");
-        $('[name="nama"]').val("");
-        $('[name="perusahaan"]').val("");
-        $('[name="pendidikan_tertinggi"]').val("");
-        $('[name="bidang_keahlian"]').val("");
-        $('[name="sertifikat_profesi"]').val("");
-        $('[name="matakuliah_diampu"]').val("");
-        $('[name="sks"]').val("");
+      processData: false,
+      contentType: false,
+      cache: false,
+      async: false,
+      success: function(data) {        
         $('#Modal_Add').modal('hide');
+        $("#tambah").trigger("reset");
         $.alert({
           title: 'Sukses!',
           content: 'Data Berhasil Disimpan!',

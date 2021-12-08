@@ -134,7 +134,7 @@ $(document).ready(function(){
           '<td style="text-align:right;">'+
               '<a href="javascript:void(0);" onclick="return e_pa(\'' + data[i].seq_id + '\',\'' + tbl + '\');" class="btn btn-info btn-circle btn-sm item_edit" data-toggle="tooltip" data-placement="top" title="Edit"><i class="fas fa-search"></i></a>'+' '+
               '<a href="<?php echo site_url('assets/document/')?>'+data[i].doc+'" class="btn btn-primary btn-circle btn-sm" data-toggle="tooltip" data-placement="top" title="Download Dokumen"><i class="fas fa-download"></i></a>'+
-              '<a href="javascript:void(0);" class="btn btn-danger btn-circle btn-sm item_delete" data-toggle="tooltip" data-placement="top" title="Delete" data-seq_id="'+data[i].seq_id+'"><i class="fas fa-trash"></i></a>'+
+              '<a href="javascript:void(0);" onclick="return hapus(\''+ tbl + '\',\'' + data[i].seq_id + '\',\'\');" class="btn btn-danger btn-circle btn-sm item_delete" data-toggle="tooltip" data-placement="top" title="Delete" data-seq_id="'+data[i].seq_id+'"><i class="fas fa-trash"></i></a>'+
           '</td>'+
           '</tr>';
         }

@@ -18,6 +18,19 @@ class Master extends CI_Controller {
 		echo json_encode($result);
 	}
 
+	function hapus_data()
+	{
+		$tabel = decode_url($this->uri->segment(3));
+		$id = $this->uri->segment(4);
+		$retUrl = decode_url($this->uri->segment(5));
+
+		$this->Model_master->deleteData($tabel, array('seq_id' => $id));
+		$result['status'] 	= "ok";
+		$result['caption']	= "hapus sukses";
+		$result['url'] = $retUrl;
+		echo json_encode($result);
+	}
+
 	public function master_ts()
 	{
 		$this->Model_security->getsecurity();

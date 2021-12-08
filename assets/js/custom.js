@@ -58,7 +58,7 @@ function checkTime(i) {
   */
   function simpan(fsource, dest) {
     $.ajax({
-        url: `${base_url}tabel/${dest}`,
+        url: `${base_url}master/${dest}`,
         type: "post",
         data: new FormData(fsource),
         processData: false,
@@ -137,7 +137,7 @@ function hapus(tabel, id, returl) {
                 action: function() {
                     $.ajax({
                         type: "GET",
-                        url: `${base_url}tabel/hapus_data/${tabel}/${id}/${returl}`,
+                        url: `${base_url}master/hapus_data/${tabel}/${id}/${returl}`,
                         dataType: 'json',
                         success: function(response) {
                             if(response.status == "ok") {
@@ -177,10 +177,15 @@ function e_ts(id, tbl) {
         url: `${base_url}master/details_by_id/${id}/${tbl}`,
         dataType: 'json',
         success: function(data) {
-            $("#seq_id").val(data.seq_id);
-            $("#nama_ts").val(data.nama_ts);
-            $("#tahun").val(data.tahun);
+            if(data){
+                $("#seq_id").val(data.seq_id);
+                $("#nama_ts").val(data.nama_ts);
+                $("#tahun").val(data.tahun);    
+            } else {
+                $("#frmAdd").trigger("reset");
+            }       
         }
+        
     });
     return false;
 }
@@ -192,18 +197,23 @@ function e_pa(id, tbl) {
         url: `${base_url}master/details_by_id/${id}/${tbl}`,
         dataType: 'json',
         success: function(data) {
-            var doc = data.doc;
-             if(doc) {
-                 $('#status').html('<span class="badge badge-success">Dokumen telah diunggah</span>');
-             } else {
-                 $('#status').html('<span class="badge badge-danger">Dokumen belum diunggah</span>');
-             }
-            $("#seq_id").val(data.seq_id);
-            $("#nidn").val(data.nik_nidn_pembimbing);
-            $("#jml").val(data.jumlah);
-            $("#mhs_pa").val(data.mhs_pa);
-            $("#thn_akademik").val(data.th_akademik);
-            $("#doc_edit").val(doc);
+            if(data){
+                var doc = data.doc;
+                if(doc) {
+                    $('#status').html('<span class="badge badge-success">Dokumen telah diunggah</span>');
+                } else {
+                    $('#status').html('<span class="badge badge-danger">Dokumen belum diunggah</span>');
+                }
+                $("#seq_id").val(data.seq_id);
+                $("#nidn").val(data.nik_nidn_pembimbing);
+                $("#jml").val(data.jumlah);
+                $("#mhs_pa").val(data.mhs_pa);
+                $("#thn_akademik").val(data.th_akademik);
+                $("#doc_edit").val(doc);
+            } else {
+                $("#tambah").trigger("reset");
+            }
+           
         }
     });
     return false;

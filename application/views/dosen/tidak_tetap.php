@@ -47,7 +47,7 @@
 </div>
 
 <!-- MODAL ADD -->
-<form class="was-validated">
+<form class="was-validated" id="tambah">
   <div class="modal fade" id="Modal_Add" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content">
@@ -120,6 +120,14 @@
                 <option value="YA">YA</option>
                 <option value="TIDAK">TIDAK</option>
             </select>
+          </div>
+        </div>
+        <div class="form-row">
+          <label for="dokumen">Dokumen </label>
+          <div class="form-group col-md-12">
+            <input type="file" class="custom-file-input" id="dokumen" name="dokumen">
+            <label class="custom-file-label" for="dokumen">Pilih file (pastikan file yang di upload dengan format PDF)</label>
+            <div id="id_check_result" class="help-block with-errors"></div>
           </div>
         </div>
       </div>
@@ -276,7 +284,7 @@ $(document).ready(function(){
   }
 
  // upload data
-$('#upload').submit(function(e) {
+ $('#upload').submit(function(e) {
       e.preventDefault();
       $.ajax({
           url: '<?php echo site_url('upload/excel_upload/'.encode_url('3.a.4'))?>',
@@ -320,41 +328,20 @@ $('#upload').submit(function(e) {
   // end upload data
 
   //Save Data
-  $('#btn_save').on('click',function(){
-    var nidn = $('#nidn').val();
-    var nama = $('#nama').val();
-    var pendidikan_magister = $('#pendidikan_ps').val();
-    var pendidikan_doktor = $('#pendidikan_doktor').val();
-    var bidang_keahlian = $('#bidang_keahlian').val();
-    var kesesuaian_kompetensi_inti_ps  = $('#kesesuaian_kompetensi_inti_ps').val();
-    var jabatan_akademik = $('#jabatan_akademik').val();
-    var sertifikasi_profesional = $('#sertifikasi_profesional').val();
-    var sertifikasi_kompetensi = $('#sertifikasi_kompetensi').val();
-    var matakuliah_diampu = $('#matakuliah_diampu').val();
-    var kesesuaian_bidang_keahlian = $('#kesesuaian_bidang_keahlian').val();
-    var matakuliah_diampu_ps_lain = $('#matakuliah_diampu_ps_lain').val();
-    var sertifikasi = $('#sertifikasi').val();
+  $('#tambah').submit(function(e) {
+    e.preventDefault();
 
-    $.ajax({
-      type : "POST",
+    $.ajax({      
       url  : "<?php echo site_url('dosen/dosen_tdk_tetap_add')?>",
+      type: "post",
+      data: new FormData(this),
       dataType : "JSON",
-      data : {nidn:nidn, nama:nama, pendidikan_magister:pendidikan_magister, pendidikan_doktor:pendidikan_doktor, bidang_keahlian:bidang_keahlian, kesesuaian_kompetensi_inti_ps:kesesuaian_kompetensi_inti_ps, jabatan_akademik:jabatan_akademik, sertifikasi_profesional:sertifikasi_profesional, sertifikasi_kompetensi: sertifikasi_kompetensi, matakuliah_diampu:matakuliah_diampu, kesesuaian_bidang_keahlian:kesesuaian_bidang_keahlian, matakuliah_diampu_ps_lain:matakuliah_diampu_ps_lain, sertifikasi:sertifikasi},
-      success: function(data){
-        $('[name="nidn"]').val("");
-        $('[name="nama"]').val("");
-        $('[name="pendidikan_magister"]').val("");
-        $('[name="pendidikan_doktor"]').val("");
-        $('[name="bidang_keahlian"]').val("");
-        $('[name="kesesuaian_kompetensi_inti_ps"]').val("");
-        $('[name="jabatan_akademik"]').val("");
-        $('[name="sertifikasi_profesional"]').val("");
-        $('[name="sertifikasi_kompetensi"]').val("");
-        $('[name="matakuliah_diampu"]').val("");
-        $('[name="kesesuaian_bidang_keahlian"]').val("");
-        $('[name="matakuliah_diampu_ps_lain"]').val("");
-        $('[name="sertifikasi"]').val("");
-        $('#Modal_Add').modal('hide');
+      processData: false,
+      contentType: false,
+      cache: false,
+      async: false,
+      success: function(data) {
+        $("#tambah").trigger("reset");
         $.alert({
           title: 'Sukses!',
           content: 'Data Berhasil Disimpan!',

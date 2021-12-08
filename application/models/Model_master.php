@@ -20,6 +20,12 @@ class Model_master extends CI_model
 			return $this->db->get_where($table, $param);
 		}
 	}
+
+    function deleteData($table, $data)
+	{
+		return $this->db->delete($table, $data);
+	}
+
     
     function tridharma_pendidikan_list()
     {
@@ -427,6 +433,7 @@ class Model_master extends CI_model
 
     function dosen_pa_add()
     {
+        $seq_id = $this->input->post('seq_id');
         $config['upload_path'] = "./assets/document";
         $config['allowed_types'] = 'xls|xlsx|jpg|png|pdf|docx|doc';
         $config['encrypt_name'] = TRUE;
@@ -436,16 +443,23 @@ class Model_master extends CI_model
         if ($this->upload->do_upload("dokumen")) {
             $docs = array('upload_data' => $this->upload->data());
             $file = $docs['upload_data']['file_name'];
-        }
+        } else {
+			$file = $this->input->post('doc_edit');
+		}
+        
         $data   = array(
             'nik_nidn_pembimbing' => $this->input->post('nidn'),
             'th_akademik' => $this->input->post('thn_akademik'),
             'jumlah' => $this->input->post('jml'),
             'mhs_pa' => $this->input->post('mhs_pa'),
             'prodi' => $prodi,
-            'doc' => $file
+            'doc' => !empty($file) ? $file : ''
         );
-        $result = $this->db->insert('dosen_ta', $data);
+        if ($seq_id != 0) {
+			$result = $this->db->update("dosen_ta", $data, array('seq_id' => $seq_id));
+		} else {
+			$result = $this->db->insert('dosen_ta', $data);
+		}
         return $result;
     }
     
@@ -582,25 +596,45 @@ class Model_master extends CI_model
     
     function dosen_tdk_tetap_add()
     {
-        $prodi  = $this->session->userdata('nama');
+        $config['upload_path'] = "./assets/document";
+        $config['allowed_types'] = 'xls|xlsx|jpg|png|pdf|docx|doc';
+        $config['encrypt_name'] = TRUE;
+        $this->load->library('upload', $config);
+        $prodi = strtoupper($this->session->userdata('nama'));
+        $file = '';
+        if ($this->upload->do_upload("dokumen")) {
+            $docs = array('upload_data' => $this->upload->data());
+            $file = $docs['upload_data']['file_name'];
+        }
         $data   = array(
+            'npd' => '',
             'nidn' => $this->input->post('nidn'),
             'nama' => $this->input->post('nama'),
-            'pendidikan_magister' => $this->input->post('pendidikan_magister'),
-            'pendidikan_doktor' => $this->input->post('pendidikan_doktor'),
+            'pendidikan_magister' => $this->input->post('pendidikan_ps'),
+            'pendidikan_doktor' => '',
             'bidang_keahlian' => $this->input->post('bidang_keahlian'),
-            'kesesuaian_kompetensi_inti_ps' => $this->input->post('kesesuaian_kompetensi_inti_ps'),
+            'kesesuaian_kompetensi_inti_ps' => '',
             'jabatan_akademik' => $this->input->post('jabatan_akademik'),
             'sertifikasi_profesional' => $this->input->post('sertifikasi_profesional'),
             'sertifikasi_kompetensi' => $this->input->post('sertifikasi_kompetensi'),
             'matakuliah_diampu' => $this->input->post('matakuliah_diampu'),
+            'pendidikan_tertinggi' => '',
             'kesesuaian_bidang_keahlian' => $this->input->post('kesesuaian_bidang_keahlian'),
-            'matakuliah_diampu_ps_lain' => $this->input->post('matakuliah_diampu_ps_lain'),
+            'matakuliah_diampu_ps_lain' => '',
             'prodi' => $prodi,
-            'status' => 'TIDAK TETAP'
+            'status' => 'TIDAK TETAP',
+            'status_forlap' => '',
+            'sertifikasi' => '',
+            'doc' => $file
+
         );
-        $result = $this->db->insert('dosen', $data);
-        return $result;
+        if (!$this->db->insert('dosen', $data))
+        {
+            $error = $this->db->error();
+            $result = array('stat' => -1, 'col' => $i, 'isi' => $error['message'], 'data_ok' => $i-1);
+            return $result;
+        }
+        return "ok";
     }
     
     function dosen_tdk_tetap_edit()
@@ -676,9 +710,18 @@ class Model_master extends CI_model
     
     function dosen_praktisi_add()
     {
-        $prodi  = $this->session->userdata('nama');
+        $config['upload_path'] = "./assets/document";
+        $config['allowed_types'] = 'xls|xlsx|jpg|png|pdf|docx|doc';
+        $config['encrypt_name'] = TRUE;
+        $this->load->library('upload', $config);
+        $prodi = strtoupper($this->session->userdata('nama'));
+        $file = '';
+        if ($this->upload->do_upload("dokumen")) {
+            $docs = array('upload_data' => $this->upload->data());
+            $file = $docs['upload_data']['file_name'];
+        }
         $data   = array(
-            'nik_nidn' => $this->input->post('nik_nidn'),
+            'nik_nidn' => $this->input->post('nidk'),
             'nama_dosen' => $this->input->post('nama'),
             'perusahaan' => $this->input->post('perusahaan'),
             'pendidikan_tertinggi' => $this->input->post('pendidikan_tertinggi'),
@@ -686,9 +729,17 @@ class Model_master extends CI_model
             'sertifikat_profesi' => $this->input->post('sertifikat_profesi'),
             'matakuliah_diampu' => $this->input->post('matakuliah_diampu'),
             'sks' => $this->input->post('sks'),
-            'prodi' => $prodi
+            'prodi' => $prodi,
+            'doc' => $file
         );
-        $result = $this->db->insert('dosen_praktisi', $data);
+        
+        $result = array("status" => "ok");
+        if (!$this->db->insert('dosen_praktisi', $data))
+        {
+            $error = $this->db->error();
+            $result = array('stat' => -1, 'col' => $i, 'isi' => $error['message'], 'data_ok' => $i-1);
+            return $result;
+        }
         return $result;
     }
     
