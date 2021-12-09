@@ -342,6 +342,7 @@ $(document).ready(function(){
       async: false,
       success: function(data) {
         $("#tambah").trigger("reset");
+        $('#Modal_Add').modal('hide');
         $.alert({
           title: 'Sukses!',
           content: 'Data Berhasil Disimpan!',

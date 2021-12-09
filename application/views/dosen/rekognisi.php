@@ -43,8 +43,8 @@
 </div>
 
 <!-- MODAL ADD -->
-<form class="was-validated">
-  <div class="modal fade" id="Modal_Add" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<form class="was-validated" id="tambah">
+  <div class="modal fade" id="Modal_Add" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -90,6 +90,14 @@
             <div id="id_check_result" class="help-block with-errors"></div>
           </div>
         </div>
+        <div class="form-row">
+          <label for="dokumen">Dokumen </label>
+          <div class="form-group col-md-12">
+            <input type="file" class="custom-file-input" id="dokumen" name="dokumen">
+            <label class="custom-file-label" for="dokumen">Pilih file (pastikan file yang di upload dengan format PDF)</label>
+            <div id="id_check_result" class="help-block with-errors"></div>
+          </div>
+        </div>
       </div>
       <div class="modal-footer">
       <button class="btn btn-secondary btn-icon-split btn-sm" data-dismiss="modal"><span class="icon text-white-50"><i class="fas fa-arrow-alt-circle-left"></i></i></span>
@@ -105,7 +113,7 @@
 
 <!-- MODAL EDIT -->
 <form class="was-validated" id="submit">
-  <div class="modal fade" id="Modal_Edit" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal fade" id="Modal_Edit" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -274,24 +282,20 @@ $('#upload').submit(function(e) {
   });
 
   //Save Data
-  $('#btn_save').on('click',function(){
-    var nama = $('#nama').val();
-    var bidang_keahlian = $('#bidang_keahlian').val();
-    var bukti_pendukung = $('#bukti_pendukung').val();
-    var tingkat = $('#tingkat').val();
-    var tahun  = $('#tahun').val();
+  $('#tambah').submit(function(e) {
+    e.preventDefault();
 
     $.ajax({
-      type : "POST",
       url  : "<?php echo site_url('dosen/rekognisi_add')?>",
+      type: "post",
+      data: new FormData(this),
       dataType : "JSON",
-      data : {nama:nama, bidang_keahlian:bidang_keahlian, bukti_pendukung:bukti_pendukung, tingkat:tingkat, tahun:tahun},
-      success: function(data){
-        $('[name="nama"]').val("");
-        $('[name="bidang_keahlian"]').val("");
-        $('[name="bukti_pendukung"]').val("");
-        $('[name="tingkat"]').val("");
-        $('[name="tahun"]').val("");
+      processData: false,
+      contentType: false,
+      cache: false,
+      async: false,
+      success: function(data) {
+        $("#tambah").trigger("reset");
         $('#Modal_Add').modal('hide');
         $.alert({
           title: 'Sukses!',

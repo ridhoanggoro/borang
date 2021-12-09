@@ -42,7 +42,7 @@
 </div>
 
 <!-- MODAL ADD -->
-<form class="was-validated">
+<form class="was-validated" id="tambah">
   <div class="modal fade" id="Modal_Add" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content">
@@ -70,6 +70,14 @@
           <div class="form-group col-md-4">
             <label for="jumlah">Jumlah</label>
             <input type="number" min='1' max='1000' class="form-control" id="jumlah" name="jumlah" required>
+            <div id="id_check_result" class="help-block with-errors"></div>
+          </div>
+        </div>
+        <div class="form-row">
+          <label for="dokumen">Dokumen </label>
+          <div class="form-group col-md-12">
+            <input type="file" class="custom-file-input" id="dokumen" name="dokumen">
+            <label class="custom-file-label" for="dokumen">Pilih file (pastikan file yang di upload dengan format PDF)</label>
             <div id="id_check_result" class="help-block with-errors"></div>
           </div>
         </div>
@@ -218,21 +226,22 @@ $('#upload').submit(function(e) {
 // end upload data
 
   //Save Data
-  $('#btn_save').on('click',function(){
-    var nama_dosen = $('#nama_dosen').val();
-    var judul_artikel_disitasi = $('#judul_artikel_disitasi').val();
-    var jumlah = $('#jumlah').val();
+  $('#tambah').submit(function(e) {
+    e.preventDefault();
 
     $.ajax({
       type : "POST",
       url  : "<?php echo site_url('dosen/karya_ilmiah_disitasi_add')?>",
+      type: "post",
+      data: new FormData(this),
       dataType : "JSON",
-      data : {nama_dosen:nama_dosen, judul_artikel_disitasi:judul_artikel_disitasi, jumlah:jumlah},
-      success: function(data){
-        $('[name="nama_dosen"]').val("");
-        $('[name="judul_artikel_disitasi"]').val("");
-        $('[name="jumlah"]').val("");
+      processData: false,
+      contentType: false,
+      cache: false,
+      async: false,
+      success: function(data) {
         $('#Modal_Add').modal('hide');
+        $("#tambah").trigger("reset");
         $.alert({
           title: 'Sukses!',
           content: 'Data Berhasil Disimpan!',

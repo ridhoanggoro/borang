@@ -805,15 +805,25 @@ class Model_master extends CI_model
     }
     
     function rekognisi_add()
-    {
-        $prodi  = $this->session->userdata('nama');
+    {        
+        $config['upload_path'] = "./assets/document";
+        $config['allowed_types'] = 'xls|xlsx|jpg|png|pdf|docx|doc';
+        $config['encrypt_name'] = TRUE;
+        $this->load->library('upload', $config);
+        $prodi = strtoupper($this->session->userdata('nama'));
+        $file = '';
+        if ($this->upload->do_upload("dokumen")) {
+            $docs = array('upload_data' => $this->upload->data());
+            $file = $docs['upload_data']['file_name'];
+        }
         $data   = array(
             'nama' => $this->input->post('nama'),
             'bidang_keahlian' => $this->input->post('bidang_keahlian'),
             'bukti_pendukung' => $this->input->post('bukti_pendukung'),
             'tingkat' => $this->input->post('tingkat'),
             'tahun' => $this->input->post('tahun'),
-            'prodi' => $prodi
+            'prodi' => $prodi,
+            'doc' => $file
         );
         $result = $this->db->insert('rekognisi_dpts', $data);
         return $result;
@@ -1163,12 +1173,22 @@ class Model_master extends CI_model
     
     function karya_ilmiah_disitasi_add()
     {
-        $prodi  = $this->session->userdata('nama');
+        $config['upload_path'] = "./assets/document";
+        $config['allowed_types'] = 'xls|xlsx|jpg|png|pdf|docx|doc';
+        $config['encrypt_name'] = TRUE;
+        $this->load->library('upload', $config);
+        $prodi = strtoupper($this->session->userdata('nama'));
+        $file = '';
+        if ($this->upload->do_upload("dokumen")) {
+            $docs = array('upload_data' => $this->upload->data());
+            $file = $docs['upload_data']['file_name'];
+        }
         $data   = array(
             'nama_dosen' => $this->input->post('nama_dosen'),
             'judul_artikel_disitasi' => $this->input->post('judul_artikel_disitasi'),
             'jumlah' => $this->input->post('jumlah'),
-            'prodi' => $prodi
+            'prodi' => $prodi,
+            'doc' => $file
         );
         $result = $this->db->insert('karya_ilmiah_disitasi', $data);
         return $result;
@@ -1227,14 +1247,24 @@ class Model_master extends CI_model
     
     function produk_dtps_add()
     {
-        $prodi  = $this->session->userdata('nama');
+        $config['upload_path'] = "./assets/document";
+        $config['allowed_types'] = 'xls|xlsx|jpg|png|pdf|docx|doc';
+        $config['encrypt_name'] = TRUE;
+        $this->load->library('upload', $config);
+        $prodi = strtoupper($this->session->userdata('nama'));
+        $file = '';
+        if ($this->upload->do_upload("dokumen")) {
+            $docs = array('upload_data' => $this->upload->data());
+            $file = $docs['upload_data']['file_name'];
+        }
         $data   = array(
             'nama_dosen' => $this->input->post('nama_dosen'),
             'nama_produk' => $this->input->post('nama_produk'),
             'deskripsi' => $this->input->post('deskripsi'),
             'bukti' => $this->input->post('bukti'),
             'tahun' => $this->input->post('tahun'),
-            'prodi' => $prodi
+            'prodi' => $prodi,
+            'doc' => $file
         );
         $result = $this->db->insert('produk_dtps', $data);
         return $result;
