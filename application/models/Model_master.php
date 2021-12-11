@@ -883,6 +883,37 @@ class Model_master extends CI_model
         $data = $this->db->query($sql);
         return $data->result();
     }
+
+    function penelitian_dtps_add()
+    {
+        $seq_id = $this->input->post('seq_id');
+        $config['upload_path'] = "./assets/document";
+        $config['allowed_types'] = 'xls|xlsx|jpg|png|pdf|docx|doc';
+        $config['encrypt_name'] = TRUE;
+        $this->load->library('upload', $config);
+        $prodi = strtoupper($this->session->userdata('nama'));
+        $file = '';
+        if ($this->upload->do_upload("dokumen")) {
+            $docs = array('upload_data' => $this->upload->data());
+            $file = $docs['upload_data']['file_name'];
+        } else {
+            $file = $this->input->post('doc_edit');
+        }
+        
+        $data   = array(
+            'sumber_biaya' => $this->input->post('sumber_biaya'),
+            'jml_judul' => $this->input->post('jml_judul'),
+            'th_akademik' => $this->input->post('th_akademik'),
+            'prodi' => $prodi,
+            'doc' => !empty($file) ? $file : ''
+        );
+        if ($seq_id != 0) {
+            $result = $this->db->update("penelitian_dosen", $data, array('seq_id' => $seq_id));
+        } else {
+            $result = $this->db->insert('penelitian_dosen', $data);
+        }
+        return $result;
+    }
     
     function pkm_dtps_data_list()
     {
@@ -891,6 +922,37 @@ class Model_master extends CI_model
         $data = $this->db->query($sql);
         return $data->result();
     }
+
+    function pkm_dtps_add()
+    {
+        $seq_id = $this->input->post('seq_id');
+        $config['upload_path'] = "./assets/document";
+        $config['allowed_types'] = 'xls|xlsx|jpg|png|pdf|docx|doc';
+        $config['encrypt_name'] = TRUE;
+        $this->load->library('upload', $config);
+        $prodi = strtoupper($this->session->userdata('nama'));
+        $file = '';
+        if ($this->upload->do_upload("dokumen")) {
+            $docs = array('upload_data' => $this->upload->data());
+            $file = $docs['upload_data']['file_name'];
+        } else {
+            $file = $this->input->post('doc_edit');
+        }
+        
+        $data   = array(
+            'sumber_biaya' => $this->input->post('sumber_biaya'),
+            'jml_judul' => $this->input->post('jml_judul'),
+            'th_akademik' => $this->input->post('th_akademik'),
+            'prodi' => $prodi,
+            'doc' => !empty($file) ? $file : ''
+        );
+        if ($seq_id != 0) {
+            $result = $this->db->update("pkm_dosen", $data, array('seq_id' => $seq_id));
+        } else {
+            $result = $this->db->insert('pkm_dosen', $data);
+        }
+        return $result;
+    }
     
     function publikasi_ilmiah_dtps_data_list()
     {
@@ -898,6 +960,37 @@ class Model_master extends CI_model
         $sql  = "SELECT a.nama, SUM(CASE WHEN(b.th_akademik = ts2.tahun AND b.prodi='$role') THEN jml_judul ELSE 0 END) AS ts2, SUM(CASE WHEN(b.th_akademik = ts1.tahun AND b.prodi='$role') THEN jml_judul ELSE 0 END) AS ts1, SUM(CASE WHEN(b.th_akademik = ts.tahun AND b.prodi='$role') THEN jml_judul ELSE 0 END) AS ts FROM `jenis_publikasi` a LEFT JOIN publikasi_ilmiah b on b.jenis_publikasi=a.id LEFT JOIN ts AS ts2 ON ts2.tahun = b.th_akademik AND ts2.prodi = '$role' AND ts2.nama_ts = 'TS-2' LEFT JOIN ts AS ts1 ON ts1.tahun = b.th_akademik AND ts1.prodi = '$role' AND ts1.nama_ts = 'TS-1' LEFT JOIN ts ON ts.tahun = b.th_akademik AND ts.prodi = '$role' AND ts.nama_ts = 'TS' WHERE a.modul='publikasi_ilmiah' GROUP by a.seq_id ";
         $data = $this->db->query($sql);
         return $data->result();
+    }
+
+    function publikasi_ilmiah_dtps_add()
+    {
+        $seq_id = $this->input->post('seq_id');
+        $config['upload_path'] = "./assets/document";
+        $config['allowed_types'] = 'xls|xlsx|jpg|png|pdf|docx|doc';
+        $config['encrypt_name'] = TRUE;
+        $this->load->library('upload', $config);
+        $prodi = strtoupper($this->session->userdata('nama'));
+        $file = '';
+        if ($this->upload->do_upload("dokumen")) {
+            $docs = array('upload_data' => $this->upload->data());
+            $file = $docs['upload_data']['file_name'];
+        } else {
+            $file = $this->input->post('doc_edit');
+        }
+        
+        $data   = array(
+            'jenis_publikasi' => $this->input->post('jenis_publikasi'),
+            'jml_judul' => $this->input->post('jml_judul'),
+            'th_akademik' => $this->input->post('th_akademik'),
+            'prodi' => $prodi,
+            'doc' => !empty($file) ? $file : ''
+        );
+        if ($seq_id != 0) {
+            $result = $this->db->update("publikasi_ilmiah", $data, array("seq_id" => $seq_id));
+        } else {
+            $result = $this->db->insert("publikasi_ilmiah", $data);
+        }
+        return $result;
     }
     
     function pagelaran_ilmiah_data_list()

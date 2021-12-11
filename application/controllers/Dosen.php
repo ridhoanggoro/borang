@@ -180,14 +180,22 @@ class Dosen extends CI_Controller {
   		$this->Model_security->getsecurity();
   		$isi['title'] 	='Penelitian DTPS';
   		$isi['content']	= 'dosen/penelitian_dtps';
-		$isi['template_link'] = base_url().'assets/upload/3.b.2.penelitian_dtps.xlsx';
+		  $isi['template_link'] = base_url().'assets/upload/3.b.2.penelitian_dtps.xlsx';
   		$this->load->view('default_page', $isi);
   	}
 
     function penelitian_dtps_data_list(){
-  		$data = $this->Model_master->penelitian_dtps_data_list();
+      $role = $this->session->userdata('nama');
+      $data = $this->Model_master->getSelectedData("penelitian_dosen", array('prodi' => $role))->result();
+  		//$data = $this->Model_master->penelitian_dtps_data_list();
   		echo json_encode($data);
   	}
+
+     function penelitian_dtps_add(){
+      $data = $this->Model_master->penelitian_dtps_add();
+      echo json_encode($data);
+    }
+
 
     public function pkm_dtps()
   	{
@@ -199,23 +207,40 @@ class Dosen extends CI_Controller {
   	}
 
     function pkm_dtps_data_list(){
-  		$data = $this->Model_master->pkm_dtps_data_list();
+  		//$data = $this->Model_master->pkm_dtps_data_list();
+      $role = $this->session->userdata('nama');
+      $data = $this->Model_master->getSelectedData("pkm_dosen", array('prodi' => $role))->result();
   		echo json_encode($data);
   	}
+
+    function pkm_dtps_add()
+    {
+      $data = $this->Model_master->pkm_dtps_add();
+      echo json_encode($data);
+    }
 
     public function publikasi_ilmiah_dtps()
   	{
   		$this->Model_security->getsecurity();
   		$isi['title'] 	='Publikasi Ilmiah DTPS';
   		$isi['content']	= 'dosen/publikasi_ilmiah_dtps';
-		$isi['template_link'] = base_url().'assets/upload/3.b.4-1.publikasi_ilmiah.xlsx';
+		  $isi['template_link'] = base_url().'assets/upload/3.b.4-1.publikasi_ilmiah.xlsx';
+      $isi['jenis_publikasi'] = $this->Model_master->getSelectedData("jenis_publikasi", array('modul' => 'publikasi_ilmiah'))->result();
   		$this->load->view('default_page', $isi);
   	}
 
     function publikasi_ilmiah_dtps_data_list(){
-  		$data = $this->Model_master->publikasi_ilmiah_dtps_data_list();
+  		//$data = $this->Model_master->publikasi_ilmiah_dtps_data_list();
+      $role = $this->session->userdata('nama');
+      $data = $this->Model_master->getSelectedData("publikasi_ilmiah", array('prodi' => $role))->result();      
   		echo json_encode($data);
   	}
+
+    function publikasi_ilmiah_dtps_add()
+    {
+      $data = $this->Model_master->publikasi_ilmiah_dtps_add();
+      echo json_encode($data);
+    }
 
     public function pagelaran_ilmiah()
   	{

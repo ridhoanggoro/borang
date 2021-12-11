@@ -218,6 +218,98 @@ function e_pa(id, tbl) {
     });
     return false;
 }
+
+function e_penelitian_dtps(id, tbl) {
+    $('#Modal_Add').modal('show');
+    $.ajax({
+        type: "GET",
+        url: `${base_url}master/details_by_id/${id}/${tbl}`,
+        dataType: 'json',
+        success: function(data) {
+            if(data){
+                var doc = data.doc;
+                if(doc) {
+                    $('#status').html('<span class="badge badge-success">Dokumen telah diunggah</span>');
+                } else {
+                    $('#status').html('<span class="badge badge-danger">Dokumen belum diunggah</span>');
+                }
+                $("#seq_id").val(data.seq_id);
+                $("#sumber_biaya").val(data.sumber_biaya);
+                $("#jml_judul").val(data.jml_judul);
+                $("#th_akademik").val(data.th_akademik);
+                $("#doc_edit").val(doc);
+                $("#exampleModalLabel").text("Edit Data");
+            } else {
+                $("#tambah").trigger("reset");
+                $("#exampleModalLabel").text("Tambah Data");
+            }
+           
+        }
+    });
+    return false;
+}
+
+function e_pkm_dtps(id, tbl) {
+    $('#Modal_Add').modal('show');
+    $.ajax({
+        type: "GET",
+        url: `${base_url}master/details_by_id/${id}/${tbl}`,
+        dataType: 'json',
+        success: function(data) {
+            if(data){
+                var doc = data.doc;
+                if(doc) {
+                    $('#status').html('<span class="badge badge-success">Dokumen telah diunggah</span>');
+                } else {
+                    $('#status').html('<span class="badge badge-danger">Dokumen belum diunggah</span>');
+                }
+                $("#seq_id").val(data.seq_id);
+                $("#sumber_biaya").val(data.sumber_biaya);
+                $("#jml_judul").val(data.jml_judul);
+                $("#th_akademik").val(data.th_akademik);
+                $("#doc_edit").val(doc);
+                $("#exampleModalLabel").text("Edit Data");
+            } else {
+                $("#tambah").trigger("reset");
+                $("#exampleModalLabel").text("Tambah Data");
+            }
+           
+        }
+    });
+    return false;
+}
+
+function e_publikasi_ilmiah_dtps(id, tbl) {
+    $('#Modal_Add').modal('show');
+    $.ajax({
+        type: "GET",
+        url: `${base_url}master/details_by_id/${id}/${tbl}`,
+        dataType: 'json',
+        success: function(data) {
+            if(data){
+                var doc = data.doc;
+                if(doc) {
+                    $('#status').html('<span class="badge badge-success">Dokumen telah diunggah</span>');
+                } else {
+                    $('#status').html('<span class="badge badge-danger">Dokumen belum diunggah</span>');
+                }
+                $("#seq_id").val(data.seq_id);
+                $("#jenis_publikasi").val(data.jenis_publikasi);
+                $("#jml_judul").val(data.jml_judul);
+                $("#th_akademik").val(data.th_akademik);
+                $("#doc_edit").val(doc);
+                $("#exampleModalLabel").text("Edit Data");
+            } else {
+                $("#tambah").trigger("reset");
+                $("#exampleModalLabel").text("Tambah Data");
+            }
+           
+        }
+    });
+    return false;
+}
+
+
 /**
  *
  * End Script Save Data Dari Modal

@@ -1,0 +1,1 @@
+UPDATE `jenis_publikasi` SET `id` = 'Seminar wilayah lokal perguruan tinggi' WHERE `jenis_publikasi`.`seq_id` = 5; 
