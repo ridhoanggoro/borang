@@ -122,7 +122,7 @@ class Dosen extends CI_Controller {
   		$this->Model_security->getsecurity();
   		$isi['title'] 	='Dosen Industri/Praktisi';
   		$isi['content']	= 'dosen/praktisi';
-		$isi['template_link'] = base_url().'assets/upload/3.a.5.dosen_praktisi.xlsx';
+		  $isi['template_link'] = base_url().'assets/upload/3.a.5.dosen_praktisi.xlsx';
   		$this->load->view('default_page', $isi);
   	}
 
@@ -202,7 +202,7 @@ class Dosen extends CI_Controller {
   		$this->Model_security->getsecurity();
   		$isi['title'] 	='PkM DTPS';
   		$isi['content']	= 'dosen/pkm_dtps';
-		$isi['template_link'] = base_url().'assets/upload/3.b.3.pkm_dosen.xlsx';
+		  $isi['template_link'] = base_url().'assets/upload/3.b.3.pkm_dosen.xlsx';
   		$this->load->view('default_page', $isi);
   	}
 
@@ -247,7 +247,7 @@ class Dosen extends CI_Controller {
   		$this->Model_security->getsecurity();
   		$isi['title'] 	='Pagelaran/Pameran/Presentasi/Publikasi Ilmiah DTPS';
   		$isi['content']	= 'dosen/pagelaran_ilmiah';
-		$isi['template_link'] = base_url().'assets/upload/3.b.4-2.pagelaran_dtps.xlsx';
+		  $isi['template_link'] = base_url().'assets/upload/3.b.4-2.pagelaran_dtps.xlsx';
   		$this->load->view('default_page', $isi);
   	}
 
