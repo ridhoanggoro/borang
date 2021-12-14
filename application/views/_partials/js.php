@@ -14,3 +14,4 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/cleave.js/1.5.6/cleave.min.js"></script>
 
 <?php echo $this->uri->segment(1) == 'dana' ? '<script src="'.base_url('assets/js/dana.js').'"></script>': '' ;?>
+<?php echo $this->uri->segment(1) == 'dana' ? '<script src="'.base_url('assets/js/angka-rupiah.min.js').'"></script>': '' ;?>

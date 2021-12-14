@@ -26,6 +26,11 @@ class Model_master extends CI_model
 		return $this->db->delete($table, $data);
 	}
 
+    function insertBatchData($table, $data)
+	{
+		return $this->db->insert_batch($table, $data);
+	}
+
     
     function tridharma_pendidikan_list()
     {

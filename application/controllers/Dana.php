@@ -133,251 +133,133 @@ class Dana extends CI_Controller
     
     function simpan_penggunaan_dana_prodi()
     {
-        $prodi  = $this->session->userdata('nama');
-        $cek = $this->db->query("SELECT d.seq_id, ts.nama_ts, ts.tahun FROM dana_prodi d INNER JOIN ts ON ts.prodi=d.prodi AND ts.tahun=d.th_akademik WHERE ts.nama_ts IN ('TS','TS-1','TS-2') AND ts.prodi='$prodi' ")->num_rows();
-        if ($cek > 0) {
-            $get_id = $this->db->query("SELECT d.seq_id, ts.nama_ts, ts.tahun FROM dana_prodi d INNER JOIN ts ON ts.prodi=d.prodi AND ts.tahun=d.th_akademik WHERE ts.nama_ts IN ('TS','TS-1','TS-2') AND ts.prodi='$prodi' ")->result_array();
-            foreach ($get_id as $j) {
-                if ($j['nama_ts'] == "TS") {
-                    $data = array(
-                        'biaya_dosen' => str_replace(',', '', $this->input->post('a_biaya_dosen_ts')),
-                        'biaya_tenaga_kependidikan' => str_replace(',', '', $this->input->post('a_biaya_tenaga_kependidikan_ts')),
-                        'biaya_operasional_pembelajaran' => str_replace(',', '', $this->input->post('a_biaya_operasional_pembelajaran_ts')),
-                        'biaya_operasional_tidak_langsung' => str_replace(',', '', $this->input->post('a_biaya_operasional_tidak_langsung_ts')),
-                        'biaya_operasional_kemahasiswaan' => str_replace(',', '', $this->input->post('a_biaya_operasional_kemahasiswaan_ts')),
-                        'biaya_penelitian' => str_replace(',', '', $this->input->post('a_biaya_penelitian_ts')),
-                        'biaya_pkm' => str_replace(',', '', $this->input->post('a_biaya_pkm_ts')),
-                        'biaya_investasi_sdm' => str_replace(',', '', $this->input->post('a_biaya_investasi_sdm_ts')),
-                        'biaya_investasi_sarana' => str_replace(',', '', $this->input->post('a_biaya_investasi_sarana_ts')),
-                        'biaya_investasi_prasarana' => str_replace(',', '', $this->input->post('a_biaya_investasi_prasarana_ts')),
-                        'th_akademik' => $j['tahun'],
-                        'prodi' => $prodi
-                    );
-                    $this->Model_master->update_data($j['seq_id'], 'dana_prodi', $data);
-                } elseif ($j['nama_ts'] == "TS-1") {
-                    $data = array(
-                        'biaya_dosen' => str_replace(',', '', $this->input->post('a_biaya_dosen_ts1')),
-                        'biaya_tenaga_kependidikan' => str_replace(',', '', $this->input->post('a_biaya_tenaga_kependidikan_ts1')),
-                        'biaya_operasional_pembelajaran' => str_replace(',', '', $this->input->post('a_biaya_operasional_pembelajaran_ts1')),
-                        'biaya_operasional_tidak_langsung' => str_replace(',', '', $this->input->post('a_biaya_operasional_tidak_langsung_ts1')),
-                        'biaya_operasional_kemahasiswaan' => str_replace(',', '', $this->input->post('a_biaya_operasional_kemahasiswaan_ts1')),
-                        'biaya_penelitian' => str_replace(',', '', $this->input->post('a_biaya_penelitian_ts1')),
-                        'biaya_pkm' => str_replace(',', '', $this->input->post('a_biaya_pkm_ts1')),
-                        'biaya_investasi_sdm' => str_replace(',', '', $this->input->post('a_biaya_investasi_sdm_ts1')),
-                        'biaya_investasi_sarana' => str_replace(',', '', $this->input->post('a_biaya_investasi_sarana_ts1')),
-                        'biaya_investasi_prasarana' => str_replace(',', '', $this->input->post('a_biaya_investasi_prasarana_ts1')),
-                        'th_akademik' => $j['tahun'],
-                        'prodi' => $prodi
-                    );
-                    $this->Model_master->update_data($j['seq_id'], 'dana_prodi', $data);
-                } elseif ($j['nama_ts'] == "TS-2") {
-                    $data = array(
-                        'biaya_dosen' => str_replace(',', '', $this->input->post('a_biaya_dosen_ts2')),
-                        'biaya_tenaga_kependidikan' => str_replace(',', '', $this->input->post('a_biaya_tenaga_kependidikan_ts2')),
-                        'biaya_operasional_pembelajaran' => str_replace(',', '', $this->input->post('a_biaya_operasional_pembelajaran_ts2')),
-                        'biaya_operasional_tidak_langsung' => str_replace(',', '', $this->input->post('a_biaya_operasional_tidak_langsung_ts2')),
-                        'biaya_operasional_kemahasiswaan' => str_replace(',', '', $this->input->post('a_biaya_operasional_kemahasiswaan_ts2')),
-                        'biaya_penelitian' => str_replace(',', '', $this->input->post('a_biaya_penelitian_ts2')),
-                        'biaya_pkm' => str_replace(',', '', $this->input->post('a_biaya_pkm_ts2')),
-                        'biaya_investasi_sdm' => str_replace(',', '', $this->input->post('a_biaya_investasi_sdm_ts2')),
-                        'biaya_investasi_sarana' => str_replace(',', '', $this->input->post('a_biaya_investasi_sarana_ts2')),
-                        'biaya_investasi_prasarana' => str_replace(',', '', $this->input->post('a_biaya_investasi_prasarana_ts2')),
-                        'th_akademik' => $j['tahun'],
-                        'prodi' => $prodi
-                    );
-                    $this->Model_master->update_data($j['seq_id'], 'dana_prodi', $data);
-                }
-            }
-            
-            $this->session->set_flashdata('msg', '<div class="alert alert-success text-center"><button type="button" class="close" data-dismiss="alert">
-                                                    <i class="ace-icon fa fa-times"></i>
-                                                </button><i class="ace-icon fa fa-check"></i> Dana Prodi sudah berhasil di update!!!</div>');
-            redirect('dana/penggunaan_dana');
+        $prodi  = strtoupper($this->session->userdata('nama'));
+        // new save method 
+        $this->Model_master->deleteData("dana_prodi", array('prodi' => strtoupper($this->session->userdata('nama')), 'th_akademik' => $this->input->post('ts')));
+		$this->Model_master->deleteData("dana_prodi", array('prodi' => strtoupper($this->session->userdata('nama')), 'th_akademik' => $this->input->post('ts1')));
+		$this->Model_master->deleteData("dana_prodi", array('prodi' => strtoupper($this->session->userdata('nama')), 'th_akademik' => $this->input->post('ts2')));	
 
-        } else {
-            $get_ts = $this->db->query("SELECT nama_ts,tahun FROM ts WHERE prodi='$prodi' AND nama_ts IN ('TS','TS-1','TS-2')")->result_array();
-            foreach ($get_ts as $j) {
-                if ($j['nama_ts'] == "TS") {
-                    $data = array(
-                        'biaya_dosen' => str_replace(',', '', $this->input->post('a_biaya_dosen_ts')),
-                        'biaya_tenaga_kependidikan' => str_replace(',', '', $this->input->post('a_biaya_tenaga_kependidikan_ts')),
-                        'biaya_operasional_pembelajaran' => str_replace(',', '', $this->input->post('a_biaya_operasional_pembelajaran_ts')),
-                        'biaya_operasional_tidak_langsung' => str_replace(',', '', $this->input->post('a_biaya_operasional_tidak_langsung_ts')),
-                        'biaya_operasional_kemahasiswaan' => str_replace(',', '', $this->input->post('a_biaya_operasional_kemahasiswaan_ts')),
-                        'biaya_penelitian' => str_replace(',', '', $this->input->post('a_biaya_penelitian_ts')),
-                        'biaya_pkm' => str_replace(',', '', $this->input->post('a_biaya_pkm_ts')),
-                        'biaya_investasi_sdm' => str_replace(',', '', $this->input->post('a_biaya_investasi_sdm_ts')),
-                        'biaya_investasi_sarana' => str_replace(',', '', $this->input->post('a_biaya_investasi_sarana_ts')),
-                        'biaya_investasi_prasarana' => str_replace(',', '', $this->input->post('a_biaya_investasi_prasarana_ts')),
-                        'th_akademik' => $j['tahun'],
-                        'prodi' => $prodi
-                    );
-                    $this->Model_master->insert_data('dana_prodi', $data);
-                } elseif ($j['nama_ts'] == "TS-1") {
-                    $data = array(
-                        'biaya_dosen' => str_replace(',', '', $this->input->post('a_biaya_dosen_ts1')),
-                        'biaya_tenaga_kependidikan' => str_replace(',', '', $this->input->post('a_biaya_tenaga_kependidikan_ts1')),
-                        'biaya_operasional_pembelajaran' => str_replace(',', '', $this->input->post('a_biaya_operasional_pembelajaran_ts1')),
-                        'biaya_operasional_tidak_langsung' => str_replace(',', '', $this->input->post('a_biaya_operasional_tidak_langsung_ts1')),
-                        'biaya_operasional_kemahasiswaan' => str_replace(',', '', $this->input->post('a_biaya_operasional_kemahasiswaan_ts1')),
-                        'biaya_penelitian' => str_replace(',', '', $this->input->post('a_biaya_penelitian_ts1')),
-                        'biaya_pkm' => str_replace(',', '', $this->input->post('a_biaya_pkm_ts1')),
-                        'biaya_investasi_sdm' => str_replace(',', '', $this->input->post('a_biaya_investasi_sdm_ts1')),
-                        'biaya_investasi_sarana' => str_replace(',', '', $this->input->post('a_biaya_investasi_sarana_ts1')),
-                        'biaya_investasi_prasarana' => str_replace(',', '', $this->input->post('a_biaya_investasi_prasarana_ts1')),
-                        'th_akademik' => $j['tahun'],
-                        'prodi' => $prodi
-                    );
-                    $this->Model_master->insert_data('dana_prodi', $data);
-                } elseif ($j['nama_ts'] == "TS-2") {
-                    $data = array(
-                        'biaya_dosen' => str_replace(',', '', $this->input->post('a_biaya_dosen_ts2')),
-                        'biaya_tenaga_kependidikan' => str_replace(',', '', $this->input->post('a_biaya_tenaga_kependidikan_ts2')),
-                        'biaya_operasional_pembelajaran' => str_replace(',', '', $this->input->post('a_biaya_operasional_pembelajaran_ts2')),
-                        'biaya_operasional_tidak_langsung' => str_replace(',', '', $this->input->post('a_biaya_operasional_tidak_langsung_ts2')),
-                        'biaya_operasional_kemahasiswaan' => str_replace(',', '', $this->input->post('a_biaya_operasional_kemahasiswaan_ts2')),
-                        'biaya_penelitian' => str_replace(',', '', $this->input->post('a_biaya_penelitian_ts2')),
-                        'biaya_pkm' => str_replace(',', '', $this->input->post('a_biaya_pkm_ts2')),
-                        'biaya_investasi_sdm' => str_replace(',', '', $this->input->post('a_biaya_investasi_sdm_ts2')),
-                        'biaya_investasi_sarana' => str_replace(',', '', $this->input->post('a_biaya_investasi_sarana_ts2')),
-                        'biaya_investasi_prasarana' => str_replace(',', '', $this->input->post('a_biaya_investasi_prasarana_ts2')),
-                        'th_akademik' => $j['tahun'],
-                        'prodi' => $prodi
-                    );
-                    $this->Model_master->insert_data('dana_prodi', $data);
-                }
-            }
+		$data = array();
 
-            $this->session->set_flashdata('msg', '<div class="alert alert-success text-center"><button type="button" class="close" data-dismiss="alert">
-                                                    <i class="ace-icon fa fa-times"></i>
-                                                </button><i class="ace-icon fa fa-check"></i> Dana Prodi sudah berhasil di tambah!!!</div>');
-            redirect('dana/penggunaan_dana');
-
-        }
-
+        $data[] = array(
+            'biaya_dosen' => str_replace(',', '', $this->input->post('a_biaya_dosen_ts')),
+            'biaya_tenaga_kependidikan' => str_replace(',', '', $this->input->post('a_biaya_tenaga_kependidikan_ts')),
+            'biaya_operasional_pembelajaran' => str_replace(',', '', $this->input->post('a_biaya_operasional_pembelajaran_ts')),
+            'biaya_operasional_tidak_langsung' => str_replace(',', '', $this->input->post('a_biaya_operasional_tidak_langsung_ts')),
+            'biaya_operasional_kemahasiswaan' => str_replace(',', '', $this->input->post('a_biaya_operasional_kemahasiswaan_ts')),
+            'biaya_penelitian' => str_replace(',', '', $this->input->post('a_biaya_penelitian_ts')),
+            'biaya_pkm' => str_replace(',', '', $this->input->post('a_biaya_pkm_ts')),
+            'biaya_investasi_sdm' => str_replace(',', '', $this->input->post('a_biaya_investasi_sdm_ts')),
+            'biaya_investasi_sarana' => str_replace(',', '', $this->input->post('a_biaya_investasi_sarana_ts')),
+            'biaya_investasi_prasarana' => str_replace(',', '', $this->input->post('a_biaya_investasi_prasarana_ts')),
+            'th_akademik' => $this->input->post('ts'),
+            'prodi' => $prodi,
+            'doc' => ''
+        );
         
+        $data[] = array(
+            'biaya_dosen' => str_replace(',', '', $this->input->post('a_biaya_dosen_ts1')),
+            'biaya_tenaga_kependidikan' => str_replace(',', '', $this->input->post('a_biaya_tenaga_kependidikan_ts1')),
+            'biaya_operasional_pembelajaran' => str_replace(',', '', $this->input->post('a_biaya_operasional_pembelajaran_ts1')),
+            'biaya_operasional_tidak_langsung' => str_replace(',', '', $this->input->post('a_biaya_operasional_tidak_langsung_ts1')),
+            'biaya_operasional_kemahasiswaan' => str_replace(',', '', $this->input->post('a_biaya_operasional_kemahasiswaan_ts1')),
+            'biaya_penelitian' => str_replace(',', '', $this->input->post('a_biaya_penelitian_ts1')),
+            'biaya_pkm' => str_replace(',', '', $this->input->post('a_biaya_pkm_ts1')),
+            'biaya_investasi_sdm' => str_replace(',', '', $this->input->post('a_biaya_investasi_sdm_ts1')),
+            'biaya_investasi_sarana' => str_replace(',', '', $this->input->post('a_biaya_investasi_sarana_ts1')),
+            'biaya_investasi_prasarana' => str_replace(',', '', $this->input->post('a_biaya_investasi_prasarana_ts1')),
+            'th_akademik' => $this->input->post('ts1'),
+            'prodi' => $prodi,
+            'doc' => ''
+        );
+        
+        $data[] = array(
+            'biaya_dosen' => str_replace(',', '', $this->input->post('a_biaya_dosen_ts2')),
+            'biaya_tenaga_kependidikan' => str_replace(',', '', $this->input->post('a_biaya_tenaga_kependidikan_ts2')),
+            'biaya_operasional_pembelajaran' => str_replace(',', '', $this->input->post('a_biaya_operasional_pembelajaran_ts2')),
+            'biaya_operasional_tidak_langsung' => str_replace(',', '', $this->input->post('a_biaya_operasional_tidak_langsung_ts2')),
+            'biaya_operasional_kemahasiswaan' => str_replace(',', '', $this->input->post('a_biaya_operasional_kemahasiswaan_ts2')),
+            'biaya_penelitian' => str_replace(',', '', $this->input->post('a_biaya_penelitian_ts2')),
+            'biaya_pkm' => str_replace(',', '', $this->input->post('a_biaya_pkm_ts2')),
+            'biaya_investasi_sdm' => str_replace(',', '', $this->input->post('a_biaya_investasi_sdm_ts2')),
+            'biaya_investasi_sarana' => str_replace(',', '', $this->input->post('a_biaya_investasi_sarana_ts2')),
+            'biaya_investasi_prasarana' => str_replace(',', '', $this->input->post('a_biaya_investasi_prasarana_ts2')),
+            'th_akademik' => $this->input->post('ts2'),
+            'prodi' => $prodi,
+            'doc' => ''
+        );
+                   
+        $result = $this->Model_master->insertBatchData("dana_prodi", $data);    
+            
+        $this->session->set_flashdata('msg', '<div class="alert alert-success text-center"><button type="button" class="close" data-dismiss="alert">
+                                                <i class="ace-icon fa fa-times"></i>
+                                            </button><i class="ace-icon fa fa-check"></i> Dana Prodi sudah berhasil di update!!!</div>');
+        redirect('dana/penggunaan_dana');
         
     }
     
     function simpan_penggunaan_dana_fakultas()
     {
-        $prodi  = $this->session->userdata('nama');
-        $cek = $this->db->query("SELECT d.seq_id, ts.nama_ts, ts.tahun FROM dana_fakultas d INNER JOIN ts ON ts.prodi=d.prodi AND ts.tahun=d.th_akademik WHERE ts.nama_ts IN ('TS','TS-1','TS-2') AND ts.prodi='$prodi' ")->num_rows();
+        $prodi  = strtoupper($this->session->userdata('nama'));
+        // new save method 
+        $this->Model_master->deleteData("dana_fakultas", array('prodi' => strtoupper($this->session->userdata('nama')), 'th_akademik' => $this->input->post('ts')));
+		$this->Model_master->deleteData("dana_fakultas", array('prodi' => strtoupper($this->session->userdata('nama')), 'th_akademik' => $this->input->post('ts1')));
+		$this->Model_master->deleteData("dana_fakultas", array('prodi' => strtoupper($this->session->userdata('nama')), 'th_akademik' => $this->input->post('ts2')));	
 
-        if ($cek > 0) {
-            $get_id = $this->db->query("SELECT d.seq_id, ts.nama_ts, ts.tahun FROM dana_fakultas d INNER JOIN ts ON ts.prodi=d.prodi AND ts.tahun=d.th_akademik WHERE ts.nama_ts IN ('TS','TS-1','TS-2') AND ts.prodi='$prodi'")->result_array();
-            foreach ($get_id as $j) {
-                if ($j['nama_ts'] == "TS") {
-                    $data = array(
-                        'biaya_dosen' => str_replace(',', '', $this->input->post('b_biaya_dosen_ts')),
-                        'biaya_tenaga_kependidikan' => str_replace(',', '', $this->input->post('b_biaya_tenaga_kependidikan_ts')),
-                        'biaya_operasional_pembelajaran' => str_replace(',', '', $this->input->post('b_biaya_operasional_pembelajaran_ts')),
-                        'biaya_operasional_tidak_langsung' => str_replace(',', '', $this->input->post('b_biaya_operasional_tidak_langsung_ts')),
-                        'biaya_operasional_kemahasiswaan' => str_replace(',', '', $this->input->post('b_biaya_operasional_kemahasiswaan_ts')),
-                        'biaya_penelitian' => str_replace(',', '', $this->input->post('b_biaya_penelitian_ts')),
-                        'biaya_pkm' => str_replace(',', '', $this->input->post('b_biaya_pkm_ts')),
-                        'biaya_investasi_sdm' => str_replace(',', '', $this->input->post('b_biaya_investasi_sdm_ts')),
-                        'biaya_investasi_sarana' => str_replace(',', '', $this->input->post('b_biaya_investasi_sarana_ts')),
-                        'biaya_investasi_prasarana' => str_replace(',', '', $this->input->post('b_biaya_investasi_prasarana_ts')),
-                        'th_akademik' => $j['tahun'],
-                        'prodi' => $prodi
-                    );
-                    $this->Model_master->update_data($j['seq_id'], 'dana_fakultas', $data);
-                } elseif ($j['nama_ts'] == "TS-1") {
-                    $data = array(
-                        'biaya_dosen' => str_replace(',', '', $this->input->post('b_biaya_dosen_ts1')),
-                        'biaya_tenaga_kependidikan' => str_replace(',', '', $this->input->post('b_biaya_tenaga_kependidikan_ts1')),
-                        'biaya_operasional_pembelajaran' => str_replace(',', '', $this->input->post('b_biaya_operasional_pembelajaran_ts1')),
-                        'biaya_operasional_tidak_langsung' => str_replace(',', '', $this->input->post('b_biaya_operasional_tidak_langsung_ts1')),
-                        'biaya_operasional_kemahasiswaan' => str_replace(',', '', $this->input->post('b_biaya_operasional_kemahasiswaan_ts1')),
-                        'biaya_penelitian' => str_replace(',', '', $this->input->post('b_biaya_penelitian_ts1')),
-                        'biaya_pkm' => str_replace(',', '', $this->input->post('b_biaya_pkm_ts1')),
-                        'biaya_investasi_sdm' => str_replace(',', '', $this->input->post('b_biaya_investasi_sdm_ts1')),
-                        'biaya_investasi_sarana' => str_replace(',', '', $this->input->post('b_biaya_investasi_sarana_ts1')),
-                        'biaya_investasi_prasarana' => str_replace(',', '', $this->input->post('b_biaya_investasi_prasarana_ts1')),
-                        'th_akademik' => $j['tahun'],
-                        'prodi' => $prodi
-                    );
-                    $this->Model_master->update_data($j['seq_id'], 'dana_fakultas', $data);
-                } elseif ($j['nama_ts'] == "TS-2") {
-                    $data = array(
-                        'biaya_dosen' => str_replace(',', '', $this->input->post('b_biaya_dosen_ts2')),
-                        'biaya_tenaga_kependidikan' => str_replace(',', '', $this->input->post('b_biaya_tenaga_kependidikan_ts2')),
-                        'biaya_operasional_pembelajaran' => str_replace(',', '', $this->input->post('b_biaya_operasional_pembelajaran_ts2')),
-                        'biaya_operasional_tidak_langsung' => str_replace(',', '', $this->input->post('b_biaya_operasional_tidak_langsung_ts2')),
-                        'biaya_operasional_kemahasiswaan' => str_replace(',', '', $this->input->post('b_biaya_operasional_kemahasiswaan_ts2')),
-                        'biaya_penelitian' => str_replace(',', '', $this->input->post('b_biaya_penelitian_ts2')),
-                        'biaya_pkm' => str_replace(',', '', $this->input->post('b_biaya_pkm_ts2')),
-                        'biaya_investasi_sdm' => str_replace(',', '', $this->input->post('b_biaya_investasi_sdm_ts2')),
-                        'biaya_investasi_sarana' => str_replace(',', '', $this->input->post('b_biaya_investasi_sarana_ts2')),
-                        'biaya_investasi_prasarana' => str_replace(',', '', $this->input->post('b_biaya_investasi_prasarana_ts2')),
-                        'th_akademik' => $j['tahun'],
-                        'prodi' => $prodi
-                    );
-                    $this->Model_master->update_data($j['seq_id'], 'dana_fakultas', $data);
-                }
-            }
-            
-            $this->session->set_flashdata('msg', '<div class="alert alert-success text-center"><button type="button" class="close" data-dismiss="alert">
-                                                    <i class="ace-icon fa fa-times"></i>
-                                                </button><i class="ace-icon fa fa-check"></i> Dana Fakultas sudah berhasil di update!!!</div>');
-            redirect('dana/penggunaan_dana');
-        } else {
-            $get_ts = $this->db->query("SELECT nama_ts,tahun FROM ts WHERE prodi='$prodi' AND nama_ts IN ('TS','TS-1','TS-2')")->result_array();
-            foreach ($get_ts as $x) {
-                if ($x['nama_ts'] == "TS") {
-                    $data = array(
-                        'biaya_dosen' => str_replace(',', '', $this->input->post('b_biaya_dosen_ts')),
-                        'biaya_tenaga_kependidikan' => str_replace(',', '', $this->input->post('b_biaya_tenaga_kependidikan_ts')),
-                        'biaya_operasional_pembelajaran' => str_replace(',', '', $this->input->post('b_biaya_operasional_pembelajaran_ts')),
-                        'biaya_operasional_tidak_langsung' => str_replace(',', '', $this->input->post('b_biaya_operasional_tidak_langsung_ts')),
-                        'biaya_operasional_kemahasiswaan' => str_replace(',', '', $this->input->post('b_biaya_operasional_kemahasiswaan_ts')),
-                        'biaya_penelitian' => str_replace(',', '', $this->input->post('b_biaya_penelitian_ts')),
-                        'biaya_pkm' => str_replace(',', '', $this->input->post('b_biaya_pkm_ts')),
-                        'biaya_investasi_sdm' => str_replace(',', '', $this->input->post('b_biaya_investasi_sdm_ts')),
-                        'biaya_investasi_sarana' => str_replace(',', '', $this->input->post('b_biaya_investasi_sarana_ts')),
-                        'biaya_investasi_prasarana' => str_replace(',', '', $this->input->post('b_biaya_investasi_prasarana_ts')),
-                        'th_akademik' => $x['tahun'],
-                        'prodi' => $prodi
-                    );
-                    $this->Model_master->insert_data('dana_fakultas', $data);
-                } elseif ($x['nama_ts'] == "TS-1") {
-                    $data = array(
-                        'biaya_dosen' => str_replace(',', '', $this->input->post('b_biaya_dosen_ts1')),
-                        'biaya_tenaga_kependidikan' => str_replace(',', '', $this->input->post('b_biaya_tenaga_kependidikan_ts1')),
-                        'biaya_operasional_pembelajaran' => str_replace(',', '', $this->input->post('b_biaya_operasional_pembelajaran_ts1')),
-                        'biaya_operasional_tidak_langsung' => str_replace(',', '', $this->input->post('b_biaya_operasional_tidak_langsung_ts1')),
-                        'biaya_operasional_kemahasiswaan' => str_replace(',', '', $this->input->post('b_biaya_operasional_kemahasiswaan_ts1')),
-                        'biaya_penelitian' => str_replace(',', '', $this->input->post('b_biaya_penelitian_ts1')),
-                        'biaya_pkm' => str_replace(',', '', $this->input->post('b_biaya_pkm_ts1')),
-                        'biaya_investasi_sdm' => str_replace(',', '', $this->input->post('b_biaya_investasi_sdm_ts1')),
-                        'biaya_investasi_sarana' => str_replace(',', '', $this->input->post('b_biaya_investasi_sarana_ts1')),
-                        'biaya_investasi_prasarana' => str_replace(',', '', $this->input->post('b_biaya_investasi_prasarana_ts1')),
-                        'th_akademik' => $x['tahun'],
-                        'prodi' => $prodi
-                    );
-                    $this->Model_master->insert_data('dana_fakultas', $data);
-                } elseif ($x['nama_ts'] == "TS-2") {
-                    $data = array(
-                        'biaya_dosen' => str_replace(',', '', $this->input->post('b_biaya_dosen_ts2')),
-                        'biaya_tenaga_kependidikan' => str_replace(',', '', $this->input->post('b_biaya_tenaga_kependidikan_ts2')),
-                        'biaya_operasional_pembelajaran' => str_replace(',', '', $this->input->post('b_biaya_operasional_pembelajaran_ts2')),
-                        'biaya_operasional_tidak_langsung' => str_replace(',', '', $this->input->post('b_biaya_operasional_tidak_langsung_ts2')),
-                        'biaya_operasional_kemahasiswaan' => str_replace(',', '', $this->input->post('b_biaya_operasional_kemahasiswaan_ts2')),
-                        'biaya_penelitian' => str_replace(',', '', $this->input->post('b_biaya_penelitian_ts2')),
-                        'biaya_pkm' => str_replace(',', '', $this->input->post('b_biaya_pkm_ts2')),
-                        'biaya_investasi_sdm' => str_replace(',', '', $this->input->post('b_biaya_investasi_sdm_ts2')),
-                        'biaya_investasi_sarana' => str_replace(',', '', $this->input->post('b_biaya_investasi_sarana_ts2')),
-                        'biaya_investasi_prasarana' => str_replace(',', '', $this->input->post('b_biaya_investasi_prasarana_ts2')),
-                        'th_akademik' => $x['tahun'],
-                        'prodi' => $prodi
-                    );
-                    $this->Model_master->insert_data('dana_fakultas', $data);
-                }
+		$data = array();
 
-            }
-            $this->session->set_flashdata('msg', '<div class="alert alert-success text-center"><button type="button" class="close" data-dismiss="alert"><i class="ace-icon fa fa-times"></i></button><i class="ace-icon fa fa-check"></i> Dana Fakultas sudah berhasil di tambah!!!</div>');
-                redirect('dana/penggunaan_dana');
-        }  
+        $data[] = array(
+            'biaya_dosen' => str_replace(',', '', $this->input->post('b_biaya_dosen_ts')),
+            'biaya_tenaga_kependidikan' => str_replace(',', '', $this->input->post('b_biaya_tenaga_kependidikan_ts')),
+            'biaya_operasional_pembelajaran' => str_replace(',', '', $this->input->post('b_biaya_operasional_pembelajaran_ts')),
+            'biaya_operasional_tidak_langsung' => str_replace(',', '', $this->input->post('b_biaya_operasional_tidak_langsung_ts')),
+            'biaya_operasional_kemahasiswaan' => str_replace(',', '', $this->input->post('b_biaya_operasional_kemahasiswaan_ts')),
+            'biaya_penelitian' => str_replace(',', '', $this->input->post('b_biaya_penelitian_ts')),
+            'biaya_pkm' => str_replace(',', '', $this->input->post('b_biaya_pkm_ts')),
+            'biaya_investasi_sdm' => str_replace(',', '', $this->input->post('b_biaya_investasi_sdm_ts')),
+            'biaya_investasi_sarana' => str_replace(',', '', $this->input->post('b_biaya_investasi_sarana_ts')),
+            'biaya_investasi_prasarana' => str_replace(',', '', $this->input->post('b_biaya_investasi_prasarana_ts')),
+            'th_akademik' => $this->input->post('ts'),
+            'prodi' => $prodi,
+            'doc' => ''
+        );
+        
+
+        $data[] = array(
+            'biaya_dosen' => str_replace(',', '', $this->input->post('b_biaya_dosen_ts1')),
+            'biaya_tenaga_kependidikan' => str_replace(',', '', $this->input->post('b_biaya_tenaga_kependidikan_ts1')),
+            'biaya_operasional_pembelajaran' => str_replace(',', '', $this->input->post('b_biaya_operasional_pembelajaran_ts1')),
+            'biaya_operasional_tidak_langsung' => str_replace(',', '', $this->input->post('b_biaya_operasional_tidak_langsung_ts1')),
+            'biaya_operasional_kemahasiswaan' => str_replace(',', '', $this->input->post('b_biaya_operasional_kemahasiswaan_ts1')),
+            'biaya_penelitian' => str_replace(',', '', $this->input->post('b_biaya_penelitian_ts1')),
+            'biaya_pkm' => str_replace(',', '', $this->input->post('b_biaya_pkm_ts1')),
+            'biaya_investasi_sdm' => str_replace(',', '', $this->input->post('b_biaya_investasi_sdm_ts1')),
+            'biaya_investasi_sarana' => str_replace(',', '', $this->input->post('b_biaya_investasi_sarana_ts1')),
+            'biaya_investasi_prasarana' => str_replace(',', '', $this->input->post('b_biaya_investasi_prasarana_ts1')),
+            'th_akademik' => $this->input->post('ts1'),
+            'prodi' => $prodi,
+            'doc' => ''
+        );
+        
+        $data[] = array(
+            'biaya_dosen' => str_replace(',', '', $this->input->post('b_biaya_dosen_ts2')),
+            'biaya_tenaga_kependidikan' => str_replace(',', '', $this->input->post('b_biaya_tenaga_kependidikan_ts2')),
+            'biaya_operasional_pembelajaran' => str_replace(',', '', $this->input->post('b_biaya_operasional_pembelajaran_ts2')),
+            'biaya_operasional_tidak_langsung' => str_replace(',', '', $this->input->post('b_biaya_operasional_tidak_langsung_ts2')),
+            'biaya_operasional_kemahasiswaan' => str_replace(',', '', $this->input->post('b_biaya_operasional_kemahasiswaan_ts2')),
+            'biaya_penelitian' => str_replace(',', '', $this->input->post('b_biaya_penelitian_ts2')),
+            'biaya_pkm' => str_replace(',', '', $this->input->post('b_biaya_pkm_ts2')),
+            'biaya_investasi_sdm' => str_replace(',', '', $this->input->post('b_biaya_investasi_sdm_ts2')),
+            'biaya_investasi_sarana' => str_replace(',', '', $this->input->post('b_biaya_investasi_sarana_ts2')),
+            'biaya_investasi_prasarana' => str_replace(',', '', $this->input->post('b_biaya_investasi_prasarana_ts2')),
+            'th_akademik' => $this->input->post('ts2'),
+            'prodi' => $prodi,
+            'doc' => ''
+        );
+
+        $result = $this->Model_master->insertBatchData("dana_fakultas", $data);                  
+       
+        $this->session->set_flashdata('msg', '<div class="alert alert-success text-center"><button type="button" class="close" data-dismiss="alert"><i class="ace-icon fa fa-times"></i></button><i class="ace-icon fa fa-check"></i> Dana Fakultas sudah berhasil di update!!!</div>');
+                redirect('dana/penggunaan_dana');          
     }
 }
