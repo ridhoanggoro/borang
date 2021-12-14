@@ -30,24 +30,24 @@
   </div>
   <div class="card-body">
     <div class="table-responsive">
-    <table class="table table-hover table-bordered" id="mydata" width="100%" cellspacing="0">
+    <table class="table table-hover table-bordered table-sm">
       <thead>
         <tr>
           <tr>
-            <th rowspan="2" style="text-align: center; vertical-align: middle;">No</th>
-            <th rowspan="2" style="text-align: center; vertical-align: middle;">Jenis Penggunaan</th>
-            <th colspan="4" style="text-align: center; vertical-align: middle;">Program Studi (Rupiah)</th>
-            <th colspan="4" style="text-align: center; vertical-align: middle;">Unit Pengelola Program Studi (Rupiah)</th>
+            <th rowspan="2" style="width: 5%; text-align: center; vertical-align: middle;">No</th>
+            <th rowspan="2" style="width: 50%; text-align: center; vertical-align: middle;">Jenis Penggunaan</th>
+            <th colspan="4" style="width: 20%; text-align: center; vertical-align: middle;">Program Studi (Rupiah)</th>
+            <th colspan="4" style="width: 20%;text-align: center; vertical-align: middle;">Unit Pengelola Program Studi (Rupiah)</th>
           </tr>
           <tr>
-            <th style="text-align: center; vertical-align: middle;">TS-2</th>
-            <th style="text-align: center; vertical-align: middle;">TS-1</th>
-            <th style="text-align: center; vertical-align: middle;">TS</th>
-            <th style="text-align: center; vertical-align: middle;">Rata-Rata</th>
-            <th style="text-align: center; vertical-align: middle;">TS-2</th>
-            <th style="text-align: center; vertical-align: middle;">TS-1</th>
-            <th style="text-align: center; vertical-align: middle;">TS</th>
-            <th style="text-align: center; vertical-align: middle;">Rata-Rata</th>
+            <th style="width: 15%; text-align: center; vertical-align: middle;">TS-2</th>
+            <th style="width: 15%; text-align: center; vertical-align: middle;">TS-1</th>
+            <th style="width: 15%; text-align: center; vertical-align: middle;">TS</th>
+            <th style="width: 15%; text-align: center; vertical-align: middle;">Rata-Rata</th>
+            <th style="width: 15%; text-align: center; vertical-align: middle;">TS-2</th>
+            <th style="width: 15%; text-align: center; vertical-align: middle;">TS-1</th>
+            <th style="width: 15%; text-align: center; vertical-align: middle;">TS</th>
+            <th style="width: 15%; text-align: center; vertical-align: middle;">Rata-Rata</th>
           </tr>
         </tr>
       </thead>
@@ -57,124 +57,6 @@
     </div>
   </div>
 </div>
-
-<!-- MODAL ADD -->
-<form class="was-validated">
-  <div class="modal fade" id="Modal_Add" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-xl" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-      <h5 class="modal-title" id="exampleModalLabel">Tambah Data</h5>
-      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-        <span aria-hidden="true">&times;</span>
-      </button>
-      </div>
-      <div class="modal-body">
-        <div class="form-row">
-          <div class="form-group col-md-3">
-            <label for="semester">Semester</label>
-            <input type="text" class="form-control" id="semester" name="semester" required>
-            <div id="id_check_result" class="help-block with-errors"></div>
-          </div>
-          <div class="form-group col-md-3">
-            <label for="kode_matkul">Kode Mata Kuliah</label>
-            <input type="text" class="form-control" id="kode_matkul" name="kode_matkul" required>
-            <div id="id_check_result" class="help-block with-errors"></div>
-          </div>
-          <div class="form-group col-md-6">
-            <label for="nama_matkul">Nama Mata Kuliah</label>
-            <input type="text" class="form-control" id="nama_matkul" name="nama_matkul" required>
-            <div id="id_check_result" class="help-block with-errors"></div>
-          </div>
-        </div>
-        <div class="form-row">
-          <div class="form-group col-md-6">
-            <label for="matkul_kopetensi">Mata Kuliah Kompetensi</label>
-            <select id="matkul_kopetensi" name="matkul_kopetensi" class="custom-select" data-placeholder="Silahkan pilih..." required>
-                 <option value=""></option>
-                 <option value="V">YA</option>
-                 <option value="X">TIDAK</option>
-             </select>
-            <div id="id_check_result" class="help-block with-errors"></div>
-          </div>
-        </div>
-        <hr>
-          <h5>Bobot Kredit (sks)</h5>
-        <hr>
-        <div class="form-row">
-          <div class="form-group col-md-3">
-            <label for="kuliah">Kuliah/Responsi/Tutorial</label>
-            <input type="number" class="form-control" id="kuliah" name="kuliah" required>
-            <div id="id_check_result" class="help-block with-errors"></div>
-          </div>
-          <div class="form-group col-md-3">
-            <label for="seminar">Seminar</label>
-            <input type="number" class="form-control" id="seminar" name="seminar" required>
-            <div id="id_check_result" class="help-block with-errors"></div>
-          </div>
-          <div class="form-group col-md-3">
-            <label for="praktikum">Praktikum</label>
-            <input type="number" class="form-control" id="praktikum" name="praktikum" required>
-            <div id="id_check_result" class="help-block with-errors"></div>
-          </div>
-          <div class="form-group col-md-3">
-            <label for="konversi_jam">Konversi Kredit ke Jam</label>
-            <input type="number" class="form-control" id="konversi_jam" name="konversi_jam" required>
-            <div id="id_check_result" class="help-block with-errors"></div>
-          </div>
-        </div>
-        <div class="form-row">
-          <div class="card text-center">
-            <div class="card-header">Capaian Pembelajaran</div>
-            <div class="card-body">
-              <div class="form-group">
-                <div class="custom-control custom-checkbox custom-control-inline">
-                    <input type="checkbox" class="custom-control-input" id="sikap" name="sikap">
-                    <label class="custom-control-label" for="sikap">Sikap</label>
-                </div>
-                <div class="custom-control custom-checkbox custom-control-inline">
-                    <input type="checkbox" class="custom-control-input" id="pengetahuan" name="pengetahuan">
-                    <label class="custom-control-label" for="pengetahuan">Pengetahuan</label>
-                </div>
-                <div class="custom-control custom-checkbox custom-control-inline">
-                    <input type="checkbox" class="custom-control-input" id="keterampilan_umum" name="keterampilan_umum">
-                    <label class="custom-control-label" for="keterampilan_umum">Keterampilan Umum</label>
-                </div>
-                <div class="custom-control custom-checkbox custom-control-inline">
-                    <input type="checkbox" class="custom-control-input" id="keterampilan_khusus" name="keterampilan_khusus">
-                    <label class="custom-control-label" for="keterampilan_khusus">Keterampilan Khusus</label>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="form-row">
-          <div class="form-group col-md-12">
-            <label for="dokumen_pembelajaran">Dokumen Rencana Pembelajaran</label>
-            <input type="text" class="form-control" id="dokumen_pembelajaran" name="dokumen_pembelajaran" required>
-            <div id="id_check_result" class="help-block with-errors"></div>
-          </div>
-        </div>
-        <div class="form-row">
-          <div class="form-group col-md-12">
-            <label for="unit_penyelenggara">Unit Penyelenggara</label>
-            <input type="text" class="form-control" id="unit_penyelenggara" name="unit_penyelenggara" required>
-            <div id="id_check_result" class="help-block with-errors"></div>
-          </div>
-        </div>
-      </div>
-      <div class="modal-footer">
-        <button class="btn btn-secondary btn-icon-split btn-sm" data-dismiss="modal"><span class="icon text-white-50"><i class="fas fa-arrow-alt-circle-left"></i></i></span>
-        <span class="text">Batal</span></button>
-        <button type="submit" id="btn_save" class="btn btn-primary btn-icon-split btn-sm"><span class="icon text-white-50"><i class="fas fa-save"></i></span>
-        <span class="text">Simpan</span></button>
-      </div>
-    </div>
-    </div>
-  </div>
-</form>
-<!--END MODAL ADD-->
-
 
 <script type="text/javascript">
 $(document).ready(function() {

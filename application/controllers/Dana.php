@@ -43,9 +43,18 @@ class Dana extends CI_Controller
     
     function add_dana()
     {
-        $uri = $this->uri->segment(3);
         $this->Model_security->getsecurity();
+        $role = $this->session->userdata('nama');
+        $uri = $this->uri->segment(3);
         $data = $this->Model_master->penggunaan_dana_data_list();
+        $data_ts = $this->Model_master->getSelectedData("ts", array('prodi' => $role, 'nama_ts' => 'TS'))->row();
+        $data_ts1 = $this->Model_master->getSelectedData("ts", array('prodi' => $role, 'nama_ts' => 'TS-1'))->row();
+        $data_ts2 = $this->Model_master->getSelectedData("ts", array('prodi' => $role, 'nama_ts' => 'TS-2'))->row();
+
+        $isi['ts'] = $data_ts->tahun;
+        $isi['ts1'] = $data_ts1->tahun;
+        $isi['ts2'] = $data_ts2->tahun;
+
         if ($uri == "prodi") {
             $isi['title']   = 'Tambah/Rubah Penggunaan Dana Prodi';
             $isi['content'] = 'dana/penggunaan_dana_prodi';

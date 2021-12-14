@@ -15,8 +15,11 @@
     </button>
   </div>
   <div class="card-body">
+    <input type="hidden" class="form-control" id="ts" name="ts" value="<?php echo $ts; ?>">
+    <input type="hidden" class="form-control" id="ts1" name="ts1" value="<?php echo $ts1; ?>">
+    <input type="hidden" class="form-control" id="ts2" name="ts2" value="<?php echo $ts2; ?>">
     <div class="table">    
-    <table class="table table-hover table-bordered" id="mydata">
+    <table class="table table-hover table-bordered table-sm" id="mydata">
       <thead class="thead">
         <tr>
           <tr>
@@ -25,9 +28,9 @@
             <th colspan="3" style="width: 45%; text-align: center; vertical-align: middle;">Program Studi (Rupiah)</th>
           </tr>
           <tr>
-            <th style="width: 15%; text-align: center; vertical-align: middle;">TS-2</th>
-            <th style="width: 15%; text-align: center; vertical-align: middle;">TS-1</th>
-            <th style="width: 15%; text-align: center; vertical-align: middle;">TS</th>
+            <th style="width: 15%; text-align: center; vertical-align: middle;">TS-2 <?php echo $ts2; ?></th>
+            <th style="width: 15%; text-align: center; vertical-align: middle;">TS-1 <?php echo $ts1; ?></th>
+            <th style="width: 15%; text-align: center; vertical-align: middle;">TS <?php echo $ts; ?></th>
           </tr>
         </tr>
       </thead>
