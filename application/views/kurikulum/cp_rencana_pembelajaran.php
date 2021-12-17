@@ -120,12 +120,13 @@
             <div id="id_check_result" class="help-block with-errors"></div>
           </div>
         </div>
+
         <div class="form-row">
-          <div class="card text-center">
-            <div class="card-header">Capaian Pembelajaran</div>
-            <div class="card-body">
-              <div class="form-group">
-                <div class="custom-control custom-checkbox custom-control-inline">
+            <div class="form-group col-md-12">
+              <div class="card text-center">
+                <div class="card-header">Capaian Pembelajaran</div>
+                <div class="card-body">
+                  <div class="custom-control custom-checkbox custom-control-inline">
                     <input type="checkbox" class="custom-control-input" id="sikap" name="sikap">
                     <label class="custom-control-label" for="sikap">Sikap</label>
                 </div>
@@ -141,10 +142,11 @@
                     <input type="checkbox" class="custom-control-input" id="keterampilan_khusus" name="keterampilan_khusus">
                     <label class="custom-control-label" for="keterampilan_khusus">Keterampilan Khusus</label>
                 </div>
+                </div>
               </div>
             </div>
-          </div>
         </div>
+
         <div class="form-row">
           <div class="form-group col-md-12">
             <label for="dokumen_pembelajaran">Dokumen Rencana Pembelajaran</label>
@@ -159,6 +161,16 @@
             <div id="id_check_result" class="help-block with-errors"></div>
           </div>
         </div>
+
+        <div class="form-row">
+          <label for="dokumen">Dokumen </label>
+          <div class="form-group col-md-12">
+            <input type="file" class="custom-file-input" id="dokumen" name="dokumen">
+            <label class="custom-file-label" for="dokumen">Pilih file (pastikan file yang di upload dengan format PDF)</label>
+            <div id="id_check_result" class="help-block with-errors"></div>
+          </div>
+        </div>
+
       </div>
       <div class="modal-footer">
         <button class="btn btn-secondary btn-icon-split btn-sm" data-dismiss="modal"><span class="icon text-white-50"><i class="fas fa-arrow-alt-circle-left"></i></i></span>
@@ -238,12 +250,13 @@
             <div id="id_check_result" class="help-block with-errors"></div>
           </div>
         </div>
+
         <div class="form-row">
-          <div class="card text-center">
-            <div class="card-header">Capaian Pembelajaran</div>
-            <div class="card-body">
-              <div class="form-group">
-                <div class="custom-control custom-checkbox custom-control-inline">
+            <div class="form-group col-md-12">
+              <div class="card text-center">
+                <div class="card-header">Capaian Pembelajaran</div>
+                <div class="card-body">
+                  <div class="custom-control custom-checkbox custom-control-inline">
                     <input type="checkbox" class="custom-control-input" id="sikap_edit" name="sikap_edit">
                     <label class="custom-control-label" for="sikap_edit">Sikap</label>
                 </div>
@@ -259,10 +272,11 @@
                     <input type="checkbox" class="custom-control-input" id="keterampilan_khusus_edit" name="keterampilan_khusus_edit">
                     <label class="custom-control-label" for="keterampilan_khusus_edit">Keterampilan Khusus</label>
                 </div>
+                </div>
               </div>
             </div>
-          </div>
         </div>
+
         <div class="form-row">
           <div class="form-group col-md-12">
             <label for="dokumen_pembelajaran_edit">Dokumen Rencana Pembelajaran</label>
