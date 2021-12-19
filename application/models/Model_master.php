@@ -1016,12 +1016,23 @@ class Model_master extends CI_model
     
     function hki_paten_add()
     {
-        $prodi  = $this->session->userdata('nama');
+        $config['upload_path'] = "./assets/document";
+        $config['allowed_types'] = 'xls|xlsx|jpg|png|pdf|docx|doc';
+        $config['encrypt_name'] = TRUE;
+        $this->load->library('upload', $config);
+        $prodi = strtoupper($this->session->userdata('nama'));
+        $file = '';
+        if ($this->upload->do_upload("dokumen")) {
+            $docs = array('upload_data' => $this->upload->data());
+            $file = $docs['upload_data']['file_name'];
+        }
+        
         $data   = array(
             'luaran_penelitian' => $this->input->post('luaran_penelitian'),
             'th_perolehan' => $this->input->post('th_perolehan'),
             'keterangan' => $this->input->post('keterangan'),
-            'prodi' => $prodi
+            'prodi' => $prodi,
+            'doc' => $file
         );
         $result = $this->db->insert('hki_paten', $data);
         return $result;
@@ -1080,12 +1091,22 @@ class Model_master extends CI_model
     
     function hki_hak_cipta_add()
     {
-        $prodi  = $this->session->userdata('nama');
+        $config['upload_path'] = "./assets/document";
+        $config['allowed_types'] = 'xls|xlsx|jpg|png|pdf|docx|doc';
+        $config['encrypt_name'] = TRUE;
+        $this->load->library('upload', $config);
+        $prodi = strtoupper($this->session->userdata('nama'));
+        $file = '';
+        if ($this->upload->do_upload("dokumen")) {
+            $docs = array('upload_data' => $this->upload->data());
+            $file = $docs['upload_data']['file_name'];
+        }
         $data   = array(
             'luaran_penelitian' => $this->input->post('luaran_penelitian'),
             'th_perolehan' => $this->input->post('th_perolehan'),
             'keterangan' => $this->input->post('keterangan'),
-            'prodi' => $prodi
+            'prodi' => $prodi,
+            'doc' => $file
         );
         $result = $this->db->insert('hki_hak_cipta', $data);
         return $result;
@@ -1144,12 +1165,22 @@ class Model_master extends CI_model
     
     function hki_teknologi_tepatguna_add()
     {
-        $prodi  = $this->session->userdata('nama');
+        $config['upload_path'] = "./assets/document";
+        $config['allowed_types'] = 'xls|xlsx|jpg|png|pdf|docx|doc';
+        $config['encrypt_name'] = TRUE;
+        $this->load->library('upload', $config);
+        $prodi = strtoupper($this->session->userdata('nama'));
+        $file = '';
+        if ($this->upload->do_upload("dokumen")) {
+            $docs = array('upload_data' => $this->upload->data());
+            $file = $docs['upload_data']['file_name'];
+        }
         $data   = array(
             'luaran_penelitian' => $this->input->post('luaran_penelitian'),
             'th_perolehan' => $this->input->post('th_perolehan'),
             'keterangan' => $this->input->post('keterangan'),
-            'prodi' => $prodi
+            'prodi' => $prodi,
+            'doc' => $file
         );
         $result = $this->db->insert('hki_teknologi_tepatguna', $data);
         return $result;
@@ -1208,12 +1239,22 @@ class Model_master extends CI_model
     
     function buku_isbn_add()
     {
-        $prodi  = $this->session->userdata('nama');
+        $config['upload_path'] = "./assets/document";
+        $config['allowed_types'] = 'xls|xlsx|jpg|png|pdf|docx|doc';
+        $config['encrypt_name'] = TRUE;
+        $this->load->library('upload', $config);
+        $prodi = strtoupper($this->session->userdata('nama'));
+        $file = '';
+        if ($this->upload->do_upload("dokumen")) {
+            $docs = array('upload_data' => $this->upload->data());
+            $file = $docs['upload_data']['file_name'];
+        }
         $data   = array(
             'luaran_penelitian' => $this->input->post('luaran_penelitian'),
             'th_perolehan' => $this->input->post('th_perolehan'),
             'keterangan' => $this->input->post('keterangan'),
-            'prodi' => $prodi
+            'prodi' => $prodi,
+            'doc' => $file
         );
         $result = $this->db->insert('buku_isbn', $data);
         return $result;
@@ -1499,14 +1540,24 @@ class Model_master extends CI_model
     
     function integrasi_pkm_add()
     {
-        $prodi  = $this->session->userdata('nama');
+        $config['upload_path'] = "./assets/document";
+        $config['allowed_types'] = 'xls|xlsx|jpg|png|pdf|docx|doc';
+        $config['encrypt_name'] = TRUE;
+        $this->load->library('upload', $config);
+        $prodi = strtoupper($this->session->userdata('nama'));
+        $file = '';
+        if ($this->upload->do_upload("dokumen")) {
+            $docs = array('upload_data' => $this->upload->data());
+            $file = $docs['upload_data']['file_name'];
+        }
         $data   = array(
             'judul' => $this->input->post('judul'),
             'nama_dosen' => $this->input->post('nama_dosen'),
             'matkul' => $this->input->post('matkul'),
             'bentuk_integrasi' => $this->input->post('bentuk_integrasi'),
             'tahun' => $this->input->post('tahun'),
-            'prodi' => $prodi
+            'prodi' => $prodi,
+            'doc' => $file
         );
         $result = $this->db->insert('integrasi_pkm', $data);
         return $result;
@@ -1653,14 +1704,24 @@ class Model_master extends CI_model
     
     function penelitian_dosen_dan_mhs_add()
     {
-        $prodi  = $this->session->userdata('nama');
+        $config['upload_path'] = "./assets/document";
+        $config['allowed_types'] = 'xls|xlsx|jpg|png|pdf|docx|doc';
+        $config['encrypt_name'] = TRUE;
+        $this->load->library('upload', $config);
+        $prodi = strtoupper($this->session->userdata('nama'));
+        $file = '';
+        if ($this->upload->do_upload("dokumen")) {
+            $docs = array('upload_data' => $this->upload->data());
+            $file = $docs['upload_data']['file_name'];
+        }
         $data   = array(
             'nama_dosen' => $this->input->post('nama_dosen'),
             'tema_penelitian' => $this->input->post('tema_penelitian'),
             'nama_mhs' => $this->input->post('nama_mhs'),
             'judul_kegiatan' => $this->input->post('judul_kegiatan'),
             'tahun' => $this->input->post('tahun'),
-            'prodi' => $prodi
+            'prodi' => $prodi,
+            'doc' => $file
         );
         $result = $this->db->insert('penelitian_dosen_mhs', $data);
         return $result;
@@ -1793,14 +1854,24 @@ class Model_master extends CI_model
     
     function pkm_dosen_dan_mhs_add()
     {
-        $prodi  = $this->session->userdata('nama');
+        $config['upload_path'] = "./assets/document";
+        $config['allowed_types'] = 'xls|xlsx|jpg|png|pdf|docx|doc';
+        $config['encrypt_name'] = TRUE;
+        $this->load->library('upload', $config);
+        $prodi = strtoupper($this->session->userdata('nama'));
+        $file = '';
+        if ($this->upload->do_upload("dokumen")) {
+            $docs = array('upload_data' => $this->upload->data());
+            $file = $docs['upload_data']['file_name'];
+        }
         $data   = array(
             'nama_dosen' => $this->input->post('nama_dosen'),
             'tema_penelitian' => $this->input->post('tema_penelitian'),
             'nama_mhs' => $this->input->post('nama_mhs'),
             'judul_kegiatan' => $this->input->post('judul_kegiatan'),
             'tahun' => $this->input->post('tahun'),
-            'prodi' => $prodi
+            'prodi' => $prodi,
+            'doc' => $file
         );
         $result = $this->db->insert('pkm_dosen_mhs', $data);
         return $result;

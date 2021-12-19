@@ -43,7 +43,7 @@
 </div>
 
 <!-- MODAL ADD -->
-<form class="was-validated">
+<form class="was-validated" id="tambah">
   <div class="modal fade" id="Modal_Add" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content">
@@ -84,6 +84,14 @@
           <div class="form-group col-md-4">
             <label for="tahun">Tahun (YYYY)</label>
             <input type="number" min='2000' max='9999' class="form-control" id="tahun" name="tahun" required>
+            <div id="id_check_result" class="help-block with-errors"></div>
+          </div>
+        </div>
+        <div class="form-row">
+          <label for="dokumen">Dokumen </label>
+          <div class="form-group col-md-12">
+            <input type="file" class="custom-file-input" id="dokumen" name="dokumen">
+            <label class="custom-file-label" for="dokumen">Pilih file (pastikan file yang di upload dengan format PDF)</label>
             <div id="id_check_result" class="help-block with-errors"></div>
           </div>
         </div>
@@ -246,24 +254,19 @@ $('#upload').submit(function(e) {
 // end upload data
 
   //Save Data
-  $('#btn_save').on('click',function(){
-    var nama_dosen = $('#nama_dosen').val();
-    var tema_penelitian = $('#tema_penelitian').val();
-    var nama_mhs = $('#nama_mhs').val();
-    var judul_kegiatan = $('#judul_kegiatan').val();
-    var tahun = $('#tahun').val();
+  $('#tambah').submit(function(e) {
+    e.preventDefault();
 
     $.ajax({
-      type : "POST",
       url  : "<?php echo site_url('pkm/pkm_dosen_dan_mhs_add')?>",
-      dataType : "JSON",
-      data : {nama_dosen:nama_dosen, tema_penelitian:tema_penelitian, nama_mhs:nama_mhs, judul_kegiatan:judul_kegiatan, tahun:tahun},
-      success: function(data){
-        $('[name="nama_dosen"]').val("");
-        $('[name="tema_penelitian"]').val("");
-        $('[name="nama_mhs"]').val("");
-        $('[name="judul_kegiatan"]').val("");
-        $('[name="tahun"]').val("");
+      type: "post",
+      data: new FormData(this),
+      processData: false,
+      contentType: false,
+      cache: false,
+      async: false,
+      success: function(data) {
+        $("#tambah").trigger("reset");
         $('#Modal_Add').modal('hide');
         $.alert({
           title: 'Sukses!',
