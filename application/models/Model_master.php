@@ -31,6 +31,11 @@ class Model_master extends CI_model
 		return $this->db->insert_batch($table, $data);
 	}
 
+    function updateData($table, $data, $field_key)
+	{
+		return $this->db->update($table, $data, $field_key);
+	}
+
     
     function tridharma_pendidikan_list()
     {

@@ -40,5 +40,22 @@ class Master extends CI_Controller {
         $isi['data'] = $this->Model_master->getSelectedData("ts", array('prodi' => $role))->result();
 		$this->load->view('default_page', $isi);
 	}
+
+	public function tbl_ts_save()
+	{
+  		$seq_id = $this->input->post('seq_id');
+		$data = array(
+			'prodi ' => $this->input->post('prodi'),
+			'nama_ts'  => $this->input->post('nama_ts'),
+			'tahun' => $this->input->post('tahun')
+		);
+		if ($seq_id != 0) {
+			$result = $this->Model_master->updateData("ts", $data, array('seq_id' => $seq_id));
+		} else {
+			$result = $this->Model_master->insertData("ts", $data);
+		}
+		
+      	echo json_encode($result);
+	}
 	
 }
