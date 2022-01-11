@@ -1947,13 +1947,23 @@ class Model_master extends CI_model
     
     function prestasi_akademik_add()
     {
-        $prodi  = $this->session->userdata('nama');
+        $config['upload_path'] = "./assets/document";
+        $config['allowed_types'] = 'xls|xlsx|jpg|png|pdf|docx|doc';
+        $config['encrypt_name'] = TRUE;
+        $this->load->library('upload', $config);
+        $prodi = strtoupper($this->session->userdata('nama'));
+        $file = '';
+        if ($this->upload->do_upload("dokumen")) {
+            $docs = array('upload_data' => $this->upload->data());
+            $file = $docs['upload_data']['file_name'];
+        }
         $data   = array(
             'nama_kegiatan' => $this->input->post('nama_kegiatan'),
             'waktu' => $this->input->post('waktu'),
             'tingkat' => $this->input->post('tingkat'),
             'prestasi' => $this->input->post('prestasi'),
-            'prodi' => $prodi
+            'prodi' => $prodi,
+            'doc' => $file
         );
         $result = $this->db->insert('prestasi_akad_mhs', $data);
         return $result;

@@ -47,7 +47,7 @@
 </div>
 
 <!-- MODAL ADD -->
-<form class="was-validated">
+<form class="was-validated" id="tambah">
   <div class="modal fade" id="Modal_Add" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content">
@@ -86,6 +86,15 @@
           <div class="form-group col-md-12">
             <label for="prestasi">Prestasi yang Dicapai</label>
             <textarea class="form-control" rows="2" id="prestasi" name="prestasi" required></textarea>
+            <div id="id_check_result" class="help-block with-errors"></div>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <label for="dokumen">Dokumen </label>
+          <div class="form-group col-md-12">
+            <input type="file" class="custom-file-input" id="dokumen" name="dokumen">
+            <label class="custom-file-label" for="dokumen">Pilih file (pastikan file yang di upload dengan format PDF)</label>
             <div id="id_check_result" class="help-block with-errors"></div>
           </div>
         </div>
@@ -246,23 +255,20 @@ $('#upload').submit(function(e) {
 });
 // end upload data
 
-  //Save Data
-  $('#btn_save').on('click',function(){
-    var nama_kegiatan = $('#nama_kegiatan').val();
-    var waktu = $('#waktu').val();
-    var tingkat = $('#tingkat').val();
-    var prestasi = $('#prestasi').val();
+//Save Data
+$('#tambah').submit(function(e) {
+    e.preventDefault();
 
     $.ajax({
-      type : "POST",
       url  : "<?php echo site_url('luaran/prestasi_akademik_add')?>",
-      dataType : "JSON",
-      data : {nama_kegiatan:nama_kegiatan, waktu:waktu, tingkat:tingkat, prestasi:prestasi},
+      type: "post",
+      data: new FormData(this),
+      processData: false,
+      contentType: false,
+      cache: false,
+      async: false,
       success: function(data){
-        $('[name="nama_kegiatan"]').val("");
-        $('[name="waktu"]').val("");
-        $('[name="tingkat"]').val("");
-        $('[name="prestasi"]').val("");
+        $("#tambah").trigger("reset");
         $('#Modal_Add').modal('hide');
         $.alert({
           title: 'Sukses!',
