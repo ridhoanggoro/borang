@@ -8,6 +8,7 @@
   <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
     <h6 class="m-0 font-weight-bold text-primary"><?php echo $title; ?></h6>
     <div class="float-right">
+    <?php if (strtoupper($this->session->userdata('nama')) == "FAKULTAS") : ?>
       <a href="<?php echo site_url('dana/add_dana/fakultas'); ?>" class="btn btn-primary btn-icon-split btn-sm">
         <span class="icon text-white-50">
           <i class="fas fa-folder-plus"></i>
@@ -20,6 +21,7 @@
         </span>
         <span class="text">Tambah Data Prodi</span>
       </a>
+      <?php endif; ?>
       <a href="<?php echo base_url('export/export_excel/'.encode_url('4'));?>" class="btn btn-success btn-icon-split btn-sm">
         <span class="icon text-white-50">
           <i class="fas fa-file-excel"></i>

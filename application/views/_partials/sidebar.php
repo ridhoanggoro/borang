@@ -180,7 +180,7 @@
       <div class="bg-white py-2 collapse-inner rounded">
         <h6 class="collapse-header">Konfigurasi Data Awal e-Borang</h6>        
         <a class="collapse-item <?php echo $this->uri->segment(2) == 'master_ts' ? 'active': '' ?>" href="<?php echo site_url('master/master_ts'); ?>">Master TS</a>
-        <a class="collapse-item <?php echo $this->uri->segment(2) == 'buku_isbn_mhs' ? 'active': '' ?>" href="<?php echo site_url('page/master_lab'); ?>">Master Laboratorium</a>
+        <a class="collapse-item <?php echo $this->uri->segment(2) == 'master_opsi' ? 'active': '' ?>" href="<?php echo site_url('master/master_opsi'); ?>">Master List Pilihan</a>
       </div>
     </div>
   </li>

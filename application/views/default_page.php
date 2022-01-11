@@ -21,8 +21,10 @@
       $this->load->view("_partials/sidebar_s3.php");
     } elseif ($jenjang == 'S2') {
       $this->load->view("_partials/sidebar_s2.php");
-    } else {
+    } elseif ($jenjang == 'S1') {
       $this->load->view("_partials/sidebar.php");
+    } else {
+      $this->load->view("_partials/sidebar_other.php");
     }
     ?>
     <!-- End of Sidebar -->

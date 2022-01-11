@@ -190,6 +190,27 @@ function e_ts(id, tbl) {
     return false;
 }
 
+function e_opsi(id, tbl) {
+    $("#Modal_Add").modal("show");
+    $.ajax({
+        type: "GET",
+        url: `${base_url}master/details_by_id/${id}/${tbl}`,
+        dataType: "json",
+        success: (data) => {
+            if (data) {
+                $("#seq_id").val(data.seq_id);
+                $("#id").val(data.id);
+                $("#nama").val(data.nama);
+                $("#modul").val(data.modul);
+            } else {
+                $("#frmAdd").trigger("reset");
+                $("#status").html('<span class="badge badge-danger">Dokumen belum diunggah</span>')
+            }
+        },
+    });
+    return false;
+}
+
 function e_pa(id, tbl) {
     $('#Modal_Add').modal('show');
     $.ajax({
