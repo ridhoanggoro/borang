@@ -1937,7 +1937,7 @@ class Model_master extends CI_model
     function ipk_lulusan_data_list()
     {
         $prodi = $this->session->userdata('nama');
-        $sql   = "SELECT ts.seq_id, ts.nama_ts, SUM(CASE WHEN c.status_mhs='LULUS' THEN 1 ELSE 0 END) as jml, MIN(c.ipk) AS ipk_min, MAX(c.ipk) AS ipk_maks, AVG(c.ipk) AS ipk_rata FROM `mahasiswa` c INNER JOIN ts ON ts.tahun = LEFT(c.thn_lulus, 4) AND ts.prodi = '$prodi' WHERE c.prodi = '$prodi' AND ts.nama_ts IN ('TS','TS-1','TS-2') GROUP BY ts.nama_ts ORDER BY ts.seq_id DESC";
+        $sql   = "SELECT ts.seq_id, ts.nama_ts, SUM(CASE WHEN c.status_mhs='LULUS' THEN 1 ELSE 0 END) as jml, MIN(c.ipk) AS ipk_min, MAX(c.ipk) AS ipk_maks, AVG(c.ipk) AS ipk_rata FROM `mahasiswa` c INNER JOIN ts ON ts.tahun = LEFT(c.thn_lulus, 4) AND ts.prodi = '$prodi' WHERE c.prodi = '$prodi' AND c.status_mhs='LULUS' AND c.status_asal='REGULER' AND ts.nama_ts IN ('TS','TS-1','TS-2') GROUP BY ts.nama_ts ORDER BY ts.seq_id DESC";
         $data  = $this->db->query($sql);
         return $data->result();
     }
